@@ -37,7 +37,7 @@ TestCase subclass: #CustomerBookTest
 	poolDictionaries: ''
 	category: 'CodigoRepetido-Ejercicio'!
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:15:19'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'fd 4/12/2023 17:15:19'!
 assertCustomerBook: customerBook numberOfActiveCustomers: active numberOfSuspendedCustomers: suspended
 
 	| totalCustomers |
@@ -53,17 +53,17 @@ assertCustomerBook: customerBook numberOfActiveCustomers: active numberOfSuspend
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:10:18'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'fd 4/12/2023 17:10:18'!
 createCustomerBookWithCustomer: customer
 	
 	^CustomerBook new :: addCustomerNamed: customer.! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:09:36'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'fd 4/12/2023 17:09:36'!
 createCustomerBookWithSuspendedCustomer: customer
 
 	^self createCustomerBookWithCustomer: customer :: suspendCustomerNamed: customer.! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:11:05'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'fd 4/12/2023 17:11:05'!
 test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
 
 	| customerBook |
@@ -77,7 +77,7 @@ test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:11:13'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'fd 4/12/2023 17:11:13'!
 test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds
 
 	| customerBook paulMcCartney |
@@ -93,7 +93,7 @@ test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:12:44'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'fd 4/12/2023 17:12:44'!
 test03CanNotAddACustomerWithEmptyName 
 
 	| customerBook |
@@ -108,7 +108,7 @@ test03CanNotAddACustomerWithEmptyName
 
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:12:33'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'fd 4/12/2023 17:12:33'!
 test04CanNotRemoveAnInvalidCustomer
 	
 	| customerBook johnLennon |
@@ -123,7 +123,7 @@ test04CanNotRemoveAnInvalidCustomer
 			self assert: (customerBook includesCustomerNamed: johnLennon) ]
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:13:36'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'fd 4/12/2023 17:13:36'!
 test05SuspendingACustomerShouldNotRemoveItFromCustomerBook
 
 	| customerBook paulMcCartney|
@@ -142,7 +142,7 @@ test05SuspendingACustomerShouldNotRemoveItFromCustomerBook
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:13:33'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'fd 4/12/2023 17:13:33'!
 test06RemovingASuspendedCustomerShouldRemoveItFromCustomerBook
 
 	| customerBook paulMcCartney|
@@ -161,7 +161,7 @@ test06RemovingASuspendedCustomerShouldRemoveItFromCustomerBook
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:14:14'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'fd 4/12/2023 17:14:14'!
 test07CanNotSuspendAnInvalidCustomer
 	
 	| customerBook johnLennon |
@@ -176,7 +176,7 @@ test07CanNotSuspendAnInvalidCustomer
 			self assert: (customerBook includesCustomerNamed: johnLennon) ]
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 16:52:31'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'fd 4/12/2023 16:52:31'!
 test08CanNotSuspendAnAlreadySuspendedCustomer
 	
 	| customerBook johnLennon |
@@ -191,7 +191,7 @@ test08CanNotSuspendAnAlreadySuspendedCustomer
 			self assert: (customerBook includesCustomerNamed: johnLennon) ]
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:14:28'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'fd 4/12/2023 17:14:28'!
 test09CanNotAddAnExistingCustomer
 
 	| customerBook ringoStarr |
@@ -208,14 +208,14 @@ test09CanNotAddAnExistingCustomer
 
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:15:06'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'fd 4/12/2023 17:15:06'!
 testAction: anAction shouldGiveError: anError andThen: aClosure
 
 	[ anAction value. self fail ]
 		on: anError 
 		do: aClosure! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:14:50'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'fd 4/12/2023 17:14:50'!
 testAction: anAction shouldNotTakeMoreThan: anInterval
 
 	| millisecondsBeforeRunning millisecondsAfterRunning |
@@ -252,7 +252,7 @@ initialize
 	suspended:= OrderedCollection new.! !
 
 
-!CustomerBook methodsFor: 'customer management' stamp: 'FD 4/12/2023 17:04:49'!
+!CustomerBook methodsFor: 'customer management' stamp: 'fd 4/12/2023 17:04:49'!
 addCustomerNamed: aName
 
 	aName isEmpty
@@ -267,7 +267,7 @@ numberOfActiveCustomers
 	
 	^active size! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'FD 4/12/2023 16:55:55'!
+!CustomerBook methodsFor: 'customer management' stamp: 'fd 4/12/2023 16:55:55'!
 numberOfCustomers
 	
 	^self numberOfActiveCustomers + self numberOfSuspendedCustomers! !
@@ -277,7 +277,7 @@ numberOfSuspendedCustomers
 	
 	^suspended size! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'FD 4/12/2023 16:59:57'!
+!CustomerBook methodsFor: 'customer management' stamp: 'fd 4/12/2023 16:59:57'!
 removeCustomerNamed: aName 
  
 	active remove: aName 
@@ -287,7 +287,7 @@ removeCustomerNamed: aName
 
 ! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'FD 4/12/2023 17:00:26'!
+!CustomerBook methodsFor: 'customer management' stamp: 'fd 4/12/2023 17:00:26'!
 suspendCustomerNamed: aName 
 
 	active remove: aName 
