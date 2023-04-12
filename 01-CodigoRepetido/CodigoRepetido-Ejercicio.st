@@ -1,5 +1,21 @@
+!classDefinition: #AlreadyExists category: 'CodigoRepetido-Ejercicio'!
+Error subclass: #AlreadyExists
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CodigoRepetido-Ejercicio'!
+
+
 !classDefinition: #CantSuspend category: 'CodigoRepetido-Ejercicio'!
 Error subclass: #CantSuspend
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CodigoRepetido-Ejercicio'!
+
+
+!classDefinition: #NameCannotBeEmpty category: 'CodigoRepetido-Ejercicio'!
+Error subclass: #NameCannotBeEmpty
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -21,7 +37,7 @@ TestCase subclass: #CustomerBookTest
 	poolDictionaries: ''
 	category: 'CodigoRepetido-Ejercicio'!
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'JV 4/10/2023 21:48:39'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:15:19'!
 assertCustomerBook: customerBook numberOfActiveCustomers: active numberOfSuspendedCustomers: suspended
 
 	| totalCustomers |
@@ -29,7 +45,7 @@ assertCustomerBook: customerBook numberOfActiveCustomers: active numberOfSuspend
 	self assert: active equals: customerBook numberOfActiveCustomers.
 	self assert: suspended equals: customerBook numberOfSuspendedCustomers.
 	
-	totalCustomers:= active + suspended.
+	totalCustomers := active + suspended.
 	self assert: totalCustomers equals: customerBook numberOfCustomers.
 	
 	
@@ -37,90 +53,88 @@ assertCustomerBook: customerBook numberOfActiveCustomers: active numberOfSuspend
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'JV 4/11/2023 18:04:02'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:10:18'!
 createCustomerBookWithCustomer: customer
 	
-	| customerBook |
-	customerBook := CustomerBook new.
-	customerBook addCustomerNamed: customer.
-	^customerBook
-! !
+	^CustomerBook new :: addCustomerNamed: customer.! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'JV 4/10/2023 21:25:24'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:09:36'!
+createCustomerBookWithSuspendedCustomer: customer
+
+	^self createCustomerBookWithCustomer: customer :: suspendCustomerNamed: customer.! !
+
+!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:11:05'!
 test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
 
-	
-
 	| customerBook |
+	
 	
 	customerBook := CustomerBook new.
 	
-
-	self testAction:  [customerBook addCustomerNamed: 'John Lennon'.] shouldNotTakeMoreThan: (50 * millisecond)
+	self testAction: [customerBook addCustomerNamed: 'John Lennon'.] 
+		shouldNotTakeMoreThan: (50 * millisecond)
 	
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'JV 4/10/2023 21:26:58'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:11:13'!
 test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds
 
 	| customerBook paulMcCartney |
 	
-	customerBook := CustomerBook new.
 	paulMcCartney := 'Paul McCartney'.
+	customerBook := self createCustomerBookWithCustomer: paulMcCartney.
 	
-	customerBook addCustomerNamed: paulMcCartney.
-	  
-
-	self testAction: [customerBook removeCustomerNamed: paulMcCartney.] shouldNotTakeMoreThan: (100 *millisecond).
+	self testAction: [customerBook removeCustomerNamed: paulMcCartney.]
+		shouldNotTakeMoreThan: (100 * millisecond).
 
 	
 
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'JV 4/10/2023 21:33:31'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:12:44'!
 test03CanNotAddACustomerWithEmptyName 
 
 	| customerBook |
-			
+	
+	
 	customerBook := CustomerBook new.
 	
-	self testAction: [customerBook addCustomerNamed: ''.] 
-	shouldGiveError: Error 
-	andThen: [ :anError | 
-			self assert: anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage.
+	self testAction: [customerBook addCustomerNamed: ''.]
+		shouldGiveError: NameCannotBeEmpty 
+		andThen: [:anError | 
 			self assert: customerBook isEmpty ]
 
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'JV 4/11/2023 18:09:09'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:12:33'!
 test04CanNotRemoveAnInvalidCustomer
 	
 	| customerBook johnLennon |
 	
 	johnLennon := 'John Lennon'.
-	
 	customerBook := self createCustomerBookWithCustomer: johnLennon.	
 	
-	self testAction: [ customerBook removeCustomerNamed: 'Paul McCartney'.]
-
-	 shouldGiveError:  	NotFound
-	andThen: 		[ :anError | 
+	self testAction: [customerBook removeCustomerNamed: 'Paul McCartney'.]
+		shouldGiveError: NotFound
+		andThen: [:anError | 
 			self assert: customerBook numberOfCustomers = 1.
 			self assert: (customerBook includesCustomerNamed: johnLennon) ]
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'JV 4/11/2023 18:11:51'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:13:36'!
 test05SuspendingACustomerShouldNotRemoveItFromCustomerBook
 
 	| customerBook paulMcCartney|
 	
 	paulMcCartney := 'Paul McCartney'.
-	customerBook := self createCustomerBookWithCustomer: paulMcCartney .	
-	customerBook suspendCustomerNamed: paulMcCartney.
+	customerBook := self createCustomerBookWithSuspendedCustomer: paulMcCartney.	
 	
-	self assertCustomerBook: customerBook numberOfActiveCustomers: 0 numberOfSuspendedCustomers: 1.
+	
+	self assertCustomerBook: customerBook 
+		numberOfActiveCustomers: 0
+		numberOfSuspendedCustomers: 1.
 	
 	self assert: (customerBook includesCustomerNamed: paulMcCartney).
 	
@@ -128,18 +142,18 @@ test05SuspendingACustomerShouldNotRemoveItFromCustomerBook
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'JV 4/11/2023 18:13:01'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:13:33'!
 test06RemovingASuspendedCustomerShouldRemoveItFromCustomerBook
 
 	| customerBook paulMcCartney|
 
 	paulMcCartney := 'Paul McCartney'.
-	customerBook := self createCustomerBookWithCustomer: paulMcCartney.	
-	
-	customerBook suspendCustomerNamed: paulMcCartney.
+	customerBook := self createCustomerBookWithSuspendedCustomer: paulMcCartney.	
 	customerBook removeCustomerNamed: paulMcCartney.
 	
-	self assertCustomerBook: customerBook numberOfActiveCustomers: 0 numberOfSuspendedCustomers: 0.
+	self assertCustomerBook: customerBook
+		numberOfActiveCustomers: 0
+		numberOfSuspendedCustomers: 0.
 	
 	self deny: (customerBook includesCustomerNamed: paulMcCartney).
 
@@ -147,7 +161,7 @@ test06RemovingASuspendedCustomerShouldRemoveItFromCustomerBook
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'JV 4/11/2023 18:13:35'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:14:14'!
 test07CanNotSuspendAnInvalidCustomer
 	
 	| customerBook johnLennon |
@@ -155,21 +169,20 @@ test07CanNotSuspendAnInvalidCustomer
 	johnLennon := 'John Lennon'.
 	customerBook := self createCustomerBookWithCustomer: johnLennon.	
 	
-	self testAction:[ customerBook suspendCustomerNamed: 'George Harrison'. ]
+	self testAction: [ customerBook suspendCustomerNamed: 'George Harrison'. ]
 		shouldGiveError: CantSuspend 
 		andThen: [ :anError | 
 			self assert: customerBook numberOfCustomers = 1.
 			self assert: (customerBook includesCustomerNamed: johnLennon) ]
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'JV 4/11/2023 18:13:58'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 16:52:31'!
 test08CanNotSuspendAnAlreadySuspendedCustomer
 	
 	| customerBook johnLennon |
 			
 	johnLennon := 'John Lennon'.
-	customerBook := self createCustomerBookWithCustomer: johnLennon.	
-	customerBook suspendCustomerNamed: johnLennon.
+	customerBook := self createCustomerBookWithSuspendedCustomer: johnLennon.	
 	
 	self testAction: [ customerBook suspendCustomerNamed: johnLennon.]
 		shouldGiveError: CantSuspend 
@@ -178,19 +191,34 @@ test08CanNotSuspendAnAlreadySuspendedCustomer
 			self assert: (customerBook includesCustomerNamed: johnLennon) ]
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'JV 4/10/2023 21:30:52'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:14:28'!
+test09CanNotAddAnExistingCustomer
+
+	| customerBook ringoStarr |
+	
+	ringoStarr := 'Richard Starkey'.
+	customerBook := self createCustomerBookWithCustomer: ringoStarr.
+	
+	self testAction: [ customerBook addCustomerNamed: ringoStarr. ] 
+		shouldGiveError: AlreadyExists 
+		andThen: [ :anError | 
+			self assertCustomerBook: customerBook 
+				numberOfActiveCustomers: 1 
+				numberOfSuspendedCustomers: 0 ]
+
+! !
+
+!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:15:06'!
 testAction: anAction shouldGiveError: anError andThen: aClosure
 
-	[ anAction value.
-	self fail ]
+	[ anAction value. self fail ]
 		on: anError 
 		do: aClosure! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'JV 4/10/2023 21:23:51'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'FD 4/12/2023 17:14:50'!
 testAction: anAction shouldNotTakeMoreThan: anInterval
 
 	| millisecondsBeforeRunning millisecondsAfterRunning |
-	
 	
 	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
 	anAction value.
@@ -224,54 +252,48 @@ initialize
 	suspended:= OrderedCollection new.! !
 
 
-!CustomerBook methodsFor: 'customer management' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'customer management' stamp: 'FD 4/12/2023 17:04:49'!
 addCustomerNamed: aName
 
-	aName isEmpty ifTrue: [ self signalCustomerNameCannotBeEmpty ].
-	((active includes: aName) or: [suspended includes: aName]) ifTrue: [ self signalCustomerAlreadyExists ].
-	
-	active add: aName ! !
+	aName isEmpty
+		ifTrue: [ ^NameCannotBeEmpty signal ].
+	self includesCustomerNamed: aName ::
+		ifTrue: [ ^AlreadyExists signal ].
+
+	active add: aName! !
 
 !CustomerBook methodsFor: 'customer management' stamp: 'NR 4/3/2019 10:14:26'!
 numberOfActiveCustomers
 	
 	^active size! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'customer management' stamp: 'FD 4/12/2023 16:55:55'!
 numberOfCustomers
 	
-	^active size + suspended size! !
+	^self numberOfActiveCustomers + self numberOfSuspendedCustomers! !
 
 !CustomerBook methodsFor: 'customer management' stamp: 'NR 9/19/2018 17:36:09'!
 numberOfSuspendedCustomers
 	
 	^suspended size! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'JV 4/11/2023 18:53:19'!
+!CustomerBook methodsFor: 'customer management' stamp: 'FD 4/12/2023 16:59:57'!
 removeCustomerNamed: aName 
  
-	active remove: aName ifAbsent: [suspended remove: aName ifAbsent: [^NotFound signal.]].
+	active remove: aName 
+		ifAbsent: [suspended remove: aName 
+			ifAbsent: [^NotFound signal.]].
 	^aName.
 
 ! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'HernanWilkinson 7/6/2011 17:52'!
-signalCustomerAlreadyExists 
-
-	self error: self class customerAlreadyExistsErrorMessage! !
-
-!CustomerBook methodsFor: 'customer management' stamp: 'HernanWilkinson 7/6/2011 17:51'!
-signalCustomerNameCannotBeEmpty 
-
-	self error: self class customerCanNotBeEmptyErrorMessage ! !
-
-!CustomerBook methodsFor: 'customer management' stamp: 'JV 4/11/2023 19:30:35'!
+!CustomerBook methodsFor: 'customer management' stamp: 'FD 4/12/2023 17:00:26'!
 suspendCustomerNamed: aName 
 
-	active remove: aName ifAbsent: [^CantSuspend signal.].
+	active remove: aName 
+		ifAbsent: [^CantSuspend signal.].
 	
-	suspended add: aName.
-! !
+	suspended add: aName.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
