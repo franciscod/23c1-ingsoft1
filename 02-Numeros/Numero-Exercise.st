@@ -412,19 +412,9 @@ divideAnEntero: anEntero
 
 	^Fraccion with: anEntero over: self! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'HAW 9/24/2018 08:47:50'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:30:00'!
 fibonacci
-
-	| one two |
-	
-	one := Entero with: 1.
-	two := Entero with: 2.
-	
-	self isNegative ifTrue: [self error: Entero negativeFibonacciErrorDescription ].	
-	(self isZero or: [self isOne]) ifTrue: [^one].
-	
-	^ (self - one) fibonacci + (self - two) fibonacci
-		! !
+	self subclassResponsibility ! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 21:00'!
 greatestCommonDivisorWith: anEntero 
@@ -515,17 +505,110 @@ subtractFromFraccion: aFraccion
 Entero class
 	instanceVariableNames: ''!
 
-!Entero class methodsFor: 'instance creation' stamp: 'NR 4/15/2021 16:42:24'!
+!Entero class methodsFor: 'instance creation' stamp: 'fd 4/18/2023 19:43:33'!
 negativeFibonacciErrorDescription
-	^ ' Fibonacci no está definido aquí para Enteros Negativos!!!!!!'! !
+	"no se si tiene mucho sentido que ésto esté acá pero los tests lo necesitan"
+	"en realidad creemos que estaria mejor si el test pidiera el mensaje de error a EnteroNegativo pero tal vez eso era un spoiler"
+	^ EnteroNegativo fibonacciValueNotDefinedErrorDescription! !
 
-!Entero class methodsFor: 'instance creation' stamp: 'HernanWilkinson 5/7/2016 22:53'!
+!Entero class methodsFor: 'instance creation' stamp: 'fd 4/18/2023 19:40:56'!
 with: aValue 
+	| class |
 	
 	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
 	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
 	
-	^self new initalizeWith: aValue! !
+	class := self specificClassFor: aValue.
+	
+	^ class new initalizeWith: aValue! !
+
+
+!Entero class methodsFor: 'as yet unclassified' stamp: 'fd 4/18/2023 19:41:02'!
+specificClassFor: aValue
+
+	aValue < 0 ifTrue: [^EnteroNegativo].
+	aValue = 0 ifTrue: [^Cero].
+	aValue = 1 ifTrue: [^Uno].
+	aValue > 1 ifTrue: [^EnteroPositivoMayorQueUno].! !
+
+
+!classDefinition: #Cero category: 'Numero-Exercise'!
+Entero subclass: #Cero
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!Cero methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:29:15'!
+fibonacci
+
+	^Entero with: 1.! !
+
+
+!classDefinition: #EnteroNegativo category: 'Numero-Exercise'!
+Entero subclass: #EnteroNegativo
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!EnteroNegativo methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:35:07'!
+fibonacci
+
+	self error: self class fibonacciValueNotDefinedErrorDescription! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'EnteroNegativo class' category: 'Numero-Exercise'!
+EnteroNegativo class
+	instanceVariableNames: ''!
+
+!EnteroNegativo class methodsFor: 'instance creation' stamp: 'fd 4/18/2023 19:42:01'!
+fibonacciValueNotDefinedErrorDescription
+	^ ' Fibonacci no está definido aquí para Enteros Negativos!!!!!!'! !
+
+
+!classDefinition: #EnteroPositivo category: 'Numero-Exercise'!
+Entero subclass: #EnteroPositivo
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!EnteroPositivo methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:30:24'!
+fibonacci
+	self subclassResponsibility ! !
+
+
+!classDefinition: #EnteroPositivoMayorQueUno category: 'Numero-Exercise'!
+EnteroPositivo subclass: #EnteroPositivoMayorQueUno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!EnteroPositivoMayorQueUno methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:30:36'!
+fibonacci
+
+	| one two |
+
+	one := Entero with: 1.
+	two := Entero with: 2.
+	
+	^ (self - one) fibonacci + (self - two) fibonacci
+		! !
+
+
+!classDefinition: #Uno category: 'Numero-Exercise'!
+EnteroPositivo subclass: #Uno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!Uno methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:30:50'!
+fibonacci
+	^ self! !
 
 
 !classDefinition: #Fraccion category: 'Numero-Exercise'!
