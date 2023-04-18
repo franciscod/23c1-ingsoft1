@@ -563,10 +563,9 @@ Numero subclass: #Fraccion
 
 ! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'JV 4/18/2023 18:41:01'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:12:02'!
 / aDivisor 
 	
-	(aDivisor isKindOf: Entero) ifTrue: [^Fraccion with: numerator over: denominator * aDivisor].
 	^aDivisor divideAFraccion: self. 
 	
 	
