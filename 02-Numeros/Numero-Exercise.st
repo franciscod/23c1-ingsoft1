@@ -407,10 +407,10 @@ addToEntero: anEntero
 
 	^self class with: value + anEntero integerValue! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:04:34'!
-divideAnEntero: aDivisor
+!Entero methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:09:05'!
+divideAnEntero: anEntero
 
-	^Fraccion with: aDivisor over: self! !
+	^Fraccion with: anEntero over: self! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HAW 9/24/2018 08:47:50'!
 fibonacci
@@ -431,15 +431,15 @@ greatestCommonDivisorWith: anEntero
 	
 	^self class with: (value gcd: anEntero integerValue)! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'JV 4/18/2023 18:26:56'!
-multiplyToEntero: aMultiplier
+!Entero methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:09:20'!
+multiplyToEntero: anEntero
 
-	^self class with: value * aMultiplier integerValue! !
+	^self class with: value * anEntero integerValue! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 18:58:31'!
-subtractFromEntero: aSubtrahend
+!Entero methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:09:26'!
+subtractFromEntero: anEntero
 
-	^ self class with: aSubtrahend integerValue - value.! !
+	^ self class with: anEntero integerValue - value.! !
 
 
 !Entero methodsFor: 'comparing' stamp: 'HernanWilkinson 5/7/2016 21:01'!
@@ -577,20 +577,20 @@ addToFraccion: aFraccion
 
 	^ ((numerator * aFraccion denominator) + (aFraccion numerator * denominator)) / (denominator * aFraccion denominator)! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:06:21'!
-divideAFraccion: aDivisor
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:08:34'!
+divideAFraccion: aFraccion
 
-	^ (denominator * aDivisor numerator) / (numerator * aDivisor denominator)! !
+	^ (denominator * aFraccion numerator) / (numerator * aFraccion denominator)! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'JV 4/18/2023 18:30:43'!
-multiplyToFraccion: aMultiplier
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:08:41'!
+multiplyToFraccion: aFraccion
 
-	^(numerator * aMultiplier numerator) / (denominator * aMultiplier denominator)! !
+	^(numerator * aFraccion numerator) / (denominator * aFraccion denominator)! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'JV 4/18/2023 18:44:57'!
-subtractFromFraccion: aSubtrahend
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:08:49'!
+subtractFromFraccion: aFraccion
 
-	^((aSubtrahend numerator * denominator) - (numerator * aSubtrahend denominator)) / (denominator * aSubtrahend denominator)! !
+	^((aFraccion numerator * denominator) - (numerator * aFraccion denominator)) / (denominator * aFraccion denominator)! !
 
 
 !Fraccion methodsFor: 'comparing' stamp: 'HernanWilkinson 5/7/2016 20:42'!
