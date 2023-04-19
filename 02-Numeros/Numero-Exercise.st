@@ -629,10 +629,6 @@ EnteroPositivo subclass: #Uno
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Uno methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 20:33:49'!
-asDenominatorWithNumerator: numerator
-	^numerator! !
-
 !Uno methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 20:57:30'!
 asSimplifiedDenominatorWithNumerator: numerator
 	^numerator! !
