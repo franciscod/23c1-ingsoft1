@@ -495,11 +495,6 @@ asDenominatorWithNumerator: initialNumerator
 	
 	^simplerDenominator asSimplifiedDenominatorWithNumerator: simplerNumerator.! !
 
-!Entero methodsFor: 'as yet unclassified' stamp: 'fd 4/18/2023 20:50:29'!
-asNumeratorWithDenominator: aDenominator
-	^aDenominator asDenominatorWithNumerator: self.
-	! !
-
 !Entero methodsFor: 'as yet unclassified' stamp: 'fd 4/18/2023 20:56:59'!
 asSimplifiedDenominatorWithNumerator: aNumerator
 	^ Fraccion new initializeWith: aNumerator over: self.! !
@@ -799,7 +794,7 @@ subtractFromEntero: anEntero
 Fraccion class
 	instanceVariableNames: ''!
 
-!Fraccion class methodsFor: 'intance creation' stamp: 'fd 4/18/2023 21:00:30'!
+!Fraccion class methodsFor: 'intance creation' stamp: 'fd 4/18/2023 21:59:38'!
 with: aDividend over: aDivisor
 
-	^aDividend asNumeratorWithDenominator: aDivisor.! !
+	^ aDivisor asDenominatorWithNumerator: aDividend! !
