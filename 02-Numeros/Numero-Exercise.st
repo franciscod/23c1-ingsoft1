@@ -637,10 +637,6 @@ asSimplifiedDenominatorWithNumerator: numerator
 fibonacci
 	^ self! !
 
-!Uno methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 20:46:49'!
-greatestCommonDivisorWith: anEntero
-	^self! !
-
 
 !classDefinition: #Fraccion category: 'Numero-Exercise'!
 Numero subclass: #Fraccion
