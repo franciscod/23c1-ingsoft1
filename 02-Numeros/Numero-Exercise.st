@@ -484,6 +484,26 @@ addToFraccion: aFraccion
 
 	^(aFraccion numerator + (self * aFraccion denominator)) / aFraccion denominator! !
 
+!Entero methodsFor: 'as yet unclassified' stamp: 'fd 4/18/2023 20:53:51'!
+asDenominatorWithNumerator: initialNumerator
+	| greatestCommonDivisor simplerNumerator simplerDenominator initialDenominator |
+	initialDenominator := self.
+	
+	greatestCommonDivisor := initialNumerator greatestCommonDivisorWith: initialDenominator. 
+	simplerNumerator := initialNumerator // greatestCommonDivisor.
+	simplerDenominator := initialDenominator // greatestCommonDivisor.
+	
+	^simplerDenominator asSimplifiedDenominatorWithNumerator: simplerNumerator.! !
+
+!Entero methodsFor: 'as yet unclassified' stamp: 'fd 4/18/2023 20:50:29'!
+asNumeratorWithDenominator: aDenominator
+	^aDenominator asDenominatorWithNumerator: self.
+	! !
+
+!Entero methodsFor: 'as yet unclassified' stamp: 'fd 4/18/2023 20:56:59'!
+asSimplifiedDenominatorWithNumerator: aNumerator
+	^ Fraccion new initializeWith: aNumerator over: self.! !
+
 !Entero methodsFor: 'as yet unclassified' stamp: 'JV 4/18/2023 18:46:12'!
 divideAFraccion: aFraccion
 
@@ -539,6 +559,10 @@ Entero subclass: #Cero
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
+!Cero methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 20:39:24'!
+asDenominatorWithNumerator: aNumerator
+	self error: Numero canNotDivideByZeroErrorDescription! !
+
 !Cero methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:29:15'!
 fibonacci
 
@@ -551,6 +575,10 @@ Entero subclass: #EnteroNegativo
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
+
+!EnteroNegativo methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 20:48:51'!
+asDenominatorWithNumerator: aNumerator
+	^aNumerator negated / self negated.! !
 
 !EnteroNegativo methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:35:07'!
 fibonacci
@@ -606,9 +634,21 @@ EnteroPositivo subclass: #Uno
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
+!Uno methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 20:33:49'!
+asDenominatorWithNumerator: numerator
+	^numerator! !
+
+!Uno methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 20:57:30'!
+asSimplifiedDenominatorWithNumerator: numerator
+	^numerator! !
+
 !Uno methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:30:50'!
 fibonacci
 	^ self! !
+
+!Uno methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 20:46:49'!
+greatestCommonDivisorWith: anEntero
+	^self! !
 
 
 !classDefinition: #Fraccion category: 'Numero-Exercise'!
@@ -759,21 +799,7 @@ subtractFromEntero: anEntero
 Fraccion class
 	instanceVariableNames: ''!
 
-!Fraccion class methodsFor: 'intance creation' stamp: 'NR 9/23/2018 23:45:19'!
+!Fraccion class methodsFor: 'intance creation' stamp: 'fd 4/18/2023 21:00:30'!
 with: aDividend over: aDivisor
 
-	| greatestCommonDivisor numerator denominator |
-	
-	aDivisor isZero ifTrue: [ self error: self canNotDivideByZeroErrorDescription ].
-	aDividend isZero ifTrue: [ ^aDividend ].
-	
-	aDivisor isNegative ifTrue:[ ^aDividend negated / aDivisor negated].
-	
-	greatestCommonDivisor := aDividend greatestCommonDivisorWith: aDivisor. 
-	numerator := aDividend // greatestCommonDivisor.
-	denominator := aDivisor // greatestCommonDivisor.
-	
-	denominator isOne ifTrue: [ ^numerator ].
-
-	^self new initializeWith: numerator over: denominator
-	! !
+	^aDividend asNumeratorWithDenominator: aDivisor.! !
