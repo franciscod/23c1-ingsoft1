@@ -533,7 +533,7 @@ with: aValue
 	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
 	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
 	
-	class := self specificClassFor: aValue.
+	class := Entero specificClassFor: aValue.
 	
 	^ class new initalizeWith: aValue! !
 
