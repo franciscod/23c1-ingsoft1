@@ -538,13 +538,9 @@ with: aValue
 	^ class new initalizeWith: aValue! !
 
 
-!Entero class methodsFor: 'as yet unclassified' stamp: 'fd 4/18/2023 19:41:02'!
+!Entero class methodsFor: 'as yet unclassified' stamp: 'fd 4/19/2023 23:42:16'!
 specificClassFor: aValue
-
-	aValue < 0 ifTrue: [^EnteroNegativo].
-	aValue = 0 ifTrue: [^Cero].
-	aValue = 1 ifTrue: [^Uno].
-	aValue > 1 ifTrue: [^EnteroPositivoMayorQueUno].! !
+	^self subclasses detect: [:aSubClass | aSubClass canHandle: aValue].! !
 
 
 !classDefinition: #Cero category: 'Numero-Exercise'!
@@ -562,6 +558,16 @@ asDenominatorWithNumerator: aNumerator
 fibonacci
 
 	^Entero with: 1.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Cero class' category: 'Numero-Exercise'!
+Cero class
+	instanceVariableNames: ''!
+
+!Cero class methodsFor: 'as yet unclassified' stamp: 'fd 4/19/2023 23:42:56'!
+canHandle: aValue
+	^aValue = 0! !
 
 
 !classDefinition: #EnteroNegativo category: 'Numero-Exercise'!
@@ -586,25 +592,17 @@ fibonacci
 EnteroNegativo class
 	instanceVariableNames: ''!
 
+!EnteroNegativo class methodsFor: 'instance creation' stamp: 'fd 4/19/2023 23:43:09'!
+canHandle: aValue
+	^aValue < 0! !
+
 !EnteroNegativo class methodsFor: 'instance creation' stamp: 'fd 4/18/2023 19:42:01'!
 fibonacciValueNotDefinedErrorDescription
 	^ ' Fibonacci no está definido aquí para Enteros Negativos!!!!!!'! !
 
 
-!classDefinition: #EnteroPositivo category: 'Numero-Exercise'!
-Entero subclass: #EnteroPositivo
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Numero-Exercise'!
-
-!EnteroPositivo methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:30:24'!
-fibonacci
-	self subclassResponsibility ! !
-
-
 !classDefinition: #EnteroPositivoMayorQueUno category: 'Numero-Exercise'!
-EnteroPositivo subclass: #EnteroPositivoMayorQueUno
+Entero subclass: #EnteroPositivoMayorQueUno
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -621,9 +619,19 @@ fibonacci
 	^ (self - one) fibonacci + (self - two) fibonacci
 		! !
 
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'EnteroPositivoMayorQueUno class' category: 'Numero-Exercise'!
+EnteroPositivoMayorQueUno class
+	instanceVariableNames: ''!
+
+!EnteroPositivoMayorQueUno class methodsFor: 'as yet unclassified' stamp: 'fd 4/19/2023 23:43:36'!
+canHandle: aValue
+	^aValue > 1! !
+
 
 !classDefinition: #Uno category: 'Numero-Exercise'!
-EnteroPositivo subclass: #Uno
+Entero subclass: #Uno
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -636,6 +644,16 @@ asSimplifiedDenominatorWithNumerator: numerator
 !Uno methodsFor: 'arithmetic operations' stamp: 'fd 4/18/2023 19:30:50'!
 fibonacci
 	^ self! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Uno class' category: 'Numero-Exercise'!
+Uno class
+	instanceVariableNames: ''!
+
+!Uno class methodsFor: 'as yet unclassified' stamp: 'fd 4/19/2023 23:43:42'!
+canHandle: aValue
+	^aValue = 1! !
 
 
 !classDefinition: #Fraccion category: 'Numero-Exercise'!
