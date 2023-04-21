@@ -152,32 +152,34 @@ Object subclass: #OOStack
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'fd 4/20/2023 21:23:35'!
+!OOStack methodsFor: 'initializing' stamp: 'fd 4/20/2023 21:23:35'!
 initialize
 	contents  := OOStackContentsEmpty new.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'fd 4/20/2023 21:22:52'!
+
+!OOStack methodsFor: 'testing' stamp: 'fd 4/20/2023 21:22:52'!
 isEmpty
 	^ contents isEmpty! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'fd 4/20/2023 21:25:49'!
+!OOStack methodsFor: 'testing' stamp: 'fd 4/20/2023 21:24:35'!
+size
+	^contents size ! !
+
+!OOStack methodsFor: 'testing' stamp: 'fd 4/20/2023 21:24:22'!
+top
+	^contents top.! !
+
+
+!OOStack methodsFor: 'updating' stamp: 'fd 4/20/2023 21:25:49'!
 pop
 	| val |
 	val := contents top.
 	contents := contents withoutTop.
 	^val! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'fd 4/20/2023 21:31:22'!
+!OOStack methodsFor: 'updating' stamp: 'fd 4/20/2023 21:31:22'!
 push: anElement 
 	contents := OOStackContentsSomething new with: anElement onTopOf: contents! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'fd 4/20/2023 21:24:35'!
-size
-	^contents size ! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'fd 4/20/2023 21:24:22'!
-top
-	^contents top.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -246,7 +248,7 @@ OOStackContents subclass: #OOStackContentsSomething
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStackContentsSomething methodsFor: 'extending' stamp: 'fd 4/20/2023 21:30:55'!
+!OOStackContentsSomething methodsFor: 'initializing' stamp: 'fd 4/20/2023 21:30:55'!
 with: anElement onTopOf: otherContents
 	top := anElement.
 	rest := otherContents
