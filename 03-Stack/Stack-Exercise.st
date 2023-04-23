@@ -139,7 +139,7 @@ test10CanNotTopWhenThereAreNoObjectsInTheStack
 
 !classDefinition: #SentenceFinderByPrefixTest category: 'Stack-Exercise'!
 TestCase subclass: #SentenceFinderByPrefixTest
-	instanceVariableNames: ''
+	instanceVariableNames: 'stack stackCopy'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
@@ -153,52 +153,50 @@ assertThatStack: aStack hasEqualElements: anotherStack
 	aStack pop. anotherStack pop.
 	self assertThatStack: aStack hasEqualElements: anotherStack! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'fd 4/23/2023 10:31:41'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'fd 4/23/2023 11:32:23'!
 test01findWithWintPrefix
-	| stack response |
-	stack := OOStack new.
-	stack push: 'winter is coming'.
-	stack push: 'winning is everything'.
-	stack push: 'The winds of Winter'.
-	stack push: 'Winter is here'.
+	| sentenceFinder response |
 	
-	response := SentenceFinderByPrefix new findSentenceContainingPrefix: 'Wint' inOOStack: stack.
+	sentenceFinder := SentenceFinderByPrefix withOOStack: stack withPrefix: 'Wint'.
+	response := sentenceFinder find.
 	
 	self assert: response size = 1.
 	self assert: (response at: 1) = 'Winter is here'.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'fd 4/23/2023 10:39:40'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'fd 4/23/2023 11:32:35'!
 test02findWithThePrefix
-	| stack response |
-	stack := OOStack new.
-	stack push: 'winter is coming'.
-	stack push: 'winning is everything'.
-	stack push: 'The winds of Winter'.
-	stack push: 'Winter is here'.
-	
-	response := SentenceFinderByPrefix new findSentenceContainingPrefix: 'The' inOOStack: stack.
+	| sentenceFinder response  |
+
+	sentenceFinder := SentenceFinderByPrefix withOOStack: stack withPrefix: 'The'.
+	response := sentenceFinder find.
 	
 	self assert: response size = 1.
 	self assert: (response at: 1) = 'The winds of Winter'.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'fd 4/23/2023 10:54:16'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'fd 4/23/2023 11:32:57'!
 test03afterFindStackRemainsTheSame
-	| stack stackAux |
+	| sentenceFinder |
+	
+	sentenceFinder := SentenceFinderByPrefix withOOStack: stack withPrefix: 'The'.
+	sentenceFinder find.
+	
+	self assertThatStack: stack hasEqualElements: stackCopy.! !
+
+
+!SentenceFinderByPrefixTest methodsFor: 'setup' stamp: 'fd 4/23/2023 11:33:52'!
+setUp
+
 	stack := OOStack new.
 	stack push: 'winter is coming'.
 	stack push: 'winning is everything'.
 	stack push: 'The winds of Winter'.
 	stack push: 'Winter is here'.
 	
-	stackAux := OOStack new.
-	stackAux push: 'winter is coming'.
-	stackAux push: 'winning is everything'.
-	stackAux push: 'The winds of Winter'.
-	stackAux push: 'Winter is here'.
-	
-	SentenceFinderByPrefix new findSentenceContainingPrefix: 'The' inOOStack: stack.
-	
-	self assertThatStack: stack hasEqualElements: stackAux.! !
+	stackCopy := OOStack new.
+	stackCopy push: 'winter is coming'.
+	stackCopy push: 'winning is everything'.
+	stackCopy push: 'The winds of Winter'.
+	stackCopy push: 'Winter is here'.! !
 
 
 !classDefinition: #OOStack category: 'Stack-Exercise'!
@@ -330,26 +328,58 @@ withoutTop
 
 !classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
 Object subclass: #SentenceFinderByPrefix
-	instanceVariableNames: ''
+	instanceVariableNames: 'partialResults tempReversedStack oOStack prefix stackToFind prefixToFind'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefix methodsFor: 'finding' stamp: 'fd 4/23/2023 10:57:31'!
-findSentenceContainingPrefix: aPrefixToFind inOOStack: aOOStack
+!SentenceFinderByPrefix methodsFor: 'finding' stamp: 'fd 4/23/2023 11:39:38'!
+collectTopIfHasPrefix
+	| item |
+	item := self pop: stackToFind into: tempReversedStack.
+	(item beginsWith: prefixToFind) ifTrue: [partialResults add: item].
+! !
 
-	| aux item sentencesFound |
+!SentenceFinderByPrefix methodsFor: 'finding' stamp: 'fd 4/23/2023 11:39:45'!
+find
+	self initializeTemporaries.
 	
-	sentencesFound := OrderedCollection new.
-	aux := OOStack new.
-
-	[aOOStack isEmpty] whileFalse: 	[
-		item := aOOStack pop.
-		(item beginsWith: aPrefixToFind) ifTrue: [sentencesFound add: item].
-		aux push: item.
-	].
-
-	"restore original contents"
-	[aux isEmpty] whileFalse: 	[	aOOStack push: aux pop].
+	[stackToFind isEmpty] whileFalse: 	[self collectTopIfHasPrefix].
 	
-	^ sentencesFound! !
+	self restore: stackToFind.
+	
+	^ partialResults! !
+
+!SentenceFinderByPrefix methodsFor: 'finding' stamp: 'fd 4/23/2023 11:35:34'!
+initializeTemporaries
+
+	partialResults := OrderedCollection new.
+	tempReversedStack := OOStack new! !
+
+
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'fd 4/23/2023 11:12:30'!
+pop: aStack into: anotherStack
+	| top |
+	top := aStack pop.
+	anotherStack push: top.
+	^top.! !
+
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'fd 4/23/2023 11:20:07'!
+restore: aOOStack
+	[tempReversedStack isEmpty] whileFalse: 	[	self pop: tempReversedStack into: aOOStack]! !
+
+
+!SentenceFinderByPrefix methodsFor: 'initialization' stamp: 'fd 4/23/2023 11:27:37'!
+initializeWithOOStack: aStack withPrefix: aPrefix
+	stackToFind := aStack.
+	prefixToFind := aPrefix.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'SentenceFinderByPrefix class' category: 'Stack-Exercise'!
+SentenceFinderByPrefix class
+	instanceVariableNames: ''!
+
+!SentenceFinderByPrefix class methodsFor: 'instance creation' stamp: 'fd 4/23/2023 11:26:40'!
+withOOStack: anOOStack withPrefix: aPrefix 
+	^self new initializeWithOOStack: anOOStack withPrefix: aPrefix ! !
