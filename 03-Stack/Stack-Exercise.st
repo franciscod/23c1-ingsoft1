@@ -144,6 +144,14 @@ TestCase subclass: #SentenceFinderByPrefixTest
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'fd 4/23/2023 11:49:39'!
+assertThat: aBlock errorsWithMessage: anErrorMessage
+	self  	should: aBlock 
+		raise: Error
+		withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: anErrorMessage ]
+! !
+
 !SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'fd 4/23/2023 10:59:00'!
 assertThatStack: aStack hasEqualElements: anotherStack
 	self deny: (aStack isEmpty xor: anotherStack isEmpty). "only one empty"
@@ -181,6 +189,18 @@ test03afterFindStackRemainsTheSame
 	sentenceFinder find.
 	
 	self assertThatStack: stack hasEqualElements: stackCopy.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'fd 4/23/2023 11:50:29'!
+test04findPrefixCannotBeEmpty
+	self assertThat: 
+		[SentenceFinderByPrefix withOOStack: stack withPrefix: ''.]
+		errorsWithMessage: SentenceFinderByPrefix prefixCannotBeEmpty.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'fd 4/23/2023 11:51:04'!
+test05findPrefixCannotContainWhitespace
+	self assertThat: 
+		[SentenceFinderByPrefix withOOStack: stack withPrefix: ' xd'.]
+		errorsWithMessage: SentenceFinderByPrefix prefixCannotContainWhitespace.! !
 
 
 !SentenceFinderByPrefixTest methodsFor: 'setup' stamp: 'fd 4/23/2023 11:33:52'!
@@ -328,25 +348,25 @@ withoutTop
 
 !classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
 Object subclass: #SentenceFinderByPrefix
-	instanceVariableNames: 'partialResults tempReversedStack oOStack prefix stackToFind prefixToFind'
+	instanceVariableNames: 'partialResults tempReversedStack stackToFind prefixToFind'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefix methodsFor: 'finding' stamp: 'fd 4/23/2023 11:39:38'!
-collectTopIfHasPrefix
+!SentenceFinderByPrefix methodsFor: 'finding' stamp: 'fd 4/23/2023 11:45:32'!
+collectWithPrefix
 	| item |
 	item := self pop: stackToFind into: tempReversedStack.
 	(item beginsWith: prefixToFind) ifTrue: [partialResults add: item].
 ! !
 
-!SentenceFinderByPrefix methodsFor: 'finding' stamp: 'fd 4/23/2023 11:39:45'!
+!SentenceFinderByPrefix methodsFor: 'finding' stamp: 'fd 4/23/2023 11:45:25'!
 find
 	self initializeTemporaries.
 	
-	[stackToFind isEmpty] whileFalse: 	[self collectTopIfHasPrefix].
+	[stackToFind isEmpty] whileFalse: 	[self collectWithPrefix].
 	
-	self restore: stackToFind.
+	self restore.
 	
 	^ partialResults! !
 
@@ -364,13 +384,14 @@ pop: aStack into: anotherStack
 	anotherStack push: top.
 	^top.! !
 
-!SentenceFinderByPrefix methodsFor: 'private' stamp: 'fd 4/23/2023 11:20:07'!
-restore: aOOStack
-	[tempReversedStack isEmpty] whileFalse: 	[	self pop: tempReversedStack into: aOOStack]! !
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'fd 4/23/2023 11:44:11'!
+restore
+	[tempReversedStack isEmpty] whileFalse: 	[	self pop: tempReversedStack into: stackToFind]! !
 
 
-!SentenceFinderByPrefix methodsFor: 'initialization' stamp: 'fd 4/23/2023 11:27:37'!
+!SentenceFinderByPrefix methodsFor: 'initialization' stamp: 'fd 4/23/2023 11:51:39'!
 initializeWithOOStack: aStack withPrefix: aPrefix
+	self class validatePrefix: aPrefix.
 	stackToFind := aStack.
 	prefixToFind := aPrefix.! !
 
@@ -383,3 +404,21 @@ SentenceFinderByPrefix class
 !SentenceFinderByPrefix class methodsFor: 'instance creation' stamp: 'fd 4/23/2023 11:26:40'!
 withOOStack: anOOStack withPrefix: aPrefix 
 	^self new initializeWithOOStack: anOOStack withPrefix: aPrefix ! !
+
+
+!SentenceFinderByPrefix class methodsFor: 'validation' stamp: 'fd 4/23/2023 12:04:50'!
+validatePrefix: aPrefix
+	(aPrefix = '') 
+		ifTrue: [self error: self prefixCannotBeEmpty].
+		
+	(aPrefix allSatisfy: [:char | char ~= $ ])
+		ifFalse: [self error: self prefixCannotContainWhitespace].! !
+
+
+!SentenceFinderByPrefix class methodsFor: 'error messages' stamp: 'fd 4/23/2023 11:54:51'!
+prefixCannotBeEmpty
+	^ 'Prefix cannot be empty'! !
+
+!SentenceFinderByPrefix class methodsFor: 'error messages' stamp: 'fd 4/23/2023 11:55:09'!
+prefixCannotContainWhitespace
+	^ 'Prefix cannot contain whitespace'! !
