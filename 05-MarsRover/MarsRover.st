@@ -426,7 +426,7 @@ initialize
 
 !classDefinition: #MarsRover category: 'MarsRover'!
 Object subclass: #MarsRover
-	instanceVariableNames: 'direction position'
+	instanceVariableNames: 'direction position commandHandlers'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover'!
@@ -440,35 +440,52 @@ position
 	^position! !
 
 
-!MarsRover methodsFor: 'processing' stamp: 'fd 5/12/2023 18:38:27'!
-processCommands: commands 
-	commands = '' ifTrue: [^self].
-	
-	commands do: [:command |
-		"stop processing comands when reading an invalid one"
-		(#($f $b $l $r) includes: command) ifFalse: [^self].
-		
-		command = $f 	ifTrue:
-			[position := direction nextPointForwardFrom: position].
-		command = $b	ifTrue:
-			[position := direction nextPointBackwardFrom: position].
-		command = $l			ifTrue: 
-			[direction := direction rotatedLeft90Degrees].
-		command = $r			ifTrue: 
-			[direction := direction rotatedRight90Degrees].
+!MarsRover methodsFor: 'processing' stamp: 'fd 5/12/2023 19:09:17'!
+handleCommand: command ifInvalid: invalidCallbackBlock
+	| handler handlerName |
+	handlerName := ('handleCommand' , (command asUppercase asString)) asSymbol.
 
-	].
-	
+	handler := self class compiledMethodAt: handlerName ifAbsent: [^invalidCallbackBlock value]. 
+
+	handler valueWithReceiver: self arguments: #().
+! !
+
+!MarsRover methodsFor: 'processing' stamp: 'fd 5/12/2023 19:08:19'!
+processCommands: commands 
+	commands do: [:command |
+		self handleCommand: command ifInvalid: [^self].
+	]
 	
 	
 	
 	! !
 
 
-!MarsRover methodsFor: 'initialization' stamp: 'fd 5/12/2023 18:18:34'!
+!MarsRover methodsFor: 'initialization' stamp: 'fd 5/12/2023 19:04:01'!
 initializeWithPosition: aPosition andDirection: aDirection
 	position := aPosition.
-	direction := aDirection.! !
+	direction := aDirection.
+! !
+
+
+!MarsRover methodsFor: 'command handers' stamp: 'fd 5/12/2023 19:04:15'!
+handleCommandB
+	position := direction nextPointBackwardFrom: position.
+		! !
+
+!MarsRover methodsFor: 'command handers' stamp: 'fd 5/12/2023 18:55:12'!
+handleCommandF
+	position := direction nextPointForwardFrom: position.! !
+
+!MarsRover methodsFor: 'command handers' stamp: 'fd 5/12/2023 19:04:27'!
+handleCommandL
+	direction := direction rotatedLeft90Degrees.! !
+
+!MarsRover methodsFor: 'command handers' stamp: 'fd 5/12/2023 19:04:32'!
+handleCommandR
+	direction := direction rotatedRight90Degrees.
+	
+	! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
