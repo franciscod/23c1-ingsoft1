@@ -267,6 +267,48 @@ test19MarsRoverRotatesRightOnCommandWhenFacingSouth
 	
 	! !
 
+!MarsRoverTest methodsFor: 'testing' stamp: 'fd 5/12/2023 18:31:59'!
+test20MarsRoverMovesForwardOnlyTwiceOnUnexpectedCommand
+	| mr commands |
+	
+	commands := 'ffXDfffffffffffffff'.
+	
+	mr := MarsRover startsOn: 0@0 facing: North.
+	
+	mr processCommands: commands.
+	
+	self assertMarsRover: mr hasPosition: 0@2 andDirection: North.
+	
+	! !
+
+!MarsRoverTest methodsFor: 'testing' stamp: 'fd 5/12/2023 18:24:33'!
+test20MarsRoverMovesForwardTwice
+	| mr commands |
+	
+	commands := 'ff'.
+	
+	mr := MarsRover startsOn: 0@0 facing: North.
+	
+	mr processCommands: commands.
+	
+	self assertMarsRover: mr hasPosition: 0@2 andDirection: North.
+	
+	! !
+
+!MarsRoverTest methodsFor: 'testing' stamp: 'fd 5/12/2023 18:32:07'!
+test21MarsRoverMovesForwardOnlyTwiceOnUnexpectedCommand
+	| mr commands |
+	
+	commands := 'ffXDfffffffffffffff'.
+	
+	mr := MarsRover startsOn: 0@0 facing: North.
+	
+	mr processCommands: commands.
+	
+	self assertMarsRover: mr hasPosition: 0@2 andDirection: North.
+	
+	! !
+
 
 !classDefinition: #Direction category: 'MarsRover'!
 Object subclass: #Direction
@@ -398,20 +440,25 @@ position
 	^position! !
 
 
-!MarsRover methodsFor: 'processing' stamp: 'fd 5/12/2023 18:21:11'!
+!MarsRover methodsFor: 'processing' stamp: 'fd 5/12/2023 18:38:27'!
 processCommands: commands 
 	commands = '' ifTrue: [^self].
-
-	commands = 'f' 	ifTrue:
-		[position := direction nextPointForwardFrom: position].
-	commands = 'b'	ifTrue:
-		[position := direction nextPointBackwardFrom: position].
-	commands = 'l'			ifTrue: 
-		[direction := direction rotatedLeft90Degrees].
-	commands = 'r'			ifTrue: 
-		[direction := direction rotatedRight90Degrees].
 	
+	commands do: [:command |
+		"stop processing comands when reading an invalid one"
+		(#($f $b $l $r) includes: command) ifFalse: [^self].
+		
+		command = $f 	ifTrue:
+			[position := direction nextPointForwardFrom: position].
+		command = $b	ifTrue:
+			[position := direction nextPointBackwardFrom: position].
+		command = $l			ifTrue: 
+			[direction := direction rotatedLeft90Degrees].
+		command = $r			ifTrue: 
+			[direction := direction rotatedRight90Degrees].
 
+	].
+	
 	
 	
 	
