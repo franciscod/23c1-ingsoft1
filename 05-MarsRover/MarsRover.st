@@ -267,21 +267,7 @@ test19MarsRoverRotatesRightOnCommandWhenFacingSouth
 	
 	! !
 
-!MarsRoverTest methodsFor: 'testing' stamp: 'fd 5/12/2023 18:31:59'!
-test20MarsRoverMovesForwardOnlyTwiceOnUnexpectedCommand
-	| mr commands |
-	
-	commands := 'ffXDfffffffffffffff'.
-	
-	mr := MarsRover startsOn: 0@0 facing: North.
-	
-	mr processCommands: commands.
-	
-	self assertMarsRover: mr hasPosition: 0@2 andDirection: North.
-	
-	! !
-
-!MarsRoverTest methodsFor: 'testing' stamp: 'fd 5/12/2023 18:24:33'!
+!MarsRoverTest methodsFor: 'testing' stamp: 'JV 5/15/2023 16:30:24'!
 test20MarsRoverMovesForwardTwice
 	| mr commands |
 	
@@ -295,7 +281,7 @@ test20MarsRoverMovesForwardTwice
 	
 	! !
 
-!MarsRoverTest methodsFor: 'testing' stamp: 'fd 5/12/2023 18:32:07'!
+!MarsRoverTest methodsFor: 'testing' stamp: 'JV 5/15/2023 16:33:33'!
 test21MarsRoverMovesForwardOnlyTwiceOnUnexpectedCommand
 	| mr commands |
 	
@@ -303,9 +289,55 @@ test21MarsRoverMovesForwardOnlyTwiceOnUnexpectedCommand
 	
 	mr := MarsRover startsOn: 0@0 facing: North.
 	
-	mr processCommands: commands.
+	self 
+		should: [ mr processCommands: commands ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'Command is invalid. Remaining commands will not be processed' ].
 	
 	self assertMarsRover: mr hasPosition: 0@2 andDirection: North.
+	
+	! !
+
+!MarsRoverTest methodsFor: 'testing' stamp: 'JV 5/15/2023 16:31:55'!
+test22MarsRoverMovesBackwardTwice
+	| mr commands |
+	
+	commands := 'bb'.
+	
+	mr := MarsRover startsOn: 0@0 facing: North.
+	
+	mr processCommands: commands.
+	
+	self assertMarsRover: mr hasPosition: 0@-2 andDirection: North.
+	
+	! !
+
+!MarsRoverTest methodsFor: 'testing' stamp: 'JV 5/15/2023 16:32:17'!
+test23MarsRoverRotatesLeftTwice
+	| mr commands |
+	
+	commands := 'll'.
+	
+	mr := MarsRover startsOn: 0@0 facing: North.
+	
+	mr processCommands: commands.
+	
+	self assertMarsRover: mr hasPosition: 0@0 andDirection: South.
+	
+	! !
+
+!MarsRoverTest methodsFor: 'testing' stamp: 'JV 5/15/2023 16:32:32'!
+test24MarsRoverRotatesRightTwice
+	| mr commands |
+	
+	commands := 'rr'.
+	
+	mr := MarsRover startsOn: 0@0 facing: North.
+	
+	mr processCommands: commands.
+	
+	self assertMarsRover: mr hasPosition: 0@0 andDirection: South.
 	
 	! !
 
@@ -450,10 +482,10 @@ handleCommand: command ifInvalid: invalidCallbackBlock
 	handler valueWithReceiver: self arguments: #().
 ! !
 
-!MarsRover methodsFor: 'processing' stamp: 'fd 5/12/2023 19:08:19'!
+!MarsRover methodsFor: 'processing' stamp: 'JV 5/15/2023 16:33:22'!
 processCommands: commands 
 	commands do: [:command |
-		self handleCommand: command ifInvalid: [^self].
+		self handleCommand: command ifInvalid: [self error: 'Command is invalid. Remaining commands will not be processed'.].
 	]
 	
 	
