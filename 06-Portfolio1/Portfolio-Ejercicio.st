@@ -259,47 +259,67 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
-Object subclass: #Portfolio
-	instanceVariableNames: 'accounts portfolios'
+!classDefinition: #Bank category: 'Portfolio-Ejercicio'!
+Object subclass: #Bank
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 21:08:25'!
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:35:22'!
 balance
-	^portfolios inject: (accounts inject: 0 into: [ :accumulatedBalance :account | accumulatedBalance + account balance]) into: [  :accumulatedBalance :portfolio | accumulatedBalance + portfolio balance].
+	self subclassResponsibility ! !
+
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:35:30'!
+hasRegistered: anAccount
+	self subclassResponsibility ! !
+
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:35:36'!
+transactions
+	self subclassResponsibility ! !
+
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
+Bank subclass: #Portfolio
+	instanceVariableNames: 'accountsAndPortfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/18/2023 20:43:39'!
+balance
+	^accountsAndPortfolios inject: 0 into: [ :accumulatedBalance :accountOrPortfolio| accumulatedBalance + accountOrPortfolio balance]
 	
 	
 	
 	
 	! !
 
-!Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 21:21:19'!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/18/2023 20:44:07'!
 hasRegistered: aTransaction
-	^(accounts anySatisfy: [ :account | account hasRegistered: aTransaction ]) or:  (portfolios anySatisfy: [ :portfolio | portfolio hasRegistered: aTransaction ]).! !
+	^accountsAndPortfolios anySatisfy: [ :accountOrPortfolio | accountOrPortfolio hasRegistered: aTransaction ]! !
 
-!Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 21:05:41'!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/18/2023 20:51:07'!
 initialize
-	accounts := OrderedCollection new.
-	portfolios := OrderedCollection new.! !
+	accountsAndPortfolios := OrderedCollection new.
+	! !
 
 !Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 20:30:19'!
 transactions
 	^OrderedCollection new.! !
 
 
-!Portfolio methodsFor: 'adding' stamp: 'JV 5/15/2023 20:34:21'!
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/18/2023 20:42:38'!
 addAccount: anAccount 
-	accounts add: anAccount.! !
+	accountsAndPortfolios add: anAccount.! !
 
-!Portfolio methodsFor: 'adding' stamp: 'JV 5/15/2023 21:05:09'!
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/18/2023 20:51:18'!
 addPortfolio: aPortfolio 
-	portfolios add: aPortfolio.! !
+	accountsAndPortfolios add: aPortfolio.! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
-Object subclass: #ReceptiveAccount
+Bank subclass: #ReceptiveAccount
 	instanceVariableNames: 'transactions'
 	classVariableNames: ''
 	poolDictionaries: ''

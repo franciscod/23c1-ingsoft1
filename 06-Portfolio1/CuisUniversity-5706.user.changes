@@ -941,3 +941,199 @@ test04
 ----SNAPSHOT----(15 May 2023 21:48:46) CuisUniversity-5706.image priorSource: 8735159!
 
 ----QUIT----(15 May 2023 21:48:57) CuisUniversity-5706.image priorSource: 8754848!
+
+----STARTUP---- (18 May 2023 20:18:00) as /home/julia/Documents/Inge1/SmallTalk/CuisCuentaBancaria_PortfolioEj1/CuisUniversity-5706.image!
+
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/18/2023 20:18:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/18/2023 20:18:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/18/2023 20:18:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/18/2023 20:18:19'!
+PASSED!
+
+!classDefinition: #Bank category: 'Portfolio-Ejercicio' stamp: 'JV 5/18/2023 20:32:03'!
+Object subclass: #Bank
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'JV 5/18/2023 20:32:03'!
+Bank subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Bank subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'JV 5/18/2023 20:34:49'!
+Bank subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/18/2023 20:35:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/18/2023 20:35:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/18/2023 20:35:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/18/2023 20:35:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/18/2023 20:35:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/18/2023 20:35:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/18/2023 20:35:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/18/2023 20:35:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/18/2023 20:35:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/18/2023 20:35:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/18/2023 20:35:04'!
+PASSED!
+!Bank methodsFor: 'no messages' stamp: 'JV 5/18/2023 20:35:22'!
+balance
+	self subclassResponsibility ! !
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:35:30'!
+hasRegistered: anAccount
+	self subclassResponsibility ! !
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:35:36'!
+transactions
+	self subclassResponsibility ! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/18/2023 20:36:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/18/2023 20:36:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/18/2023 20:36:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/18/2023 20:36:21'!
+PASSED!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'JV 5/18/2023 20:42:38'!
+Bank subclass: #Portfolio
+	instanceVariableNames: 'accountsAndPortfolios portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:42:38' prior: 50605075 overrides: 50605340!
+hasRegistered: aTransaction
+	^(accountsAndPortfolios anySatisfy: [ :account | account hasRegistered: aTransaction ]) or:  (portfolios anySatisfy: [ :portfolio | portfolio hasRegistered: aTransaction ]).! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:42:38' prior: 50604870 overrides: 16920235!
+initialize
+	accountsAndPortfolios := OrderedCollection new.
+	portfolios := OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:42:38' prior: 50604911 overrides: 50605336!
+balance
+	^portfolios inject: (accountsAndPortfolios inject: 0 into: [ :accumulatedBalance :account | accumulatedBalance + account balance]) into: [  :accumulatedBalance :portfolio | accumulatedBalance + portfolio balance].
+	
+	
+	
+	
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:42:38' prior: 50604578!
+addAccount: anAccount 
+	accountsAndPortfolios add: anAccount.! !
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/18/2023 20:43:39' prior: 50605392 overrides: 50605336!
+balance
+	^accountsAndPortfolios inject: 0 into: [ :accumulatedBalance :accountOrPortfolio| accumulatedBalance + accountOrPortfolio balance]
+	
+	
+	
+	
+	! !
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/18/2023 20:44:07' prior: 50605375 overrides: 50605340!
+hasRegistered: aTransaction
+	^accountsAndPortfolios anySatisfy: [ :accountOrPortfolio | accountOrPortfolio hasRegistered: aTransaction ]! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/18/2023 20:44:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/18/2023 20:44:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/18/2023 20:44:24'!
+FAILURE!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/18/2023 20:44:24'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/18/2023 20:44:29'!
+FAILURE!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/18/2023 20:51:07' prior: 50605385 overrides: 16920235!
+initialize
+	accountsAndPortfolios := OrderedCollection new.
+	! !
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/18/2023 20:51:18' prior: 50604860!
+addPortfolio: aPortfolio 
+	accountsAndPortfolios add: aPortfolio.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'JV 5/18/2023 20:51:29'!
+Bank subclass: #Portfolio
+	instanceVariableNames: 'accountsAndPortfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/18/2023 20:51:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/18/2023 20:51:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/18/2023 20:51:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/18/2023 20:51:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/18/2023 20:51:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/18/2023 20:51:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/18/2023 20:51:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/18/2023 20:51:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/18/2023 20:51:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/18/2023 20:51:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/18/2023 20:51:40'!
+PASSED!
+
+----SNAPSHOT----(18 May 2023 20:54:06) CuisUniversity-5706.image priorSource: 8754936!
