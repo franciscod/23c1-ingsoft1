@@ -5,15 +5,8 @@ TestCase subclass: #PortfolioTest
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 20:25:30'!
-test01NewPortfolioHasBalanceZeroAndNoTransactions
-	| pf |
-	pf := Portfolio new. 
-	
-	self assert: 0 equals: pf transactions size.! !
-
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 21:00:19'!
-test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:51:44'!
+makePortfolioWith3Accounts
 	| pf anAccount anAccount2 anAccount3 |
 	
 	pf := Portfolio new. 
@@ -23,11 +16,25 @@ test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance
 	anAccount3 := (ReceptiveAccount new) register: (Deposit for: 90). 
 
 	
-	pf addAccount: anAccount; addAccount: anAccount2; addAccount: anAccount3.
+	pf addChildEntity: anAccount; addChildEntity: anAccount2; addChildEntity: anAccount3.
+	
+	^pf! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 20:25:30'!
+test01NewPortfolioHasBalanceZeroAndNoTransactions
+	| pf |
+	pf := Portfolio new. 
+	
+	self assert: 0 equals: pf transactions size.! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:45:50'!
+test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance
+	| pf |
+	pf := self makePortfolioWith3Accounts.
 	
 	self assert: 286 equals: pf balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 21:10:41'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:52:00'!
 test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances
 	| pf account1 account2 account3 portfolio1 portfolio2 |
 	
@@ -38,14 +45,14 @@ test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances
 	account3 := ReceptiveAccount new register: (Deposit for: 10).
 
 	
-	portfolio1 := Portfolio new addAccount: account1.
-	portfolio2 := Portfolio new addAccount: account2.
+	portfolio1 := Portfolio new addChildEntity: account1.
+	portfolio2 := Portfolio new addChildEntity: account2.
 	
-	pf addPortfolio: portfolio1; addPortfolio: portfolio2; addAccount: account3.
+	pf addChildEntity: portfolio1; addChildEntity: portfolio2; addChildEntity: account3.
 	
 	self assert: 32 equals: pf balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 21:34:59'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:52:12'!
 test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios
 	| pf account1 account2 portfolio1 aDeposit aWithdraw |
 	
@@ -57,11 +64,111 @@ test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios
 	aWithdraw := Withdraw register: 8 on: account1.
 	aDeposit := Deposit register: 30 on: account2.
 	
-	portfolio1 := Portfolio new addAccount: account2.
+	portfolio1 := Portfolio new addChildEntity: account2.
 	
-	pf addPortfolio: portfolio1; addAccount: account1.
+	pf addChildEntity: portfolio1; addChildEntity: account1.
 	
 	self assert: (pf hasRegistered: aDeposit) & (pf hasRegistered: aWithdraw).! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 15:38:07'!
+test05EmptyPortfolioHasNoTransactions
+	| pf emptyCollection |
+	
+	pf := Portfolio new.
+	emptyCollection := OrderedCollection new.
+	
+	
+	self assert: emptyCollection equals: pf transactions. 
+	! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:52:21'!
+test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions
+	| pf account account2 pf2 |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Withdraw register: 8 on: account.
+	Deposit register: 30 on: account.
+	
+	pf2 := Portfolio new.
+	account2:= ReceptiveAccount new.
+	Withdraw register: 8 on: account2.
+	pf2 addChildEntity: account2.
+	
+	pf addChildEntity: account; addChildEntity: pf2.
+	
+	
+	
+	self assert: (account transactions union: pf2 transactions)  equals:( pf transactions asSet). 
+	! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:52:28'!
+test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot
+	| pf account account2 pf2 |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Withdraw register: 8 on: account.
+	Deposit register: 30 on: account.
+	
+	pf2 := Portfolio new.
+	account2:= ReceptiveAccount new.
+	Withdraw register: 8 on: account2.
+	pf2 addChildEntity: account2.
+	
+	pf addChildEntity: account; addChildEntity: pf2.
+	
+	
+	
+	self assert: (account transactions union: pf2 transactions)  equals:( pf transactions asSet). 
+	! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:52:36'!
+test08PortfolioWithOneAccountHasThatAccountsTransactions
+	| pf account deposit withdraw |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf addChildEntity: account.
+	
+	
+	self assert: account transactions equals: pf transactions. 
+	! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:53:03'!
+test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther
+	|  account1 account2 pf1 pf2 pf3 |
+	
+	pf1 := Portfolio new.
+	pf2:= Portfolio new.
+	pf3:= Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Withdraw register: 8 on: account1.
+
+	account2 := ReceptiveAccount new.
+	Deposit register: 30 on: account2.
+	
+	pf2 addChildEntity: account1.
+	
+	pf3 addChildEntity: account2.
+		
+	pf1 addChildEntity: pf2; addChildEntity: pf3.
+	
+	self 
+		should: [ pf3 addChildEntity: account2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'noSePuedeAgregarUnBankEntityQueYaExisteEnElPortfolio' ].
+
+	! !
 
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
@@ -259,75 +366,99 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #Bank category: 'Portfolio-Ejercicio'!
-Object subclass: #Bank
-	instanceVariableNames: ''
+!classDefinition: #BankEntity category: 'Portfolio-Ejercicio'!
+Object subclass: #BankEntity
+	instanceVariableNames: 'parents'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:35:22'!
+!BankEntity methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:32:02'!
+ancestorPortfolios
+	^ parents inject: parents into: [:ancestors :aParent |
+		ancestors union: aParent ancestorPortfolios].! !
+
+!BankEntity methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:35:22'!
 balance
 	self subclassResponsibility ! !
 
-!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:35:30'!
+!BankEntity methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:48:20'!
+ensureCompatibleAncestors: aPortfolio
+	| myAncestors otherAncestors |
+	
+	myAncestors := self ancestorPortfolios.
+	otherAncestors := aPortfolio ancestorPortfolios.
+	
+	((myAncestors intersection: otherAncestors) size > 0) ifTrue: [self error: 'noSePuedeAgregarUnBankEntityQueYaExisteEnElPortfolio'	].
+! !
+
+!BankEntity methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:35:30'!
 hasRegistered: anAccount
 	self subclassResponsibility ! !
 
-!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:35:36'!
+!BankEntity methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:21:59'!
+initialize
+	parents := Set new.! !
+
+!BankEntity methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:22:34'!
+registerParent: aParentPortfolio
+	parents add: aParentPortfolio.! !
+
+!BankEntity methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:35:36'!
 transactions
 	self subclassResponsibility ! !
 
 
 !classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
-Bank subclass: #Portfolio
-	instanceVariableNames: 'accountsAndPortfolios'
+BankEntity subclass: #Portfolio
+	instanceVariableNames: 'children'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'accessing' stamp: 'JV 5/18/2023 20:43:39'!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/22/2023 16:54:25'!
 balance
-	^accountsAndPortfolios inject: 0 into: [ :accumulatedBalance :accountOrPortfolio| accumulatedBalance + accountOrPortfolio balance]
+	^children inject: 0 into: [ :accumulatedBalance :child| accumulatedBalance + child balance]
 	
 	
 	
 	
 	! !
 
-!Portfolio methodsFor: 'accessing' stamp: 'JV 5/18/2023 20:44:07'!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/22/2023 16:54:20'!
 hasRegistered: aTransaction
-	^accountsAndPortfolios anySatisfy: [ :accountOrPortfolio | accountOrPortfolio hasRegistered: aTransaction ]! !
+	^children anySatisfy: [ :child | child hasRegistered: aTransaction ]! !
 
-!Portfolio methodsFor: 'accessing' stamp: 'JV 5/18/2023 20:51:07'!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/22/2023 16:53:53'!
 initialize
-	accountsAndPortfolios := OrderedCollection new.
+	super initialize.
+	children := OrderedCollection new.
 	! !
 
-!Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 20:30:19'!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/22/2023 16:54:11'!
 transactions
-	^OrderedCollection new.! !
+	
+	^children inject: (OrderedCollection new) into: [ :transactionsAccumulated :child | transactionsAccumulated addAllLast: (child transactions); yourself]! !
 
 
-!Portfolio methodsFor: 'adding' stamp: 'JV 5/18/2023 20:42:38'!
-addAccount: anAccount 
-	accountsAndPortfolios add: anAccount.! !
-
-!Portfolio methodsFor: 'adding' stamp: 'JV 5/18/2023 20:51:18'!
-addPortfolio: aPortfolio 
-	accountsAndPortfolios add: aPortfolio.! !
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/22/2023 16:53:52'!
+addChildEntity: aBankEntity 
+	self ensureCompatibleAncestors: aBankEntity.
+	
+	aBankEntity registerParent: self.
+	children add: aBankEntity.! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
-Bank subclass: #ReceptiveAccount
+BankEntity subclass: #ReceptiveAccount
 	instanceVariableNames: 'transactions'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!ReceptiveAccount methodsFor: 'initialization' stamp: 'NR 10/17/2019 15:06:56'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'JV 5/22/2023 16:21:39'!
 initialize
-
+	super initialize.
 	transactions := OrderedCollection new.! !
 
 
