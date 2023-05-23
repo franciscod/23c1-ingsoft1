@@ -1,0 +1,4364 @@
+
+
+----QUIT----(20 March 2023 11:15:29) CuisUniversity-5706.image priorSource: 4313282!
+
+----STARTUP---- (20 March 2023 11:15:29) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5706.image!
+
+
+----QUIT----(20 March 2023 11:15:30) CuisUniversity-5706.image priorSource: 8712809!
+
+----STARTUP---- (15 May 2023 19:23:42) as /home/julia/Documents/Inge1/SmallTalk/CuisCuentaBancaria_PortfolioEj1/CuisUniversity-5706.image!
+
+
+----End fileIn of /home/julia/Documents/Inge1/SmallTalk/CuisCuentaBancaria_PortfolioEj1/Portfolio-Ejercicio.st----!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/15/2023 19:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 19:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 19:33:59'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/15/2023 19:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/15/2023 19:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/15/2023 19:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/15/2023 19:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 19:33:59'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/15/2023 19:36:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 19:36:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 19:36:05'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/15/2023 19:36:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/15/2023 19:36:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/15/2023 19:36:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/15/2023 19:36:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 19:36:05'!
+FAILURE!
+!Withdraw methodsFor: 'value' stamp: 'JV 5/15/2023 19:37:28' prior: 50604109 overrides: 50604038!
+value
+
+	^ value * -1! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/15/2023 19:37:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 19:37:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 19:37:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/15/2023 19:37:31'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/15/2023 19:37:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/15/2023 19:37:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/15/2023 19:37:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/15/2023 19:37:31'!
+FAILURE!
+!Withdraw methodsFor: 'value' stamp: 'JV 5/15/2023 19:38:03' prior: 50604228 overrides: 50604038!
+value
+
+	^ value! !
+!Withdraw methodsFor: 'value' stamp: 'JV 5/15/2023 19:39:03'!
+signedValue
+
+	^ value * -1! !
+!Deposit methodsFor: 'value' stamp: 'JV 5/15/2023 19:39:14'!
+signedValue
+
+	^ value! !
+!AccountTransaction methodsFor: 'value' stamp: 'JV 5/15/2023 19:39:26'!
+signedValue 
+
+	self subclassResponsibility ! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JV 5/15/2023 19:39:41' prior: 50604153!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction signedValue ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/15/2023 19:39:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 19:39:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 19:39:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/15/2023 19:39:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/15/2023 19:39:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/15/2023 19:39:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/15/2023 19:39:43'!
+PASSED!
+!AccountTransaction methodsFor: 'value' stamp: 'JV 5/15/2023 19:42:28'!
+balance 
+
+	self subclassResponsibility ! !
+!Deposit methodsFor: 'value' stamp: 'JV 5/15/2023 19:42:28' overrides: 50604309!
+balance
+
+	^ value! !
+!Withdraw methodsFor: 'value' stamp: 'JV 5/15/2023 19:42:28' overrides: 50604309!
+balance
+
+	^ value * -1! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 19:42:28' prior: 50604277!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction balance ] ifEmpty: [ 0 ]! !
+
+!methodRemoval: AccountTransaction #signedValue stamp: 'JV 5/15/2023 19:42:28'!
+signedValue 
+
+	self subclassResponsibility !
+
+!methodRemoval: Deposit #signedValue stamp: 'JV 5/15/2023 19:42:28'!
+signedValue
+
+	^ value!
+
+!methodRemoval: Withdraw #signedValue stamp: 'JV 5/15/2023 19:42:28'!
+signedValue
+
+	^ value * -1!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/15/2023 19:42:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 19:42:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 19:42:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/15/2023 19:42:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/15/2023 19:42:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/15/2023 19:42:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/15/2023 19:42:40'!
+PASSED!
+!AccountTransaction methodsFor: 'value' stamp: 'JV 5/15/2023 20:12:30'!
+addToBalance: aBalance
+
+	self subclassResponsibility ! !
+
+!methodRemoval: AccountTransaction #balance stamp: 'JV 5/15/2023 20:12:36'!
+balance 
+
+	self subclassResponsibility !
+!Deposit methodsFor: 'value' stamp: 'JV 5/15/2023 20:12:48' overrides: 50604363!
+addToBalance: aBalance
+
+	self subclassResponsibility ! !
+!Withdraw methodsFor: 'value' stamp: 'JV 5/15/2023 20:12:48' overrides: 50604363!
+addToBalance: aBalance
+
+	self subclassResponsibility ! !
+
+!methodRemoval: AccountTransaction #addToBalance: stamp: 'JV 5/15/2023 20:12:48'!
+addToBalance: aBalance
+
+	self subclassResponsibility !
+!AccountTransaction methodsFor: 'value' stamp: 'JV 5/15/2023 20:12:53'!
+addToBalance: aBalance
+
+	self subclassResponsibility ! !
+
+!methodRemoval: Deposit #balance stamp: 'JV 5/15/2023 20:12:58'!
+balance
+
+	^ value!
+!Deposit methodsFor: 'value' stamp: 'JV 5/15/2023 20:13:13' prior: 50604371 overrides: 50604385!
+addToBalance: aBalance
+
+	^aBalance + value! !
+
+!methodRemoval: Withdraw #balance stamp: 'JV 5/15/2023 20:13:19'!
+balance
+
+	^ value * -1!
+!Withdraw methodsFor: 'value' stamp: 'JV 5/15/2023 20:13:32' prior: 50604376 overrides: 50604385!
+addToBalance: aBalance
+
+	^aBalance - value! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'JV 5/15/2023 20:14:43' prior: 50604321!
+balance
+
+	^transactions inject: 0 into: [ :accumulatedBalance :aTransaction | aTransaction addToBalance: accumulatedBalance ].! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/15/2023 20:14:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 20:14:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 20:14:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/15/2023 20:14:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/15/2023 20:14:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/15/2023 20:14:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/15/2023 20:14:46'!
+PASSED!
+
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'JV 5/15/2023 20:20:52'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'JV 5/15/2023 20:21:03'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'JV 5/15/2023 20:25:16'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioTest methodsFor: 'no messages' stamp: 'JV 5/15/2023 20:25:13'!
+test01NewPortfolioHasBalanceZeroAndNoTransactions
+	| pf |
+	pf := Portfolio new. 
+	
+	self assert: 0 equals: transactions size.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 20:25:30' prior: 50604470!
+test01NewPortfolioHasBalanceZeroAndNoTransactions
+	| pf |
+	pf := Portfolio new. 
+	
+	self assert: 0 equals: pf transactions size.! !
+
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio' stamp: 'JV 5/15/2023 20:25:38'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Object subclass: #Portfolio
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'JV 5/15/2023 20:25:52'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/15/2023 20:25:58'!
+ERROR!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 20:26:06'!
+transactions
+	self shouldBeImplemented.
+	^transactions! !
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 20:26:11' prior: 50604512!
+transactions
+	^transactions! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/15/2023 20:26:12'!
+ERROR!
+
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'JV 5/15/2023 20:29:52'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 20:30:19' prior: 50604517!
+transactions
+	^OrderedCollection new.! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/15/2023 20:30:21'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 20:32:39'!
+test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance
+	| pf anAccount |
+	
+	pf := Portfolio new. 
+	
+	anAccount := ReceptiveAccount new.
+	
+	pf addAccount: anAccount.
+	
+	self assert: anAccount balance equals: pf balance.! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/15/2023 20:33:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 20:33:25'!
+ERROR!
+
+!testRun: #PortfolioTest #test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 20:33:25'!
+ERROR!
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/15/2023 20:33:51'!
+addAccount: anAccount 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'JV 5/15/2023 20:34:23'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/15/2023 20:34:21' prior: 50604566!
+addAccount: anAccount 
+	accounts add: anAccount.! !
+
+!testRun: #PortfolioTest #test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 20:34:25'!
+ERROR!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 20:34:57' overrides: 16920235!
+initialize
+	accounts := OrderedCollection new.! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/15/2023 20:34:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 20:34:59'!
+ERROR!
+
+!testRun: #PortfolioTest #test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 20:34:59'!
+ERROR!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 20:35:07'!
+balance
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 20:35:46' prior: 50604603!
+balance
+	^accounts inject: 0 into: [ :accumulatedBalance :account | account balance].! !
+
+!testRun: #PortfolioTest #test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 20:35:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/15/2023 20:35:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 20:35:49'!
+PASSED!
+
+----SNAPSHOT----(15 May 2023 20:36:44) CuisUniversity-5706.image priorSource: 8713034!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 20:43:16' prior: 50604544!
+test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance
+	| pf anAccount |
+	
+	pf := Portfolio new. 
+	
+	anAccount := (ReceptiveAccount new) register: Deposit of: 200. 
+	
+	pf addAccount: anAccount.
+	
+	self assert: anAccount balance equals: pf balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 20:43:25' prior: 50604628!
+test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance
+	| pf anAccount |
+	
+	pf := Portfolio new. 
+	
+	anAccount := (ReceptiveAccount new) register: (Deposit of: 200). 
+	
+	pf addAccount: anAccount.
+	
+	self assert: anAccount balance equals: pf balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 20:43:38' prior: 50604640!
+test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance
+	| pf anAccount |
+	
+	pf := Portfolio new. 
+	
+	anAccount := (ReceptiveAccount new) register: (Deposit of: 200). 
+	
+	pf addAccount: anAccount.
+	
+	self assert: 200 equals: pf balance.! !
+
+!testRun: #PortfolioTest #test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 20:43:39'!
+ERROR!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 20:43:58' prior: 50604652!
+test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance
+	| pf anAccount |
+	
+	pf := Portfolio new. 
+	
+	anAccount := (ReceptiveAccount new) register: (Deposit for: 200). 
+	
+	pf addAccount: anAccount.
+	
+	self assert: 200 equals: pf balance.! !
+
+!testRun: #PortfolioTest #test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 20:43:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/15/2023 20:43:59'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 20:43:59'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 20:55:30' prior: 50604667!
+test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance
+	| pf anAccount anAccount2 anAccount3 |
+	
+	pf := Portfolio new. 
+	
+	anAccount := (ReceptiveAccount new) register: (Deposit for: 200). 
+	anAccount2 := (ReceptiveAccount new) register: (Withdraw for: 4). 
+	anAccount3 := (ReceptiveAccount new) register: (Deposit for: 90). 
+
+	
+	pf addAccount: anAccount.
+	
+	self assert: 200 equals: pf balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 20:56:20' prior: 50604690!
+test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance
+	| pf anAccount anAccount2 anAccount3 |
+	
+	pf := Portfolio new. 
+	
+	anAccount := (ReceptiveAccount new) register: (Deposit for: 200). 
+	anAccount2 := (ReceptiveAccount new) register: (Withdraw for: 4). 
+	anAccount3 := (ReceptiveAccount new) register: (Deposit for: 90). 
+
+	
+	pf addAccount: anAccount; addAccount: anAccount2; addAccount: anAccount .
+	
+	self assert: 286 equals: pf balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 20:56:28' prior: 50604706!
+test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance
+	| pf anAccount anAccount2 anAccount3 |
+	
+	pf := Portfolio new. 
+	
+	anAccount := (ReceptiveAccount new) register: (Deposit for: 200). 
+	anAccount2 := (ReceptiveAccount new) register: (Withdraw for: 4). 
+	anAccount3 := (ReceptiveAccount new) register: (Deposit for: 90). 
+
+	
+	pf addAccount: anAccount; addAccount: anAccount2; addAccount: anAccount3 .
+	
+	self assert: 286 equals: pf balance.! !
+
+!testRun: #PortfolioTest #test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 20:56:29'!
+FAILURE!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 20:56:39' prior: 50604724!
+test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance
+	| pf anAccount anAccount2 anAccount3 |
+	
+	pf := Portfolio new. 
+	
+	anAccount := (ReceptiveAccount new) register: (Deposit for: 200). 
+	anAccount2 := (ReceptiveAccount new) register: (Withdraw for: 4). 
+	anAccount3 := (ReceptiveAccount new) register: (Deposit for: 90). 
+
+	
+	pf addAccount: anAccount; addAccount: anAccount2; addAccount: anAccount3.
+	
+	self assert: 286 equals: pf balance.! !
+
+!testRun: #PortfolioTest #test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 20:57:39'!
+FAILURE!
+
+anAccount balance.!
+
+anAccount2 balance.!
+
+accounts!
+
+self balance!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 20:59:29' prior: 50604607!
+balance
+	^accounts inject: 0 into: [ :accumulatedBalance :account | accumulatedBalance + account balance].! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/15/2023 20:59:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 20:59:32'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 21:00:19'!
+test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance
+	| pf anAccount anAccount2 anAccount3 |
+	
+	pf := Portfolio new. 
+	
+	anAccount := (ReceptiveAccount new) register: (Deposit for: 200). 
+	anAccount2 := (ReceptiveAccount new) register: (Withdraw for: 4). 
+	anAccount3 := (ReceptiveAccount new) register: (Deposit for: 90). 
+
+	
+	pf addAccount: anAccount; addAccount: anAccount2; addAccount: anAccount3.
+	
+	self assert: 286 equals: pf balance.! !
+
+!methodRemoval: PortfolioTest #test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 21:00:19'!
+test02APortfolioWithOneAccountHasBalanceEqualToTheAccountsBalance
+	| pf anAccount anAccount2 anAccount3 |
+	
+	pf := Portfolio new. 
+	
+	anAccount := (ReceptiveAccount new) register: (Deposit for: 200). 
+	anAccount2 := (ReceptiveAccount new) register: (Withdraw for: 4). 
+	anAccount3 := (ReceptiveAccount new) register: (Deposit for: 90). 
+
+	
+	pf addAccount: anAccount; addAccount: anAccount2; addAccount: anAccount3.
+	
+	self assert: 286 equals: pf balance.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 21:03:52'!
+test03APortfolioWithPortfoliosHasBalanceEqualToThePortfoliosBalance
+	| pf anAccount anAccount2 anAccount3 account1 account2 account3 portfolio1 portfolio2 portfolio3 |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new register: (Deposit for: 30).
+	account2 := ReceptiveAccount new register: (Withdraw for: 8).
+	account3 := ReceptiveAccount new register: (Deposit for: 10).
+
+	
+	portfolio1 := Portfolio new addAccount: account1.
+	portfolio2 := Portfolio new addAccount: account2.
+	portfolio3 := Portfolio new addAccount: account3.
+	
+	pf addPortfolio: portfolio1; addPortfolio: portfolio2; addPortfolio: portfolio3.  
+	
+	self assert: 32 equals: pf balance.! !
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosHasBalanceEqualToThePortfoliosBalance stamp: 'JV 5/15/2023 21:04:22'!
+ERROR!
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/15/2023 21:04:34'!
+addPortfolio: portfolio1 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'JV 5/15/2023 21:05:11'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/15/2023 21:05:09' prior: 50604848!
+addPortfolio: aPortfolio 
+	portfolios add: aPortfolio.! !
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosHasBalanceEqualToThePortfoliosBalance stamp: 'JV 5/15/2023 21:05:13'!
+ERROR!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 21:05:41' prior: 50604587 overrides: 16920235!
+initialize
+	accounts := OrderedCollection new.
+	portfolios := OrderedCollection new.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/15/2023 21:05:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 21:05:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/15/2023 21:05:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/15/2023 21:05:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/15/2023 21:05:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/15/2023 21:05:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/15/2023 21:05:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosHasBalanceEqualToThePortfoliosBalance stamp: 'JV 5/15/2023 21:06:30'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosHasBalanceEqualToThePortfoliosBalance stamp: 'JV 5/15/2023 21:06:30'!
+FAILURE!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 21:08:25' prior: 50604770!
+balance
+	^portfolios inject: (accounts inject: 0 into: [ :accumulatedBalance :account | accumulatedBalance + account balance]) into: [  :accumulatedBalance :portfolio | accumulatedBalance + portfolio balance].
+	
+	
+	
+	
+	! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/15/2023 21:08:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 21:08:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosHasBalanceEqualToThePortfoliosBalance stamp: 'JV 5/15/2023 21:08:29'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 21:10:41'!
+test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances
+	| pf account1 account2 account3 portfolio1 portfolio2 |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new register: (Deposit for: 30).
+	account2 := ReceptiveAccount new register: (Withdraw for: 8).
+	account3 := ReceptiveAccount new register: (Deposit for: 10).
+
+	
+	portfolio1 := Portfolio new addAccount: account1.
+	portfolio2 := Portfolio new addAccount: account2.
+	
+	pf addPortfolio: portfolio1; addPortfolio: portfolio2; addAccount: account3.
+	
+	self assert: 32 equals: pf balance.! !
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/15/2023 21:10:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/15/2023 21:10:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 21:10:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/15/2023 21:10:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosHasBalanceEqualToThePortfoliosBalance stamp: 'JV 5/15/2023 21:10:49'!
+PASSED!
+
+!methodRemoval: PortfolioTest #test03APortfolioWithPortfoliosHasBalanceEqualToThePortfoliosBalance stamp: 'JV 5/15/2023 21:10:54'!
+test03APortfolioWithPortfoliosHasBalanceEqualToThePortfoliosBalance
+	| pf anAccount anAccount2 anAccount3 account1 account2 account3 portfolio1 portfolio2 portfolio3 |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new register: (Deposit for: 30).
+	account2 := ReceptiveAccount new register: (Withdraw for: 8).
+	account3 := ReceptiveAccount new register: (Deposit for: 10).
+
+	
+	portfolio1 := Portfolio new addAccount: account1.
+	portfolio2 := Portfolio new addAccount: account2.
+	portfolio3 := Portfolio new addAccount: account3.
+	
+	pf addPortfolio: portfolio1; addPortfolio: portfolio2; addPortfolio: portfolio3.  
+	
+	self assert: 32 equals: pf balance.!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/15/2023 21:10:56'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 21:16:09'!
+test04
+	| pf account1 account2 portfolio1 |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new register: (Deposit for: 30).
+	account2 := ReceptiveAccount new register: (Withdraw for: 8).
+	
+	portfolio1 := Portfolio new addAccount: account2.
+	
+	pf addPortfolio: portfolio1; addAccount: account1.
+	
+	self assert: 32 equals: (pf hasTransaction: Deposit for: 30) & (pf hasTransaction: Withdraw for: 8).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 21:16:39' prior: 50605004!
+test04
+	| pf account1 account2 portfolio1 |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new register: (Deposit for: 30).
+	account2 := ReceptiveAccount new register: (Withdraw for: 8).
+	
+	portfolio1 := Portfolio new addAccount: account2.
+	
+	pf addPortfolio: portfolio1; addAccount: account1.
+	
+	self assert: (pf hasTransaction: (Deposit for: 30)) & (pf hasTransaction: (Withdraw for: 8)).! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/15/2023 21:17:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 21:17:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/15/2023 21:17:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'JV 5/15/2023 21:17:12'!
+ERROR!
+
+!testRun: #PortfolioTest #test04 stamp: 'JV 5/15/2023 21:17:12'!
+ERROR!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 21:17:35' prior: 50605020!
+test04
+	| pf account1 account2 portfolio1 |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new register: (Deposit for: 30).
+	account2 := ReceptiveAccount new register: (Withdraw for: 8).
+	
+	portfolio1 := Portfolio new addAccount: account2.
+	
+	pf addPortfolio: portfolio1; addAccount: account1.
+	
+	self assert: (pf hasRegistered: (Deposit for: 30)) & (pf hasRegistered: (Withdraw for: 8)).! !
+
+!testRun: #PortfolioTest #test04 stamp: 'JV 5/15/2023 21:17:37'!
+ERROR!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 21:17:42'!
+hasRegistered: aRenameMe1 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/15/2023 21:21:19' prior: 50605070!
+hasRegistered: aTransaction
+	^(accounts anySatisfy: [ :account | account hasRegistered: aTransaction ]) or:  (portfolios anySatisfy: [ :portfolio | portfolio hasRegistered: aTransaction ]).! !
+
+!testRun: #PortfolioTest #test04 stamp: 'JV 5/15/2023 21:21:21'!
+FAILURE!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 21:32:45' prior: 50605053!
+test04
+	| pf account1 account2 portfolio1 dep |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new.
+	dep := Deposit register: 30 on: account1.
+	account2 := ReceptiveAccount new register: (Withdraw for: 8).
+	
+	portfolio1 := Portfolio new addAccount: account2.
+	
+	pf addPortfolio: portfolio1; addAccount: account1.
+	
+	self assert: (pf hasRegistered: (Deposit for: 30)) & (pf hasRegistered: (Withdraw for: 8)).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 21:33:34' prior: 50605087!
+test04
+	| pf account1 account2 portfolio1 dep wit |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new.
+	dep := Deposit register: 30 on: account1.
+	account2 := ReceptiveAccount new.
+	
+	wit := Withdraw register: 8 on: account1.
+	
+	portfolio1 := Portfolio new addAccount: account2.
+	
+	pf addPortfolio: portfolio1; addAccount: account1.
+	
+	self assert: (pf hasRegistered: dep) & (pf hasRegistered: wit).! !
+
+!testRun: #PortfolioTest #test04 stamp: 'JV 5/15/2023 21:33:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/15/2023 21:33:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 21:33:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/15/2023 21:33:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'JV 5/15/2023 21:33:37'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 21:33:46' prior: 50605104!
+test04
+	| pf account1 account2 portfolio1 dep aWithdraw |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new.
+	dep := Deposit register: 30 on: account1.
+	account2 := ReceptiveAccount new.
+	
+	aWithdraw := Withdraw register: 8 on: account1.
+	
+	portfolio1 := Portfolio new addAccount: account2.
+	
+	pf addPortfolio: portfolio1; addAccount: account1.
+	
+	self assert: (pf hasRegistered: dep) & (pf hasRegistered: aWithdraw).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 21:33:52' prior: 50605137!
+test04
+	| pf account1 account2 portfolio1 aDeposit aWithdraw |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new.
+	aDeposit := Deposit register: 30 on: account1.
+	account2 := ReceptiveAccount new.
+	
+	aWithdraw := Withdraw register: 8 on: account1.
+	
+	portfolio1 := Portfolio new addAccount: account2.
+	
+	pf addPortfolio: portfolio1; addAccount: account1.
+	
+	self assert: (pf hasRegistered: aDeposit) & (pf hasRegistered: aWithdraw).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 21:34:05' prior: 50605154!
+test04
+	| pf account1 account2 portfolio1 aDeposit aWithdraw |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	aWithdraw := Withdraw register: 8 on: account1.
+	aDeposit := Deposit register: 30 on: account2.
+	
+	portfolio1 := Portfolio new addAccount: account2.
+	
+	pf addPortfolio: portfolio1; addAccount: account1.
+	
+	self assert: (pf hasRegistered: aDeposit) & (pf hasRegistered: aWithdraw).! !
+
+!testRun: #PortfolioTest #test04 stamp: 'JV 5/15/2023 21:34:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/15/2023 21:34:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/15/2023 21:34:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/15/2023 21:34:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'JV 5/15/2023 21:34:13'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/15/2023 21:34:59'!
+test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios
+	| pf account1 account2 portfolio1 aDeposit aWithdraw |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	aWithdraw := Withdraw register: 8 on: account1.
+	aDeposit := Deposit register: 30 on: account2.
+	
+	portfolio1 := Portfolio new addAccount: account2.
+	
+	pf addPortfolio: portfolio1; addAccount: account1.
+	
+	self assert: (pf hasRegistered: aDeposit) & (pf hasRegistered: aWithdraw).! !
+
+!methodRemoval: PortfolioTest #test04 stamp: 'JV 5/15/2023 21:34:59'!
+test04
+	| pf account1 account2 portfolio1 aDeposit aWithdraw |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	aWithdraw := Withdraw register: 8 on: account1.
+	aDeposit := Deposit register: 30 on: account2.
+	
+	portfolio1 := Portfolio new addAccount: account2.
+	
+	pf addPortfolio: portfolio1; addAccount: account1.
+	
+	self assert: (pf hasRegistered: aDeposit) & (pf hasRegistered: aWithdraw).!
+
+----SNAPSHOT----(15 May 2023 21:48:46) CuisUniversity-5706.image priorSource: 8735159!
+
+----QUIT----(15 May 2023 21:48:57) CuisUniversity-5706.image priorSource: 8754848!
+
+----STARTUP---- (18 May 2023 20:18:00) as /home/julia/Documents/Inge1/SmallTalk/CuisCuentaBancaria_PortfolioEj1/CuisUniversity-5706.image!
+
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/18/2023 20:18:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/18/2023 20:18:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/18/2023 20:18:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/18/2023 20:18:19'!
+PASSED!
+
+!classDefinition: #Bank category: 'Portfolio-Ejercicio' stamp: 'JV 5/18/2023 20:32:03'!
+Object subclass: #Bank
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'JV 5/18/2023 20:32:03'!
+Bank subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Bank subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'JV 5/18/2023 20:34:49'!
+Bank subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/18/2023 20:35:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/18/2023 20:35:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/18/2023 20:35:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/18/2023 20:35:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/18/2023 20:35:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/18/2023 20:35:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/18/2023 20:35:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/18/2023 20:35:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/18/2023 20:35:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/18/2023 20:35:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/18/2023 20:35:04'!
+PASSED!
+!Bank methodsFor: 'no messages' stamp: 'JV 5/18/2023 20:35:22'!
+balance
+	self subclassResponsibility ! !
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:35:30'!
+hasRegistered: anAccount
+	self subclassResponsibility ! !
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:35:36'!
+transactions
+	self subclassResponsibility ! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/18/2023 20:36:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/18/2023 20:36:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/18/2023 20:36:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/18/2023 20:36:21'!
+PASSED!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'JV 5/18/2023 20:42:38'!
+Bank subclass: #Portfolio
+	instanceVariableNames: 'accountsAndPortfolios portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:42:38' prior: 50605075 overrides: 50605340!
+hasRegistered: aTransaction
+	^(accountsAndPortfolios anySatisfy: [ :account | account hasRegistered: aTransaction ]) or:  (portfolios anySatisfy: [ :portfolio | portfolio hasRegistered: aTransaction ]).! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:42:38' prior: 50604870 overrides: 16920235!
+initialize
+	accountsAndPortfolios := OrderedCollection new.
+	portfolios := OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:42:38' prior: 50604911 overrides: 50605336!
+balance
+	^portfolios inject: (accountsAndPortfolios inject: 0 into: [ :accumulatedBalance :account | accumulatedBalance + account balance]) into: [  :accumulatedBalance :portfolio | accumulatedBalance + portfolio balance].
+	
+	
+	
+	
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'JV 5/18/2023 20:42:38' prior: 50604578!
+addAccount: anAccount 
+	accountsAndPortfolios add: anAccount.! !
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/18/2023 20:43:39' prior: 50605392 overrides: 50605336!
+balance
+	^accountsAndPortfolios inject: 0 into: [ :accumulatedBalance :accountOrPortfolio| accumulatedBalance + accountOrPortfolio balance]
+	
+	
+	
+	
+	! !
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/18/2023 20:44:07' prior: 50605375 overrides: 50605340!
+hasRegistered: aTransaction
+	^accountsAndPortfolios anySatisfy: [ :accountOrPortfolio | accountOrPortfolio hasRegistered: aTransaction ]! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/18/2023 20:44:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/18/2023 20:44:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/18/2023 20:44:24'!
+FAILURE!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/18/2023 20:44:24'!
+FAILURE!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/18/2023 20:44:29'!
+FAILURE!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/18/2023 20:51:07' prior: 50605385 overrides: 16920235!
+initialize
+	accountsAndPortfolios := OrderedCollection new.
+	! !
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/18/2023 20:51:18' prior: 50604860!
+addPortfolio: aPortfolio 
+	accountsAndPortfolios add: aPortfolio.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'JV 5/18/2023 20:51:29'!
+Bank subclass: #Portfolio
+	instanceVariableNames: 'accountsAndPortfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/18/2023 20:51:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/18/2023 20:51:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/18/2023 20:51:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/18/2023 20:51:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/18/2023 20:51:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/18/2023 20:51:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/18/2023 20:51:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/18/2023 20:51:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/18/2023 20:51:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/18/2023 20:51:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/18/2023 20:51:40'!
+PASSED!
+
+----SNAPSHOT----(18 May 2023 20:54:06) CuisUniversity-5706.image priorSource: 8754936!
+
+----STARTUP---- (22 May 2023 15:31:39) as /home/julia/Documents/Inge1/SmallTalk/CuisCuentaBancaria_PortfolioEj1/CuisUniversity-5706.image!
+
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 15:34:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 15:34:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 15:34:45'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 15:34:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/22/2023 15:34:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/22/2023 15:34:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/22/2023 15:34:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/22/2023 15:34:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/22/2023 15:34:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/22/2023 15:34:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/22/2023 15:34:47'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 15:38:00'!
+test05EmptyPortfolioHasNoTransactions
+	| pf emptyCollection |
+	
+	pf := Portfolio new.
+	emptyCollection := OrderedCollection new.
+	
+	
+	self assert: emptyCollection equals: pf transactions. ! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 15:38:07' prior: 50605557!
+test05EmptyPortfolioHasNoTransactions
+	| pf emptyCollection |
+	
+	pf := Portfolio new.
+	emptyCollection := OrderedCollection new.
+	
+	
+	self assert: emptyCollection equals: pf transactions. 
+	! !
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 15:38:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 15:38:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 15:38:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 15:38:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 15:38:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 15:38:07'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 15:43:11'!
+test05PortfolioWithOneAccountHasThatAccountsTransactions
+	| pf emptyCollection account deposit withdraw |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	deposit := ''.
+	withdraw := ''.
+	
+	
+	self assert: 0 equals: pf transactions. 
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 15:44:48' prior: 50605599!
+test05PortfolioWithOneAccountHasThatAccountsTransactions
+	| pf account deposit withdraw |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	
+	self assert: account transactions equals: pf transactions. 
+	! !
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:45:11'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:45:41'!
+FAILURE!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/22/2023 15:46:33' prior: 50604536 overrides: 50605345!
+transactions
+	! !
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/22/2023 15:48:25' prior: 50605631 overrides: 50605345!
+transactions
+	
+	^accountsAndPortfolios inject: (OrderedCollection new) into: [ :transactionsAccumulated :accountOrPortfolio | transactionsAccumulated add: (accountOrPortfolio transactions)]! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 15:48:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 15:48:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 15:48:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 15:48:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 15:48:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:48:27'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:48:28'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:48:45'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:48:45'!
+FAILURE!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/22/2023 15:50:26' prior: 50605635 overrides: 50605345!
+transactions
+	
+	^accountsAndPortfolios inject: (OrderedCollection new) into: [ :transactionsAccumulated :accountOrPortfolio | transactionsAccumulated addAllLast: (accountOrPortfolio transactions)]! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 15:50:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 15:50:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 15:50:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 15:50:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 15:50:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:50:27'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:50:27'!
+FAILURE!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 15:51:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 15:51:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 15:51:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 15:51:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 15:51:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:51:15'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:51:15'!
+FAILURE!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 15:51:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 15:51:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 15:51:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 15:51:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 15:51:34'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:51:34'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:51:34'!
+FAILURE!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 15:51:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 15:51:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 15:51:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 15:51:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 15:51:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:51:52'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:51:52'!
+FAILURE!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 15:52:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 15:52:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 15:52:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 15:52:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 15:52:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:52:04'!
+FAILURE!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:52:04'!
+FAILURE!
+
+pf transactions!
+
+account transactions!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 15:53:07' prior: 50605610!
+test05PortfolioWithOneAccountHasThatAccountsTransactions
+	| pf account deposit withdraw |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf addAccount: account.
+	
+	
+	self assert: account transactions equals: pf transactions. 
+	! !
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:53:14'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 15:53:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 15:53:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 15:53:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 15:53:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 15:53:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 15:53:16'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 15:56:08'!
+test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions
+	| pf account deposit withdraw account2 pf2 |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf2 := Portfolio new.
+	account2:= ReceptiveAccount new.
+	Withdraw register: 8 on: account2.
+	pf2 addAccount: account2.
+	
+	pf addAccount: account; addPortfolio: pf2.
+	
+	
+	self assert: (account transactions union: pf2 transactions)  equals: pf transactions. 
+	! !
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 15:56:15'!
+FAILURE!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 15:57:07' prior: 50605870!
+test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions
+	| pf account deposit withdraw account2 pf2 |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf2 := Portfolio new.
+	account2:= ReceptiveAccount new.
+	Withdraw register: 8 on: account2.
+	pf2 addAccount: account2.
+	
+	pf addAccount: account; addPortfolio: pf2.
+	
+	self break.
+	
+	
+	self assert: (account transactions union: pf2 transactions)  equals: pf transactions. 
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 15:59:21' prior: 50605895!
+test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions
+	| pf account deposit withdraw account2 pf2 at pf2t pft ut |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf2 := Portfolio new.
+	account2:= ReceptiveAccount new.
+	Withdraw register: 8 on: account2.
+	pf2 addAccount: account2.
+	
+	pf addAccount: account; addPortfolio: pf2.
+	
+	pft := pf transactions.
+	pf2t := pf2 transactions.
+	at := account transactions.
+	ut := at union: pf2t.
+	
+	self assert: (account transactions union: pf2 transactions)  equals: pf transactions. 
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 15:59:46' prior: 50605916!
+test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions
+	| pf account deposit withdraw account2 pf2 at pf2t pft ut |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf2 := Portfolio new.
+	account2:= ReceptiveAccount new.
+	Withdraw register: 8 on: account2.
+	pf2 addAccount: account2.
+	
+	pf addAccount: account; addPortfolio: pf2.
+	
+	pft := pf transactions.
+	pf2t := pf2 transactions.
+	at := account transactions.
+	ut := at union: pf2t.
+	
+	self break.
+	
+	self assert: (account transactions union: pf2 transactions)  equals: pf transactions. 
+	! !
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/22/2023 16:01:40' prior: 50605680 overrides: 50605345!
+transactions
+	
+	^accountsAndPortfolios inject: (OrderedCollection new) into: [ :transactionsAccumulated :accountOrPortfolio | transactionsAccumulated addAllLast: (accountOrPortfolio transactions); yourself]! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 16:01:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:01:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:01:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:01:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 16:01:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:01:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:01:46'!
+FAILURE!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:02:19' prior: 50605940!
+test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions
+	| pf account deposit withdraw account2 pf2 at pf2t pft ut |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf2 := Portfolio new.
+	account2:= ReceptiveAccount new.
+	Withdraw register: 8 on: account2.
+	pf2 addAccount: account2.
+	
+	pf addAccount: account; addPortfolio: pf2.
+	
+	pft := pf transactions.
+	pf2t := pf2 transactions.
+	at := account transactions.
+	ut := at union: pf2t.
+	
+	self break.
+	
+	self assert: (account transactions union: pf2 transactions)  equals:( pf transactions asSet). 
+	! !
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:02:30'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:02:38' prior: 50606003!
+test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions
+	| pf account deposit withdraw account2 pf2 at pf2t pft ut |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf2 := Portfolio new.
+	account2:= ReceptiveAccount new.
+	Withdraw register: 8 on: account2.
+	pf2 addAccount: account2.
+	
+	pf addAccount: account; addPortfolio: pf2.
+	
+	pft := pf transactions.
+	pf2t := pf2 transactions.
+	at := account transactions.
+	ut := at union: pf2t.
+	
+	
+	
+	self assert: (account transactions union: pf2 transactions)  equals:( pf transactions asSet). 
+	! !
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:02:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 16:02:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:02:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:02:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:02:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 16:02:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:02:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:02:43'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:03:04' prior: 50606032!
+test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions
+	| pf account account2 pf2 |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Withdraw register: 8 on: account.
+	Deposit register: 30 on: account.
+	
+	pf2 := Portfolio new.
+	account2:= ReceptiveAccount new.
+	Withdraw register: 8 on: account2.
+	pf2 addAccount: account2.
+	
+	pf addAccount: account; addPortfolio: pf2.
+	
+	
+	
+	self assert: (account transactions union: pf2 transactions)  equals:( pf transactions asSet). 
+	! !
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:03:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 16:03:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:03:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:03:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:03:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 16:03:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:03:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:03:10'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:08:31'!
+test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot
+	| pf account account2 pf2 |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Withdraw register: 8 on: account.
+	Deposit register: 30 on: account.
+	
+	pf2 := Portfolio new.
+	account2:= ReceptiveAccount new.
+	Withdraw register: 8 on: account2.
+	pf2 addAccount: account2.
+	
+	pf addAccount: account; addPortfolio: pf2.
+	
+	
+	
+	self assert: (account transactions union: pf2 transactions)  equals:( pf transactions asSet). 
+	! !
+
+!testRun: #PortfolioTest #test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot stamp: 'JV 5/22/2023 16:08:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 16:08:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:08:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:08:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:08:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 16:08:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:08:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:08:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot stamp: 'JV 5/22/2023 16:08:31'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:13:48'!
+test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther
+	|  account account1 account2 pf1 pf2 pf3 |
+	
+	pf1 := Portfolio new.
+	pf2:= Portfolio new.
+	pf3:= Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Withdraw register: 8 on: account.
+
+	account2 := ReceptiveAccount new.
+	Deposit register: 30 on: account.
+	
+	pf2 addAccount: account1.
+	
+	pf3 addAccount: account2.
+		
+	pf1 addPortfolio: pf2; addPortfolio: pf3.
+	
+	self assert: ''. 
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:14:10'!
+test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther
+	|  account account1 account2 pf1 pf2 pf3 |
+	
+	pf1 := Portfolio new.
+	pf2:= Portfolio new.
+	pf3:= Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Withdraw register: 8 on: account.
+
+	account2 := ReceptiveAccount new.
+	Deposit register: 30 on: account.
+	
+	pf2 addAccount: account1.
+	
+	pf3 addAccount: account2.
+		
+	pf1 addPortfolio: pf2; addPortfolio: pf3.
+	
+	self assert: ''. 
+	! !
+
+!methodRemoval: PortfolioTest #test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:14:10'!
+test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther
+	|  account account1 account2 pf1 pf2 pf3 |
+	
+	pf1 := Portfolio new.
+	pf2:= Portfolio new.
+	pf3:= Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Withdraw register: 8 on: account.
+
+	account2 := ReceptiveAccount new.
+	Deposit register: 30 on: account.
+	
+	pf2 addAccount: account1.
+	
+	pf3 addAccount: account2.
+		
+	pf1 addPortfolio: pf2; addPortfolio: pf3.
+	
+	self assert: ''. 
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:14:18'!
+test06PortfolioWithOneAccountHasThatAccountsTransactions
+	| pf account deposit withdraw |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf addAccount: account.
+	
+	
+	self assert: account transactions equals: pf transactions. 
+	! !
+
+!methodRemoval: PortfolioTest #test05PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:14:18'!
+test05PortfolioWithOneAccountHasThatAccountsTransactions
+	| pf account deposit withdraw |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf addAccount: account.
+	
+	
+	self assert: account transactions equals: pf transactions. 
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:14:25'!
+test07PortfolioWithOneAccountHasThatAccountsTransactions
+	| pf account deposit withdraw |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf addAccount: account.
+	
+	
+	self assert: account transactions equals: pf transactions. 
+	! !
+
+!methodRemoval: PortfolioTest #test06PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:14:25'!
+test06PortfolioWithOneAccountHasThatAccountsTransactions
+	| pf account deposit withdraw |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf addAccount: account.
+	
+	
+	self assert: account transactions equals: pf transactions. 
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:14:30'!
+test08PortfolioWithOneAccountHasThatAccountsTransactions
+	| pf account deposit withdraw |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf addAccount: account.
+	
+	
+	self assert: account transactions equals: pf transactions. 
+	! !
+
+!methodRemoval: PortfolioTest #test07PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:14:30'!
+test07PortfolioWithOneAccountHasThatAccountsTransactions
+	| pf account deposit withdraw |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf addAccount: account.
+	
+	
+	self assert: account transactions equals: pf transactions. 
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:19:04' prior: 50606213!
+test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther
+	|  account1 account2 pf1 pf2 pf3 |
+	
+	pf1 := Portfolio new.
+	pf2:= Portfolio new.
+	pf3:= Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Withdraw register: 8 on: account1.
+
+	account2 := ReceptiveAccount new.
+	Deposit register: 30 on: account2.
+	
+	pf2 addAccount: account1.
+	
+	pf3 addAccount: account2.
+		
+	pf1 addPortfolio: pf2; addPortfolio: pf3.
+	
+	self 
+		should: [ pf3 addAccount: account2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'noSePuedeAgregarUnaCuentaQueYaExisteEnElPortfolio' ].
+
+	! !
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:19:07'!
+FAILURE!
+
+Object subclass: #Bank
+	instanceVariableNames: 'parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Bank category: 'Portfolio-Ejercicio' stamp: 'JV 5/22/2023 16:20:23'!
+Object subclass: #Bank
+	instanceVariableNames: 'parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/22/2023 16:21:30' prior: 50605446 overrides: 16920235!
+initialize
+	super initialize.
+	accountsAndPortfolios := OrderedCollection new.
+	! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'JV 5/22/2023 16:21:39' prior: 50604139 overrides: 16920235!
+initialize
+	super initialize.
+	transactions := OrderedCollection new.! !
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:21:59' overrides: 16920235!
+initialize
+	parents := Set new.! !
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:22:34'!
+registerParent: aParentPortfolio
+	parents add: aParentPortfolio.! !
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/22/2023 16:23:20' prior: 50605403!
+addAccount: anAccount 
+	anAccount registerParent: self.
+	accountsAndPortfolios add: anAccount.! !
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/22/2023 16:23:36' prior: 50605451!
+addPortfolio: aPortfolio 
+	aPortfolio registerParent: self.
+	accountsAndPortfolios add: aPortfolio.! !
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:26:04'!
+rootPortfolios
+	parents inject: Set new into: [:roots :aParent |
+		roots union: aParent rootPortfolios; yourself].! !
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:26:24' prior: 50606410!
+rootPortfolios
+	parents inject: Set new into: [:roots :aParent |
+		roots union: aParent rootPortfolios].! !
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:29:01'!
+ancestorPortfolios
+	parents inject: Set new into: [:roots :aParent |
+		roots union: aParent ancestorPortfolios].! !
+
+!methodRemoval: Bank #rootPortfolios stamp: 'JV 5/22/2023 16:29:04'!
+rootPortfolios
+	parents inject: Set new into: [:roots :aParent |
+		roots union: aParent rootPortfolios].!
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:29:45' prior: 50606423!
+ancestorPortfolios
+	parents inject: parents into: [:roots :aParent |
+		roots union: aParent ancestorPortfolios].! !
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:30:28' prior: 50606435!
+ancestorPortfolios
+	parents inject: parents into: [:ancestors :aParent |
+		ancestors union: aParent ancestorPortfolios].! !
+
+	|  account1 account2 pf1 pf2 pf3 |
+	
+	pf1 := Portfolio new.
+	pf2:= Portfolio new.
+	pf3:= Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Withdraw register: 8 on: account1.
+
+	account2 := ReceptiveAccount new.
+	Deposit register: 30 on: account2.
+	
+	pf2 addAccount: account1.
+	
+	pf3 addAccount: account2.
+		
+	pf1 addPortfolio: pf2; addPortfolio: pf3.
+	
+	pf1 ancestorPortfolios.!
+
+|  account1 account2 pf1 pf2 pf3 |
+	
+	pf1 := Portfolio new.
+	pf2:= Portfolio new.
+	pf3:= Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Withdraw register: 8 on: account1.
+
+	account2 := ReceptiveAccount new.
+	Deposit register: 30 on: account2.
+	
+	pf2 addAccount: account1.
+	
+	pf3 addAccount: account2.
+		
+	pf1 addPortfolio: pf2; addPortfolio: pf3.
+	
+	pf1 ancestorPortfolios. !
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:32:02' prior: 50606442!
+ancestorPortfolios
+	^ parents inject: parents into: [:ancestors :aParent |
+		ancestors union: aParent ancestorPortfolios].! !
+
+|  account1 account2 pf1 pf2 pf3 |
+	
+	pf1 := Portfolio new.
+	pf2:= Portfolio new.
+	pf3:= Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Withdraw register: 8 on: account1.
+
+	account2 := ReceptiveAccount new.
+	Deposit register: 30 on: account2.
+	
+	pf2 addAccount: account1.
+	
+	pf3 addAccount: account2.
+		
+	pf1 addPortfolio: pf2; addPortfolio: pf3.
+	
+	pf1 ancestorPortfolios.!
+
+|  account1 account2 pf1 pf2 pf3 |
+	
+	pf1 := Portfolio new.
+	pf2:= Portfolio new.
+	pf3:= Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Withdraw register: 8 on: account1.
+
+	account2 := ReceptiveAccount new.
+	Deposit register: 30 on: account2.
+	
+	pf2 addAccount: account1.
+	
+	pf3 addAccount: account2.
+		
+	pf1 addPortfolio: pf2; addPortfolio: pf3.
+	
+	pf2 ancestorPortfolios.!
+
+|  account1 account2 pf1 pf2 pf3 |
+	
+	pf1 := Portfolio new.
+	pf2:= Portfolio new.
+	pf3:= Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Withdraw register: 8 on: account1.
+
+	account2 := ReceptiveAccount new.
+	Deposit register: 30 on: account2.
+	
+	pf2 addAccount: account1.
+	
+	pf3 addAccount: account2.
+		
+	pf1 addPortfolio: pf2; addPortfolio: pf3.
+	
+	account1 ancestorPortfolios.!
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/22/2023 16:36:27' prior: 50606404!
+addPortfolio: aPortfolio 
+	| myAncestors otherAncestors |
+	myAncestors := self ancestorPortfolios.
+	otherAncestors := aPortfolio ancestorPortfolios.
+	((myAncestors intersection: otherAncestors) size > 0) ifTrue: [self error: 'jaja no'	].
+	
+	aPortfolio registerParent: self.
+	accountsAndPortfolios add: aPortfolio.! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 16:36:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:36:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:36:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:36:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 16:36:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:36:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot stamp: 'JV 5/22/2023 16:36:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:36:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:36:32'!
+FAILURE!
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:36:32'!
+FAILURE!
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/22/2023 16:36:46' prior: 50606516!
+addPortfolio: aPortfolio 
+	| myAncestors otherAncestors |
+	myAncestors := self ancestorPortfolios.
+	otherAncestors := aPortfolio ancestorPortfolios.
+	((myAncestors intersection: otherAncestors) size > 0) ifTrue: [self error: 'noSePuedeAgregarUnaCuentaQueYaExisteEnElPortfolio'	].
+	
+	aPortfolio registerParent: self.
+	accountsAndPortfolios add: aPortfolio.! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 16:36:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:36:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:36:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:36:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 16:36:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:36:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot stamp: 'JV 5/22/2023 16:36:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:36:47'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:36:47'!
+FAILURE!
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:36:47'!
+FAILURE!
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/22/2023 16:37:24' prior: 50606571!
+addPortfolio: aPortfolio 
+	self checkCompatibleAncestors: aPortfolio.
+		
+	aPortfolio registerParent: self.
+	accountsAndPortfolios add: aPortfolio.! !
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:37:46'!
+checkCompatibleAncestors: aPortfolio
+	| myAncestors otherAncestors |
+	myAncestors := self ancestorPortfolios.
+	otherAncestors := aPortfolio ancestorPortfolios.
+	((myAncestors intersection: otherAncestors) size > 0) ifTrue: [self error: 'noSePuedeAgregarUnaCuentaQueYaExisteEnElPortfolio'	].
+! !
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/22/2023 16:38:07' prior: 50606398!
+addAccount: anAccount 
+	self checkCompatibleAncestors: anAccount.
+	
+	anAccount registerParent: self.
+	accountsAndPortfolios add: anAccount.! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 16:38:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:38:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:38:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:38:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 16:38:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:38:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot stamp: 'JV 5/22/2023 16:38:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:38:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:38:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:38:27'!
+PASSED!
+!Bank methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:40:13' prior: 50606635!
+checkCompatibleAncestors: aPortfolio
+	| myAncestors otherAncestors |
+	myAncestors := self ancestorPortfolios.
+	otherAncestors := aPortfolio ancestorPortfolios.
+	((myAncestors intersection: otherAncestors) size > 0) ifTrue: [self error: 'noSePuedeAgregarUnBankQueYaExisteEnElPortfolio'	].
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:40:23' prior: 50606336!
+test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther
+	|  account1 account2 pf1 pf2 pf3 |
+	
+	pf1 := Portfolio new.
+	pf2:= Portfolio new.
+	pf3:= Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Withdraw register: 8 on: account1.
+
+	account2 := ReceptiveAccount new.
+	Deposit register: 30 on: account2.
+	
+	pf2 addAccount: account1.
+	
+	pf3 addAccount: account2.
+		
+	pf1 addPortfolio: pf2; addPortfolio: pf3.
+	
+	self 
+		should: [ pf3 addAccount: account2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'noSePuedeAgregarUnBankQueYaExisteEnElPortfolio' ].
+
+	! !
+
+!classRenamed: #Bank as: #BankEntity stamp: 'JV 5/22/2023 16:40:38'!
+Smalltalk renameClassNamed: #Bank as: #BankEntity!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:40:53' prior: 50606710!
+test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther
+	|  account1 account2 pf1 pf2 pf3 |
+	
+	pf1 := Portfolio new.
+	pf2:= Portfolio new.
+	pf3:= Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Withdraw register: 8 on: account1.
+
+	account2 := ReceptiveAccount new.
+	Deposit register: 30 on: account2.
+	
+	pf2 addAccount: account1.
+	
+	pf3 addAccount: account2.
+		
+	pf1 addPortfolio: pf2; addPortfolio: pf3.
+	
+	self 
+		should: [ pf3 addAccount: account2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'noSePuedeAgregarUnBankEntityQueYaExisteEnElPortfolio' ].
+
+	! !
+!BankEntity methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:41:22' prior: 50606697!
+checkCompatibleAncestors: aPortfolio
+	| myAncestors otherAncestors |
+	myAncestors := self ancestorPortfolios.
+	otherAncestors := aPortfolio ancestorPortfolios.
+	((myAncestors intersection: otherAncestors) size > 0) ifTrue: [self error: 'noSePuedeAgregarUnBankEntityQueYaExisteEnElPortfolio'	].
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:45:50' prior: 50604784!
+test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance
+	| pf |
+	pf := self makePortfolioWith3Accounts.
+	
+	self assert: 286 equals: pf balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:46:25'!
+makePortfolioWith3Accounts
+	| pf anAccount anAccount2 anAccount3 |
+	
+	pf := Portfolio new. 
+	
+	anAccount := (ReceptiveAccount new) register: (Deposit for: 200). 
+	anAccount2 := (ReceptiveAccount new) register: (Withdraw for: 4). 
+	anAccount3 := (ReceptiveAccount new) register: (Deposit for: 90). 
+
+	
+	pf addAccount: anAccount; addAccount: anAccount2; addAccount: anAccount3.
+	
+	^pf! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 16:46:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:46:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:46:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:46:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 16:46:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:46:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot stamp: 'JV 5/22/2023 16:46:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:46:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:46:28'!
+PASSED!
+!BankEntity methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:47:28' prior: 50606761!
+checkCompatibleAncestors: aPortfolio
+	| myAncestors otherAncestors |
+	
+	myAncestors := self ancestorPortfolios.
+	otherAncestors := aPortfolio ancestorPortfolios.
+	
+	((myAncestors intersection: otherAncestors) size > 0) ifTrue: [self error: 'noSePuedeAgregarUnBankEntityQueYaExisteEnElPortfolio'	].
+! !
+!BankEntity methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:48:20'!
+ensureCompatibleAncestors: aPortfolio
+	| myAncestors otherAncestors |
+	
+	myAncestors := self ancestorPortfolios.
+	otherAncestors := aPortfolio ancestorPortfolios.
+	
+	((myAncestors intersection: otherAncestors) size > 0) ifTrue: [self error: 'noSePuedeAgregarUnBankEntityQueYaExisteEnElPortfolio'	].
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:48:20' prior: 50606647!
+addAccount: anAccount 
+	self ensureCompatibleAncestors: anAccount.
+	
+	anAccount registerParent: self.
+	accountsAndPortfolios add: anAccount.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:48:20' prior: 50606628!
+addPortfolio: aPortfolio 
+	self ensureCompatibleAncestors: aPortfolio.
+		
+	aPortfolio registerParent: self.
+	accountsAndPortfolios add: aPortfolio.! !
+
+!methodRemoval: BankEntity #checkCompatibleAncestors: stamp: 'JV 5/22/2023 16:48:20'!
+checkCompatibleAncestors: aPortfolio
+	| myAncestors otherAncestors |
+	
+	myAncestors := self ancestorPortfolios.
+	otherAncestors := aPortfolio ancestorPortfolios.
+	
+	((myAncestors intersection: otherAncestors) size > 0) ifTrue: [self error: 'noSePuedeAgregarUnBankEntityQueYaExisteEnElPortfolio'	].
+!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 16:48:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:48:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:48:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:48:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 16:48:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:48:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot stamp: 'JV 5/22/2023 16:48:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:48:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:48:25'!
+PASSED!
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/22/2023 16:49:56'!
+addSubEntity: anAccount 
+	self ensureCompatibleAncestors: anAccount.
+	
+	anAccount registerParent: self.
+	accountsAndPortfolios add: anAccount.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:49:56' prior: 50606782!
+makePortfolioWith3Accounts
+	| pf anAccount anAccount2 anAccount3 |
+	
+	pf := Portfolio new. 
+	
+	anAccount := (ReceptiveAccount new) register: (Deposit for: 200). 
+	anAccount2 := (ReceptiveAccount new) register: (Withdraw for: 4). 
+	anAccount3 := (ReceptiveAccount new) register: (Deposit for: 90). 
+
+	
+	pf addSubEntity: anAccount; addSubEntity: anAccount2; addSubEntity: anAccount3.
+	
+	^pf! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:49:56' prior: 50606140!
+test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot
+	| pf account account2 pf2 |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Withdraw register: 8 on: account.
+	Deposit register: 30 on: account.
+	
+	pf2 := Portfolio new.
+	account2:= ReceptiveAccount new.
+	Withdraw register: 8 on: account2.
+	pf2 addSubEntity: account2.
+	
+	pf addSubEntity: account; addPortfolio: pf2.
+	
+	
+	
+	self assert: (account transactions union: pf2 transactions)  equals:( pf transactions asSet). 
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:49:56' prior: 50604933!
+test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances
+	| pf account1 account2 account3 portfolio1 portfolio2 |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new register: (Deposit for: 30).
+	account2 := ReceptiveAccount new register: (Withdraw for: 8).
+	account3 := ReceptiveAccount new register: (Deposit for: 10).
+
+	
+	portfolio1 := Portfolio new addSubEntity: account1.
+	portfolio2 := Portfolio new addSubEntity: account2.
+	
+	pf addPortfolio: portfolio1; addPortfolio: portfolio2; addSubEntity: account3.
+	
+	self assert: 32 equals: pf balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:49:56' prior: 50606307!
+test08PortfolioWithOneAccountHasThatAccountsTransactions
+	| pf account deposit withdraw |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf addSubEntity: account.
+	
+	
+	self assert: account transactions equals: pf transactions. 
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:49:56' prior: 50605205!
+test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios
+	| pf account1 account2 portfolio1 aDeposit aWithdraw |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	aWithdraw := Withdraw register: 8 on: account1.
+	aDeposit := Deposit register: 30 on: account2.
+	
+	portfolio1 := Portfolio new addSubEntity: account2.
+	
+	pf addPortfolio: portfolio1; addSubEntity: account1.
+	
+	self assert: (pf hasRegistered: aDeposit) & (pf hasRegistered: aWithdraw).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:49:56' prior: 50606089!
+test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions
+	| pf account account2 pf2 |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Withdraw register: 8 on: account.
+	Deposit register: 30 on: account.
+	
+	pf2 := Portfolio new.
+	account2:= ReceptiveAccount new.
+	Withdraw register: 8 on: account2.
+	pf2 addSubEntity: account2.
+	
+	pf addSubEntity: account; addPortfolio: pf2.
+	
+	
+	
+	self assert: (account transactions union: pf2 transactions)  equals:( pf transactions asSet). 
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:49:56' prior: 50606737!
+test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther
+	|  account1 account2 pf1 pf2 pf3 |
+	
+	pf1 := Portfolio new.
+	pf2:= Portfolio new.
+	pf3:= Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Withdraw register: 8 on: account1.
+
+	account2 := ReceptiveAccount new.
+	Deposit register: 30 on: account2.
+	
+	pf2 addSubEntity: account1.
+	
+	pf3 addSubEntity: account2.
+		
+	pf1 addPortfolio: pf2; addPortfolio: pf3.
+	
+	self 
+		should: [ pf3 addSubEntity: account2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'noSePuedeAgregarUnBankEntityQueYaExisteEnElPortfolio' ].
+
+	! !
+
+!methodRemoval: Portfolio #addAccount: stamp: 'JV 5/22/2023 16:49:56'!
+addAccount: anAccount 
+	self ensureCompatibleAncestors: anAccount.
+	
+	anAccount registerParent: self.
+	accountsAndPortfolios add: anAccount.!
+
+!methodRemoval: Portfolio #addPortfolio: stamp: 'JV 5/22/2023 16:50:27'!
+addPortfolio: aPortfolio 
+	self ensureCompatibleAncestors: aPortfolio.
+		
+	aPortfolio registerParent: self.
+	accountsAndPortfolios add: aPortfolio.!
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/22/2023 16:50:40' prior: 50606925!
+addSubEntity: aBankEntity 
+	self ensureCompatibleAncestors: aBankEntity.
+	
+	aBankEntity registerParent: self.
+	accountsAndPortfolios add: aBankEntity.! !
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 16:50:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:50:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:50:42'!
+ERROR!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:50:42'!
+ERROR!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 16:50:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:50:42'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot stamp: 'JV 5/22/2023 16:50:42'!
+ERROR!
+
+!testRun: #PortfolioTest #test08PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:50:42'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:50:42'!
+ERROR!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:50:45'!
+ERROR!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:51:07' prior: 50606968!
+test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances
+	| pf account1 account2 account3 portfolio1 portfolio2 |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new register: (Deposit for: 30).
+	account2 := ReceptiveAccount new register: (Withdraw for: 8).
+	account3 := ReceptiveAccount new register: (Deposit for: 10).
+
+	
+	portfolio1 := Portfolio new addSubEntity: account1.
+	portfolio2 := Portfolio new addSubEntity: account2.
+	
+	pf addBankEntity: portfolio1; addBankEntity: portfolio2; addSubEntity: account3.
+	
+	self assert: 32 equals: pf balance.! !
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:51:12'!
+ERROR!
+!Portfolio methodsFor: 'adding' stamp: 'JV 5/22/2023 16:51:26'!
+addChildEntity: aBankEntity 
+	self ensureCompatibleAncestors: aBankEntity.
+	
+	aBankEntity registerParent: self.
+	accountsAndPortfolios add: aBankEntity.! !
+
+!methodRemoval: Portfolio #addSubEntity: stamp: 'JV 5/22/2023 16:51:28'!
+addSubEntity: aBankEntity 
+	self ensureCompatibleAncestors: aBankEntity.
+	
+	aBankEntity registerParent: self.
+	accountsAndPortfolios add: aBankEntity.!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 16:51:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:51:30'!
+ERROR!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:51:30'!
+ERROR!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:51:30'!
+ERROR!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 16:51:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:51:30'!
+ERROR!
+
+!testRun: #PortfolioTest #test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot stamp: 'JV 5/22/2023 16:51:30'!
+ERROR!
+
+!testRun: #PortfolioTest #test08PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:51:30'!
+ERROR!
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:51:30'!
+ERROR!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:51:31'!
+ERROR!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:51:44' prior: 50606933!
+makePortfolioWith3Accounts
+	| pf anAccount anAccount2 anAccount3 |
+	
+	pf := Portfolio new. 
+	
+	anAccount := (ReceptiveAccount new) register: (Deposit for: 200). 
+	anAccount2 := (ReceptiveAccount new) register: (Withdraw for: 4). 
+	anAccount3 := (ReceptiveAccount new) register: (Deposit for: 90). 
+
+	
+	pf addChildEntity: anAccount; addChildEntity: anAccount2; addChildEntity: anAccount3.
+	
+	^pf! !
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:51:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:51:47'!
+ERROR!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:51:48'!
+ERROR!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:51:52'!
+ERROR!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:52:00' prior: 50607131!
+test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances
+	| pf account1 account2 account3 portfolio1 portfolio2 |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new register: (Deposit for: 30).
+	account2 := ReceptiveAccount new register: (Withdraw for: 8).
+	account3 := ReceptiveAccount new register: (Deposit for: 10).
+
+	
+	portfolio1 := Portfolio new addChildEntity: account1.
+	portfolio2 := Portfolio new addChildEntity: account2.
+	
+	pf addChildEntity: portfolio1; addChildEntity: portfolio2; addChildEntity: account3.
+	
+	self assert: 32 equals: pf balance.! !
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:52:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:52:03'!
+ERROR!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:52:12' prior: 50607004!
+test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios
+	| pf account1 account2 portfolio1 aDeposit aWithdraw |
+	
+	pf := Portfolio new. 
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	aWithdraw := Withdraw register: 8 on: account1.
+	aDeposit := Deposit register: 30 on: account2.
+	
+	portfolio1 := Portfolio new addChildEntity: account2.
+	
+	pf addChildEntity: portfolio1; addChildEntity: account1.
+	
+	self assert: (pf hasRegistered: aDeposit) & (pf hasRegistered: aWithdraw).! !
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:52:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:52:14'!
+ERROR!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:52:21' prior: 50607024!
+test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions
+	| pf account account2 pf2 |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Withdraw register: 8 on: account.
+	Deposit register: 30 on: account.
+	
+	pf2 := Portfolio new.
+	account2:= ReceptiveAccount new.
+	Withdraw register: 8 on: account2.
+	pf2 addChildEntity: account2.
+	
+	pf addChildEntity: account; addChildEntity: pf2.
+	
+	
+	
+	self assert: (account transactions union: pf2 transactions)  equals:( pf transactions asSet). 
+	! !
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:52:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot stamp: 'JV 5/22/2023 16:52:23'!
+ERROR!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:52:28' prior: 50606949!
+test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot
+	| pf account account2 pf2 |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Withdraw register: 8 on: account.
+	Deposit register: 30 on: account.
+	
+	pf2 := Portfolio new.
+	account2:= ReceptiveAccount new.
+	Withdraw register: 8 on: account2.
+	pf2 addChildEntity: account2.
+	
+	pf addChildEntity: account; addChildEntity: pf2.
+	
+	
+	
+	self assert: (account transactions union: pf2 transactions)  equals:( pf transactions asSet). 
+	! !
+
+!testRun: #PortfolioTest #test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot stamp: 'JV 5/22/2023 16:52:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:52:30'!
+ERROR!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:52:36' prior: 50606990!
+test08PortfolioWithOneAccountHasThatAccountsTransactions
+	| pf account deposit withdraw |
+	
+	pf := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	withdraw := Withdraw register: 8 on: account.
+	deposit := Deposit register: 30 on: account.
+	
+	pf addChildEntity: account.
+	
+	
+	self assert: account transactions equals: pf transactions. 
+	! !
+
+!testRun: #PortfolioTest #test08PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:52:40'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:52:41'!
+ERROR!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:52:46' prior: 50607044!
+test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther
+	|  account1 account2 pf1 pf2 pf3 |
+	
+	pf1 := Portfolio new.
+	pf2:= Portfolio new.
+	pf3:= Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Withdraw register: 8 on: account1.
+
+	account2 := ReceptiveAccount new.
+	Deposit register: 30 on: account2.
+	
+	pf2 addChildEntity: account1.
+	
+	pf3 addSubEntity: account2.
+		
+	pf1 addPortfolio: pf2; addPortfolio: pf3.
+	
+	self 
+		should: [ pf3 addSubEntity: account2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'noSePuedeAgregarUnBankEntityQueYaExisteEnElPortfolio' ].
+
+	! !
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:52:47'!
+ERROR!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 16:52:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:52:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:52:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:52:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 16:52:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:52:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot stamp: 'JV 5/22/2023 16:52:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:52:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:52:53'!
+ERROR!
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:52:53'!
+ERROR!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:53:03' prior: 50607383!
+test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther
+	|  account1 account2 pf1 pf2 pf3 |
+	
+	pf1 := Portfolio new.
+	pf2:= Portfolio new.
+	pf3:= Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	Withdraw register: 8 on: account1.
+
+	account2 := ReceptiveAccount new.
+	Deposit register: 30 on: account2.
+	
+	pf2 addChildEntity: account1.
+	
+	pf3 addChildEntity: account2.
+		
+	pf1 addChildEntity: pf2; addChildEntity: pf3.
+	
+	self 
+		should: [ pf3 addChildEntity: account2 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'noSePuedeAgregarUnBankEntityQueYaExisteEnElPortfolio' ].
+
+	! !
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:53:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 16:53:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:53:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:53:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:53:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 16:53:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:53:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot stamp: 'JV 5/22/2023 16:53:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:53:07'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:53:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/22/2023 16:53:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/22/2023 16:53:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/22/2023 16:53:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/22/2023 16:53:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/22/2023 16:53:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/22/2023 16:53:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/22/2023 16:53:08'!
+PASSED!
+
+!testRun: #PortfolioTest #test01NewPortfolioHasBalanceZeroAndNoTransactions stamp: 'JV 5/22/2023 16:53:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test02APortfolioWithAccountsHasBalanceEqualToTheAccountsBalance stamp: 'JV 5/22/2023 16:53:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test03APortfolioWithPortfoliosAndAccountsHasBalanceEqualToTheSumOfBalances stamp: 'JV 5/22/2023 16:53:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioHasRegisteredTransactionsFromAllAccountsAndPortfolios stamp: 'JV 5/22/2023 16:53:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test05EmptyPortfolioHasNoTransactions stamp: 'JV 5/22/2023 16:53:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioWithOneAccountAndOnePortfolioHasTheirAccumulatedTransactions stamp: 'JV 5/22/2023 16:53:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioWith2PortfoliosWithDifferentAccountsShouldNot stamp: 'JV 5/22/2023 16:53:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioWithOneAccountHasThatAccountsTransactions stamp: 'JV 5/22/2023 16:53:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioWith2PortfoliosWithDifferentAccountsShouldNotEnableToAddAccountFromOnePFToTheOther stamp: 'JV 5/22/2023 16:53:10'!
+PASSED!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'JV 5/22/2023 16:53:52'!
+BankEntity subclass: #Portfolio
+	instanceVariableNames: 'children'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:53:52' prior: 50607156!
+addChildEntity: aBankEntity 
+	self ensureCompatibleAncestors: aBankEntity.
+	
+	aBankEntity registerParent: self.
+	children add: aBankEntity.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:53:53' prior: 50605965 overrides: 50605345!
+transactions
+	
+	^children inject: (OrderedCollection new) into: [ :transactionsAccumulated :accountOrPortfolio | transactionsAccumulated addAllLast: (accountOrPortfolio transactions); yourself]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:53:53' prior: 50606376 overrides: 50606389!
+initialize
+	super initialize.
+	children := OrderedCollection new.
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:53:53' prior: 50605417 overrides: 50605340!
+hasRegistered: aTransaction
+	^children anySatisfy: [ :accountOrPortfolio | accountOrPortfolio hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'JV 5/22/2023 16:53:53' prior: 50605409 overrides: 50605336!
+balance
+	^children inject: 0 into: [ :accumulatedBalance :accountOrPortfolio| accumulatedBalance + accountOrPortfolio balance]
+	
+	
+	
+	
+	! !
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/22/2023 16:54:11' prior: 50607600 overrides: 50605345!
+transactions
+	
+	^children inject: (OrderedCollection new) into: [ :transactionsAccumulated :child | transactionsAccumulated addAllLast: (child transactions); yourself]! !
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/22/2023 16:54:20' prior: 50607616 overrides: 50605340!
+hasRegistered: aTransaction
+	^children anySatisfy: [ :child | child hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'accessing' stamp: 'JV 5/22/2023 16:54:25' prior: 50607624 overrides: 50605336!
+balance
+	^children inject: 0 into: [ :accumulatedBalance :child| accumulatedBalance + child balance]
+	
+	
+	
+	
+	! !
+
+----SNAPSHOT----(22 May 2023 16:55:29) CuisUniversity-5706.image priorSource: 8763379!
+
+----QUIT----(22 May 2023 16:56:38) CuisUniversity-5706.image priorSource: 8832113!
+
+----STARTUP---- (22 May 2023 19:29:02) as /home/julia/Documents/Inge1/SmallTalk/CuisCuentaBancaria_PortfolioEj1/CuisUniversity-5706.image!
+
+
+!classRemoval: #ReceptiveAccount stamp: 'JV 5/22/2023 21:20:48'!
+BankEntity subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Portfolio stamp: 'JV 5/22/2023 21:20:48'!
+BankEntity subclass: #Portfolio
+	instanceVariableNames: 'children'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #BankEntity stamp: 'JV 5/22/2023 21:20:48'!
+Object subclass: #BankEntity
+	instanceVariableNames: 'parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Withdraw stamp: 'JV 5/22/2023 21:20:48'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Deposit stamp: 'JV 5/22/2023 21:20:49'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #AccountTransaction stamp: 'JV 5/22/2023 21:20:49'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'JV 5/22/2023 21:20:49'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #PortfolioTest stamp: 'JV 5/22/2023 21:20:49'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+----End fileIn of /home/julia/Documents/Inge1/SmallTalk/CuisCuentaBancaria_PortfolioEj1/Portfolio-Solucion.st----!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'JV 5/22/2023 21:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'JV 5/22/2023 21:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'JV 5/22/2023 21:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'JV 5/22/2023 21:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'JV 5/22/2023 21:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'JV 5/22/2023 21:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'JV 5/22/2023 21:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'JV 5/22/2023 21:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'JV 5/22/2023 21:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'JV 5/22/2023 21:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'JV 5/22/2023 21:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'JV 5/22/2023 21:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'JV 5/22/2023 21:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'JV 5/22/2023 21:21:15'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'JV 5/22/2023 21:21:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/22/2023 21:21:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/22/2023 21:21:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/22/2023 21:21:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/22/2023 21:21:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/22/2023 21:21:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/22/2023 21:21:17'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/22/2023 21:21:17'!
+PASSED!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:31:41'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:31:12'!
+test08transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer amount: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:32:31' prior: 50608527!
+test08transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Transfer amount: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:33:07' prior: 50608540!
+test08transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+! !
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/22/2023 21:33:37'!
+ERROR!
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:33:45'!
+for: aSmallInteger from: aReceptiveAccount to: aReceptiveAccount3 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aSmallInteger from: aReceptiveAccount to: aReceptiveAccount3 ! !
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:35:11' prior: 50608568!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	^self new initializeFor: anAmount from: aSenderAccount to: aReceiverAccount ! !
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/22/2023 21:35:14'!
+ERROR!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:35:24'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'amount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:35:24'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'amount senderAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:35:24'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'amount senderAccount receiverAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/22/2023 21:35:24'!
+initializeFor: anAmount from: aSenderAccount to: aReceiverAccount 
+	self shouldBeImplemented.
+	amount := anAmount.
+	senderAccount := aSenderAccount.
+	receiverAccount := aReceiverAccount.! !
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/22/2023 21:35:40' prior: 50608614!
+initializeFor: anAmount from: aSenderAccount to: aReceiverAccount 
+	amount := anAmount.
+	senderAccount := aSenderAccount.
+	receiverAccount := aReceiverAccount.! !
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/22/2023 21:35:41'!
+FAILURE!
+
+!classDefinition: #IncomingTransfer category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:39:04'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:39:14'!
+Transfer subclass: #OutgoingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:38:49' prior: 50608579!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	| incomingTransfer outgoingTransfer |
+	incomingTransfer := IncomingTransfer for: anAmount.
+	outgoingTransfer := 	OutgoingTransfer for: anAmount.! !
+
+----STARTUP---- (22 May 2023 21:42:19) as /home/julia/Documents/Inge1/SmallTalk/CuisCuentaBancaria_PortfolioEj1/CuisUniversity-5706.image!
+
+
+!classRemoval: #ReceptiveAccount stamp: 'JV 5/22/2023 21:42:23'!
+BankEntity subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Portfolio stamp: 'JV 5/22/2023 21:42:23'!
+BankEntity subclass: #Portfolio
+	instanceVariableNames: 'children'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #BankEntity stamp: 'JV 5/22/2023 21:42:23'!
+Object subclass: #BankEntity
+	instanceVariableNames: 'parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Withdraw stamp: 'JV 5/22/2023 21:42:24'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Deposit stamp: 'JV 5/22/2023 21:42:24'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #AccountTransaction stamp: 'JV 5/22/2023 21:42:24'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'JV 5/22/2023 21:42:24'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #PortfolioTest stamp: 'JV 5/22/2023 21:42:24'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:24'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioTest category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:24'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:16:26'!
+test01BalanceOfPortfolioWithoutAccountsIsZero
+
+	self assert: 0 equals: Portfolio new balance! !
+!PortfolioTest methodsFor: 'tests' stamp: 'NR 5/27/2021 17:36:04'!
+test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance
+
+	| account portfolio |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	portfolio := Portfolio with: account.
+	
+	self assert: account balance equals: portfolio balance! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:23:25'!
+test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios
+
+	| simplePortfolioAccount simplePortfolio composedPortfolioAccount composedPortofolio |
+	
+	simplePortfolioAccount := ReceptiveAccount new.
+	Deposit register: 100 on: simplePortfolioAccount.
+	simplePortfolio := Portfolio with: simplePortfolioAccount.
+	
+	composedPortfolioAccount := ReceptiveAccount new.
+	Withdraw register: 50 on: composedPortfolioAccount.
+	composedPortofolio := Portfolio with: simplePortfolio with: composedPortfolioAccount.
+	
+	self assert: (composedPortfolioAccount balance + simplePortfolio balance) equals: composedPortofolio balance! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:43:15'!
+test04PortfolioWithoutAccountsHasNoRegisteredTransaction
+
+	self deny: (Portfolio new hasRegistered: (Deposit for: 100))! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:43:11'!
+test05PortfolioHasRegisteredItsAccountsTransactions
+
+	| account portfolio deposit |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	portfolio := Portfolio with: account.
+	
+	self assert: (portfolio hasRegistered: deposit)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:06'!
+test06PortfolioLooksForRegisteredTransactionsRecursively
+
+	| simplePortfolioAccount simplePortfolio composedPortfolioAccount composedPortfolio composedPortfolioAccountWithdraw simplePortfolioAccountDeposit |
+	
+	simplePortfolioAccount := ReceptiveAccount new.
+	simplePortfolioAccountDeposit := Deposit register: 100 on: simplePortfolioAccount.
+	simplePortfolio := Portfolio with: simplePortfolioAccount.
+	
+	composedPortfolioAccount := ReceptiveAccount new.
+	composedPortfolioAccountWithdraw := Withdraw register: 50 on: composedPortfolioAccount.
+	composedPortfolio := Portfolio with: simplePortfolio with: composedPortfolioAccount.
+	
+	self assert: (composedPortfolio hasRegistered: simplePortfolioAccountDeposit).
+	self assert: (composedPortfolio hasRegistered: composedPortfolioAccountWithdraw)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:10'!
+test07PortfolioHasNoTransactionWhenHasNoAccounts
+
+	self assert: Portfolio new transactions isEmpty! !
+!PortfolioTest methodsFor: 'tests' stamp: 'NR 6/22/2020 07:31:19'!
+test08PortfolioTransactionsIncludesAllItsAccountsTransactions
+
+	| account portfolio accountDeposit anotherAccount portfolioTransactions anotherAccountWithdraw |
+	
+	account := ReceptiveAccount new.
+	accountDeposit := Deposit register: 100 on: account.
+	anotherAccount := ReceptiveAccount new.
+	anotherAccountWithdraw := Withdraw register: 100 on: account.
+	portfolio := Portfolio with: account.
+	
+	portfolioTransactions := portfolio transactions.
+	
+	self assert: 2 equals: portfolioTransactions size.
+	self assert: (portfolioTransactions includes: accountDeposit).
+	self assert: (portfolioTransactions includes: anotherAccountWithdraw)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:20'!
+test09PortfolioTransactionsAreCalculatedRecursively
+
+	| simplePortfolioAccount simplePortfolio composedPortfolioAccount composedPortfolio composedPortfolioAccountWithdraw simplePortfolioAccountDeposit composedPortfolioTransactions |
+	
+	simplePortfolioAccount := ReceptiveAccount new.
+	simplePortfolioAccountDeposit := Deposit register: 100 on: simplePortfolioAccount.
+	simplePortfolio := Portfolio with: simplePortfolioAccount.
+	
+	composedPortfolioAccount := ReceptiveAccount new.
+	composedPortfolioAccountWithdraw := Withdraw register: 50 on: composedPortfolioAccount.
+	composedPortfolio := Portfolio with: simplePortfolio with: composedPortfolioAccount.
+	
+	composedPortfolioTransactions := composedPortfolio transactions.
+	self assert: 2 equals: composedPortfolioTransactions size.
+	self assert: (composedPortfolioTransactions includes: simplePortfolioAccountDeposit).
+	self assert: (composedPortfolioTransactions includes: composedPortfolioAccountWithdraw)! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:24'!
+test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce
+
+	| account portfolio |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio with: account.
+	
+	self 
+		should: [ portfolio add: account ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: 1 equals: portfolio accountsSize.
+			self assert: (portfolio accountsIncludes: account) ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:28'!
+test11PortfolioCanNotIncludeAccountOfItsPortfolios
+
+	| account simplePortfolio composedPortfolio |
+	
+	account := ReceptiveAccount new.
+	simplePortfolio := Portfolio with: account.
+	composedPortfolio := Portfolio with: simplePortfolio.
+	
+	self 
+		should: [ composedPortfolio add: account ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: 1 equals: composedPortfolio accountsSize.
+			self assert: (composedPortfolio accountsIncludes: simplePortfolio) ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 11:58:32'!
+test12PortfolioCanNotIncludeItself
+
+	| account simplePortfolio |
+	
+	account := ReceptiveAccount new.
+	simplePortfolio := Portfolio with: account.
+	
+	self 
+		should: [ simplePortfolio add: simplePortfolio ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: 1 equals: simplePortfolio accountsSize.
+			self assert: (simplePortfolio accountsIncludes: account) ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 12:01:51'!
+test13ComposedPortfolioCanNotHaveParentPortfolioAccount
+
+	| account simplePortfolio composedPortfolio |
+	
+	account := ReceptiveAccount new.
+	simplePortfolio := Portfolio new.
+	composedPortfolio := Portfolio with: simplePortfolio.
+	composedPortfolio add: account.
+	
+	self 
+		should: [ simplePortfolio add: account ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: simplePortfolio accountsIsEmpty ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/25/2019 12:12:16'!
+test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively
+
+	| account leftParentPortfolio leftRootParentPortfolio portfolio rightParentPortfolio rightRootParentPortfolio |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	leftParentPortfolio := Portfolio with: portfolio .
+	leftRootParentPortfolio := Portfolio with: leftParentPortfolio.
+	leftRootParentPortfolio add: account.
+	
+	rightParentPortfolio := Portfolio with: portfolio .
+	rightRootParentPortfolio := Portfolio with: rightParentPortfolio.
+	rightRootParentPortfolio add: account.
+
+	self 
+		should: [ portfolio add: account ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: portfolio accountsIsEmpty ]! !
+!PortfolioTest methodsFor: 'tests' stamp: 'HAW 5/29/2019 16:31:18'!
+test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd
+
+	| portfolioToAdd portfolioToModify rootPortfolio sharedAccount |
+	
+	sharedAccount := ReceptiveAccount new.
+	portfolioToModify := Portfolio new.
+	rootPortfolio := Portfolio with: sharedAccount with: portfolioToModify.
+	portfolioToAdd := Portfolio with: sharedAccount.
+	
+	self 
+		should: [ portfolioToModify add: portfolioToAdd ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError | 
+			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
+			self assert: portfolioToModify accountsIsEmpty ]! !
+
+!classDefinition: #ReceptiveAccountTest category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReceptiveAccountTest category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:19:48'!
+test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+
+	self assert: 0 equals: account balance .
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:19:54'!
+test02DepositIncreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+		
+	self assert: 100 equals: account balance .
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:02'!
+test03WithdrawDecreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 50 on: account.
+		
+	self assert: 50 equals: account balance .
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:32'!
+test04WithdrawValueMustBePositive 
+
+	| account withdrawValue |
+	
+	account := ReceptiveAccount new.
+	withdrawValue := 50.
+	
+	self assert: withdrawValue equals: (Withdraw register: withdrawValue on: account) value
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:46'!
+test05ReceptiveAccountKnowsRegisteredTransactions 
+
+	| account deposit withdraw |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw register: 50 on: account.
+		
+	self assert: (account hasRegistered: deposit).
+	self assert: (account hasRegistered: withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:54'!
+test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
+
+	| account deposit withdraw |
+	
+	account := ReceptiveAccount new.
+	deposit :=  Deposit for: 100.
+	withdraw := Withdraw for: 50.
+		
+	self deny: (account hasRegistered: deposit).
+	self deny: (account hasRegistered:withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:21:24'!
+test07AccountKnowsItsTransactions 
+
+	| account1 deposit1 |
+	
+	account1 := ReceptiveAccount new.
+	
+	deposit1 := Deposit register: 100 on: account1.
+		
+	self assert: 1 equals: account1 transactions size .
+	self assert: (account1 transactions includes: deposit1).
+! !
+
+!classDefinition: #Account category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Account category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Account methodsFor: 'testing' stamp: 'HAW 5/25/2019 12:23:47'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility ! !
+!Account methodsFor: 'testing' stamp: 'HAW 5/25/2019 12:24:25'!
+isComposedBy: anAccount
+
+	self subclassResponsibility ! !
+!Account methodsFor: 'balance' stamp: 'HAW 5/25/2019 12:23:40'!
+balance
+
+	self subclassResponsibility ! !
+!Account methodsFor: 'transactions' stamp: 'HAW 5/25/2019 12:23:27'!
+addTransactionsTo: aCollectionOfTransactions
+
+	self subclassResponsibility ! !
+!Account methodsFor: 'transactions' stamp: 'HAW 5/25/2019 12:23:15'!
+transactions
+
+	self subclassResponsibility ! !
+!Account methodsFor: 'composition' stamp: 'HAW 5/25/2019 12:24:04'!
+addedTo: aPortfolio
+
+	self subclassResponsibility ! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 11:49:20'!
+accountsIncludes: anAccount
+
+	^accounts includes: anAccount ! !
+!Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 12:05:04'!
+accountsIsEmpty
+	
+	^accounts isEmpty ! !
+!Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 11:49:06'!
+accountsSize
+	
+	^accounts size! !
+!Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 12:19:20'!
+add: accountToAdd
+
+	self assertCanAdd: accountToAdd.
+		
+	accounts add: accountToAdd.
+	accountToAdd addedTo: self 
+	! !
+!Portfolio methodsFor: 'accounts management' stamp: 'HAW 5/25/2019 12:17:31'!
+rootParents
+	
+	| rootParents |
+	
+	rootParents := Set new.
+	self addRootParentsTo: rootParents.
+	
+	^ rootParents! !
+!Portfolio methodsFor: 'initialization' stamp: 'HAW 5/25/2019 12:03:18' overrides: 16920235!
+initialize
+
+	accounts := OrderedCollection new.
+	parents := OrderedCollection new.! !
+!Portfolio methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:19:36' overrides: 50609113!
+balance
+	
+	^accounts sum: [ :anAccount | anAccount balance ] ifEmpty: [ 0 ]! !
+!Portfolio methodsFor: 'transactions' stamp: 'HAW 5/25/2019 11:42:55' overrides: 50609117!
+addTransactionsTo: aCollectionOfTransactions
+
+	accounts do: [ :anAccount | anAccount addTransactionsTo: aCollectionOfTransactions ]! !
+!Portfolio methodsFor: 'transactions' stamp: 'HAW 5/25/2019 11:38:32' overrides: 50609122!
+transactions
+	
+	| transactions |
+	
+	transactions := OrderedCollection new.
+	accounts do: [ :anAccount | anAccount addTransactionsTo: transactions ].
+	
+	^transactions ! !
+!Portfolio methodsFor: 'composition' stamp: 'HAW 5/25/2019 12:02:59' overrides: 50609126!
+addedTo: aPortfolio 
+	
+	parents add: aPortfolio ! !
+!Portfolio methodsFor: 'testing' stamp: 'HAW 5/25/2019 12:20:56'!
+anyRootParentIsComposedBy: accountToAdd
+
+	^self rootParents anySatisfy: [ :aParent | aParent isComposedBy: accountToAdd]! !
+!Portfolio methodsFor: 'testing' stamp: 'HAW 5/25/2019 11:28:29' overrides: 50609105!
+hasRegistered: aTransaction
+
+	^accounts anySatisfy: [ :anAccount | anAccount hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'testing' stamp: 'HAW 5/29/2019 16:24:54' overrides: 50609109!
+isComposedBy: anAccount
+
+	^ self = anAccount or: [ accounts anySatisfy: [ :composedAccount | (composedAccount isComposedBy: anAccount) or: [ anAccount isComposedBy: composedAccount ]]]! !
+!Portfolio methodsFor: 'account management - private' stamp: 'HAW 5/25/2019 12:17:31'!
+addRootParentsTo: rootParents
+
+	parents 
+		ifEmpty: [ rootParents add: self ] 
+		ifNotEmpty: [ parents do: [ :aParent | aParent addRootParentsTo: rootParents ]]! !
+!Portfolio methodsFor: 'account management - private' stamp: 'HAW 5/25/2019 12:20:36'!
+assertCanAdd: accountToAdd
+
+	(self anyRootParentIsComposedBy: accountToAdd) ifTrue: [ self signalCanNotAddAccount ].
+! !
+!Portfolio methodsFor: 'account management - private' stamp: 'HAW 5/25/2019 11:48:34'!
+signalCanNotAddAccount
+	
+	self error: self class canNotAddAccountErrorMessage! !
+
+!classDefinition: 'Portfolio class' category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Portfolio class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Portfolio class' category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Portfolio class
+	instanceVariableNames: ''!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:48:55'!
+canNotAddAccountErrorMessage
+	
+	^'Can not add repeated account to a portfolio'! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:18:21'!
+with: anAccount
+
+	^self new 
+		add: anAccount;
+		yourself! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:23:59'!
+with: anAccount with: anotherAccount
+
+	^self new 
+		add: anAccount;
+		add: anotherAccount;
+		yourself! !
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:35' overrides: 16920235!
+initialize
+
+	super initialize.
+	transactions := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HAW 5/25/2019 11:38:52' overrides: 50609117!
+addTransactionsTo: aCollectionOfTransactions
+
+	aCollectionOfTransactions addAll: transactions ! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
+register: aTransaction
+
+	transactions add: aTransaction 
+! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37' overrides: 50609122!
+transactions 
+
+	^ transactions copy! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:24:46' overrides: 50609113!
+balance
+
+	^transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/21/2019 18:55:56' overrides: 50609105!
+hasRegistered: aTransaction
+
+	^ transactions includes: aTransaction 
+! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'HAW 5/25/2019 11:54:51' overrides: 50609109!
+isComposedBy: anAccount
+
+	^self = anAccount ! !
+!ReceptiveAccount methodsFor: 'composition' stamp: 'HAW 5/25/2019 12:03:32' overrides: 50609126!
+addedTo: aPortfolio 
+	
+	! !
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountTransaction methodsFor: 'value' stamp: 'HernanWilkinson 9/12/2011 12:25' overrides: 16902254!
+value 
+
+	self subclassResponsibility ! !
+!AccountTransaction methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:39'!
+affectBalance: aBalance
+
+	self subclassResponsibility ! !
+
+!classDefinition: 'AccountTransaction class' category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+AccountTransaction class
+	instanceVariableNames: ''!
+
+!classDefinition: 'AccountTransaction class' category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+AccountTransaction class
+	instanceVariableNames: ''!
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'NR 10/21/2019 18:54:27'!
+register: aValue on: account
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	account register: transaction.
+		
+	^ transaction! !
+
+!classDefinition: #Deposit category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Deposit category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Deposit methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:45'!
+initializeFor: aValue
+
+	value := aValue ! !
+!Deposit methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:38' overrides: 50609354!
+value
+
+	^ value! !
+!Deposit methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:02' overrides: 50609358!
+affectBalance: aBalance
+
+	^aBalance + value ! !
+
+!classDefinition: 'Deposit class' category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Deposit class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Deposit class' category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Deposit class
+	instanceVariableNames: ''!
+!Deposit class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:38'!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!classDefinition: #Withdraw category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Withdraw category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Withdraw methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:46'!
+initializeFor: aValue
+
+	value := aValue ! !
+!Withdraw methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:33' overrides: 50609354!
+value
+
+	^ value! !
+!Withdraw methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:15' overrides: 50609358!
+affectBalance: aBalance
+
+	^aBalance - value! !
+
+!classDefinition: 'Withdraw class' category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Withdraw class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Withdraw class' category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Withdraw class
+	instanceVariableNames: ''!
+!Withdraw class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:33'!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:31:12'!
+test08transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer amount: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:32:31' prior: 50609473!
+test08transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Transfer amount: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:33:07' prior: 50609486!
+test08transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+! !
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:33:45'!
+for: aSmallInteger from: aReceptiveAccount to: aReceptiveAccount3 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aSmallInteger from: aReceptiveAccount to: aReceptiveAccount3 ! !
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:35:11' prior: 50609510!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	^self new initializeFor: anAmount from: aSenderAccount to: aReceiverAccount ! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'amount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'amount senderAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'amount senderAccount receiverAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/22/2023 21:35:24'!
+initializeFor: anAmount from: aSenderAccount to: aReceiverAccount 
+	self shouldBeImplemented.
+	amount := anAmount.
+	senderAccount := aSenderAccount.
+	receiverAccount := aReceiverAccount.! !
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/22/2023 21:35:40' prior: 50609552!
+initializeFor: anAmount from: aSenderAccount to: aReceiverAccount 
+	amount := anAmount.
+	senderAccount := aSenderAccount.
+	receiverAccount := aReceiverAccount.! !
+
+!classDefinition: #IncomingTransfer category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:42:25'!
+Transfer subclass: #OutgoingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:38:49' prior: 50609521!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	| incomingTransfer outgoingTransfer |
+	incomingTransfer := IncomingTransfer for: anAmount.
+	outgoingTransfer := 	OutgoingTransfer for: anAmount.! !
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:44:43' prior: 50609585!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	Withdraw register: anAmount on: aSenderAccount .	
+	Deposit register: anAmount on: aReceiverAccount .
+
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/22/2023 21:44:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/22/2023 21:44:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/22/2023 21:44:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/22/2023 21:44:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/22/2023 21:44:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/22/2023 21:44:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/22/2023 21:44:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/22/2023 21:44:48'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:46:39'!
+test09transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+! !
+
+Object subclass: #Transfer
+	instanceVariableNames: 'amount senderAccount receiverAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/22/2023 21:47:02'!
+Object subclass: #Transfer
+	instanceVariableNames: 'amount senderAccount receiverAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #IncomingTransfer stamp: 'JV 5/22/2023 21:47:11'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #OutgoingTransfer stamp: 'JV 5/22/2023 21:47:15'!
+Transfer subclass: #OutgoingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!methodRemoval: Transfer #initializeFor:from:to: stamp: 'JV 5/22/2023 21:47:24'!
+initializeFor: anAmount from: aSenderAccount to: aReceiverAccount 
+	amount := anAmount.
+	senderAccount := aSenderAccount.
+	receiverAccount := aReceiverAccount.!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:52:32'!
+test09transferringANegativeAmountGivesError
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		
+	self should: [ Transfer for: -10 from: account1 to: account2. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'TransfersOfNegativeAmountsAreNotAllowed' ].
+! !
+
+!testRun: #ReceptiveAccountTest #test09transferringANegativeAmountGivesError stamp: 'JV 5/22/2023 21:52:33'!
+FAILURE!
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:53:08' prior: 50609595!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	self ensureAmountIsPositive: anAmount.
+	
+	Withdraw register: anAmount on: aSenderAccount .	
+	Deposit register: anAmount on: aReceiverAccount .
+
+	! !
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:53:40'!
+ensureAmountIsPositive: anAmount
+
+	self assert: anAmount > 0
+
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/22/2023 21:53:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/22/2023 21:53:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/22/2023 21:53:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/22/2023 21:53:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/22/2023 21:53:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/22/2023 21:53:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/22/2023 21:53:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/22/2023 21:53:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/22/2023 21:53:46'!
+PASSED!
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:55:16' prior: 50609707!
+ensureAmountIsPositive: anAmount
+
+	anAmount > 0 ifFalse: [self error: 'TransferForNegativeAmountIsNotAllowed'].
+	
+
+	! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:55:41' prior: 50609680!
+test09transferringANegativeAmountGivesError
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		
+	self should: [ Transfer for: -10 from: account1 to: account2. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'TransferForNegativeAmountIsNotAllowed' ].
+! !
+
+!testRun: #ReceptiveAccountTest #test09transferringANegativeAmountGivesError stamp: 'JV 5/22/2023 21:55:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/22/2023 21:55:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/22/2023 21:55:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/22/2023 21:55:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/22/2023 21:55:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/22/2023 21:55:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/22/2023 21:55:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/22/2023 21:55:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/22/2023 21:55:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/22/2023 21:55:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferringANegativeAmountGivesError stamp: 'JV 5/22/2023 21:55:42'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:56:07'!
+test09transferringANonPositiveAmountGivesError
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		
+	self should: [ Transfer for: -10 from: account1 to: account2. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'TransferForNegativeAmountIsNotAllowed' ].
+! !
+
+!methodRemoval: ReceptiveAccountTest #test09transferringANegativeAmountGivesError stamp: 'JV 5/22/2023 21:56:07'!
+test09transferringANegativeAmountGivesError
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		
+	self should: [ Transfer for: -10 from: account1 to: account2. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'TransferForNegativeAmountIsNotAllowed' ].
+!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:56:17' prior: 50609810!
+test09transferringANonPositiveAmountGivesError
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		
+	self should: [ Transfer for: -10 from: account1 to: account2. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'TransferForNonPositiveAmountIsNotAllowed' ].
+! !
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:56:33' prior: 50609747!
+ensureAmountIsPositive: anAmount
+
+	anAmount > 0 ifFalse: [self error: 'TransferForNonPositiveAmountIsNotAllowed'].
+	
+
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/22/2023 21:56:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/22/2023 21:56:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/22/2023 21:56:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/22/2023 21:56:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/22/2023 21:56:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/22/2023 21:56:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/22/2023 21:56:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/22/2023 21:56:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/22/2023 21:56:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferringANonPositiveAmountGivesError stamp: 'JV 5/22/2023 21:56:38'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:58:22'!
+test11transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:58:29'!
+test10transferringANonPositiveAmountGivesError
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		
+	self should: [ Transfer for: -10 from: account1 to: account2. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'TransferForNonPositiveAmountIsNotAllowed' ].
+! !
+
+!methodRemoval: ReceptiveAccountTest #test09transferringANonPositiveAmountGivesError stamp: 'JV 5/22/2023 21:58:29'!
+test09transferringANonPositiveAmountGivesError
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		
+	self should: [ Transfer for: -10 from: account1 to: account2. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'TransferForNonPositiveAmountIsNotAllowed' ].
+!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:59:58'!
+test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 hasRegistered: transfer outgoingTransaction) & (account2 hasRegistered: transfer ingoingTransaction).
+! !
+
+----QUIT----(22 May 2023 22:00:06) CuisUniversity-5706.image priorSource: 8832201!
