@@ -304,6 +304,22 @@ test07AccountKnowsItsTransactions
 	self assert: (account1 transactions includes: deposit1).
 ! !
 
+<<<<<<< HEAD
+=======
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:33:07'!
+test08transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+! !
+
+>>>>>>> fd48b1190acb3f481e18fec03d4c15094faa4f08
 !ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:46:39'!
 test09transferring10FromOneAccountToAnotherModifiesBalanceBy10
 
@@ -333,7 +349,24 @@ test10transferringANonPositiveAmountGivesError
 			self assert: anError messageText = 'TransferForNonPositiveAmountIsNotAllowed' ].
 ! !
 
+<<<<<<< HEAD
 !ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 10:17:31'!
+=======
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:58:22'!
+test11transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+! !
+
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:59:58'!
+>>>>>>> fd48b1190acb3f481e18fec03d4c15094faa4f08
 test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts
 
 	| account1 account2 transfer |
@@ -343,6 +376,7 @@ test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts
 
 	transfer := Transfer for: 10 from: account1 to: account2.
 		
+<<<<<<< HEAD
 	self assert: (account1 hasRegistered: (transfer debitEnd)) & (account2 hasRegistered: transfer creditEnd).
 ! !
 
@@ -376,6 +410,9 @@ test13transferAmountIsSharedBetweenEnds
 	transfer initializeWithWithdraw: transfer debitEnd deposit: transfer creditEnd amount: 2000.
 		
 	self assert: (account1 balance = -2000) & (account2 balance = 2000).
+=======
+	self assert: (account1 hasRegistered: transfer outgoingTransaction) & (account2 hasRegistered: transfer ingoingTransaction).
+>>>>>>> fd48b1190acb3f481e18fec03d4c15094faa4f08
 ! !
 
 
@@ -722,6 +759,7 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
+<<<<<<< HEAD
 !classDefinition: #Proxy category: 'Portfolio-Solucion'!
 Object subclass: #Proxy
 	instanceVariableNames: 'initBlock'
@@ -745,10 +783,16 @@ resolveBlock: aBlock
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!
 Object subclass: #Transfer
 	instanceVariableNames: 'withdraw deposit amount'
+=======
+!classDefinition: #Transfer category: 'Portfolio-Solucion'!
+Object subclass: #Transfer
+	instanceVariableNames: 'amount senderAccount receiverAccount'
+>>>>>>> fd48b1190acb3f481e18fec03d4c15094faa4f08
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
+<<<<<<< HEAD
 !Transfer methodsFor: 'transaction' stamp: 'JV 5/27/2023 10:17:16'!
 creditEnd
 	^deposit.! !
@@ -769,17 +813,22 @@ initializeWithWithdraw: aWithdraw deposit: aDeposit amount: anAmount
 amount
 	^amount! !
 
+=======
+>>>>>>> fd48b1190acb3f481e18fec03d4c15094faa4f08
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Transfer class' category: 'Portfolio-Solucion'!
 Transfer class
 	instanceVariableNames: ''!
 
+<<<<<<< HEAD
 !Transfer class methodsFor: 'instance creation' stamp: 'JV 5/27/2023 09:45:58'!
 ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount
 	
 	(aSenderAccount = aReceiverAccount ) ifTrue: [self error: 'CannotTransferToOwnAccount']! !
 
+=======
+>>>>>>> fd48b1190acb3f481e18fec03d4c15094faa4f08
 !Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:56:33'!
 ensureAmountIsPositive: anAmount
 
@@ -788,6 +837,7 @@ ensureAmountIsPositive: anAmount
 
 	! !
 
+<<<<<<< HEAD
 !Transfer class methodsFor: 'instance creation' stamp: 'JV 5/27/2023 10:23:52'!
 for: anAmount from: aSenderAccount to: aReceiverAccount
 	
@@ -805,5 +855,14 @@ for: anAmount from: aSenderAccount to: aReceiverAccount
 	amountProxy resolveBlock: [transfer amount].
 	
 	^transfer.
+=======
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:53:08'!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	self ensureAmountIsPositive: anAmount.
+	
+	Withdraw register: anAmount on: aSenderAccount .	
+	Deposit register: anAmount on: aReceiverAccount .
+>>>>>>> fd48b1190acb3f481e18fec03d4c15094faa4f08
 
 	! !
