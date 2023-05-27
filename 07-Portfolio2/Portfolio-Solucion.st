@@ -304,6 +304,74 @@ test07AccountKnowsItsTransactions
 	self assert: (account1 transactions includes: deposit1).
 ! !
 
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:33:07'!
+test08transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+! !
+
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:46:39'!
+test09transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+! !
+
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:58:29'!
+test10transferringANonPositiveAmountGivesError
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		
+	self should: [ Transfer for: -10 from: account1 to: account2. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'TransferForNonPositiveAmountIsNotAllowed' ].
+! !
+
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:58:22'!
+test11transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+! !
+
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:59:58'!
+test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 hasRegistered: transfer outgoingTransaction) & (account2 hasRegistered: transfer ingoingTransaction).
+! !
+
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
 Object subclass: #Account
@@ -646,3 +714,35 @@ Withdraw class
 for: aValue
 
 	^ self new initializeFor: aValue ! !
+
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion'!
+Object subclass: #Transfer
+	instanceVariableNames: 'amount senderAccount receiverAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Transfer class' category: 'Portfolio-Solucion'!
+Transfer class
+	instanceVariableNames: ''!
+
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:56:33'!
+ensureAmountIsPositive: anAmount
+
+	anAmount > 0 ifFalse: [self error: 'TransferForNonPositiveAmountIsNotAllowed'].
+	
+
+	! !
+
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:53:08'!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	self ensureAmountIsPositive: anAmount.
+	
+	Withdraw register: anAmount on: aSenderAccount .	
+	Deposit register: anAmount on: aReceiverAccount .
+
+	! !
