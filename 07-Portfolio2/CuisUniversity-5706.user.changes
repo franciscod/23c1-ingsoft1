@@ -4367,3 +4367,942 @@ test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts
 
 
 ----QUIT----(27 May 2023 09:07:23) CuisUniversity-5706.image priorSource: 8905624!
+
+----STARTUP---- (27 May 2023 09:09:44) as E:\julia\Documents\UBA\Inge1\SmallTalk\Portfolio2\CuisUniversity-5706.image!
+
+
+----STARTUP---- (27 May 2023 09:13:49) as E:\julia\Documents\UBA\Inge1\SmallTalk\Portfolio2\CuisUniversity-5706.image!
+
+
+----End fileIn of E:\julia\Documents\UBA\Inge1\SmallTalk\Portfolio2\Portfolio-Solucion.st----!
+
+!methodRemoval: ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 09:15:24'!
+test11transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/27/2023 09:16:49'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/27/2023 09:17:26'!
+ERROR!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'JV 5/27/2023 09:17:35'!
+outgoingTransaction
+	self shouldBeImplemented.! !
+
+!methodRemoval: Transfer class #outgoingTransaction stamp: 'JV 5/27/2023 09:17:54'!
+outgoingTransaction
+	self shouldBeImplemented.!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 09:21:43' prior: 50606580!
+test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 hasRegistered: (transfer outgoingTransaction)) & (account2 hasRegistered: transfer ingoingTransaction).
+! !
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/27/2023 09:21:44'!
+ERROR!
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/27/2023 09:22:52' prior: 50606972!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	self ensureAmountIsPositive: anAmount.
+	
+	Withdraw register: anAmount on: aSenderAccount .	
+	Deposit register: anAmount on: aReceiverAccount .
+	
+	^self new initializeWithSender: aSenderAccount receiver: aReceiverAccount forAmount: anAmount.
+
+	! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/27/2023 09:23:49'!
+Object subclass: #Transfer
+	instanceVariableNames: 'amount senderAccount receiverAccount sender'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/27/2023 09:23:51'!
+Object subclass: #Transfer
+	instanceVariableNames: 'amount senderAccount receiverAccount sender receiver'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'no messages' stamp: 'JV 5/27/2023 09:23:46'!
+initializeWithSender: aSenderAccount receiver: aReceiverAccount forAmount: anAmount
+	sender := aSenderAccount.
+	receiver := aReceiverAccount .
+	amount := anAmount.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JV 5/27/2023 09:24:13' prior: 50607065!
+initializeWithSender: aSenderAccount receiver: aReceiverAccount forAmount: anAmount
+	senderAccount := aSenderAccount.
+	receiverAccount := aReceiverAccount .
+	amount := anAmount.! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/27/2023 09:24:22'!
+Object subclass: #Transfer
+	instanceVariableNames: 'amount senderAccount receiverAccount sender'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/27/2023 09:24:26'!
+Object subclass: #Transfer
+	instanceVariableNames: 'amount senderAccount receiverAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/27/2023 09:24:42'!
+ERROR!
+!Transfer methodsFor: 'transfer' stamp: 'JV 5/27/2023 09:25:07'!
+outgoingTransaction
+	self shouldBeImplemented.! !
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/27/2023 09:29:09' prior: 50607036!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	| deposit withdraw |
+	self ensureAmountIsPositive: anAmount.
+	
+	withdraw := Withdraw register: anAmount on: aSenderAccount.	
+	deposit := Deposit register: anAmount on: aReceiverAccount.
+	
+	^self new initializeWithSender: aSenderAccount receiver: aReceiverAccount forAmount: anAmount withdraw: withdraw deposit: deposit .
+
+	! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/27/2023 09:30:27'!
+Object subclass: #Transfer
+	instanceVariableNames: 'amount senderAccount receiverAccount withdraw'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/27/2023 09:30:28'!
+Object subclass: #Transfer
+	instanceVariableNames: 'amount senderAccount receiverAccount withdraw deposit'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'JV 5/27/2023 09:30:26'!
+initializeWithSender: aSenderAccount receiver: aReceiverAccount forAmount: anAmount withdraw: aWithdraw deposit: aDeposit
+	senderAccount := aSenderAccount.
+	receiverAccount := aReceiverAccount .
+	amount := anAmount.
+	withdraw := aWithdraw. 
+	deposit := aDeposit.! !
+
+!methodRemoval: Transfer #initializeWithSender:receiver:forAmount: stamp: 'JV 5/27/2023 09:30:40'!
+initializeWithSender: aSenderAccount receiver: aReceiverAccount forAmount: anAmount
+	senderAccount := aSenderAccount.
+	receiverAccount := aReceiverAccount .
+	amount := anAmount.!
+!Transfer methodsFor: 'transfer' stamp: 'JV 5/27/2023 09:31:09' prior: 50607103!
+outgoingTransaction
+	^deposit.! !
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/27/2023 09:31:16'!
+ERROR!
+!Transfer methodsFor: 'transfer' stamp: 'JV 5/27/2023 09:31:45'!
+ingoingTransaction
+	self shouldBeImplemented.! !
+!Transfer methodsFor: 'transfer' stamp: 'JV 5/27/2023 09:31:56' prior: 50607168!
+ingoingTransaction
+	^deposit.! !
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/27/2023 09:31:57'!
+FAILURE!
+!Transfer methodsFor: 'transfer' stamp: 'JV 5/27/2023 09:32:11' prior: 50607160!
+outgoingTransaction
+	^withdraw.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/27/2023 09:32:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 09:32:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 09:32:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/27/2023 09:32:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/27/2023 09:32:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/27/2023 09:32:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/27/2023 09:32:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 09:32:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 09:32:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/27/2023 09:32:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/27/2023 09:32:15'!
+PASSED!
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/27/2023 09:34:28' prior: 50607140!
+initializeWithSender: aSenderAccount receiver: aReceiverAccount forAmount: anAmount withdraw: aWithdraw deposit: aDeposit
+	senderAccount := aSenderAccount.
+	receiverAccount := aReceiverAccount .
+	
+	withdraw := aWithdraw. 
+	deposit := aDeposit.! !
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/27/2023 09:34:45'!
+initializeWithSender: aSenderAccount receiver: aReceiverAccount withdraw: aWithdraw deposit: aDeposit
+	senderAccount := aSenderAccount.
+	receiverAccount := aReceiverAccount .
+	
+	withdraw := aWithdraw. 
+	deposit := aDeposit.! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'JV 5/27/2023 09:34:45' prior: 50607108!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	| deposit withdraw |
+	self ensureAmountIsPositive: anAmount.
+	
+	withdraw := Withdraw register: anAmount on: aSenderAccount.	
+	deposit := Deposit register: anAmount on: aReceiverAccount.
+	
+	^self new initializeWithSender: aSenderAccount receiver: aReceiverAccount withdraw: withdraw deposit: deposit .
+
+	! !
+
+!methodRemoval: Transfer #initializeWithSender:receiver:forAmount:withdraw:deposit: stamp: 'JV 5/27/2023 09:34:45'!
+initializeWithSender: aSenderAccount receiver: aReceiverAccount forAmount: anAmount withdraw: aWithdraw deposit: aDeposit
+	senderAccount := aSenderAccount.
+	receiverAccount := aReceiverAccount .
+	
+	withdraw := aWithdraw. 
+	deposit := aDeposit.!
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/27/2023 09:35:01' prior: 50607240!
+initializeWithSender: aSenderAccount receiver: aReceiverAccount withdraw: aWithdraw deposit: aDeposit
+	senderAccount := aSenderAccount.
+	receiverAccount := aReceiverAccount .
+	withdraw := aWithdraw. 
+	deposit := aDeposit.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/27/2023 09:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 09:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 09:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/27/2023 09:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/27/2023 09:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/27/2023 09:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/27/2023 09:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 09:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 09:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/27/2023 09:35:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/27/2023 09:35:03'!
+PASSED!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/27/2023 09:35:35'!
+Object subclass: #Transfer
+	instanceVariableNames: 'senderAccount receiverAccount withdraw deposit'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 09:38:45'!
+test12transferringToSameAccountGivesError
+
+	| account1 transfer |
+	
+	account1 := ReceptiveAccount new.
+
+	self
+		should: [transfer := Transfer for: 10 from: account1 to: account1.]
+		gives: Error
+		onExeptionDo: []
+		
+	
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 09:39:55' prior: 50607339!
+test12transferringToSameAccountGivesError
+
+	| account1 transfer |
+	
+	account1 := ReceptiveAccount new.
+
+	self
+		should: [transfer := Transfer for: 10 from: account1 to: account1.]
+		raise: Error
+		withExeptionDo: [ :anError | 
+			self assert: anError messageText = 'CannotTransferToOwnAccount'].
+		
+		
+	
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 09:40:08' prior: 50607349!
+test12transferringToSameAccountGivesError
+
+	| account1 |
+	
+	account1 := ReceptiveAccount new.
+
+	self
+		should: [ Transfer for: 10 from: account1 to: account1.]
+		raise: Error
+		withExeptionDo: [ :anError | 
+			self assert: anError messageText = 'CannotTransferToOwnAccount'].
+		
+		
+	
+! !
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/27/2023 09:44:10' prior: 50607251!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	| deposit withdraw |
+	self ensureAmountIsPositive: anAmount.
+	self ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount.
+	
+	withdraw := Withdraw register: anAmount on: aSenderAccount.	
+	deposit := Deposit register: anAmount on: aReceiverAccount.
+	
+	^self new initializeWithSender: aSenderAccount receiver: aReceiverAccount withdraw: withdraw deposit: deposit .
+
+	! !
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/27/2023 09:45:58'!
+ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount
+	
+	(aSenderAccount = aReceiverAccount ) ifTrue: [self error: 'CannotTransferToOwnAccount']! !
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/27/2023 09:46:07'!
+ERROR!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 09:47:09' prior: 50607362!
+test12transferringToSameAccountGivesError
+
+	| account1 |
+	
+	account1 := ReceptiveAccount new.
+
+	self
+		should: [ Transfer for: 10 from: account1 to: account1.]
+		raise: Error
+		withExceptionDo: [ :anError | 
+			self assert: anError messageText = 'CannotTransferToOwnAccount'].
+		
+		
+	
+! !
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/27/2023 09:47:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/27/2023 09:47:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/27/2023 09:47:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 09:47:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 09:47:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/27/2023 09:47:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/27/2023 09:47:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/27/2023 09:47:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/27/2023 09:47:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 09:47:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 09:47:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/27/2023 09:47:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/27/2023 09:47:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/27/2023 09:47:14'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 09:51:50'!
+test13transferringFromOneAccountToAnotherRegistersTransferInBothAccounts
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 hasRegistered: (transfer outgoingTransaction)) & (account2 hasRegistered: transfer ingoingTransaction).
+! !
+
+!methodRemoval: ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 09:52:06'!
+test08transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 10:05:16' prior: 50607469!
+test13transferringFromOneAccountToAnotherRegistersTransferInBothAccounts
+
+	| account1 account2 transfer dfs |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 transactions first) transfer outgoingTransfer account equals: dfs.
+! !
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:06:27' prior: 50607277!
+initializeWithSender: aSenderAccount receiver: aReceiverAccount withdraw: aWithdraw deposit: aDeposit
+	withdraw := aWithdraw. 
+	deposit := aDeposit.! !
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:06:39'!
+receiver: aReceiverAccount withdraw: aWithdraw deposit: aDeposit
+	withdraw := aWithdraw. 
+	deposit := aDeposit.! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'JV 5/27/2023 10:06:39' prior: 50607374!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	| deposit withdraw |
+	self ensureAmountIsPositive: anAmount.
+	self ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount.
+	
+	withdraw := Withdraw register: anAmount on: aSenderAccount.	
+	deposit := Deposit register: anAmount on: aReceiverAccount.
+	
+	^self new receiver: aReceiverAccount withdraw: withdraw deposit: deposit .
+
+	! !
+
+!methodRemoval: Transfer #initializeWithSender:receiver:withdraw:deposit: stamp: 'JV 5/27/2023 10:06:39'!
+initializeWithSender: aSenderAccount receiver: aReceiverAccount withdraw: aWithdraw deposit: aDeposit
+	withdraw := aWithdraw. 
+	deposit := aDeposit.!
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:06:47'!
+withdraw: aWithdraw deposit: aDeposit
+	withdraw := aWithdraw. 
+	deposit := aDeposit.! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'JV 5/27/2023 10:06:47' prior: 50607525!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	| deposit withdraw |
+	self ensureAmountIsPositive: anAmount.
+	self ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount.
+	
+	withdraw := Withdraw register: anAmount on: aSenderAccount.	
+	deposit := Deposit register: anAmount on: aReceiverAccount.
+	
+	^self new withdraw: withdraw deposit: deposit .
+
+	! !
+
+!methodRemoval: Transfer #receiver:withdraw:deposit: stamp: 'JV 5/27/2023 10:06:47'!
+receiver: aReceiverAccount withdraw: aWithdraw deposit: aDeposit
+	withdraw := aWithdraw. 
+	deposit := aDeposit.!
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:07:41'!
+withdraw: aWithdraw deposit: aDeposit anAmount: amount 
+	withdraw := aWithdraw. 
+	deposit := aDeposit.! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'JV 5/27/2023 10:07:41' prior: 50607554!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	| deposit withdraw |
+	self ensureAmountIsPositive: anAmount.
+	self ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount.
+	
+	withdraw := Withdraw register: anAmount on: aSenderAccount.	
+	deposit := Deposit register: anAmount on: aReceiverAccount.
+	
+	^self new withdraw: withdraw deposit: deposit anAmount: anAmount .
+
+	! !
+
+!methodRemoval: Transfer #withdraw:deposit: stamp: 'JV 5/27/2023 10:07:41'!
+withdraw: aWithdraw deposit: aDeposit
+	withdraw := aWithdraw. 
+	deposit := aDeposit.!
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:07:58'!
+withdraw: aWithdraw deposit: aDeposit amount: amount 
+	withdraw := aWithdraw. 
+	deposit := aDeposit.! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'JV 5/27/2023 10:07:59' prior: 50607582!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	| deposit withdraw |
+	self ensureAmountIsPositive: anAmount.
+	self ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount.
+	
+	withdraw := Withdraw register: anAmount on: aSenderAccount.	
+	deposit := Deposit register: anAmount on: aReceiverAccount.
+	
+	^self new withdraw: withdraw deposit: deposit amount: anAmount .
+
+	! !
+
+!methodRemoval: Transfer #withdraw:deposit:anAmount: stamp: 'JV 5/27/2023 10:07:59'!
+withdraw: aWithdraw deposit: aDeposit anAmount: amount 
+	withdraw := aWithdraw. 
+	deposit := aDeposit.!
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:08:08' prior: 50607602!
+withdraw: aWithdraw deposit: aDeposit amount: anAmount 
+	withdraw := aWithdraw. 
+	deposit := aDeposit.! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/27/2023 10:08:19'!
+Object subclass: #Transfer
+	instanceVariableNames: 'senderAccount receiverAccount withdraw deposit amount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:08:17' prior: 50607630!
+withdraw: aWithdraw deposit: aDeposit amount: anAmount 
+	withdraw := aWithdraw. 
+	deposit := aDeposit.
+	amount := anAmount .! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/27/2023 10:08:30'!
+Object subclass: #Transfer
+	instanceVariableNames: 'senderAccount withdraw deposit amount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'JV 5/27/2023 10:08:35'!
+Object subclass: #Transfer
+	instanceVariableNames: 'withdraw deposit amount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/27/2023 10:11:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 10:11:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 10:11:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/27/2023 10:11:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/27/2023 10:11:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/27/2023 10:11:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/27/2023 10:11:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 10:11:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/27/2023 10:11:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/27/2023 10:11:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/27/2023 10:11:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13transferringFromOneAccountToAnotherRegistersTransferInBothAccounts stamp: 'JV 5/27/2023 10:11:36'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test13transferringFromOneAccountToAnotherRegistersTransferInBothAccounts stamp: 'JV 5/27/2023 10:11:36'!
+ERROR!
+
+!methodRemoval: ReceptiveAccountTest #test13transferringFromOneAccountToAnotherRegistersTransferInBothAccounts stamp: 'JV 5/27/2023 10:11:59'!
+test13transferringFromOneAccountToAnotherRegistersTransferInBothAccounts
+
+	| account1 account2 transfer dfs |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 transactions first) transfer outgoingTransfer account equals: dfs.
+!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/27/2023 10:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 10:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 10:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/27/2023 10:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/27/2023 10:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/27/2023 10:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/27/2023 10:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 10:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/27/2023 10:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/27/2023 10:12:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/27/2023 10:12:21'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 10:13:58'!
+test13transferAmountIsSharedBetweenEnds
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer for: 10 from: account1 to: account2.
+	
+	transfer initialize.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+! !
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:14:28'!
+initializeWithWithdraw: aWithdraw deposit: aDeposit amount: anAmount 
+	withdraw := aWithdraw. 
+	deposit := aDeposit.
+	amount := anAmount .! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'JV 5/27/2023 10:14:28' prior: 50607609!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	| deposit withdraw |
+	self ensureAmountIsPositive: anAmount.
+	self ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount.
+	
+	withdraw := Withdraw register: anAmount on: aSenderAccount.	
+	deposit := Deposit register: anAmount on: aReceiverAccount.
+	
+	^self new initializeWithWithdraw: withdraw deposit: deposit amount: anAmount .
+
+	! !
+
+!methodRemoval: Transfer #withdraw:deposit:amount: stamp: 'JV 5/27/2023 10:14:28'!
+withdraw: aWithdraw deposit: aDeposit amount: anAmount 
+	withdraw := aWithdraw. 
+	deposit := aDeposit.
+	amount := anAmount .!
+!Transfer methodsFor: 'transaction' stamp: 'JV 5/27/2023 10:17:16'!
+creditEnd
+	^deposit.! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/27/2023 10:17:16' prior: 50607016!
+test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 hasRegistered: (transfer outgoingTransaction)) & (account2 hasRegistered: transfer creditEnd).
+! !
+
+!methodRemoval: Transfer #ingoingTransaction stamp: 'JV 5/27/2023 10:17:16'!
+ingoingTransaction
+	^deposit.!
+!Transfer methodsFor: 'transaction' stamp: 'JV 5/27/2023 10:17:31'!
+debitEnd
+	^withdraw.! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/27/2023 10:17:31' prior: 50607823!
+test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 hasRegistered: (transfer debitEnd)) & (account2 hasRegistered: transfer creditEnd).
+! !
+
+!methodRemoval: Transfer #outgoingTransaction stamp: 'JV 5/27/2023 10:17:32'!
+outgoingTransaction
+	^withdraw.!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 10:18:42' prior: 50607777!
+test13transferAmountIsSharedBetweenEnds
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer for: 10 from: account1 to: account2.
+	
+	transfer initializeWithWithdraw: transfer debitEnd deposit: transfer creditEnd amount: 2000.
+		
+	self assert: (account1 balance = -2000) & (account2 balance = 2000).
+! !
+
+!testRun: #ReceptiveAccountTest #test13transferAmountIsSharedBetweenEnds stamp: 'JV 5/27/2023 10:18:55'!
+FAILURE!
+
+account1 balance!
+
+!classDefinition: #Proxy category: 'Portfolio-Solucion' stamp: 'JV 5/27/2023 10:21:45'!
+Object subclass: #Proxy
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/27/2023 10:21:38' prior: 50607797!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	| deposit withdraw amountProxy |
+	self ensureAmountIsPositive: anAmount.
+	self ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount.
+	
+	amountProxy := Proxy new. 
+	
+	withdraw := Withdraw register: anAmount on: aSenderAccount.	
+	deposit := Deposit register: anAmount on: aReceiverAccount.
+	
+	
+	
+	^self new initializeWithWithdraw: withdraw deposit: deposit amount: anAmount .
+
+	! !
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/27/2023 10:23:52' prior: 50607889!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	| deposit withdraw amountProxy transfer |
+	self ensureAmountIsPositive: anAmount.
+	self ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount.
+	
+	amountProxy := Proxy new. 
+	
+	withdraw := Withdraw register: amountProxy on: aSenderAccount.	
+	deposit := Deposit register: amountProxy on: aReceiverAccount.
+	
+	transfer := self new initializeWithWithdraw: withdraw deposit: deposit amount: anAmount.
+	
+	amountProxy resolveBlock: [transfer amount].
+	
+	^transfer.
+
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/27/2023 10:24:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 10:24:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 10:24:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/27/2023 10:24:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/27/2023 10:24:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/27/2023 10:24:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/27/2023 10:24:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 10:24:03'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/27/2023 10:24:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/27/2023 10:24:03'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/27/2023 10:24:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13transferAmountIsSharedBetweenEnds stamp: 'JV 5/27/2023 10:24:03'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 10:24:05'!
+ERROR!
+!Proxy methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:24:25'!
+resolveBlock: aRenameMe1 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Proxy category: 'Portfolio-Solucion' stamp: 'JV 5/27/2023 10:24:45'!
+Object subclass: #Proxy
+	instanceVariableNames: 'initBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Proxy methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:24:44' prior: 50607977!
+resolveBlock: aBlock 
+	initBlock := aBlock.! !
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 10:24:47'!
+ERROR!
+!Proxy methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:26:47' overrides: 50337880!
+doesNotUnderstand: aMessage
+
+	| receiver |
+	receiver := initBlock value.
+	
+	aMessage valueWithReceiver: receiver arguments: []. ! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/27/2023 10:26:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 10:26:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 10:26:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/27/2023 10:26:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/27/2023 10:26:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/27/2023 10:26:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/27/2023 10:26:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 10:26:52'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/27/2023 10:26:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/27/2023 10:26:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/27/2023 10:26:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13transferAmountIsSharedBetweenEnds stamp: 'JV 5/27/2023 10:26:52'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 10:26:55'!
+ERROR!
+!Transfer methodsFor: 'accessing' stamp: 'JV 5/27/2023 10:27:02'!
+amount
+	self shouldBeImplemented.
+	^amount! !
+!Transfer methodsFor: 'accessing' stamp: 'JV 5/27/2023 10:27:09' prior: 50608055!
+amount
+	^amount! !
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 10:27:12'!
+ERROR!
+!Proxy methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:28:12' prior: 50607998 overrides: 50337880!
+doesNotUnderstand: aMessage
+
+	| receiver |
+	receiver := initBlock value.
+	
+	^aMessage sendTo: receiver. ! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/27/2023 10:28:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 10:28:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/27/2023 10:28:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/27/2023 10:28:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/27/2023 10:28:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/27/2023 10:28:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/27/2023 10:28:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 10:28:14'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/27/2023 10:28:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/27/2023 10:28:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/27/2023 10:28:14'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13transferAmountIsSharedBetweenEnds stamp: 'JV 5/27/2023 10:28:14'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/27/2023 10:28:16'!
+ERROR!
+
+----SNAPSHOT----(27 May 2023 10:31:51) CuisUniversity-5706.image priorSource: 8713034!

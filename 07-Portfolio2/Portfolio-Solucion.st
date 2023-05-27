@@ -304,6 +304,80 @@ test07AccountKnowsItsTransactions
 	self assert: (account1 transactions includes: deposit1).
 ! !
 
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:46:39'!
+test09transferring10FromOneAccountToAnotherModifiesBalanceBy10
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 balance = -10) & (account2 balance = 10).
+! !
+
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:58:29'!
+test10transferringANonPositiveAmountGivesError
+
+	| account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		
+	self should: [ Transfer for: -10 from: account1 to: account2. ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = 'TransferForNonPositiveAmountIsNotAllowed' ].
+! !
+
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 10:17:31'!
+test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer for: 10 from: account1 to: account2.
+		
+	self assert: (account1 hasRegistered: (transfer debitEnd)) & (account2 hasRegistered: transfer creditEnd).
+! !
+
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 09:47:09'!
+test12transferringToSameAccountGivesError
+
+	| account1 |
+	
+	account1 := ReceptiveAccount new.
+
+	self
+		should: [ Transfer for: 10 from: account1 to: account1.]
+		raise: Error
+		withExceptionDo: [ :anError | 
+			self assert: anError messageText = 'CannotTransferToOwnAccount'].
+		
+		
+	
+! !
+
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 10:18:42'!
+test13transferAmountIsSharedBetweenEnds
+
+	| account1 account2 transfer |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	transfer := Transfer for: 10 from: account1 to: account2.
+	
+	transfer initializeWithWithdraw: transfer debitEnd deposit: transfer creditEnd amount: 2000.
+		
+	self assert: (account1 balance = -2000) & (account2 balance = 2000).
+! !
+
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
 Object subclass: #Account
@@ -646,3 +720,90 @@ Withdraw class
 for: aValue
 
 	^ self new initializeFor: aValue ! !
+
+
+!classDefinition: #Proxy category: 'Portfolio-Solucion'!
+Object subclass: #Proxy
+	instanceVariableNames: 'initBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!Proxy methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:28:12'!
+doesNotUnderstand: aMessage
+
+	| receiver |
+	receiver := initBlock value.
+	
+	^aMessage sendTo: receiver. ! !
+
+!Proxy methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:24:44'!
+resolveBlock: aBlock 
+	initBlock := aBlock.! !
+
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion'!
+Object subclass: #Transfer
+	instanceVariableNames: 'withdraw deposit amount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!Transfer methodsFor: 'transaction' stamp: 'JV 5/27/2023 10:17:16'!
+creditEnd
+	^deposit.! !
+
+!Transfer methodsFor: 'transaction' stamp: 'JV 5/27/2023 10:17:31'!
+debitEnd
+	^withdraw.! !
+
+
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:14:28'!
+initializeWithWithdraw: aWithdraw deposit: aDeposit amount: anAmount 
+	withdraw := aWithdraw. 
+	deposit := aDeposit.
+	amount := anAmount .! !
+
+
+!Transfer methodsFor: 'accessing' stamp: 'JV 5/27/2023 10:27:09'!
+amount
+	^amount! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Transfer class' category: 'Portfolio-Solucion'!
+Transfer class
+	instanceVariableNames: ''!
+
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/27/2023 09:45:58'!
+ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount
+	
+	(aSenderAccount = aReceiverAccount ) ifTrue: [self error: 'CannotTransferToOwnAccount']! !
+
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:56:33'!
+ensureAmountIsPositive: anAmount
+
+	anAmount > 0 ifFalse: [self error: 'TransferForNonPositiveAmountIsNotAllowed'].
+	
+
+	! !
+
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/27/2023 10:23:52'!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	| deposit withdraw amountProxy transfer |
+	self ensureAmountIsPositive: anAmount.
+	self ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount.
+	
+	amountProxy := Proxy new. 
+	
+	withdraw := Withdraw register: amountProxy on: aSenderAccount.	
+	deposit := Deposit register: amountProxy on: aReceiverAccount.
+	
+	transfer := self new initializeWithWithdraw: withdraw deposit: deposit amount: anAmount.
+	
+	amountProxy resolveBlock: [transfer amount].
+	
+	^transfer.
+
+	! !
