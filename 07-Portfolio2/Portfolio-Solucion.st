@@ -221,17 +221,16 @@ TestCase subclass: #ReceptiveAccountTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:19:48'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:13:57'!
 test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
 
 	| account |
 	
 	account := ReceptiveAccount new.
 
-	self assert: 0 equals: account balance .
-! !
+	self assert: 0 equals: account balance .! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:19:54'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:13:49'!
 test02DepositIncreasesBalanceOnTransactionValue 
 
 	| account |
@@ -239,10 +238,9 @@ test02DepositIncreasesBalanceOnTransactionValue
 	account := ReceptiveAccount  new.
 	Deposit register: 100 on: account.
 		
-	self assert: 100 equals: account balance .
-! !
+	self assert: 100 equals: account balance .! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:02'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:13:40'!
 test03WithdrawDecreasesBalanceOnTransactionValue 
 
 	| account |
@@ -251,10 +249,9 @@ test03WithdrawDecreasesBalanceOnTransactionValue
 	Deposit register: 100 on: account.
 	Withdraw register: 50 on: account.
 		
-	self assert: 50 equals: account balance .
-! !
+	self assert: 50 equals: account balance .! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:32'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:13:32'!
 test04WithdrawValueMustBePositive 
 
 	| account withdrawValue |
@@ -262,10 +259,9 @@ test04WithdrawValueMustBePositive
 	account := ReceptiveAccount new.
 	withdrawValue := 50.
 	
-	self assert: withdrawValue equals: (Withdraw register: withdrawValue on: account) value
-! !
+	self assert: withdrawValue equals: (Withdraw register: withdrawValue on: account) value! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:46'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:13:23'!
 test05ReceptiveAccountKnowsRegisteredTransactions 
 
 	| account deposit withdraw |
@@ -275,10 +271,9 @@ test05ReceptiveAccountKnowsRegisteredTransactions
 	withdraw := Withdraw register: 50 on: account.
 		
 	self assert: (account hasRegistered: deposit).
-	self assert: (account hasRegistered: withdraw).
-! !
+	self assert: (account hasRegistered: withdraw).! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:54'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:13:14'!
 test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
 
 	| account deposit withdraw |
@@ -288,10 +283,9 @@ test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
 	withdraw := Withdraw for: 50.
 		
 	self deny: (account hasRegistered: deposit).
-	self deny: (account hasRegistered:withdraw).
-! !
+	self deny: (account hasRegistered:withdraw).! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:21:24'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:13:06'!
 test07AccountKnowsItsTransactions 
 
 	| account1 deposit1 |
@@ -301,12 +295,9 @@ test07AccountKnowsItsTransactions
 	deposit1 := Deposit register: 100 on: account1.
 		
 	self assert: 1 equals: account1 transactions size .
-	self assert: (account1 transactions includes: deposit1).
-! !
+	self assert: (account1 transactions includes: deposit1).! !
 
-<<<<<<< HEAD
-=======
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:33:07'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:12:57'!
 test08transferring10FromOneAccountToAnotherModifiesBalanceBy10
 
 	| account1 account2 |
@@ -316,11 +307,9 @@ test08transferring10FromOneAccountToAnotherModifiesBalanceBy10
 
 	Transfer for: 10 from: account1 to: account2.
 		
-	self assert: (account1 balance = -10) & (account2 balance = 10).
-! !
+	self assert: (account1 balance = -10) & (account2 balance = 10).! !
 
->>>>>>> fd48b1190acb3f481e18fec03d4c15094faa4f08
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:46:39'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:12:25'!
 test09transferring10FromOneAccountToAnotherModifiesBalanceBy10
 
 	| account1 account2 |
@@ -330,10 +319,9 @@ test09transferring10FromOneAccountToAnotherModifiesBalanceBy10
 
 	Transfer for: 10 from: account1 to: account2.
 		
-	self assert: (account1 balance = -10) & (account2 balance = 10).
-! !
+	self assert: (account1 balance = -10) & (account2 balance = 10).! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:58:29'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:12:17'!
 test10transferringANonPositiveAmountGivesError
 
 	| account1 account2 |
@@ -346,27 +334,9 @@ test10transferringANonPositiveAmountGivesError
 	self should: [ Transfer for: -10 from: account1 to: account2. ]
 		raise: Error
 		withExceptionDo: [ :anError |
-			self assert: anError messageText = 'TransferForNonPositiveAmountIsNotAllowed' ].
-! !
+			self assert: anError messageText = 'TransferForNonPositiveAmountIsNotAllowed' ].! !
 
-<<<<<<< HEAD
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 10:17:31'!
-=======
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:58:22'!
-test11transferring10FromOneAccountToAnotherModifiesBalanceBy10
-
-	| account1 account2 |
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-
-	Transfer for: 10 from: account1 to: account2.
-		
-	self assert: (account1 balance = -10) & (account2 balance = 10).
-! !
-
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/22/2023 21:59:58'!
->>>>>>> fd48b1190acb3f481e18fec03d4c15094faa4f08
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:09:48'!
 test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts
 
 	| account1 account2 transfer |
@@ -376,11 +346,9 @@ test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts
 
 	transfer := Transfer for: 10 from: account1 to: account2.
 		
-<<<<<<< HEAD
-	self assert: (account1 hasRegistered: (transfer debitEnd)) & (account2 hasRegistered: transfer creditEnd).
-! !
+	self assert: (account1 hasRegistered: (transfer outgoingEnd)) & (account2 hasRegistered: transfer incomingEnd).! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 09:47:09'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:11:59'!
 test12transferringToSameAccountGivesError
 
 	| account1 |
@@ -391,29 +359,70 @@ test12transferringToSameAccountGivesError
 		should: [ Transfer for: 10 from: account1 to: account1.]
 		raise: Error
 		withExceptionDo: [ :anError | 
-			self assert: anError messageText = 'CannotTransferToOwnAccount'].
-		
-		
+			self assert: anError messageText = 'CannotTransferToOwnAccount'].! !
+
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:11:36'!
+test13reportOfEmptyAccountOutputsOnlyBalance0
+
+	| account1 |
 	
-! !
+	account1 := ReceptiveAccount new.
+		
+	self assert: account1 report equals: 'Balance = 0'! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'JV 5/27/2023 10:18:42'!
-test13transferAmountIsSharedBetweenEnds
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:11:10'!
+test14reportOfEmptyPortfolioOutputsOnlyBalance0
 
-	| account1 account2 transfer |
+	| pf |
+	pf := Portfolio new.
+		
+	self assert: pf report equals: 'Balance = 0'! !
+
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:10:27'!
+test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance
+
+	| account1 account2 |
 	
 	account1 := ReceptiveAccount new.
 	account2 := ReceptiveAccount new.
-
-	transfer := Transfer for: 10 from: account1 to: account2.
 	
-	transfer initializeWithWithdraw: transfer debitEnd deposit: transfer creditEnd amount: 2000.
-		
-	self assert: (account1 balance = -2000) & (account2 balance = 2000).
-=======
-	self assert: (account1 hasRegistered: transfer outgoingTransaction) & (account2 hasRegistered: transfer ingoingTransaction).
->>>>>>> fd48b1190acb3f481e18fec03d4c15094faa4f08
-! !
+	Deposit register: 70 on: account1.
+	Withdraw register: 30 on: account1 .
+	Transfer for: 5 from: account1 to: account2.
+	Transfer for: 50 from: account2 to: account1 .
+	
+	self assert: account1 report equals: ('Deposito por 70', String newLineString,
+	'Extraccion por 30', String newLineString,
+	'Salida por transferencia de 5', String newLineString,
+	'Entrada por transferencia de 50', String newLineString,
+	'Balance = 85')! !
+
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:28:10'!
+test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance
+
+	| account1 account2 portfolio |
+	
+	portfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	Deposit register: 70 on: account1.
+	Withdraw register: 30 on: account2.
+	Transfer for: 5 from: account1 to: account2.
+	Transfer for: 50 from: account2 to: account1.
+
+	
+	self assert: account1 report equals: ('Deposito por 70', String newLineString,
+	'Extraccion por 30', String newLineString,
+	'Salida por transferencia de 5', String newLineString,
+	'Salida por transferencia de 50', String newLineString,
+	'Entrada por transferencia de 5', String newLineString,
+	'Entrada por transferencia de 50', String newLineString,
+	'Balance = 40')! !
 
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
@@ -455,6 +464,69 @@ transactions
 addedTo: aPortfolio
 
 	self subclassResponsibility ! !
+
+
+!Account methodsFor: 'reports' stamp: 'JV 5/28/2023 21:21:48'!
+deposits
+
+	^self transactions select: [ :transaction | transaction isKindOf: Deposit]! !
+
+!Account methodsFor: 'reports' stamp: 'JV 5/28/2023 21:21:54'!
+incomingTransfers
+
+	^self transactions select: [ :transaction | transaction isKindOf: IncomingTransfer]! !
+
+!Account methodsFor: 'reports' stamp: 'JV 5/28/2023 21:21:58'!
+outgoingTransfers
+
+	^self transactions select: [ :transaction | transaction isKindOf: OutgoingTransfer]! !
+
+!Account methodsFor: 'reports' stamp: 'JV 5/28/2023 21:21:05'!
+report
+	| depositsReport withdrawalsReport incomingTransfersReport outgoingTransfersReport |
+	depositsReport := self deposits 
+		inject: '' 
+		into: [ :ongoingReport :transaction |
+			ongoingReport,
+			'Deposito por ', 
+			transaction value asString,
+			String newLineString
+		].
+	
+	withdrawalsReport := self withdrawals 
+		inject: '' 
+		into: [ :ongoingReport :transaction |
+			ongoingReport,
+			'Extraccion por ', 
+			transaction value asString,
+			String newLineString
+		].
+	
+	outgoingTransfersReport := self outgoingTransfers 
+		inject: '' 
+		into: [ :ongoingReport :transaction |
+			ongoingReport,
+			'Salida por transferencia de ', 
+			transaction value asString,
+			String newLineString
+		].
+	
+	incomingTransfersReport := self incomingTransfers 
+		inject: '' 
+		into: [ :ongoingReport :transaction |
+			ongoingReport,
+			'Entrada por transferencia de ', 
+			transaction value asString,
+			String newLineString
+		].
+	
+	^depositsReport, withdrawalsReport, outgoingTransfersReport, incomingTransfersReport, 'Balance = ', self balance asString.
+	! !
+
+!Account methodsFor: 'reports' stamp: 'JV 5/28/2023 21:21:43'!
+withdrawals
+
+	^self transactions select: [ :transaction | transaction isKindOf: Withdraw]! !
 
 
 !classDefinition: #Portfolio category: 'Portfolio-Solucion'!
@@ -568,6 +640,7 @@ signalCanNotAddAccount
 	
 	self error: self class canNotAddAccountErrorMessage! !
 
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Portfolio class' category: 'Portfolio-Solucion'!
@@ -651,6 +724,7 @@ addedTo: aPortfolio
 	
 	! !
 
+
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
 Object subclass: #AccountTransaction
@@ -723,6 +797,129 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
+!classDefinition: #Transfer category: 'Portfolio-Solucion'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value outgoingTransferEnd incomingTransferEnd'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!Transfer methodsFor: 'transaction' stamp: 'JV 5/28/2023 20:26:59'!
+incomingEnd
+	^incomingTransferEnd.! !
+
+!Transfer methodsFor: 'transaction' stamp: 'JV 5/28/2023 20:27:09'!
+outgoingEnd
+	^outgoingTransferEnd.! !
+
+
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/28/2023 20:23:22'!
+initializeWithAmount: anAmount outgoingTransferEnd: anOutgoingTransferEnd incomingTransferEnd: anIncomingTransferEnd
+	value := anAmount.
+	outgoingTransferEnd := anOutgoingTransferEnd.
+	incomingTransferEnd := anIncomingTransferEnd.! !
+
+
+!Transfer methodsFor: 'accessing' stamp: 'JV 5/28/2023 19:56:24'!
+value
+	^value! !
+
+
+!Transfer methodsFor: 'balance' stamp: 'JV 5/28/2023 20:14:35'!
+affectBalance: aBalance
+	^self subclassResponsibility ! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Transfer class' category: 'Portfolio-Solucion'!
+Transfer class
+	instanceVariableNames: ''!
+
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/27/2023 09:45:58'!
+ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount
+	
+	(aSenderAccount = aReceiverAccount ) ifTrue: [self error: 'CannotTransferToOwnAccount']! !
+
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:56:33'!
+ensureAmountIsPositive: anAmount
+
+	anAmount > 0 ifFalse: [self error: 'TransferForNonPositiveAmountIsNotAllowed'].
+	
+
+	! !
+
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/28/2023 20:22:03'!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	| incomingTransferEnd outgoingTransferEnd |
+	self ensureAmountIsPositive: anAmount.
+	self ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount.
+	
+	outgoingTransferEnd := (OutgoingTransfer for: anAmount).
+	incomingTransferEnd := (IncomingTransfer for: anAmount).
+	
+	aSenderAccount register: outgoingTransferEnd.
+	aReceiverAccount register: incomingTransferEnd.
+	
+	^self new initializeWithAmount: anAmount outgoingTransferEnd: outgoingTransferEnd incomingTransferEnd: incomingTransferEnd.
+	
+	
+
+	! !
+
+
+!classDefinition: #IncomingTransfer category: 'Portfolio-Solucion'!
+Transfer subclass: #IncomingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!IncomingTransfer methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 20:24:15'!
+affectBalance: aBalance
+	^aBalance + self value.! !
+
+!IncomingTransfer methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 20:29:12'!
+initializeFor: anAmount
+	value := anAmount.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'IncomingTransfer class' category: 'Portfolio-Solucion'!
+IncomingTransfer class
+	instanceVariableNames: ''!
+
+!IncomingTransfer class methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 20:17:51'!
+for: anAmount
+	^self new initializeFor: anAmount.! !
+
+
+!classDefinition: #OutgoingTransfer category: 'Portfolio-Solucion'!
+Transfer subclass: #OutgoingTransfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!OutgoingTransfer methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 20:24:24'!
+affectBalance: aBalance
+	^aBalance - self value.! !
+
+!OutgoingTransfer methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 20:29:20'!
+initializeFor: anAmount
+	value := anAmount.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'OutgoingTransfer class' category: 'Portfolio-Solucion'!
+OutgoingTransfer class
+	instanceVariableNames: ''!
+
+!OutgoingTransfer class methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 20:17:58'!
+for: anAmount
+	^self new initializeFor: anAmount.! !
+
+
 !classDefinition: #Withdraw category: 'Portfolio-Solucion'!
 AccountTransaction subclass: #Withdraw
 	instanceVariableNames: 'value'
@@ -757,112 +954,3 @@ Withdraw class
 for: aValue
 
 	^ self new initializeFor: aValue ! !
-
-
-<<<<<<< HEAD
-!classDefinition: #Proxy category: 'Portfolio-Solucion'!
-Object subclass: #Proxy
-	instanceVariableNames: 'initBlock'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!Proxy methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:28:12'!
-doesNotUnderstand: aMessage
-
-	| receiver |
-	receiver := initBlock value.
-	
-	^aMessage sendTo: receiver. ! !
-
-!Proxy methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:24:44'!
-resolveBlock: aBlock 
-	initBlock := aBlock.! !
-
-
-!classDefinition: #Transfer category: 'Portfolio-Solucion'!
-Object subclass: #Transfer
-	instanceVariableNames: 'withdraw deposit amount'
-=======
-!classDefinition: #Transfer category: 'Portfolio-Solucion'!
-Object subclass: #Transfer
-	instanceVariableNames: 'amount senderAccount receiverAccount'
->>>>>>> fd48b1190acb3f481e18fec03d4c15094faa4f08
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-<<<<<<< HEAD
-!Transfer methodsFor: 'transaction' stamp: 'JV 5/27/2023 10:17:16'!
-creditEnd
-	^deposit.! !
-
-!Transfer methodsFor: 'transaction' stamp: 'JV 5/27/2023 10:17:31'!
-debitEnd
-	^withdraw.! !
-
-
-!Transfer methodsFor: 'initialization' stamp: 'JV 5/27/2023 10:14:28'!
-initializeWithWithdraw: aWithdraw deposit: aDeposit amount: anAmount 
-	withdraw := aWithdraw. 
-	deposit := aDeposit.
-	amount := anAmount .! !
-
-
-!Transfer methodsFor: 'accessing' stamp: 'JV 5/27/2023 10:27:09'!
-amount
-	^amount! !
-
-=======
->>>>>>> fd48b1190acb3f481e18fec03d4c15094faa4f08
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'Transfer class' category: 'Portfolio-Solucion'!
-Transfer class
-	instanceVariableNames: ''!
-
-<<<<<<< HEAD
-!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/27/2023 09:45:58'!
-ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount
-	
-	(aSenderAccount = aReceiverAccount ) ifTrue: [self error: 'CannotTransferToOwnAccount']! !
-
-=======
->>>>>>> fd48b1190acb3f481e18fec03d4c15094faa4f08
-!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:56:33'!
-ensureAmountIsPositive: anAmount
-
-	anAmount > 0 ifFalse: [self error: 'TransferForNonPositiveAmountIsNotAllowed'].
-	
-
-	! !
-
-<<<<<<< HEAD
-!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/27/2023 10:23:52'!
-for: anAmount from: aSenderAccount to: aReceiverAccount
-	
-	| deposit withdraw amountProxy transfer |
-	self ensureAmountIsPositive: anAmount.
-	self ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount.
-	
-	amountProxy := Proxy new. 
-	
-	withdraw := Withdraw register: amountProxy on: aSenderAccount.	
-	deposit := Deposit register: amountProxy on: aReceiverAccount.
-	
-	transfer := self new initializeWithWithdraw: withdraw deposit: deposit amount: anAmount.
-	
-	amountProxy resolveBlock: [transfer amount].
-	
-	^transfer.
-=======
-!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:53:08'!
-for: anAmount from: aSenderAccount to: aReceiverAccount
-	
-	self ensureAmountIsPositive: anAmount.
-	
-	Withdraw register: anAmount on: aSenderAccount .	
-	Deposit register: anAmount on: aReceiverAccount .
->>>>>>> fd48b1190acb3f481e18fec03d4c15094faa4f08
-
-	! !
