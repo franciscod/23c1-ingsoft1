@@ -8377,3 +8377,260 @@ FAILURE!
 portfolio report!
 
 ----SNAPSHOT----(28 May 2023 21:34:50) CuisUniversity-5706.image priorSource: 8939601!
+
+----STARTUP---- (29 May 2023 15:24:42) as /home/fd/mat/ing1/cuis/5706/linux64/CuisUniversity-5706.image!
+
+
+----End fileIn of /home/fd/mat/ing1/cuis/5706/linux64/Portfolio-Solucion.st----!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'fd 5/29/2023 15:26:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'fd 5/29/2023 15:26:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'fd 5/29/2023 15:26:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'fd 5/29/2023 15:26:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'fd 5/29/2023 15:26:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'fd 5/29/2023 15:26:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'fd 5/29/2023 15:26:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'fd 5/29/2023 15:26:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'fd 5/29/2023 15:26:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'fd 5/29/2023 15:26:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'fd 5/29/2023 15:26:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'fd 5/29/2023 15:26:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'fd 5/29/2023 15:26:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'fd 5/29/2023 15:26:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'fd 5/29/2023 15:26:18'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'fd 5/29/2023 15:26:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'fd 5/29/2023 15:26:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'fd 5/29/2023 15:26:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'fd 5/29/2023 15:26:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'fd 5/29/2023 15:26:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'fd 5/29/2023 15:26:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'fd 5/29/2023 15:26:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'fd 5/29/2023 15:26:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'fd 5/29/2023 15:26:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'fd 5/29/2023 15:26:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'fd 5/29/2023 15:26:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'fd 5/29/2023 15:26:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'fd 5/29/2023 15:26:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'fd 5/29/2023 15:26:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'fd 5/29/2023 15:26:21'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'fd 5/29/2023 15:26:21'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'fd 5/29/2023 15:26:21'!
+FAILURE!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 15:30:45' prior: 50604410!
+test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance
+
+	| account1 account2 portfolio |
+	
+	portfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	Deposit register: 70 on: account1.
+	Withdraw register: 30 on: account2.
+	Transfer for: 5 from: account1 to: account2.
+	Transfer for: 50 from: account2 to: account1.
+
+	
+	self assert: portfolio report equals: ('Deposito por 70', String newLineString,
+	'Extraccion por 30', String newLineString,
+	'Salida por transferencia de 5', String newLineString,
+	'Salida por transferencia de 50', String newLineString,
+	'Entrada por transferencia de 5', String newLineString,
+	'Entrada por transferencia de 50', String newLineString,
+	'Balance = 40')! !
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'fd 5/29/2023 15:30:46'!
+FAILURE!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 15:33:52' prior: 50605129!
+test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance
+
+	| account1 account2 portfolio |
+	
+	portfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+	
+	Deposit register: 70 on: account1.
+	Withdraw register: 30 on: account2.
+	Transfer for: 5 from: account1 to: account2.
+	Transfer for: 50 from: account2 to: account1.
+
+	
+	self assert: portfolio report equals: ('Deposito por 70', String newLineString,
+	'Extraccion por 30', String newLineString,
+	'Salida por transferencia de 5', String newLineString,
+	'Salida por transferencia de 50', String newLineString,
+	'Entrada por transferencia de 50', String newLineString,
+	'Entrada por transferencia de 5', String newLineString,
+	'Balance = 40')! !
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'fd 5/29/2023 15:33:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'fd 5/29/2023 15:33:59'!
+PASSED!
+
+----SNAPSHOT----(29 May 2023 15:34:17) CuisUniversity-5706.image priorSource: 8713034!

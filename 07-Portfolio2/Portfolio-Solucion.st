@@ -397,7 +397,7 @@ test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance
 	'Entrada por transferencia de 50', String newLineString,
 	'Balance = 85')! !
 
-!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 21:28:10'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 15:33:52'!
 test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance
 
 	| account1 account2 portfolio |
@@ -416,12 +416,12 @@ test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance
 	Transfer for: 50 from: account2 to: account1.
 
 	
-	self assert: account1 report equals: ('Deposito por 70', String newLineString,
+	self assert: portfolio report equals: ('Deposito por 70', String newLineString,
 	'Extraccion por 30', String newLineString,
 	'Salida por transferencia de 5', String newLineString,
 	'Salida por transferencia de 50', String newLineString,
-	'Entrada por transferencia de 5', String newLineString,
 	'Entrada por transferencia de 50', String newLineString,
+	'Entrada por transferencia de 5', String newLineString,
 	'Balance = 40')! !
 
 
@@ -640,7 +640,6 @@ signalCanNotAddAccount
 	
 	self error: self class canNotAddAccountErrorMessage! !
 
-
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Portfolio class' category: 'Portfolio-Solucion'!
@@ -723,7 +722,6 @@ isComposedBy: anAccount
 addedTo: aPortfolio 
 	
 	! !
-
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
