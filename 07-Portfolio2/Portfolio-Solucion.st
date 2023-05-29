@@ -535,15 +535,15 @@ deposits
 
 	^self transactions select: [ :transaction | transaction isKindOf: Deposit]! !
 
-!Account methodsFor: 'reports' stamp: 'JV 5/28/2023 21:21:54'!
+!Account methodsFor: 'reports' stamp: 'fd 5/29/2023 16:46:17'!
 incomingTransfers
 
-	^self transactions select: [ :transaction | transaction isKindOf: IncomingTransfer]! !
+	^self transactions select: [ :transaction | transaction isKindOf: IncomingTransferEnd]! !
 
-!Account methodsFor: 'reports' stamp: 'JV 5/28/2023 21:21:58'!
+!Account methodsFor: 'reports' stamp: 'fd 5/29/2023 16:46:24'!
 outgoingTransfers
 
-	^self transactions select: [ :transaction | transaction isKindOf: OutgoingTransfer]! !
+	^self transactions select: [ :transaction | transaction isKindOf: OutgoingTransferEnd]! !
 
 !Account methodsFor: 'reports' stamp: 'fd 5/29/2023 15:54:12'!
 runReport: report 
@@ -831,127 +831,59 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #Transfer category: 'Portfolio-Solucion'!
-AccountTransaction subclass: #Transfer
-	instanceVariableNames: 'value outgoingTransferEnd incomingTransferEnd'
+!classDefinition: #TransferEnd category: 'Portfolio-Solucion'!
+AccountTransaction subclass: #TransferEnd
+	instanceVariableNames: 'transfer'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Transfer methodsFor: 'transaction' stamp: 'JV 5/28/2023 20:26:59'!
-incomingEnd
-	^incomingTransferEnd.! !
-
-!Transfer methodsFor: 'transaction' stamp: 'JV 5/28/2023 20:27:09'!
-outgoingEnd
-	^outgoingTransferEnd.! !
-
-
-!Transfer methodsFor: 'initialization' stamp: 'JV 5/28/2023 20:23:22'!
-initializeWithAmount: anAmount outgoingTransferEnd: anOutgoingTransferEnd incomingTransferEnd: anIncomingTransferEnd
-	value := anAmount.
-	outgoingTransferEnd := anOutgoingTransferEnd.
-	incomingTransferEnd := anIncomingTransferEnd.! !
-
-
-!Transfer methodsFor: 'accessing' stamp: 'JV 5/28/2023 19:56:24'!
-value
-	^value! !
-
-
-!Transfer methodsFor: 'balance' stamp: 'JV 5/28/2023 20:14:35'!
+!TransferEnd methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 16:46:54'!
 affectBalance: aBalance
 	^self subclassResponsibility ! !
 
+!TransferEnd methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 16:51:19'!
+initializeFor: aTransfer
+	transfer := aTransfer.! !
+
+
+!TransferEnd methodsFor: 'value' stamp: 'fd 5/29/2023 16:53:56'!
+value
+	^transfer value.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Transfer class' category: 'Portfolio-Solucion'!
-Transfer class
+!classDefinition: 'TransferEnd class' category: 'Portfolio-Solucion'!
+TransferEnd class
 	instanceVariableNames: ''!
 
-!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/27/2023 09:45:58'!
-ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount
-	
-	(aSenderAccount = aReceiverAccount ) ifTrue: [self error: 'CannotTransferToOwnAccount']! !
-
-!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:56:33'!
-ensureAmountIsPositive: anAmount
-
-	anAmount > 0 ifFalse: [self error: 'TransferForNonPositiveAmountIsNotAllowed'].
-	
-
-	! !
-
-!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/28/2023 20:22:03'!
-for: anAmount from: aSenderAccount to: aReceiverAccount
-	
-	| incomingTransferEnd outgoingTransferEnd |
-	self ensureAmountIsPositive: anAmount.
-	self ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount.
-	
-	outgoingTransferEnd := (OutgoingTransfer for: anAmount).
-	incomingTransferEnd := (IncomingTransfer for: anAmount).
-	
-	aSenderAccount register: outgoingTransferEnd.
-	aReceiverAccount register: incomingTransferEnd.
-	
-	^self new initializeWithAmount: anAmount outgoingTransferEnd: outgoingTransferEnd incomingTransferEnd: incomingTransferEnd.
-	
-	
-
-	! !
+!TransferEnd class methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 16:53:23'!
+for: transfer
+	^self new initializeFor: transfer.! !
 
 
-!classDefinition: #IncomingTransfer category: 'Portfolio-Solucion'!
-Transfer subclass: #IncomingTransfer
+!classDefinition: #IncomingTransferEnd category: 'Portfolio-Solucion'!
+TransferEnd subclass: #IncomingTransferEnd
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!IncomingTransfer methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 20:24:15'!
+!IncomingTransferEnd methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 20:24:15'!
 affectBalance: aBalance
 	^aBalance + self value.! !
 
-!IncomingTransfer methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 20:29:12'!
-initializeFor: anAmount
-	value := anAmount.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'IncomingTransfer class' category: 'Portfolio-Solucion'!
-IncomingTransfer class
-	instanceVariableNames: ''!
-
-!IncomingTransfer class methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 20:17:51'!
-for: anAmount
-	^self new initializeFor: anAmount.! !
-
 
-!classDefinition: #OutgoingTransfer category: 'Portfolio-Solucion'!
-Transfer subclass: #OutgoingTransfer
+!classDefinition: #OutgoingTransferEnd category: 'Portfolio-Solucion'!
+TransferEnd subclass: #OutgoingTransferEnd
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!OutgoingTransfer methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 20:24:24'!
+!OutgoingTransferEnd methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 20:24:24'!
 affectBalance: aBalance
 	^aBalance - self value.! !
-
-!OutgoingTransfer methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 20:29:20'!
-initializeFor: anAmount
-	value := anAmount.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'OutgoingTransfer class' category: 'Portfolio-Solucion'!
-OutgoingTransfer class
-	instanceVariableNames: ''!
-
-!OutgoingTransfer class methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 20:17:58'!
-for: anAmount
-	^self new initializeFor: anAmount.! !
 
 
 !classDefinition: #Withdraw category: 'Portfolio-Solucion'!
@@ -1018,15 +950,15 @@ Report subclass: #AccountSummaryReport
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountSummaryReport methodsFor: 'reports' stamp: 'fd 5/29/2023 16:31:48'!
+!AccountSummaryReport methodsFor: 'reports' stamp: 'fd 5/29/2023 16:46:24'!
 descriptionFor: transaction 
 	(transaction isKindOf: Deposit) 
 		ifTrue: [^'Depósito por '].
 	(transaction isKindOf: Withdraw) 
 		ifTrue: [^'Extracción por '].
-	(transaction isKindOf: OutgoingTransfer) 
+	(transaction isKindOf: OutgoingTransferEnd) 
 		ifTrue: [^'Salida por transferencia de '].
-	(transaction isKindOf: IncomingTransfer)
+	(transaction isKindOf: IncomingTransferEnd)
 		ifTrue: [^'Entrada por transferencia de '].
 	self notYetImplemented.! !
 
@@ -1058,15 +990,15 @@ initialize
 	transferNet := 0.
 	! !
 
-!TransferNetReport methodsFor: 'reports' stamp: 'fd 5/29/2023 16:39:29'!
+!TransferNetReport methodsFor: 'reports' stamp: 'fd 5/29/2023 16:46:24'!
 isTransferTransaction: transaction 
 	(transaction isKindOf: Deposit) 
 		ifTrue: [^false].
 	(transaction isKindOf: Withdraw) 
 		ifTrue: [^false].
-	(transaction isKindOf: OutgoingTransfer) 
+	(transaction isKindOf: OutgoingTransferEnd) 
 		ifTrue: [^true].
-	(transaction isKindOf: IncomingTransfer)
+	(transaction isKindOf: IncomingTransferEnd)
 		ifTrue: [^true].
 	self notYetImplemented.! !
 
@@ -1078,3 +1010,72 @@ processTransaction: transaction
 !TransferNetReport methodsFor: 'reports' stamp: 'fd 5/29/2023 16:38:43'!
 result
 	^'Transfer Net = ', transferNet asString! !
+
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value outgoingTransferEnd incomingTransferEnd'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!Transfer methodsFor: 'initialization' stamp: 'JV 5/28/2023 20:23:22'!
+initializeWithAmount: anAmount outgoingTransferEnd: anOutgoingTransferEnd incomingTransferEnd: anIncomingTransferEnd
+	value := anAmount.
+	outgoingTransferEnd := anOutgoingTransferEnd.
+	incomingTransferEnd := anIncomingTransferEnd.! !
+
+
+!Transfer methodsFor: 'accessing' stamp: 'fd 5/29/2023 16:56:35'!
+incomingEnd
+	^incomingTransferEnd.! !
+
+!Transfer methodsFor: 'accessing' stamp: 'fd 5/29/2023 16:56:21'!
+outgoingEnd
+	^outgoingTransferEnd.! !
+
+!Transfer methodsFor: 'accessing' stamp: 'JV 5/28/2023 19:56:24'!
+value
+	^value! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Transfer class' category: 'Portfolio-Solucion'!
+Transfer class
+	instanceVariableNames: ''!
+
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/27/2023 09:45:58'!
+ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount
+	
+	(aSenderAccount = aReceiverAccount ) ifTrue: [self error: 'CannotTransferToOwnAccount']! !
+
+!Transfer class methodsFor: 'instance creation' stamp: 'JV 5/22/2023 21:56:33'!
+ensureAmountIsPositive: anAmount
+
+	anAmount > 0 ifFalse: [self error: 'TransferForNonPositiveAmountIsNotAllowed'].
+	
+
+	! !
+
+!Transfer class methodsFor: 'instance creation' stamp: 'fd 5/29/2023 16:52:35'!
+for: anAmount from: aSenderAccount to: aReceiverAccount
+	
+	| incomingTransferEnd outgoingTransferEnd transfer |
+	self ensureAmountIsPositive: anAmount.
+	self ensureAccount: aSenderAccount isNotTheSameAs: aReceiverAccount.
+	
+	transfer := self new.
+	
+	outgoingTransferEnd := (OutgoingTransferEnd for: transfer).
+	incomingTransferEnd := (IncomingTransferEnd for: transfer).
+	
+	transfer initializeWithAmount: anAmount outgoingTransferEnd: outgoingTransferEnd incomingTransferEnd: incomingTransferEnd.	
+	
+	aSenderAccount register: outgoingTransferEnd.
+	aReceiverAccount register: incomingTransferEnd.
+	
+	^transfer.
+	
+	
+
+	! !
