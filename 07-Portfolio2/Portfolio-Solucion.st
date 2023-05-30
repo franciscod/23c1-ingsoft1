@@ -361,30 +361,30 @@ test12transferringToSameAccountGivesError
 		withExceptionDo: [ :anError | 
 			self assert: anError messageText = 'CannotTransferToOwnAccount'].! !
 
-!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 16:01:47'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 21:47:20'!
 test13reportOfEmptyAccountOutputsOnlyBalance0
 
 	| account1 result report |
 	
 	account1 := ReceptiveAccount new.
 	
-	report := AccountSummaryReport new.
-	result := report startAtRoot: account1.
+	report := AccountSummaryReport for: account1.
+	result := report process.
 	
 	self assert: result equals: 'Balance = 0'! !
 
-!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 16:05:33'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 21:54:58'!
 test14reportOfEmptyPortfolioOutputsOnlyBalance0
 
 	| pf result report |
 	pf := Portfolio new.
 	
-	report := AccountSummaryReport new.
-	result := report startAtRoot: pf.
+	report := AccountSummaryReport for: pf.
+	result := report process.
 	
 	self assert: result equals: 'Balance = 0'! !
 
-!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 16:22:11'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 21:55:14'!
 test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance
 
 	| account1 account2 result report |
@@ -398,8 +398,8 @@ test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance
 	Transfer for: 50 from: account2 to: account1 .
 	
 	
-	report := AccountSummaryReport new.
-	result := report startAtRoot: account1.
+	report := AccountSummaryReport for: account1.
+	result := report process.
 	
 	self assert: result equals: ('Depósito por 70.', String newLineString,
 	'Extracción por 30.', String newLineString,
@@ -407,7 +407,7 @@ test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance
 	'Entrada por transferencia de 50.', String newLineString,
 	'Balance = 85')! !
 
-!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 16:25:07'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 22:00:39'!
 test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance
 
 	| account1 account2 portfolio report result |
@@ -425,8 +425,8 @@ test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance
 	Transfer for: 5 from: account1 to: account2.
 	Transfer for: 50 from: account2 to: account1.
 	
-	report := AccountSummaryReport new.
-	result := report startAtRoot: portfolio.
+	report := AccountSummaryReport for: portfolio.
+	result := report process.
 	
 	self assert: result equals: ('Depósito por 70.', String newLineString,
 	'Salida por transferencia de 5.', String newLineString,
@@ -545,8 +545,8 @@ outgoingTransfers
 
 	^self transactions select: [ :transaction | transaction isKindOf: OutgoingTransferEnd]! !
 
-!Account methodsFor: 'reports' stamp: 'fd 5/29/2023 15:54:12'!
-runReport: report 
+!Account methodsFor: 'reports' stamp: 'fd 5/29/2023 21:52:58'!
+processForReport: report 
 	self subclassResponsibility.! !
 
 !Account methodsFor: 'reports' stamp: 'JV 5/28/2023 21:21:43'!
@@ -667,9 +667,9 @@ signalCanNotAddAccount
 	self error: self class canNotAddAccountErrorMessage! !
 
 
-!Portfolio methodsFor: 'reports' stamp: 'fd 5/29/2023 16:04:58'!
-runReport: aReport 
-	accounts do: [:account | account runReport: aReport]! !
+!Portfolio methodsFor: 'reports' stamp: 'fd 5/29/2023 21:52:58'!
+processForReport: aReport 
+	accounts do: [:account | account processForReport: aReport]! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -755,9 +755,9 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'reports' stamp: 'fd 5/29/2023 15:55:22'!
-runReport: report 
-	transactions do: [:transaction | report processTransaction: transaction]! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'fd 5/29/2023 21:54:33'!
+processForReport: aReport 
+	transactions do: [:transaction | transaction processForReport: aReport]! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
@@ -777,6 +777,11 @@ value
 affectBalance: aBalance
 
 	self subclassResponsibility ! !
+
+
+!AccountTransaction methodsFor: 'reports' stamp: 'fd 5/29/2023 21:55:37'!
+processForReport: aReport 
+	self subclassResponsibility.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -819,6 +824,11 @@ affectBalance: aBalance
 
 	^aBalance + value ! !
 
+
+!Deposit methodsFor: 'reports' stamp: 'fd 5/29/2023 21:55:59'!
+processForReport: aReport 
+	aReport processDeposit: self! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Deposit class' category: 'Portfolio-Solucion'!
@@ -837,10 +847,6 @@ AccountTransaction subclass: #TransferEnd
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
-
-!TransferEnd methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 16:46:54'!
-affectBalance: aBalance
-	^self subclassResponsibility ! !
 
 !TransferEnd methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 16:51:19'!
 initializeFor: aTransfer
@@ -873,6 +879,10 @@ TransferEnd subclass: #IncomingTransferEnd
 affectBalance: aBalance
 	^aBalance + self value.! !
 
+!IncomingTransferEnd methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 21:56:25'!
+processForReport: aReport 
+	aReport processIncomingTransferEnd: self! !
+
 
 !classDefinition: #OutgoingTransferEnd category: 'Portfolio-Solucion'!
 TransferEnd subclass: #OutgoingTransferEnd
@@ -884,6 +894,10 @@ TransferEnd subclass: #OutgoingTransferEnd
 !OutgoingTransferEnd methodsFor: 'as yet unclassified' stamp: 'JV 5/28/2023 20:24:24'!
 affectBalance: aBalance
 	^aBalance - self value.! !
+
+!OutgoingTransferEnd methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 21:56:33'!
+processForReport: aReport 
+	aReport processOutgoingTransferEnd: self! !
 
 
 !classDefinition: #Withdraw category: 'Portfolio-Solucion'!
@@ -897,6 +911,10 @@ AccountTransaction subclass: #Withdraw
 initializeFor: aValue
 
 	value := aValue ! !
+
+!Withdraw methodsFor: 'initialization' stamp: 'fd 5/29/2023 21:56:42'!
+processForReport: aReport 
+	aReport processWithdraw: self! !
 
 
 !Withdraw methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:33'!
@@ -924,23 +942,49 @@ for: aValue
 
 !classDefinition: #Report category: 'Portfolio-Solucion'!
 Object subclass: #Report
-	instanceVariableNames: ''
+	instanceVariableNames: 'account'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Report methodsFor: 'reports' stamp: 'fd 5/29/2023 16:06:20'!
-processTransaction: transaction 
+!Report methodsFor: 'reports' stamp: 'fd 5/29/2023 21:50:49'!
+initializeFor: anAccount
+	account := anAccount! !
+
+!Report methodsFor: 'reports' stamp: 'fd 5/29/2023 21:49:32'!
+process
+	account processForReport: self.
+	^self result.! !
+
+!Report methodsFor: 'reports' stamp: 'fd 5/29/2023 21:51:17'!
+processDeposit: aDeposit 
+	self subclassResponsibility.! !
+
+!Report methodsFor: 'reports' stamp: 'fd 5/29/2023 21:51:25'!
+processIncomingTransferEnd: anIncomingTransferEnd 
+	self subclassResponsibility.! !
+
+!Report methodsFor: 'reports' stamp: 'fd 5/29/2023 21:51:32'!
+processOutgoingTransferEnd: anOutgoingTransferEnd
+	self subclassResponsibility.! !
+
+!Report methodsFor: 'reports' stamp: 'fd 5/29/2023 21:51:36'!
+processWithdraw: aWithdraw 
 	self subclassResponsibility.! !
 
 !Report methodsFor: 'reports' stamp: 'fd 5/29/2023 16:01:27'!
 result
 	self subclassResponsibility.! !
 
-!Report methodsFor: 'reports' stamp: 'fd 5/29/2023 16:26:51'!
-startAtRoot: account
-	account runReport: self.
-	^self result.! !
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Report class' category: 'Portfolio-Solucion'!
+Report class
+	instanceVariableNames: ''!
+
+!Report class methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 21:50:33'!
+for: account
+	^self new initializeFor: account! !
 
 
 !classDefinition: #AccountSummaryReport category: 'Portfolio-Solucion'!
@@ -950,16 +994,8 @@ Report subclass: #AccountSummaryReport
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountSummaryReport methodsFor: 'reports' stamp: 'fd 5/29/2023 16:46:24'!
-descriptionFor: transaction 
-	(transaction isKindOf: Deposit) 
-		ifTrue: [^'Depósito por '].
-	(transaction isKindOf: Withdraw) 
-		ifTrue: [^'Extracción por '].
-	(transaction isKindOf: OutgoingTransferEnd) 
-		ifTrue: [^'Salida por transferencia de '].
-	(transaction isKindOf: IncomingTransferEnd)
-		ifTrue: [^'Entrada por transferencia de '].
+!AccountSummaryReport methodsFor: 'reports' stamp: 'fd 5/29/2023 22:01:44'!
+addSummaryFor: transaction withDescription: description
 	self notYetImplemented.! !
 
 !AccountSummaryReport methodsFor: 'reports' stamp: 'fd 5/29/2023 16:37:26'!
@@ -968,10 +1004,25 @@ initialize
 	result := ''.
 	! !
 
-!AccountSummaryReport methodsFor: 'reports' stamp: 'fd 5/29/2023 16:30:30'!
-processTransaction: transaction 
-	balance := transaction affectBalance: balance.
-	result := result, (self descriptionFor: transaction), transaction value asString, '.', String newLineString.! !
+!AccountSummaryReport methodsFor: 'reports' stamp: 'fd 5/29/2023 21:58:19'!
+processDeposit: aDeposit 
+	balance := aDeposit affectBalance: balance.
+	result := result, 'Depósito por ', aDeposit value asString, '.', String newLineString.! !
+
+!AccountSummaryReport methodsFor: 'reports' stamp: 'fd 5/29/2023 22:00:13'!
+processIncomingTransferEnd: anIncomingTransferEnd 
+	balance := anIncomingTransferEnd affectBalance: balance.
+	result := result, 'Entrada por transferencia de ', anIncomingTransferEnd value asString, '.', String newLineString.! !
+
+!AccountSummaryReport methodsFor: 'reports' stamp: 'fd 5/29/2023 21:59:57'!
+processOutgoingTransferEnd: anOutgoingTransferEnd 
+	balance := anOutgoingTransferEnd affectBalance: balance.
+	result := result, 'Salida por transferencia de ', anOutgoingTransferEnd value asString, '.', String newLineString.! !
+
+!AccountSummaryReport methodsFor: 'reports' stamp: 'fd 5/29/2023 21:58:55'!
+processWithdraw: aWithdraw
+	balance := aWithdraw affectBalance: balance.
+	result := result, 'Extracción por ', aWithdraw value asString, '.', String newLineString.! !
 
 !AccountSummaryReport methodsFor: 'reports' stamp: 'fd 5/29/2023 16:16:46'!
 result
