@@ -436,19 +436,19 @@ test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance
 	'Salida por transferencia de 50.', String newLineString,
 	'Balance = 40')! !
 
-!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 16:34:11'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:02:46'!
 test17transferNetReportOfEmptyAccountOutputs0
 
 	| account1 result report |
 	
 	account1 := ReceptiveAccount new.
 	
-	report := TransferNetReport new.
-	result := report startAtRoot: account1.
+	report := TransferNetReport for: account1 .
+	result := report process.
 	
-	self assert: result equals: 'Transfer Net = 0'! !
+	self assert: result equals: 0! !
 
-!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 16:44:09'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:08:23'!
 test18transferNetReportOfAccountOutputsBalance
 
 	| account1 account2 result report |
@@ -461,12 +461,12 @@ test18transferNetReportOfAccountOutputsBalance
 	Transfer for: 5 from: account1 to: account2.
 	Transfer for: 50 from: account2 to: account1 .
 	
-	report := TransferNetReport new.
-	result := report startAtRoot: account1.
+	report := TransferNetReport for: account1 .
+	result := report process.
 	
-	self assert: result equals: ('Transfer Net = 45').! !
+	self assert: result equals: 45.! !
 
-!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'fd 5/29/2023 16:43:56'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:09:07'!
 test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0
 
 	| account1 account2 result report pf |
@@ -483,10 +483,10 @@ test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0
 	pf add: account1.
 	pf add: account2.
 		
-	report := TransferNetReport new.
-	result := report startAtRoot: pf.
+	report := TransferNetReport for: pf .
+	result := report process.
 	
-	self assert: result equals: ('Transfer Net = 0').! !
+	self assert: result equals: 0.! !
 
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
@@ -667,9 +667,10 @@ signalCanNotAddAccount
 	self error: self class canNotAddAccountErrorMessage! !
 
 
-!Portfolio methodsFor: 'reports' stamp: 'fd 5/29/2023 21:52:58'!
+!Portfolio methodsFor: 'reports' stamp: 'JV 5/31/2023 17:57:42'!
 processForReport: aReport 
-	accounts do: [:account | account processForReport: aReport]! !
+	aReport processPortfolio: self.
+	accounts do: [:account | account processForReport: aReport].! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -755,9 +756,10 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'reports' stamp: 'fd 5/29/2023 21:54:33'!
+!ReceptiveAccount methodsFor: 'reports' stamp: 'JV 5/31/2023 17:52:06'!
 processForReport: aReport 
-	transactions do: [:transaction | transaction processForReport: aReport]! !
+	aReport processReceptiveAccount: self.
+	transactions do: [:transaction | transaction processForReport: aReport ].! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
@@ -968,6 +970,14 @@ processIncomingTransferEnd: anIncomingTransferEnd
 processOutgoingTransferEnd: anOutgoingTransferEnd
 	self subclassResponsibility.! !
 
+!Report methodsFor: 'reports' stamp: 'JV 5/31/2023 17:53:26'!
+processPortfolio: aPortfolio 
+	self subclassResponsibility.! !
+
+!Report methodsFor: 'reports' stamp: 'JV 5/31/2023 17:52:52'!
+processReceptiveAccount: anAccounts 
+	self subclassResponsibility.! !
+
 !Report methodsFor: 'reports' stamp: 'fd 5/29/2023 21:51:36'!
 processWithdraw: aWithdraw 
 	self subclassResponsibility.! !
@@ -1019,6 +1029,15 @@ processOutgoingTransferEnd: anOutgoingTransferEnd
 	balance := anOutgoingTransferEnd affectBalance: balance.
 	result := result, 'Salida por transferencia de ', anOutgoingTransferEnd value asString, '.', String newLineString.! !
 
+!AccountSummaryReport methodsFor: 'reports' stamp: 'JV 5/31/2023 17:57:13'!
+processPortfolio: aPortfolio 
+	"No hace nada"! !
+
+!AccountSummaryReport methodsFor: 'reports' stamp: 'JV 5/31/2023 17:56:54'!
+processReceptiveAccount: aReceptiveAccount 
+	"No hace nada"
+	! !
+
 !AccountSummaryReport methodsFor: 'reports' stamp: 'fd 5/29/2023 21:58:55'!
 processWithdraw: aWithdraw
 	balance := aWithdraw affectBalance: balance.
@@ -1041,26 +1060,34 @@ initialize
 	transferNet := 0.
 	! !
 
-!TransferNetReport methodsFor: 'reports' stamp: 'fd 5/29/2023 16:46:24'!
-isTransferTransaction: transaction 
-	(transaction isKindOf: Deposit) 
-		ifTrue: [^false].
-	(transaction isKindOf: Withdraw) 
-		ifTrue: [^false].
-	(transaction isKindOf: OutgoingTransferEnd) 
-		ifTrue: [^true].
-	(transaction isKindOf: IncomingTransferEnd)
-		ifTrue: [^true].
-	self notYetImplemented.! !
-
-!TransferNetReport methodsFor: 'reports' stamp: 'fd 5/29/2023 16:38:35'!
-processTransaction: transaction 
-	(self isTransferTransaction: transaction) ifTrue: [
-		transferNet := transaction affectBalance: transferNet].! !
-
-!TransferNetReport methodsFor: 'reports' stamp: 'fd 5/29/2023 16:38:43'!
+!TransferNetReport methodsFor: 'reports' stamp: 'JV 5/31/2023 17:50:31'!
 result
-	^'Transfer Net = ', transferNet asString! !
+	^transferNet! !
+
+
+!TransferNetReport methodsFor: 'processing' stamp: 'JV 5/31/2023 18:06:53'!
+processDeposit: aDeposit 
+	"No hace nada"! !
+
+!TransferNetReport methodsFor: 'processing' stamp: 'JV 5/31/2023 18:08:13'!
+processIncomingTransferEnd: anIncomingTransferEnd 
+	transferNet := anIncomingTransferEnd affectBalance: transferNet ! !
+
+!TransferNetReport methodsFor: 'processing' stamp: 'JV 5/31/2023 18:07:48'!
+processOutgoingTransferEnd: anOutgoingTransferEnd 
+	transferNet := anOutgoingTransferEnd affectBalance: transferNet! !
+
+!TransferNetReport methodsFor: 'processing' stamp: 'JV 5/31/2023 18:08:40'!
+processPortfolio: aPortfolio 
+	"No hace nada"! !
+
+!TransferNetReport methodsFor: 'processing' stamp: 'JV 5/31/2023 18:00:00'!
+processReceptiveAccount: aReceptiveAccount 
+	"No hace nada"! !
+
+!TransferNetReport methodsFor: 'processing' stamp: 'JV 5/31/2023 18:08:58'!
+processWithdraw: aWithdraw 
+	"No hace nada"! !
 
 
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!
