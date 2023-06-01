@@ -488,10 +488,83 @@ test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0
 	
 	self assert: result equals: 0.! !
 
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:38:57'!
+test20treeReportOfEmptyPortfolioOutputsNothing
+	
+	| emptyPf portfolioTreeReport |
+	emptyPf := Portfolio named: 'Portfolio Vacio'.
+	
+	portfolioTreeReport := PortfolioTreeReport for: emptyPf.
+	
+	self assert: 'Portfolio Vacio', String newLineString equals: portfolioTreeReport process 
+! !
+
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:38:42'!
+test21portfolioWithOneAccountOutputsItsNameIndentedOnce
+	
+	| johnsAccount portfolio portfolioTreeReport |
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	portfolio := Portfolio named: 'Portfolio' with: johnsAccount.
+	
+	portfolioTreeReport := PortfolioTreeReport for: portfolio.
+	
+	self assert: 
+	'Portfolio', String newLineString, String tab, 'Cuenta de Juan', String newLineString
+	
+	equals: portfolioTreeReport process ! !
+
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:51:45'!
+test22portfolioWithAccountsAndPortfoliosIndentsCorrectly
+	
+	| angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount portfolioTreeReport |
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	portfolioTreeReport := PortfolioTreeReport for: familyPortfolio.
+	
+	self assert: 
+	'Portfolio de la familia', String newLineString, 
+	String tab, 'Cuenta mia', String newLineString, 
+	String tab, 'Portfolio de hijos', String newLineString, 
+			String tab,  String tab, 'Cuenta de Juan', String newLineString, 
+			String tab,  String tab, 'Cuenta de Angeles', String newLineString
+	
+	equals: portfolioTreeReport process 
+	
+	! !
+
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 20:00:29'!
+test23portfolioWithPortfolioAndAccountIndentsCorrectly
+	
+	| angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount portfolioTreeReport |
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: childrenPortfolio with: myAccount.
+	
+	portfolioTreeReport := PortfolioTreeReport for: familyPortfolio.
+	
+	self assert: 
+	'Portfolio de la familia', String newLineString, 
+	String tab, 'Portfolio de hijos', String newLineString, 
+	String tab,  String tab, 'Cuenta de Juan', String newLineString, 
+	String tab,  String tab, 'Cuenta de Angeles', String newLineString,
+	String tab, 'Cuenta mia', String newLineString
+	
+	equals: portfolioTreeReport process 
+	
+	! !
+
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
 Object subclass: #Account
-	instanceVariableNames: ''
+	instanceVariableNames: 'name'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -540,6 +613,18 @@ incomingTransfers
 
 	^self transactions select: [ :transaction | transaction isKindOf: IncomingTransferEnd]! !
 
+!Account methodsFor: 'reports' stamp: 'JV 5/31/2023 18:21:13'!
+initializeNamed: aName
+	name := aName.! !
+
+!Account methodsFor: 'reports' stamp: 'JV 5/31/2023 18:47:59'!
+name
+	^name! !
+
+!Account methodsFor: 'reports' stamp: 'JV 5/31/2023 18:22:28'!
+name: aName
+	name := aName.! !
+
 !Account methodsFor: 'reports' stamp: 'fd 5/29/2023 16:46:24'!
 outgoingTransfers
 
@@ -553,6 +638,16 @@ processForReport: report
 withdrawals
 
 	^self transactions select: [ :transaction | transaction isKindOf: Withdraw]! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Account class' category: 'Portfolio-Solucion'!
+Account class
+	instanceVariableNames: ''!
+
+!Account class methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:22:19'!
+named: aName
+	^self new name: aName.! !
 
 
 !classDefinition: #Portfolio category: 'Portfolio-Solucion'!
@@ -667,10 +762,11 @@ signalCanNotAddAccount
 	self error: self class canNotAddAccountErrorMessage! !
 
 
-!Portfolio methodsFor: 'reports' stamp: 'JV 5/31/2023 17:57:42'!
+!Portfolio methodsFor: 'reports' stamp: 'JV 5/31/2023 20:03:12'!
 processForReport: aReport 
 	aReport processPortfolio: self.
-	accounts do: [:account | account processForReport: aReport].! !
+	accounts do: [:account | account processForReport: aReport].
+	aReport portfolioProcessingDone.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -697,6 +793,15 @@ with: anAccount with: anotherAccount
 		add: anAccount;
 		add: anotherAccount;
 		yourself! !
+
+
+!Portfolio class methodsFor: 'instance creation' stamp: 'JV 5/31/2023 18:41:53'!
+named: aName with: anAccount 
+	^(self named: aName) add: anAccount ! !
+
+!Portfolio class methodsFor: 'instance creation' stamp: 'JV 5/31/2023 18:52:50'!
+named: aName with: anAccount with: anotherAccount
+	^((self named: aName) add: anAccount) add:anotherAccount.! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion'!
@@ -1014,6 +1119,10 @@ initialize
 	result := ''.
 	! !
 
+!AccountSummaryReport methodsFor: 'reports' stamp: 'JV 5/31/2023 20:05:30'!
+portfolioProcessingDone
+	"No hace nada"! !
+
 !AccountSummaryReport methodsFor: 'reports' stamp: 'fd 5/29/2023 21:58:19'!
 processDeposit: aDeposit 
 	balance := aDeposit affectBalance: balance.
@@ -1048,6 +1157,48 @@ result
 	^result, 'Balance = ', balance asString! !
 
 
+!classDefinition: #PortfolioTreeReport category: 'Portfolio-Solucion'!
+Report subclass: #PortfolioTreeReport
+	instanceVariableNames: 'result depth'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!PortfolioTreeReport methodsFor: 'reports' stamp: 'JV 5/31/2023 20:03:37'!
+portfolioProcessingDone
+	depth := depth - 1! !
+
+!PortfolioTreeReport methodsFor: 'reports' stamp: 'JV 5/31/2023 19:03:21'!
+processPortfolio: aPortfolio 
+	| line tabs |
+	line := aPortfolio name, String newLineString.
+	tabs := ''.
+	depth timesRepeat: [tabs := tabs, String tab].
+	result := result, tabs, line.
+	depth := depth + 1.! !
+
+
+!PortfolioTreeReport methodsFor: 'result' stamp: 'JV 5/31/2023 18:54:56'!
+initialize
+	result := ''.
+	depth := 0.! !
+
+!PortfolioTreeReport methodsFor: 'result' stamp: 'JV 5/31/2023 18:45:06'!
+result
+	^result! !
+
+
+!PortfolioTreeReport methodsFor: 'processing' stamp: 'JV 5/31/2023 19:08:30'!
+processReceptiveAccount: aReceptiveAccount 
+	| line tabs |
+	line := aReceptiveAccount name, String newLineString.
+	tabs := ''.
+	depth timesRepeat: [tabs := tabs, String tab].
+	result := result, tabs, line.
+	
+	! !
+
+
 !classDefinition: #TransferNetReport category: 'Portfolio-Solucion'!
 Report subclass: #TransferNetReport
 	instanceVariableNames: 'balance transferNet'
@@ -1059,6 +1210,10 @@ Report subclass: #TransferNetReport
 initialize
 	transferNet := 0.
 	! !
+
+!TransferNetReport methodsFor: 'reports' stamp: 'JV 5/31/2023 20:05:36'!
+portfolioProcessingDone
+	"No hace nada"! !
 
 !TransferNetReport methodsFor: 'reports' stamp: 'JV 5/31/2023 17:50:31'!
 result

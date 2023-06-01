@@ -793,3 +793,2274 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(31 May 2023 18:10:02) CuisUniversity-5832.image priorSource: 9366758!
+!Account class methodsFor: 'no messages' stamp: 'JV 5/31/2023 18:14:59' overrides: 16785646!
+new
+	self error: 'Use named: instead'! !
+!Account class methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:15:56'!
+named: aName
+	^self basicNew initializeNamed: aName.! !
+
+!classDefinition: #Account category: 'Portfolio-Solucion' stamp: 'JV 5/31/2023 18:16:21'!
+Object subclass: #Account
+	instanceVariableNames: 'name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Account methodsFor: 'reports' stamp: 'JV 5/31/2023 18:16:20'!
+initializeNamed: aName
+	name := aName.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:16:30'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:16:30'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:16:31'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:16:31'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:16:31'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:16:31'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:16:31'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:16:31'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:16:31'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:16:31'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:16:31'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:16:31'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:16:31'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:16:31'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:16:31'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:16:32'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:16:32'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:16:32'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:16:32'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:17:07'!
+ERROR!
+!Account class methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:19:30' prior: 50627986 overrides: 16785646!
+new
+	^self basicNew initializeNamed: 'unnamed'! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:19:34'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:19:34'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:19:35'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:19:35'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:19:35'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:19:35'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:19:35'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:19:35'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:19:35'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:19:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:19:35'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:19:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:19:35'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:19:35'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:19:35'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:19:36'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:19:36'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:19:36'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:19:36'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:19:47'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:20:26'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:20:26'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:20:26'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:20:26'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:20:26'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:20:26'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:20:26'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:20:26'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:20:26'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:20:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:20:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:20:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:20:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:20:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:20:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:20:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:20:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:20:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:20:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:20:29'!
+ERROR!
+!Account methodsFor: 'reports' stamp: 'JV 5/31/2023 18:21:13' prior: 50628001!
+initializeNamed: aName
+	name := aName.! !
+
+!methodRemoval: Account class #new stamp: 'JV 5/31/2023 18:21:49'!
+new
+	^self basicNew initializeNamed: 'unnamed'!
+!Account class methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:22:19' prior: 50627990!
+named: aName
+	^self new name: aName.! !
+!Account methodsFor: 'reports' stamp: 'JV 5/31/2023 18:22:28'!
+name: aName
+	name := aName.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:22:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:22:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:22:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:22:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:22:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:22:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:22:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:22:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:22:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:22:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:22:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:22:31'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:22:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:22:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:22:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:22:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:22:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:22:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:22:32'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:25:42'!
+test20treeReportOfEmptyPortfolioOutputsNothing
+	| angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount |
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:26:05'!
+test21
+	| angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount |
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+! !
+
+!classDefinition: #PortfolioTreeReport category: 'Portfolio-Solucion' stamp: 'JV 5/31/2023 18:28:32'!
+Report subclass: #PortfolioTreeReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:28:22' prior: 50628339!
+test20treeReportOfEmptyPortfolioOutputsNothing
+	
+	| emptyPf portfolioTreeReport |
+	emptyPf := Portfolio named: 'Portfolio Vacio'.
+	
+	portfolioTreeReport := PortfolioTreeReport for: emptyPf.
+	
+	self assert: 'Portfolio Vacio' equals: portfolioTreeReport process 
+! !
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:28:36'!
+ERROR!
+!PortfolioTreeReport methodsFor: 'reports' stamp: 'JV 5/31/2023 18:28:43' overrides: 50627397!
+processPortfolio: aPortfolio 
+	self shouldBeImplemented.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:29:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:29:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:29:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:29:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:29:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:29:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:29:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:29:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:29:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:29:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:29:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:29:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:29:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:29:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:29:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:29:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:29:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:29:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:29:27'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:29:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test21 stamp: 'JV 5/31/2023 18:29:27'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:29:30'!
+ERROR!
+!PortfolioTreeReport methodsFor: 'reports' stamp: 'JV 5/31/2023 18:30:12' prior: 50628399 overrides: 50627397!
+processPortfolio: aPortfolio 
+	^'Portfolio Vacio'! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:30:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:30:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:30:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:30:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:30:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:30:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:30:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:30:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:30:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:30:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:30:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:30:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:30:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:30:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:30:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:30:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:30:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:30:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:30:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:30:16'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test21 stamp: 'JV 5/31/2023 18:30:16'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:31:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:31:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:31:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:31:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:31:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:31:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:31:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:31:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:31:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:31:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:31:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:31:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:31:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:31:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:31:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:31:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:31:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:31:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:31:35'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:31:35'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test21 stamp: 'JV 5/31/2023 18:31:35'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:31:37'!
+ERROR!
+!PortfolioTreeReport methodsFor: 'result' stamp: 'JV 5/31/2023 18:32:00' overrides: 50626853!
+result
+	self shouldBeImplemented.! !
+!PortfolioTreeReport methodsFor: 'result' stamp: 'JV 5/31/2023 18:32:12' prior: 50628662 overrides: 50626853!
+result
+	^'Portfolio Vacio'! !
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:32:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test21 stamp: 'JV 5/31/2023 18:32:14'!
+ERROR!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:32:30'!
+_test21
+	| angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount |
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+! !
+
+!methodRemoval: ReceptiveAccountTest #test21 stamp: 'JV 5/31/2023 18:32:30'!
+test21
+	| angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount |
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:32:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:32:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:32:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:32:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:32:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:32:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:32:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:32:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:32:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:32:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:32:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:32:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:32:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:32:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:32:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:32:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:32:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:32:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:32:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:32:34'!
+PASSED!
+!PortfolioTreeReport methodsFor: 'reports' stamp: 'JV 5/31/2023 18:32:41' prior: 50628490 overrides: 50627397!
+processPortfolio: aPortfolio 
+	! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:35:44'!
+test21portfolioWithOneAccountOutputsItsNameIndentedOnce
+	
+	| johnsAccount portfolio |
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	portfolio := Portfolio named: 'Portfolio' with: johnsAccount.
+	
+	! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:36:33' prior: 50628796!
+test21portfolioWithOneAccountOutputsItsNameIndentedOnce
+	
+	| johnsAccount portfolio portfolioTreeReport |
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	portfolio := Portfolio named: 'Portfolio' with: johnsAccount.
+	
+	portfolioTreeReport := PortfolioTreeReport for: portfolio.
+	
+	self assert: 
+	'Portfolio
+		Cuenta De Juan' 
+	
+	equals: portfolioTreeReport process ! !
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:36:39'!
+ERROR!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:38:42' prior: 50628806!
+test21portfolioWithOneAccountOutputsItsNameIndentedOnce
+	
+	| johnsAccount portfolio portfolioTreeReport |
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	portfolio := Portfolio named: 'Portfolio' with: johnsAccount.
+	
+	portfolioTreeReport := PortfolioTreeReport for: portfolio.
+	
+	self assert: 
+	'Portfolio', String newLineString, String tab, 'Cuenta de Juan', String newLineString
+	
+	equals: portfolioTreeReport process ! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:38:57' prior: 50628384!
+test20treeReportOfEmptyPortfolioOutputsNothing
+	
+	| emptyPf portfolioTreeReport |
+	emptyPf := Portfolio named: 'Portfolio Vacio'.
+	
+	portfolioTreeReport := PortfolioTreeReport for: emptyPf.
+	
+	self assert: 'Portfolio Vacio', String newLineString equals: portfolioTreeReport process 
+! !
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:38:59'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:39:00'!
+ERROR!
+!Portfolio class methodsFor: 'instance creation' stamp: 'JV 5/31/2023 18:39:24'!
+named: aString with: aReceptiveAccount 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeNamed: aString with: aReceptiveAccount ! !
+!Portfolio class methodsFor: 'instance creation' stamp: 'JV 5/31/2023 18:39:52' prior: 50628863!
+named: aName with: anAccount 
+	^self new initializeNamed: aName with: anAccount ! !
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:39:59'!
+ERROR!
+!Portfolio class methodsFor: 'instance creation' stamp: 'JV 5/31/2023 18:40:37' prior: 50628873!
+named: aName with: anAccount 
+	^(self named: aName) with: anAccount ! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:40:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:40:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:40:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:40:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:40:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:40:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:40:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:40:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:40:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:40:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:40:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:40:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:40:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:40:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:40:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:40:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:40:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:40:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:40:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:40:42'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:40:42'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:40:43'!
+FAILURE!
+!PortfolioTreeReport methodsFor: 'result' stamp: 'JV 5/31/2023 18:41:08' prior: 50628667 overrides: 50626853!
+result
+	^'Portfolio Vacio', String newLineString .! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:41:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:41:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:41:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:41:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:41:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:41:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:41:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:41:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:41:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:41:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:41:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:41:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:41:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:41:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:41:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:41:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:41:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:41:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:41:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:41:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:41:12'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:41:12'!
+ERROR!
+!Portfolio class methodsFor: 'instance creation' stamp: 'JV 5/31/2023 18:41:53' prior: 50628883!
+named: aName with: anAccount 
+	^(self named: aName) add: anAccount ! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:41:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:41:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:41:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:41:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:41:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:41:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:41:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:41:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:41:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:41:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:41:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:41:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:41:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:41:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:41:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:41:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:41:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:41:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:41:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:41:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:41:57'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:41:57'!
+ERROR!
+!PortfolioTreeReport methodsFor: 'processing' stamp: 'JV 5/31/2023 18:42:13' overrides: 50627387!
+processReceptiveAccount: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!PortfolioTreeReport methodsFor: 'processing' stamp: 'JV 5/31/2023 18:43:42' prior: 50629162 overrides: 50627387!
+processReceptiveAccount: aReceptiveAccount 
+	| line |
+	line := String tab, aReceptiveAccount name, String newLineString.
+	
+	! !
+
+!methodRemoval: PortfolioTreeReport #result stamp: 'JV 5/31/2023 18:44:21'!
+result
+	^'Portfolio Vacio', String newLineString .!
+
+!classDefinition: #PortfolioTreeReport category: 'Portfolio-Solucion' stamp: 'JV 5/31/2023 18:44:40'!
+Report subclass: #PortfolioTreeReport
+	instanceVariableNames: 'result'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!PortfolioTreeReport methodsFor: 'processing' stamp: 'JV 5/31/2023 18:44:36' prior: 50629168 overrides: 50627387!
+processReceptiveAccount: aReceptiveAccount 
+	| line |
+	line := String tab, aReceptiveAccount name, String newLineString.
+	result := result, line.
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:44:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:44:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:44:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:44:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:44:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:44:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:44:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:44:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:44:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:44:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:44:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:44:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:44:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:44:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:44:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:44:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:44:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:44:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:44:44'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:44:44'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:44:44'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:44:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:44:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:44:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:44:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:44:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:44:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:44:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:44:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:44:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:44:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:44:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:44:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:44:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:44:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:44:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:44:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:44:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:44:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:44:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:44:56'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:44:56'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:44:57'!
+ERROR!
+!PortfolioTreeReport methodsFor: 'result' stamp: 'JV 5/31/2023 18:45:02' overrides: 50626853!
+result
+	self shouldBeImplemented.
+	^result! !
+!PortfolioTreeReport methodsFor: 'result' stamp: 'JV 5/31/2023 18:45:06' prior: 50629367 overrides: 50626853!
+result
+	^result! !
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:45:15'!
+FAILURE!
+!PortfolioTreeReport methodsFor: 'reports' stamp: 'JV 5/31/2023 18:46:01' prior: 50628792 overrides: 50627397!
+processPortfolio: aPortfolio 
+	| line |
+	line := aPortfolio name, String newLineString.
+	result := result, line.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:46:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:46:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:46:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:46:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:46:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:46:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:46:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:46:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:46:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:46:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:46:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:46:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:46:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:46:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:46:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:46:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:46:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:46:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:46:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:46:04'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:46:04'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:46:06'!
+ERROR!
+!PortfolioTreeReport methodsFor: 'result' stamp: 'JV 5/31/2023 18:46:48' overrides: 16920235!
+initialize
+	result := ''.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:46:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:46:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:46:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:46:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:46:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:46:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:46:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:46:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:46:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:46:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:46:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:46:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:46:51'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:46:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:46:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:46:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:46:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:46:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:46:52'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:46:52'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:46:52'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:46:55'!
+FAILURE!
+!Account methodsFor: 'reports' stamp: 'JV 5/31/2023 18:47:59' overrides: 16903442!
+name
+	^name! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:48:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:48:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:48:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:48:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:48:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:48:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:48:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:48:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:48:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:48:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:48:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:48:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:48:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:48:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:48:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:48:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:48:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:48:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:48:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:48:05'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:48:05'!
+PASSED!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:48:45'!
+test22portfolioWithAccountsAndPortfoliosIndentsCorrectly
+	
+	| johnsAccount portfolio portfolioTreeReport |
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	portfolio := Portfolio named: 'Portfolio' with: johnsAccount.
+	
+	portfolioTreeReport := PortfolioTreeReport for: portfolio.
+	
+	self assert: 
+	'Portfolio', String newLineString, String tab, 'Cuenta de Juan', String newLineString
+	
+	equals: portfolioTreeReport process ! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 18:51:45' prior: 50629652!
+test22portfolioWithAccountsAndPortfoliosIndentsCorrectly
+	
+	| angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount portfolioTreeReport |
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+	
+	portfolioTreeReport := PortfolioTreeReport for: familyPortfolio.
+	
+	self assert: 
+	'Portfolio de la familia', String newLineString, 
+	String tab, 'Cuenta mia', String newLineString, 
+	String tab, 'Portfolio de hijos', String newLineString, 
+			String tab,  String tab, 'Cuenta de Juan', String newLineString, 
+			String tab,  String tab, 'Cuenta de Angeles', String newLineString
+	
+	equals: portfolioTreeReport process 
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 18:51:56'!
+ERROR!
+!Portfolio class methodsFor: 'instance creation' stamp: 'JV 5/31/2023 18:52:50'!
+named: aName with: anAccount with: anotherAccount
+	^((self named: aName) add: anAccount) add:anotherAccount.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:52:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:52:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:52:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:52:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:52:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:52:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:52:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:52:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:52:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:52:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:52:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:52:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:52:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:52:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:52:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:52:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:52:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:52:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:52:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:52:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:52:54'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 18:52:54'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 18:52:54'!
+FAILURE!
+
+!classDefinition: #PortfolioTreeReport category: 'Portfolio-Solucion' stamp: 'JV 5/31/2023 18:54:10'!
+Report subclass: #PortfolioTreeReport
+	instanceVariableNames: 'result depth'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!PortfolioTreeReport methodsFor: 'reports' stamp: 'JV 5/31/2023 18:54:09' prior: 50629380 overrides: 50627397!
+processPortfolio: aPortfolio 
+	| line |
+	line := aPortfolio name, String newLineString.
+	result := result, line.
+	depth := depth + 1.! !
+!PortfolioTreeReport methodsFor: 'result' stamp: 'JV 5/31/2023 18:54:56' prior: 50629474 overrides: 16920235!
+initialize
+	result := ''.
+	depth := 0.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 18:55:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:55:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 18:55:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 18:55:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 18:55:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 18:55:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 18:55:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:55:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 18:55:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 18:55:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 18:55:03'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 18:55:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:55:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 18:55:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:55:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 18:55:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 18:55:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 18:55:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 18:55:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 18:55:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 18:55:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 18:55:04'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 18:55:04'!
+FAILURE!
+!PortfolioTreeReport methodsFor: 'reports' stamp: 'JV 5/31/2023 18:59:46' prior: 50629813 overrides: 50627397!
+processPortfolio: aPortfolio 
+	| line tabs |
+	line := aPortfolio name, String newLineString.
+	tabs := ''.
+	depth times do: [tabs, String tab].
+	result := result, line.
+	depth := depth + 1.! !
+!PortfolioTreeReport methodsFor: 'reports' stamp: 'JV 5/31/2023 19:00:07' prior: 50629918 overrides: 50627397!
+processPortfolio: aPortfolio 
+	| line tabs |
+	line := aPortfolio name, String newLineString.
+	tabs := ''.
+	depth times do: [tabs, String tab].
+	result := result, tabs, line.
+	depth := depth + 1.! !
+!PortfolioTreeReport methodsFor: 'processing' stamp: 'JV 5/31/2023 19:00:45' prior: 50629188 overrides: 50627387!
+processReceptiveAccount: aReceptiveAccount 
+	| line tabs |
+	line := String tab, aReceptiveAccount name, String newLineString.
+	tabs := ''.
+	depth times do: [tabs, String tab].
+	result := result, tabs, line.
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 19:01:10'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 19:01:11'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 19:01:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 19:01:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 19:01:12'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 19:01:12'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 19:01:12'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 19:01:14'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 19:02:13'!
+ERROR!
+!PortfolioTreeReport methodsFor: 'reports' stamp: 'JV 5/31/2023 19:02:33' prior: 50629928 overrides: 50627397!
+processPortfolio: aPortfolio 
+	| line tabs |
+	line := aPortfolio name, String newLineString.
+	tabs := ''.
+	depth timesRepeat: [tabs, String tab].
+	result := result, tabs, line.
+	depth := depth + 1.! !
+!PortfolioTreeReport methodsFor: 'processing' stamp: 'JV 5/31/2023 19:02:44' prior: 50629938 overrides: 50627387!
+processReceptiveAccount: aReceptiveAccount 
+	| line tabs |
+	line := String tab, aReceptiveAccount name, String newLineString.
+	tabs := ''.
+	depth timesRepeat: [tabs, String tab].
+	result := result, tabs, line.
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 19:02:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 19:02:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 19:02:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 19:02:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 19:02:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 19:02:47'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 19:02:47'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 19:02:47'!
+FAILURE!
+!PortfolioTreeReport methodsFor: 'reports' stamp: 'JV 5/31/2023 19:03:21' prior: 50630044 overrides: 50627397!
+processPortfolio: aPortfolio 
+	| line tabs |
+	line := aPortfolio name, String newLineString.
+	tabs := ''.
+	depth timesRepeat: [tabs := tabs, String tab].
+	result := result, tabs, line.
+	depth := depth + 1.! !
+!PortfolioTreeReport methodsFor: 'processing' stamp: 'JV 5/31/2023 19:03:27' prior: 50630054 overrides: 50627387!
+processReceptiveAccount: aReceptiveAccount 
+	| line tabs |
+	line := String tab, aReceptiveAccount name, String newLineString.
+	tabs := ''.
+	depth timesRepeat: [tabs := tabs, String tab].
+	result := result, tabs, line.
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 19:03:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 19:03:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 19:03:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 19:03:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 19:03:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 19:03:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 19:03:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 19:03:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 19:03:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 19:03:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 19:03:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 19:03:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 19:03:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 19:03:29'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 19:03:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 19:03:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 19:03:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 19:03:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 19:03:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 19:03:30'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 19:03:30'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 19:03:30'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 19:03:31'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 19:04:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 19:04:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 19:04:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 19:04:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 19:04:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 19:04:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 19:04:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 19:04:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 19:04:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 19:04:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 19:04:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 19:04:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 19:04:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 19:04:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 19:04:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 19:04:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 19:04:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 19:04:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 19:04:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 19:04:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 19:04:57'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 19:04:57'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 19:05:23'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 19:07:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 19:07:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 19:07:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 19:07:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 19:07:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 19:07:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 19:07:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 19:07:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 19:07:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 19:07:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 19:07:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 19:07:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 19:07:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 19:07:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 19:07:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 19:07:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 19:07:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 19:07:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 19:07:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 19:07:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 19:07:40'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 19:07:40'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 19:07:42'!
+FAILURE!
+!PortfolioTreeReport methodsFor: 'processing' stamp: 'JV 5/31/2023 19:08:30' prior: 50630167 overrides: 50627387!
+processReceptiveAccount: aReceptiveAccount 
+	| line tabs |
+	line := aReceptiveAccount name, String newLineString.
+	tabs := ''.
+	depth timesRepeat: [tabs := tabs, String tab].
+	result := result, tabs, line.
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 19:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 19:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 19:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 19:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 19:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 19:08:41'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 19:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 19:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 19:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 19:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 19:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 19:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 19:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 19:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 19:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 19:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 19:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 19:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 19:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 19:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 19:08:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 19:08:43'!
+PASSED!
+
+!methodRemoval: ReceptiveAccountTest #_test21 stamp: 'JV 5/31/2023 19:08:52'!
+_test21
+	| angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount |
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with:
+	johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with:
+	myAccount with: childrenPortfolio.
+!
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'JV 5/31/2023 20:00:29'!
+test23portfolioWithPortfolioAndAccountIndentsCorrectly
+	
+	| angiesAccount childrenPortfolio familyPortfolio johnsAccount myAccount portfolioTreeReport |
+	johnsAccount := ReceptiveAccount named: 'Cuenta de Juan'.
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio named: 'Portfolio de hijos' with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio named: 'Portfolio de la familia' with: childrenPortfolio with: myAccount.
+	
+	portfolioTreeReport := PortfolioTreeReport for: familyPortfolio.
+	
+	self assert: 
+	'Portfolio de la familia', String newLineString, 
+	String tab, 'Portfolio de hijos', String newLineString, 
+	String tab,  String tab, 'Cuenta de Juan', String newLineString, 
+	String tab,  String tab, 'Cuenta de Angeles', String newLineString,
+	String tab, 'Cuenta mia', String newLineString
+	
+	equals: portfolioTreeReport process 
+	
+	! !
+
+!testRun: #ReceptiveAccountTest #test23portfolioWithPortfolioAndAccountIndentsCorrectly stamp: 'JV 5/31/2023 20:00:36'!
+FAILURE!
+!Portfolio methodsFor: 'reports' stamp: 'JV 5/31/2023 20:03:12' prior: 50627568 overrides: 50626383!
+processForReport: aReport 
+	aReport processPortfolio: self.
+	accounts do: [:account | account processForReport: aReport].
+	aReport portfolioProcessingDone.! !
+!PortfolioTreeReport methodsFor: 'reports' stamp: 'JV 5/31/2023 20:03:37'!
+portfolioProcessingDone
+	depth := depth - 1! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 20:03:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 20:03:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 20:03:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 20:03:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 20:03:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 20:03:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 20:03:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 20:03:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 20:03:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 20:03:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 20:03:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 20:03:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 20:03:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 20:03:40'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 20:03:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 20:03:40'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 20:03:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 20:03:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 20:03:40'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 20:03:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 20:03:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 20:03:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test23portfolioWithPortfolioAndAccountIndentsCorrectly stamp: 'JV 5/31/2023 20:03:40'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 20:03:43'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 20:04:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 20:04:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 20:04:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 20:04:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 20:04:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 20:04:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 20:04:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 20:04:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 20:04:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 20:04:22'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 20:04:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 20:04:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 20:04:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 20:04:23'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 20:04:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 20:04:23'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 20:04:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 20:04:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 20:04:23'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 20:04:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 20:04:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 20:04:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test23portfolioWithPortfolioAndAccountIndentsCorrectly stamp: 'JV 5/31/2023 20:04:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 20:04:25'!
+ERROR!
+!AccountSummaryReport methodsFor: 'reports' stamp: 'JV 5/31/2023 20:05:30'!
+portfolioProcessingDone
+	"No hace nada"! !
+!TransferNetReport methodsFor: 'reports' stamp: 'JV 5/31/2023 20:05:36'!
+portfolioProcessingDone
+	"No hace nada"! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 20:05:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 20:05:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 20:05:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 20:05:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 20:05:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 20:05:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 20:05:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 20:05:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 20:05:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 20:05:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 20:05:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 20:05:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 20:05:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 20:05:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 20:05:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 20:05:38'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 20:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 20:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 20:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 20:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 20:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 20:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test23portfolioWithPortfolioAndAccountIndentsCorrectly stamp: 'JV 5/31/2023 20:05:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'JV 5/31/2023 20:09:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 20:09:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'JV 5/31/2023 20:09:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'JV 5/31/2023 20:09:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'JV 5/31/2023 20:09:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'JV 5/31/2023 20:09:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'JV 5/31/2023 20:09:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test08transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 20:09:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test09transferring10FromOneAccountToAnotherModifiesBalanceBy10 stamp: 'JV 5/31/2023 20:09:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test10transferringANonPositiveAmountGivesError stamp: 'JV 5/31/2023 20:09:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test11transferring10FromOneAccountToAnotherRegistersTransactionsInBothAccounts stamp: 'JV 5/31/2023 20:09:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test12transferringToSameAccountGivesError stamp: 'JV 5/31/2023 20:09:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test13reportOfEmptyAccountOutputsOnlyBalance0 stamp: 'JV 5/31/2023 20:09:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test14reportOfEmptyPortfolioOutputsOnlyBalance0 stamp: 'JV 5/31/2023 20:09:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test15reportOfAccountOutputsItsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 20:09:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test16reportOfPortfolioOutputsAllAccountsTransactionsTransferencesAndBalance stamp: 'JV 5/31/2023 20:09:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test17transferNetReportOfEmptyAccountOutputs0 stamp: 'JV 5/31/2023 20:09:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test18transferNetReportOfAccountOutputsBalance stamp: 'JV 5/31/2023 20:09:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test19transferNetReportOfPortfolioWithInnerTransactionsOutputs0 stamp: 'JV 5/31/2023 20:09:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test20treeReportOfEmptyPortfolioOutputsNothing stamp: 'JV 5/31/2023 20:09:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test21portfolioWithOneAccountOutputsItsNameIndentedOnce stamp: 'JV 5/31/2023 20:09:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test22portfolioWithAccountsAndPortfoliosIndentsCorrectly stamp: 'JV 5/31/2023 20:09:37'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test23portfolioWithPortfolioAndAccountIndentsCorrectly stamp: 'JV 5/31/2023 20:09:37'!
+PASSED!
+
+----SNAPSHOT----(31 May 2023 20:09:43) CuisUniversity-5832.image priorSource: 9482621!
+
+----QUIT----(31 May 2023 21:06:51) CuisUniversity-5832.image priorSource: 9579148!
