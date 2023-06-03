@@ -1,3 +1,45 @@
+!classDefinition: #LogTest category: 'MarsRover-WithHeading'!
+TestCase subclass: #LogTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!LogTest methodsFor: 'as yet unclassified' stamp: 'JV 6/1/2023 21:45:20'!
+test01MarsRoverMovesForwardAndLogsPosition
+	| mr expectedLog log |
+	mr := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	log := Log for: mr.
+	
+	mr addChusma: log.
+	
+	mr moveForward.
+	
+	expectedLog := OrderedCollection with: 1@2.
+	
+	self assert: expectedLog equals: log show.
+	
+	! !
+
+!LogTest methodsFor: 'as yet unclassified' stamp: 'JV 6/1/2023 21:45:37'!
+test02MarsRoverMovesForwardForwardAndLogsPosition
+	| mr expectedLog log |
+	mr := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	log := Log for: mr.
+	
+	mr addChusma: log.
+	
+	mr moveForward moveForward.
+	
+	expectedLog := OrderedCollection with: 1@2 with: 1@3.
+	
+	self assert: expectedLog equals: log show.
+	
+	! !
+
+
 !classDefinition: #MarsRoverTest category: 'MarsRover-WithHeading'!
 TestCase subclass: #MarsRoverTest
 	instanceVariableNames: ''
@@ -203,9 +245,66 @@ assertIsAt: newPosition heading: newHeadingType afterProcessing: commands whenSt
 	self assert: (marsRover isAt: newPosition heading: newHeadingType)! !
 
 
+!classDefinition: #WindowTest category: 'MarsRover-WithHeading'!
+TestCase subclass: #WindowTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!WindowTest methodsFor: 'as yet unclassified' stamp: 'JV 6/1/2023 21:49:48'!
+test01MarsRoverMovesForwardThenWindowIsLastPosition
+	| mr window |
+	mr := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	window := Window for: mr.
+	
+	mr addChusma: window.
+	
+	mr moveForward.
+	
+	
+	
+	self assert: 1@2 equals: window show.
+	! !
+
+
+!classDefinition: #Log category: 'MarsRover-WithHeading'!
+Object subclass: #Log
+	instanceVariableNames: 'marsRover record'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!Log methodsFor: 'as yet unclassified' stamp: 'JV 6/1/2023 21:43:47'!
+initializeFor: aMarsRover
+	marsRover := aMarsRover.
+	aMarsRover addChusma: self.
+	record := OrderedCollection new.! !
+
+
+!Log methodsFor: 'show' stamp: 'JV 6/1/2023 21:42:16'!
+addPosition: aPosition
+	record add: aPosition.! !
+
+!Log methodsFor: 'show' stamp: 'JV 6/1/2023 21:19:43'!
+show
+	^record! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Log class' category: 'MarsRover-WithHeading'!
+Log class
+	instanceVariableNames: ''!
+
+!Log class methodsFor: 'as yet unclassified' stamp: 'JV 6/1/2023 21:17:00'!
+for: aMarsRover
+	^self new initializeFor: aMarsRover.! !
+
+
 !classDefinition: #MarsRover category: 'MarsRover-WithHeading'!
 Object subclass: #MarsRover
-	instanceVariableNames: 'position head'
+	instanceVariableNames: 'position head chusmeadores'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
@@ -221,11 +320,12 @@ signalInvalidCommand
 	self error: self invalidCommandErrorDescription ! !
 
 
-!MarsRover methodsFor: 'initialization' stamp: 'HAW 10/7/2021 20:10:49'!
+!MarsRover methodsFor: 'initialization' stamp: 'JV 6/1/2023 21:40:58'!
 initializeAt: aPosition heading: aHeadingType
 
 	position := aPosition.
-	head := aHeadingType for: self ! !
+	head := aHeadingType for: self.
+	chusmeadores := OrderedCollection new.! !
 
 
 !MarsRover methodsFor: 'heading' stamp: 'HAW 10/7/2021 20:17:02'!
@@ -258,6 +358,10 @@ rotateRight
 	
 	head rotateRight! !
 
+
+!MarsRover methodsFor: 'testing' stamp: 'JV 6/1/2023 21:40:17'!
+addChusma: aChusma
+	chusmeadores := aChusma.! !
 
 !MarsRover methodsFor: 'testing' stamp: 'HAW 10/7/2021 20:16:32'!
 isAt: aPosition heading: aHeadingType
@@ -300,10 +404,11 @@ moveForward
 	
 	head moveForward! !
 
-!MarsRover methodsFor: 'moving' stamp: 'HAW 8/22/2019 12:13:12'!
+!MarsRover methodsFor: 'moving' stamp: 'JV 6/1/2023 21:41:54'!
 moveNorth
 	
-	position := position + (0@1)! !
+	position := position + (0@1).
+	chusmeadores do: [ :chusma | chusma addPosition: position].! !
 
 !MarsRover methodsFor: 'moving' stamp: 'HAW 8/22/2019 12:13:34'!
 moveSouth
@@ -331,6 +436,13 @@ processCommand: aCommand
 	(self isRotateLeftCommand: aCommand) ifTrue: [ ^ self rotateLeft ].
 
 	self signalInvalidCommand.! !
+
+
+
+
+!MarsRover methodsFor: 'log' stamp: 'JV 6/1/2023 21:26:52'!
+log
+	^log! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -510,3 +622,35 @@ rotateLeft
 rotateRight
 	
 	^marsRover headNorth! !
+
+
+!classDefinition: #Window category: 'MarsRover-WithHeading'!
+Object subclass: #Window
+	instanceVariableNames: 'marsRover currentPosition'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!Window methodsFor: 'initialization' stamp: 'JV 6/1/2023 21:43:16'!
+addPosition: aPosition
+	currentPosition := aPosition.! !
+
+!Window methodsFor: 'initialization' stamp: 'JV 6/1/2023 21:43:35'!
+initializeFor: aMarsRover 
+	marsRover := aMarsRover.
+	aMarsRover addChusma: self.! !
+
+
+!Window methodsFor: 'show' stamp: 'JV 6/1/2023 21:47:50'!
+show
+	^currentPosition.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Window class' category: 'MarsRover-WithHeading'!
+Window class
+	instanceVariableNames: ''!
+
+!Window class methodsFor: 'instance creation' stamp: 'JV 6/1/2023 21:29:06'!
+for: aMarsRover 
+	^self new initializeFor: aMarsRover ! !
