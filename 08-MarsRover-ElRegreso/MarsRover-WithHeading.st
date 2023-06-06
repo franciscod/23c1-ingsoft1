@@ -5,37 +5,115 @@ TestCase subclass: #LogTest
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
 
-!LogTest methodsFor: 'as yet unclassified' stamp: 'JV 6/1/2023 21:45:20'!
+!LogTest methodsFor: 'as yet unclassified' stamp: 'JC 6/3/2023 22:47:23'!
 test01MarsRoverMovesForwardAndLogsPosition
 	| mr expectedLog log |
 	mr := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	
-	log := Log for: mr.
+	log := Log new.
+	log remember: #Position.
 	
 	mr addChusma: log.
 	
-	mr moveForward.
+	mr process: 'f'.
 	
 	expectedLog := OrderedCollection with: 1@2.
 	
-	self assert: expectedLog equals: log show.
-	
-	! !
+	self assert: expectedLog equals: log show.! !
 
-!LogTest methodsFor: 'as yet unclassified' stamp: 'JV 6/1/2023 21:45:37'!
+!LogTest methodsFor: 'as yet unclassified' stamp: 'JC 6/3/2023 22:47:48'!
 test02MarsRoverMovesForwardForwardAndLogsPosition
 	| mr expectedLog log |
 	mr := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	
-	log := Log for: mr.
+	log := Log new.
+	log remember: #Position.
 	
 	mr addChusma: log.
 	
-	mr moveForward moveForward.
+	mr process: 'ff'.
 	
 	expectedLog := OrderedCollection with: 1@2 with: 1@3.
 	
-	self assert: expectedLog equals: log show.
+	self assert: expectedLog equals: log show.! !
+
+!LogTest methodsFor: 'as yet unclassified' stamp: 'JC 6/3/2023 22:48:03'!
+test03MarsRoverHeadsNorthAndLogRecordsChangeOfDirection
+
+	| expectedLog log mr |
+	mr := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	log := Log new.
+	log remember: #Direction.
+	
+	mr addChusma: log.
+	
+	mr process: 'r'.
+	
+	expectedLog := OrderedCollection with: #East.
+	
+	self assert: expectedLog equals: log show.! !
+
+!LogTest methodsFor: 'as yet unclassified' stamp: 'JC 6/3/2023 22:48:13'!
+test04MarsRoverHeadsEastThenNorthAndLogRecords2ChangesOfDirection
+
+	| expectedLog log mr |
+	mr := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	log := Log new.
+	log remember: #Direction.
+	
+	mr addChusma: log.
+	
+	mr process: 'rl'.
+	
+	expectedLog := OrderedCollection with: #East with: #North. 
+	
+	self assert: expectedLog equals: log show.! !
+
+!LogTest methodsFor: 'as yet unclassified' stamp: 'JC 6/3/2023 22:48:26'!
+test05MarsRoverProcessesFRAndLogRecordsPositionAndDirection
+
+	| expectedLog log mr |
+	mr := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	log := Log new.
+	log remember: #Position.
+	log remember: #Direction.
+	
+	mr addChusma: log.
+	
+	mr process: 'fr'.
+	
+	expectedLog := OrderedCollection with: 1@2 with: #East. 
+	
+	self assert: expectedLog equals: log show.! !
+
+!LogTest methodsFor: 'as yet unclassified' stamp: 'JC 6/3/2023 22:41:30'!
+test06MarsRoverProcessesFRFThenLoggerLogsPositionAndDirectionLogs3Changes
+	| mr log expectedLog |
+	mr := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	log := Log new.
+	log remember: #Position.
+	log remember: #Direction.
+	
+	mr addChusma: log.
+	
+	expectedLog := OrderedCollection new.
+	
+	mr process: 'f'.
+	expectedLog add: 1@2.
+	self assert: expectedLog equals: (log show).
+	
+	
+	mr process: 'r'.
+	expectedLog add: #East.
+	self assert: expectedLog equals: (log show).
+	
+	mr process: 'f'.
+	expectedLog add: 2@2.
+	self assert: expectedLog equals: (log show).
 	
 	! !
 
@@ -252,44 +330,87 @@ TestCase subclass: #WindowTest
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
 
-!WindowTest methodsFor: 'as yet unclassified' stamp: 'JV 6/1/2023 21:49:48'!
-test01MarsRoverMovesForwardThenWindowIsLastPosition
+!WindowTest methodsFor: 'tests' stamp: 'JV 6/3/2023 21:42:03'!
+test01MarsRoverMovesForwardThenWindowLoggingPositionShowsLastPosition
 	| mr window |
 	mr := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	
-	window := Window for: mr.
+	window := Window new.
+	window remember: #Position.
 	
 	mr addChusma: window.
 	
-	mr moveForward.
+	mr moveForward.	
 	
+	self assert: 1@2 equals: (window show: #Position).! !
+
+!WindowTest methodsFor: 'tests' stamp: 'JV 6/3/2023 21:52:46'!
+test02MarsRoverProcessesFRFThenWindowLoggingPositionAndDirectionShowsLastPositionAndDirection
+	| mr window |
+	mr := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	
+	window := Window new.
+	window remember: #Position.
+	window remember: #Direction.
 	
-	self assert: 1@2 equals: window show.
+	mr addChusma: window.
+	
+	mr process: 'f'.
+	self assert: 1@2 equals: (window show: #Position).
+	self assert: nil equals: (window show: #Direction).
+	
+	mr process: 'r'.
+	self assert: 1@2 equals: (window show: #Position).
+	self assert: #East equals: (window show: #Direction).
+	
+	mr process: 'f'.
+	self assert: 2@2 equals: (window show: #Position).
+	self assert: #East equals: (window show: #Direction).
 	! !
 
 
-!classDefinition: #Log category: 'MarsRover-WithHeading'!
-Object subclass: #Log
-	instanceVariableNames: 'marsRover record'
+!classDefinition: #Chusma category: 'MarsRover-WithHeading'!
+Object subclass: #Chusma
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
 
-!Log methodsFor: 'as yet unclassified' stamp: 'JV 6/1/2023 21:43:47'!
-initializeFor: aMarsRover
-	marsRover := aMarsRover.
-	aMarsRover addChusma: self.
-	record := OrderedCollection new.! !
+!Chusma methodsFor: 'remembering' stamp: 'JC 6/3/2023 23:07:01'!
+remember: aProperty 
+	self subclassResponsibility ! !
 
 
-!Log methodsFor: 'show' stamp: 'JV 6/1/2023 21:42:16'!
-addPosition: aPosition
-	record add: aPosition.! !
+!Chusma methodsFor: 'adding' stamp: 'JC 6/3/2023 23:06:46'!
+addValue: aValue forProperty: aProperty 
+	self subclassResponsibility ! !
 
-!Log methodsFor: 'show' stamp: 'JV 6/1/2023 21:19:43'!
+
+!classDefinition: #Log category: 'MarsRover-WithHeading'!
+Chusma subclass: #Log
+	instanceVariableNames: 'events properties'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!Log methodsFor: 'showing' stamp: 'JC 6/3/2023 22:43:06'!
+initialize
+	events := OrderedCollection new.
+	properties := Set new.! !
+
+!Log methodsFor: 'showing' stamp: 'JV 6/3/2023 20:47:49'!
 show
-	^record! !
+	^events copy.! !
+
+
+!Log methodsFor: 'adding' stamp: 'JC 6/3/2023 22:45:53'!
+addValue: aValue forProperty: aProperty 
+	(properties includes: aProperty) ifTrue: [events add: aValue].! !
+
+
+!Log methodsFor: 'remembering' stamp: 'JC 6/3/2023 22:42:21'!
+remember: aProperty 
+	properties add: aProperty! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -297,14 +418,90 @@ show
 Log class
 	instanceVariableNames: ''!
 
-!Log class methodsFor: 'as yet unclassified' stamp: 'JV 6/1/2023 21:17:00'!
-for: aMarsRover
-	^self new initializeFor: aMarsRover.! !
+!Log class methodsFor: 'class initialization' stamp: 'JV 6/3/2023 20:44:08'!
+for: mr 
+	self shouldBeImplemented.! !
+
+
+!classDefinition: #Window category: 'MarsRover-WithHeading'!
+Chusma subclass: #Window
+	instanceVariableNames: 'properties'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!Window methodsFor: 'adding' stamp: 'JV 6/3/2023 21:44:32'!
+addValue: aValue forProperty: aProperty
+	properties at: aProperty put: aValue.! !
+
+
+!Window methodsFor: 'showing' stamp: 'JV 6/3/2023 21:52:28'!
+show: aProperty 
+	^properties at: aProperty ifAbsent: [self error: 'No estaba recordando esa propiedad'].! !
+
+
+!Window methodsFor: 'remember' stamp: 'JV 6/3/2023 21:41:01'!
+initialize
+	properties := Dictionary new.! !
+
+!Window methodsFor: 'remember' stamp: 'JV 6/3/2023 21:40:30'!
+remember: aProperty
+	properties at: aProperty ifAbsentPut: nil.! !
+
+
+!classDefinition: #ChusmaBox category: 'MarsRover-WithHeading'!
+Object subclass: #ChusmaBox
+	instanceVariableNames: 'chusmas content property'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!ChusmaBox methodsFor: 'initialization' stamp: 'JC 6/3/2023 22:30:51'!
+initializeFor: aChusmas withContent: anInitialContent forProperty: aProperty
+	chusmas := aChusmas.
+	content := anInitialContent.
+	property := aProperty.! !
+
+
+!ChusmaBox methodsFor: 'updates' stamp: 'JV 6/3/2023 22:07:21'!
+lastUpdate
+	^content.! !
+
+!ChusmaBox methodsFor: 'updates' stamp: 'JC 6/3/2023 22:55:23'!
+updateContent: aContent 
+	content := aContent.
+	chusmas do: [ :chusma | chusma addValue: (self valueForChusma: content) forProperty: property ].! !
+
+!ChusmaBox methodsFor: 'updates' stamp: 'JC 6/3/2023 22:55:51'!
+valueForChusma: aContent 
+	^aContent! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'ChusmaBox class' category: 'MarsRover-WithHeading'!
+ChusmaBox class
+	instanceVariableNames: ''!
+
+!ChusmaBox class methodsFor: 'as yet unclassified' stamp: 'JC 6/3/2023 22:30:17'!
+for: aChusmas withInitialContent: anInitialContent forProperty: aProperty
+	^self new initializeFor: aChusmas withContent: anInitialContent forProperty: aProperty. ! !
+
+
+!classDefinition: #ChusmaBoxSymbol category: 'MarsRover-WithHeading'!
+ChusmaBox subclass: #ChusmaBoxSymbol
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!ChusmaBoxSymbol methodsFor: 'updates' stamp: 'JC 6/3/2023 23:02:07'!
+valueForChusma: aContent 
+	^aContent asSymbol! !
 
 
 !classDefinition: #MarsRover category: 'MarsRover-WithHeading'!
 Object subclass: #MarsRover
-	instanceVariableNames: 'position head chusmeadores'
+	instanceVariableNames: 'head chusmas position'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
@@ -320,53 +517,55 @@ signalInvalidCommand
 	self error: self invalidCommandErrorDescription ! !
 
 
-!MarsRover methodsFor: 'initialization' stamp: 'JV 6/1/2023 21:40:58'!
+!MarsRover methodsFor: 'initialization' stamp: 'JC 6/3/2023 23:02:18'!
 initializeAt: aPosition heading: aHeadingType
+	
+	chusmas := OrderedCollection new.
+	
+	head := ChusmaBoxSymbol for: chusmas withInitialContent: (aHeadingType for: self) forProperty: #Direction.
+	
+	position := ChusmaBox for: chusmas withInitialContent: aPosition forProperty: #Position.! !
 
-	position := aPosition.
-	head := aHeadingType for: self.
-	chusmeadores := OrderedCollection new.! !
 
-
-!MarsRover methodsFor: 'heading' stamp: 'HAW 10/7/2021 20:17:02'!
+!MarsRover methodsFor: 'heading' stamp: 'JC 6/3/2023 22:58:10'!
 headEast
 	
-	head := MarsRoverHeadingEast for: self! !
+	head updateContent: (MarsRoverHeadingEast for: self).! !
 
-!MarsRover methodsFor: 'heading' stamp: 'HAW 10/7/2021 20:17:12'!
+!MarsRover methodsFor: 'heading' stamp: 'JC 6/3/2023 22:58:23'!
 headNorth
 	
-	head := MarsRoverHeadingNorth for: self ! !
+	head updateContent: (MarsRoverHeadingNorth for: self).! !
 
-!MarsRover methodsFor: 'heading' stamp: 'HAW 10/7/2021 20:17:17'!
+!MarsRover methodsFor: 'heading' stamp: 'JC 6/3/2023 22:58:31'!
 headSouth
 	
-	head := MarsRoverHeadingSouth for: self! !
+	head updateContent: (MarsRoverHeadingSouth for: self).! !
 
-!MarsRover methodsFor: 'heading' stamp: 'HAW 10/7/2021 20:17:24'!
+!MarsRover methodsFor: 'heading' stamp: 'JC 6/3/2023 22:58:39'!
 headWest
 	
-	head := MarsRoverHeadingWest for: self ! !
+	head updateContent: (MarsRoverHeadingWest for: self). ! !
 
-!MarsRover methodsFor: 'heading' stamp: 'HAW 10/7/2021 20:14:20'!
+!MarsRover methodsFor: 'heading' stamp: 'JC 6/3/2023 22:58:56'!
 rotateLeft
 	
-	head rotateLeft! !
+	head lastUpdate rotateLeft.
+	
+! !
 
-!MarsRover methodsFor: 'heading' stamp: 'HAW 10/7/2021 20:14:44'!
+!MarsRover methodsFor: 'heading' stamp: 'JC 6/3/2023 22:59:07'!
 rotateRight
 	
-	head rotateRight! !
+	head lastUpdate rotateRight.
+	
+! !
 
 
-!MarsRover methodsFor: 'testing' stamp: 'JV 6/1/2023 21:40:17'!
-addChusma: aChusma
-	chusmeadores := aChusma.! !
-
-!MarsRover methodsFor: 'testing' stamp: 'HAW 10/7/2021 20:16:32'!
+!MarsRover methodsFor: 'testing' stamp: 'JC 6/3/2023 22:59:36'!
 isAt: aPosition heading: aHeadingType
 
-	^position = aPosition and: [ head isHeading: aHeadingType ]! !
+	^position lastUpdate = aPosition and: [ head lastUpdate isHeading: aHeadingType ]! !
 
 !MarsRover methodsFor: 'testing' stamp: 'HAW 7/6/2018 18:16:51'!
 isBackwardCommand: aCommand
@@ -389,36 +588,38 @@ isRotateRightCommand: aCommand
 	^aCommand = $r! !
 
 
-!MarsRover methodsFor: 'moving' stamp: 'HAW 10/7/2021 20:13:24'!
+!MarsRover methodsFor: 'moving' stamp: 'JC 6/3/2023 22:59:48'!
 moveBackward
 	
-	head moveBackward! !
+	head lastUpdate moveBackward! !
 
-!MarsRover methodsFor: 'moving' stamp: 'HAW 8/22/2019 12:15:01'!
+!MarsRover methodsFor: 'moving' stamp: 'JC 6/3/2023 22:26:44'!
 moveEast
 	
-	position := position + (1@0)! !
+	position updateContent: position lastUpdate + (1@0).
+	! !
 
-!MarsRover methodsFor: 'moving' stamp: 'HAW 10/7/2021 20:13:53'!
+!MarsRover methodsFor: 'moving' stamp: 'JC 6/3/2023 23:00:02'!
 moveForward
 	
-	head moveForward! !
+	head lastUpdate moveForward! !
 
-!MarsRover methodsFor: 'moving' stamp: 'JV 6/1/2023 21:41:54'!
+!MarsRover methodsFor: 'moving' stamp: 'JC 6/3/2023 22:25:59'!
 moveNorth
 	
-	position := position + (0@1).
-	chusmeadores do: [ :chusma | chusma addPosition: position].! !
+	position updateContent: position lastUpdate + (0@1).
+	
+	! !
 
-!MarsRover methodsFor: 'moving' stamp: 'HAW 8/22/2019 12:13:34'!
+!MarsRover methodsFor: 'moving' stamp: 'JC 6/3/2023 22:26:34'!
 moveSouth
 	
-	position := position + (0@-1)! !
+	position updateContent: position lastUpdate + (0@-1)! !
 
-!MarsRover methodsFor: 'moving' stamp: 'HAW 8/22/2019 12:15:32'!
+!MarsRover methodsFor: 'moving' stamp: 'JC 6/3/2023 22:26:38'!
 moveWest
 	
-	position := position + (-1@0)! !
+	position updateContent: position lastUpdate + (-1@0)! !
 
 
 !MarsRover methodsFor: 'command processing' stamp: 'HAW 6/30/2018 19:48:26'!
@@ -438,11 +639,9 @@ processCommand: aCommand
 	self signalInvalidCommand.! !
 
 
-
-
-!MarsRover methodsFor: 'log' stamp: 'JV 6/1/2023 21:26:52'!
-log
-	^log! !
+!MarsRover methodsFor: 'addingChusmas' stamp: 'JV 6/3/2023 20:45:36'!
+addChusma: unChusma 
+	chusmas add: unChusma.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -536,6 +735,11 @@ rotateRight
 	
 	^marsRover headSouth! !
 
+
+!MarsRoverHeadingEast methodsFor: 'symbols' stamp: 'JV 6/3/2023 21:05:28'!
+asSymbol
+	^#East! !
+
 
 !classDefinition: #MarsRoverHeadingNorth category: 'MarsRover-WithHeading'!
 MarsRoverHeading subclass: #MarsRoverHeadingNorth
@@ -564,6 +768,11 @@ rotateLeft
 rotateRight
 	
 	^marsRover headEast! !
+
+
+!MarsRoverHeadingNorth methodsFor: 'symbols' stamp: 'JV 6/3/2023 21:09:25'!
+asSymbol
+	^#North! !
 
 
 !classDefinition: #MarsRoverHeadingSouth category: 'MarsRover-WithHeading'!
@@ -622,35 +831,3 @@ rotateLeft
 rotateRight
 	
 	^marsRover headNorth! !
-
-
-!classDefinition: #Window category: 'MarsRover-WithHeading'!
-Object subclass: #Window
-	instanceVariableNames: 'marsRover currentPosition'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'MarsRover-WithHeading'!
-
-!Window methodsFor: 'initialization' stamp: 'JV 6/1/2023 21:43:16'!
-addPosition: aPosition
-	currentPosition := aPosition.! !
-
-!Window methodsFor: 'initialization' stamp: 'JV 6/1/2023 21:43:35'!
-initializeFor: aMarsRover 
-	marsRover := aMarsRover.
-	aMarsRover addChusma: self.! !
-
-
-!Window methodsFor: 'show' stamp: 'JV 6/1/2023 21:47:50'!
-show
-	^currentPosition.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'Window class' category: 'MarsRover-WithHeading'!
-Window class
-	instanceVariableNames: ''!
-
-!Window class methodsFor: 'instance creation' stamp: 'JV 6/1/2023 21:29:06'!
-for: aMarsRover 
-	^self new initializeFor: aMarsRover ! !
