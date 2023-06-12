@@ -120,7 +120,7 @@ TestCase subclass: #CashierTest
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/8/2023 20:15:04'!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:19:08'!
 test01CantCheckoutEmptyCart
 	| card cart cashier |
 	cart := CartTest new createCart.
@@ -128,14 +128,14 @@ test01CantCheckoutEmptyCart
 	cashier := Cashier new. 
 	
 	self 
-		should: [cashier checkout: cart withCard: card]
+		should: [cashier checkout: cart usingCatalog: StoreCatalog new withCard: card]
 		raise: Error - MessageNotUnderstood 
 		withExceptionDo: [ :anError | 
 			self assert: anError messageText = 'Cant checkout empty cart'.
 			].
 		! !
 
-!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/8/2023 20:18:14'!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:19:27'!
 test02CantCheckoutWithExpiredCard
 	| cart cashier expiredCard |
 	cart := CartTest new createCart.
@@ -144,7 +144,7 @@ test02CantCheckoutWithExpiredCard
 	cashier := Cashier new. 
 	
 	self 
-		should: [cashier checkout: cart withCard: expiredCard]
+		should: [cashier checkout: cart usingCatalog: StoreCatalog new withCard: expiredCard]
 		raise: Error
 		withExceptionDo: [ :anError | 
 			self assert: anError messageText = 'Cant checkout with expired card'.
@@ -152,7 +152,7 @@ test02CantCheckoutWithExpiredCard
 			].
 		! !
 
-!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/8/2023 20:21:23'!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:21:22'!
 test03CheckingOutCartWithOneItemEmptiesCart
 	| cart cashier card |
 	cart := CartTest new createCart.
@@ -160,26 +160,46 @@ test03CheckingOutCartWithOneItemEmptiesCart
 	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
 	cashier := Cashier new. 
 	
-	cashier checkout: cart withCard: card.
+	cashier checkout: cart usingCatalog: (StoreCatalog defaultCatalog) withCard: card.
 	
 	self assert: cart isEmpty.
 		! !
 
-!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/8/2023 20:35:52'!
-test04CheckingOutCartIncrementsFunds
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:47:27'!
+test04CheckingOutCartWithOneItemIncrementsFunds
 	| cart cashier card book previousFunds catalog |
 	cart := CartTest new createCart.
 	book := CartTest new itemSellByTheStore.
-	catalog := CartTest new defaultCatalog.
+	catalog := StoreCatalog defaultCatalog.
 	cart add: book.
 	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
 	cashier := Cashier new. 
 	
 	previousFunds := cashier funds.
 	
-	cashier checkout: cart withCard: card.
+	cashier checkout: cart usingCatalog: catalog withCard: card.
 	
-	self assert: cashier funds = previousFunds + (catalog priceFor: book).
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		! !
+
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:43:47'!
+test05CheckingOutCartWithMultipleItemsIncrementsFunds
+	| cart cashier card book previousFunds catalog book2 |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	book2 := 'validBook2'.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book.
+	cart add: book2.
+	
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
 		! !
 
 
@@ -218,6 +238,10 @@ initializeAcceptingItemsOf: aCatalog
 	catalog := aCatalog.
 	items := OrderedCollection new.! !
 
+
+!Cart methodsFor: 'queries' stamp: 'JV 6/12/2023 16:17:52'!
+items
+	^items copy.! !
 
 !Cart methodsFor: 'queries' stamp: 'HernanWilkinson 6/17/2013 17:45'!
 occurrencesOf: anItem
@@ -268,15 +292,55 @@ acceptingItemsOf: aCatalog
 
 !classDefinition: #Cashier category: 'TusLibros'!
 Object subclass: #Cashier
-	instanceVariableNames: ''
+	instanceVariableNames: 'funds'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!Cashier methodsFor: 'checkout' stamp: 'JV 6/8/2023 20:22:23'!
-checkout: aCart withCard: aCard 
-	 aCart isEmpty ifTrue: [self error: 'Cant checkout empty cart'].
+!Cashier methodsFor: 'checkout' stamp: 'JV 6/12/2023 16:42:34'!
+checkout: aCart usingCatalog: aCatalog withCard: aCard 
+	aCart isEmpty ifTrue: [self error: 'Cant checkout empty cart'].
 	
 	aCard < GregorianMonthOfYear current ifTrue: [self error: 'Cant checkout with expired card'.].
+	""
+	funds := (aCart items) inject: funds into: [ :accumulatedFunds :item | accumulatedFunds + (aCatalog priceFor: item)].
 	
 	aCart empty.! !
+
+
+!Cashier methodsFor: 'funds' stamp: 'JV 6/12/2023 15:54:47'!
+funds
+	^funds.! !
+
+!Cashier methodsFor: 'funds' stamp: 'JV 6/12/2023 15:56:41'!
+initialize
+	funds := 0. ! !
+
+
+!classDefinition: #StoreCatalog category: 'TusLibros'!
+Object subclass: #StoreCatalog
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!StoreCatalog methodsFor: 'initialization' stamp: 'JV 6/12/2023 16:44:25'!
+initializeDefaultCatalog
+	items := Dictionary new. 
+	items at: 'validBook' put: 50.
+	items at: 'validBook2' put: 20.! !
+
+
+!StoreCatalog methodsFor: 'pricing' stamp: 'JV 6/12/2023 16:39:55'!
+priceFor: aBook 
+	^items at: aBook asSymbol ifAbsent: [ self error: 'El libro no esta en el catalogo'].! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'StoreCatalog class' category: 'TusLibros'!
+StoreCatalog class
+	instanceVariableNames: ''!
+
+!StoreCatalog class methodsFor: 'class initialization' stamp: 'JV 6/12/2023 16:00:27'!
+defaultCatalog
+	^self new initializeDefaultCatalog! !

@@ -2165,3 +2165,951 @@ test04CheckingOutCartIncrementsFunds
 		! !
 
 ----SNAPSHOT----(8 June 2023 21:17:10) CuisUniversity-5706.image priorSource: 8770380!
+
+----STARTUP---- (12 June 2023 15:53:23) as /home/julia/Documents/Inge1/SmallTalk/TusLibros/CuisUniversity-5706.image!
+
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 15:54:16'!
+ERROR!
+!Cashier methodsFor: 'funds' stamp: 'JV 6/12/2023 15:54:41'!
+funds
+	self shouldBeImplemented.! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'JV 6/12/2023 15:54:49'!
+Object subclass: #Cashier
+	instanceVariableNames: 'funds'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'funds' stamp: 'JV 6/12/2023 15:54:47' prior: 50606410!
+funds
+	^funds.! !
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 15:54:51'!
+ERROR!
+!Cashier methodsFor: 'funds' stamp: 'JV 6/12/2023 15:56:41' overrides: 16920235!
+initialize
+	funds := 0. ! !
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 15:56:48'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 15:56:48'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 15:57:35' prior: 50606383!
+test04CheckingOutCartIncrementsFunds
+	| cart cashier card book previousFunds catalog |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	catalog := Catalog defaultCatalog.
+	cart add: book.
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart withCard: card.
+	
+	self assert: cashier funds = previousFunds + (catalog priceFor: book).
+		! !
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 15:57:37'!
+ERROR!
+!Catalog class methodsFor: 'class initialization' stamp: 'JV 6/12/2023 15:57:46'!
+defaultCatalog
+	self shouldBeImplemented.! !
+!Catalog class methodsFor: 'class initialization' stamp: 'JV 6/12/2023 15:58:00' prior: 50606460!
+defaultCatalog
+	^self new initializeDefaultCatalog.! !
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 15:58:03'!
+ERROR!
+!Catalog methodsFor: 'initialization' stamp: 'JV 6/12/2023 15:58:12'!
+initializeDefaultCatalog
+	self shouldBeImplemented.! !
+
+!classDefinition: #Catalog category: 'Tools-Finder-Model' stamp: 'JV 6/12/2023 15:58:33'!
+Object subclass: #Catalog
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tools-Finder-Model'!
+!Catalog methodsFor: 'initialization' stamp: 'JV 6/12/2023 15:58:30' prior: 50606473!
+initializeDefaultCatalog
+	items := OrderedCollection new.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 15:59:42' prior: 50606439!
+test04CheckingOutCartIncrementsFunds
+	| cart cashier card book previousFunds catalog |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	catalog := Catalog new.
+	cart add: book.
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart withCard: card.
+	
+	self assert: cashier funds = previousFunds + (catalog priceFor: book).
+		! !
+
+!classDefinition: #StoreCatalog category: 'TusLibros' stamp: 'JV 6/12/2023 16:00:04'!
+Object subclass: #StoreCatalog
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 15:59:57' prior: 50606490!
+test04CheckingOutCartIncrementsFunds
+	| cart cashier card book previousFunds catalog |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book.
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart withCard: card.
+	
+	self assert: cashier funds = previousFunds + (catalog priceFor: book).
+		! !
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:00:10'!
+ERROR!
+!StoreCatalog class methodsFor: 'class initialization' stamp: 'JV 6/12/2023 16:00:16'!
+defaultCatalog
+	self shouldBeImplemented.! !
+!StoreCatalog class methodsFor: 'class initialization' stamp: 'JV 6/12/2023 16:00:27' prior: 50606536!
+defaultCatalog
+	^self new initializeDefaultCatalog! !
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:00:28'!
+ERROR!
+!StoreCatalog methodsFor: 'initialization' stamp: 'JV 6/12/2023 16:00:37'!
+initializeDefaultCatalog
+	self shouldBeImplemented.! !
+!StoreCatalog methodsFor: 'initialization' stamp: 'JV 6/12/2023 16:00:46' prior: 50606549!
+initializeDefaultCatalog
+	items := Array with: ''.! !
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:00:47'!
+ERROR!
+!StoreCatalog methodsFor: 'initialization' stamp: 'JV 6/12/2023 16:01:07' prior: 50606554!
+initializeDefaultCatalog
+	items := Array with: 'validBook'.! !
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:01:11'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:01:12'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:01:12'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:01:12'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:01:12'!
+ERROR!
+!StoreCatalog methodsFor: 'pricing' stamp: 'JV 6/12/2023 16:01:22'!
+priceFor: book 
+	self shouldBeImplemented.! !
+!StoreCatalog methodsFor: 'pricing' stamp: 'JV 6/12/2023 16:02:58' prior: 50606582!
+priceFor: aBook 
+	items at: aBook ifAbsent: [self error: 'El libro no esta en el catalogo']! !
+!StoreCatalog methodsFor: 'initialization' stamp: 'JV 6/12/2023 16:04:25' prior: 50606562!
+initializeDefaultCatalog
+	items := Dictionary new. 
+	items at: 'validBook' put: 50.! !
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:04:29'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:04:29'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:05:04'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 'JV 6/12/2023 16:08:44' prior: 50606278!
+checkout: aCart withCard: aCard 
+	 aCart isEmpty ifTrue: [self error: 'Cant checkout empty cart'].
+	
+	aCard < GregorianMonthOfYear current ifTrue: [self error: 'Cant checkout with expired card'.].
+	
+	aCart items collect: [ :item | | catalog | catalog ]
+	
+	aCart empty.! !
+!Cashier methodsFor: 'checkout' stamp: 'JV 6/12/2023 16:10:21' prior: 50606608!
+checkout: aCart withCard: aCard 
+	 aCart isEmpty ifTrue: [self error: 'Cant checkout empty cart'].
+	
+	aCard < GregorianMonthOfYear current ifTrue: [self error: 'Cant checkout with expired card'.].
+	
+	aCart items collect: [ :item |  ]
+	
+	aCart empty.! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:11:00' prior: 50606515!
+test04CheckingOutCartIncrementsFunds
+	| cart cashier card book previousFunds catalog |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	catalog := StoreCatalog defaultCatalog.
+	cart addCatalog: catalog.
+	cart add: book.
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart withCard: card.
+	
+	self assert: cashier funds = previousFunds + (catalog priceFor: book).
+		! !
+!Cart methodsFor: 'adding' stamp: 'JV 6/12/2023 16:11:41'!
+addCatalog: aCatalog
+	catalog add: aCatalog.! !
+
+!methodRemoval: Cart #addCatalog: stamp: 'JV 6/12/2023 16:12:46'!
+addCatalog: aCatalog
+	catalog add: aCatalog.!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:13:16' prior: 50606630!
+test04CheckingOutCartIncrementsFunds
+	| cart cashier card book previousFunds catalog |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book.
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = previousFunds + (catalog priceFor: book).
+		! !
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:13:23'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:13:23'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 'JV 6/12/2023 16:13:33'!
+checkout: cart usingCatalog: catalog withCard: card 
+	self shouldBeImplemented.! !
+!Cashier methodsFor: 'checkout' stamp: 'JV 6/12/2023 16:16:13' prior: 50606680!
+checkout: aCart usingCatalog: aCatalog withCard: aCard 
+	aCart isEmpty ifTrue: [self error: 'Cant checkout empty cart'].
+	
+	aCard < GregorianMonthOfYear current ifTrue: [self error: 'Cant checkout with expired card'.].
+	
+	funds := (aCart items) inject: funds into: [ :accumulatedFunds :item | accumulatedFunds + (aCatalog priceFor: item)].
+	
+	aCart empty.! !
+
+!methodRemoval: Cashier #checkout:withCard: stamp: 'JV 6/12/2023 16:16:44'!
+checkout: aCart withCard: aCard 
+	 aCart isEmpty ifTrue: [self error: 'Cant checkout empty cart'].
+	
+	aCard < GregorianMonthOfYear current ifTrue: [self error: 'Cant checkout with expired card'.].
+	
+	aCart items collect: [ :item |  ]
+	
+	aCart empty.!
+!Cart methodsFor: 'queries' stamp: 'JV 6/12/2023 16:17:52'!
+items
+	^items copy.! !
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:17:54'!
+ERROR!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:17:54'!
+FAILURE!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:17:54'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:17:54'!
+ERROR!
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:18:01'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:18:39' prior: 50606136!
+test01CantCheckoutEmptyCart
+	| card cart cashier |
+	cart := CartTest new createCart.
+	card := nil.
+	cashier := Cashier new. 
+	
+	self 
+		should: [cashier checkout: cart usingCatalog: Catalog new withCard: card]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError | 
+			self assert: anError messageText = 'Cant checkout empty cart'.
+			].
+		! !
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:18:41'!
+PASSED!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:19:08' prior: 50606730!
+test01CantCheckoutEmptyCart
+	| card cart cashier |
+	cart := CartTest new createCart.
+	card := nil.
+	cashier := Cashier new. 
+	
+	self 
+		should: [cashier checkout: cart usingCatalog: StoreCatalog new withCard: card]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError | 
+			self assert: anError messageText = 'Cant checkout empty cart'.
+			].
+		! !
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:19:10'!
+PASSED!
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:19:10'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:19:10'!
+FAILURE!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:19:10'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:19:10'!
+ERROR!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:19:11'!
+FAILURE!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:19:27' prior: 50606244!
+test02CantCheckoutWithExpiredCard
+	| cart cashier expiredCard |
+	cart := CartTest new createCart.
+	cart add: CartTest new itemSellByTheStore.
+	expiredCard := GregorianMonthOfYear current previous: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	self 
+		should: [cashier checkout: cart usingCatalog: StoreCatalog new withCard: expiredCard]
+		raise: Error
+		withExceptionDo: [ :anError | 
+			self assert: anError messageText = 'Cant checkout with expired card'.
+			self deny: cart isEmpty.
+			].
+		! !
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:19:28'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:19:29'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:19:42' prior: 50606262!
+test03CheckingOutCartWithOneItemEmptiesCart
+	| cart cashier card |
+	cart := CartTest new createCart.
+	cart add: CartTest new itemSellByTheStore.
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	cashier checkout: cart usingCatalog: StoreCatalog new withCard: card.
+	
+	self assert: cart isEmpty.
+		! !
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:19:43'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:20:08'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:20:32' prior: 50606807!
+test03CheckingOutCartWithOneItemEmptiesCart
+	| cart cashier card |
+	cart := CartTest new createCart.
+	cart add: CartTest new itemSellByTheStore.
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	cashier checkout: cart usingCatalog: StoreCatalog defaultCatalog withCard: card.
+	
+	self assert: cart isEmpty.
+		! !
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:20:34'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:21:22' prior: 50606828!
+test03CheckingOutCartWithOneItemEmptiesCart
+	| cart cashier card |
+	cart := CartTest new createCart.
+	cart add: CartTest new itemSellByTheStore.
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	cashier checkout: cart usingCatalog: (StoreCatalog defaultCatalog) withCard: card.
+	
+	self assert: cart isEmpty.
+		! !
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:21:27'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:22:07'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:22:07'!
+ERROR!
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:22:59'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:22:59'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:22:59'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:22:59'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:23:00'!
+ERROR!
+
+aCart items!
+
+aCatalog priceFor: item!
+
+aCatalog priceFor: 'validBook'!
+!StoreCatalog methodsFor: 'pricing' stamp: 'JV 6/12/2023 16:24:07' prior: 50606587!
+priceFor: aBook 
+	items at: aBook ifAbsent: [self error: 'El libro no esta en el catalogo'].! !
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:25:19'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:25:19'!
+ERROR!
+
+StoreCatalog defaultCatalog!
+
+StoreCatalog defaultCatalog!
+
+self at: 'validBook'!
+
+self at: 'validBook'!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:28:17'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:28:17'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 'JV 6/12/2023 16:29:29' prior: 50606686!
+checkout: aCart usingCatalog: aCatalog withCard: aCard 
+	aCart isEmpty ifTrue: [self error: 'Cant checkout empty cart'].
+	
+	aCard < GregorianMonthOfYear current ifTrue: [self error: 'Cant checkout with expired card'.].
+	
+	funds := 50.
+	
+	aCart empty.! !
+!Cashier methodsFor: 'checkout' stamp: 'JV 6/12/2023 16:29:42' prior: 50606910!
+checkout: aCart usingCatalog: aCatalog withCard: aCard 
+	aCart isEmpty ifTrue: [self error: 'Cant checkout empty cart'].
+	
+	aCard < GregorianMonthOfYear current ifTrue: [self error: 'Cant checkout with expired card'.].
+	"(aCart items) inject: funds into: [ :accumulatedFunds :item | accumulatedFunds + (aCatalog priceFor: item)]"
+	funds := 50.
+	
+	aCart empty.! !
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:29:44'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:29:44'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:29:44'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:29:44'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:29:44'!
+ERROR!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:30:01'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:30:03'!
+PASSED!
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:30:04'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:30:52'!
+ERROR!
+
+catalog priceFor: book!
+
+0class!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:32:47' prior: 50606656!
+test04CheckingOutCartIncrementsFunds
+	| cart cashier card book previousFunds catalog |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book.
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		! !
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:32:48'!
+ERROR!
+!StoreCatalog methodsFor: 'pricing' stamp: 'JV 6/12/2023 16:33:41' prior: 50606888!
+priceFor: aBook 
+	^50.! !
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:33:44'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:33:44'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:33:44'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:33:44'!
+PASSED!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:34:38'!
+test04CheckingOutCartWithMultipleItemsIncrementsFunds
+	| cart cashier card book previousFunds catalog book2 |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	book2 := 'validBook2'.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book.
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:35:13' prior: 50607003!
+test04CheckingOutCartWithMultipleItemsIncrementsFunds
+	| cart cashier card book previousFunds catalog book2 |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	book2 := 'validBook2'.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book; add: book2.
+	
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		! !
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:35:15'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:35:15'!
+ERROR!
+!StoreCatalog methodsFor: 'pricing' stamp: 'JV 6/12/2023 16:36:29' prior: 50606987!
+priceFor: aBook 
+	^items at: 'validBook' ifAbsent: [ self error: 'El libro no esta en el catalogo'].! !
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:36:32'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:36:32'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:36:32'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:36:32'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:36:32'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:36:32'!
+ERROR!
+!StoreCatalog methodsFor: 'initialization' stamp: 'JV 6/12/2023 16:37:26' prior: 50606593!
+initializeDefaultCatalog
+	items := Dictionary new. 
+	items at: 'validBook' put: 50.
+	items at: 'anotherValidBook' put: 20.! !
+!StoreCatalog methodsFor: 'initialization' stamp: 'JV 6/12/2023 16:37:38' prior: 50607079!
+initializeDefaultCatalog
+	items := Dictionary new. 
+	items at: 'validBook' put: 50.
+	items at: 'validBook2' put: 20.! !
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:37:41'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:37:41'!
+ERROR!
+!StoreCatalog methodsFor: 'pricing' stamp: 'JV 6/12/2023 16:38:03' prior: 50607052!
+priceFor: aBook 
+	^items at: aBook ifAbsent: [ self error: 'El libro no esta en el catalogo'].! !
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:38:05'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:38:05'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:38:05'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:38:05'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:38:05'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:38:05'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:38:40' prior: 50607024!
+test04CheckingOutCartWithMultipleItemsIncrementsFunds
+	| cart cashier card book previousFunds catalog book2 |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	book2 := 'validBook2'.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book.
+	cart add: book2.
+	
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		! !
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:38:41'!
+ERROR!
+!StoreCatalog methodsFor: 'initialization' stamp: 'JV 6/12/2023 16:39:43' prior: 50607086!
+initializeDefaultCatalog
+	items := Dictionary new. 
+	items at: #validBook put: 50.
+	items at: #validBook2 put: 20.! !
+!StoreCatalog methodsFor: 'pricing' stamp: 'JV 6/12/2023 16:39:55' prior: 50607100!
+priceFor: aBook 
+	^items at: aBook asSymbol ifAbsent: [ self error: 'El libro no esta en el catalogo'].! !
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:40:00'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:40:00'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:40:00'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:40:00'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:40:00'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:40:00'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:40:17' prior: 50606965!
+test04CheckingOutCartIncrementsFunds
+	| cart cashier card book previousFunds catalog |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore asSymbol.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book.
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:40:28' prior: 50607126!
+test04CheckingOutCartWithMultipleItemsIncrementsFunds
+	| cart cashier card book previousFunds catalog book2 |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore asSymbol.
+	book2 := 'validBook2' asSymbol.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book.
+	cart add: book2.
+	
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		! !
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:40:32'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:40:32'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:41:03'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:41:06'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:41:06'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:41:50'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:41:50'!
+ERROR!
+!Cashier methodsFor: 'checkout' stamp: 'JV 6/12/2023 16:42:34' prior: 50606921!
+checkout: aCart usingCatalog: aCatalog withCard: aCard 
+	aCart isEmpty ifTrue: [self error: 'Cant checkout empty cart'].
+	
+	aCard < GregorianMonthOfYear current ifTrue: [self error: 'Cant checkout with expired card'.].
+	""
+	funds := (aCart items) inject: funds into: [ :accumulatedFunds :item | accumulatedFunds + (aCatalog priceFor: item)].
+	
+	aCart empty.! !
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:42:37'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:42:37'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:42:37'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:42:37'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:42:37'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:42:37'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:43:03'!
+FAILURE!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:43:30' prior: 50607204!
+test04CheckingOutCartWithMultipleItemsIncrementsFunds
+	| cart cashier card book previousFunds catalog book2 |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore asSymbol.
+	book2 := 'validBook2'.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book.
+	cart add: book2.
+	
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:43:35' prior: 50607289!
+test04CheckingOutCartWithMultipleItemsIncrementsFunds
+	| cart cashier card book previousFunds catalog book2 |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	book2 := 'validBook2'.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book.
+	cart add: book2.
+	
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		! !
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:43:47'!
+test05CheckingOutCartWithMultipleItemsIncrementsFunds
+	| cart cashier card book previousFunds catalog book2 |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	book2 := 'validBook2'.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book.
+	cart add: book2.
+	
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		! !
+
+!methodRemoval: CashierTest #test04CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:43:47'!
+test04CheckingOutCartWithMultipleItemsIncrementsFunds
+	| cart cashier card book previousFunds catalog book2 |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	book2 := 'validBook2'.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book.
+	cart add: book2.
+	
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:43:55' prior: 50607185!
+test04CheckingOutCartIncrementsFunds
+	| cart cashier card book previousFunds catalog |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book.
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		! !
+!StoreCatalog methodsFor: 'initialization' stamp: 'JV 6/12/2023 16:44:25' prior: 50607151!
+initializeDefaultCatalog
+	items := Dictionary new. 
+	items at: 'validBook' put: 50.
+	items at: 'validBook2' put: 20.! !
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:44:27'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:44:27'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:44:27'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:44:27'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:44:27'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:44:27'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 16:47:27'!
+test04CheckingOutCartWithOneItemIncrementsFunds
+	| cart cashier card book previousFunds catalog |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book.
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		! !
+
+!methodRemoval: CashierTest #test04CheckingOutCartIncrementsFunds stamp: 'JV 6/12/2023 16:47:27'!
+test04CheckingOutCartIncrementsFunds
+	| cart cashier card book previousFunds catalog |
+	cart := CartTest new createCart.
+	book := CartTest new itemSellByTheStore.
+	catalog := StoreCatalog defaultCatalog.
+	cart add: book.
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		!
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:49:21'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:49:22'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:49:22'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartWithOneItemIncrementsFunds stamp: 'JV 6/12/2023 16:49:22'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:49:22'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:49:22'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartWithOneItemIncrementsFunds stamp: 'JV 6/12/2023 16:50:21'!
+PASSED!
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 16:50:24'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 16:50:24'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 16:50:24'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartWithOneItemIncrementsFunds stamp: 'JV 6/12/2023 16:50:24'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:50:24'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 16:50:24'!
+ERROR!
+
+----SNAPSHOT----(12 June 2023 16:50:51) CuisUniversity-5706.image priorSource: 8791994!
