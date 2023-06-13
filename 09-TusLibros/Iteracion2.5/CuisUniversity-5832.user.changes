@@ -1,0 +1,2423 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (12 June 2023 17:31:11) as /home/julia/Documents/Inge1/SmallTalk/TusLibros2/linux64/CuisUniversity-5832.image!
+
+
+----End fileIn of /home/julia/Documents/Inge1/SmallTalk/TusLibros2/linux64/TusLibros.st----!
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 17:31:34'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 17:31:34'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 17:31:34'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartWithOneItemIncrementsFunds stamp: 'JV 6/12/2023 17:31:34'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 17:31:34'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 17:31:34'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartWithOneItemIncrementsFunds stamp: 'JV 6/12/2023 17:31:48'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 17:31:50'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 17:31:50'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 17:33:04' prior: 50624550!
+test05CheckingOutCartWithMultipleItemsIncrementsFunds
+	| cart cashier card book previousFunds catalog book2 |
+	
+	book := CartTest new itemSellByTheStore.
+	book2 := 'validBook2'.
+	catalog := StoreCatalog defaultCatalog.
+	cart := Cart acceptingItemsOf: catalog.
+	cart add: book.
+	cart add: book2.
+	
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		! !
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 17:33:05'!
+ERROR!
+!StoreCatalog methodsFor: 'includes' stamp: 'JV 6/12/2023 17:33:18'!
+includes: anItem 
+	self shouldBeImplemented.! !
+!StoreCatalog methodsFor: 'includes' stamp: 'JV 6/12/2023 17:33:29' prior: 50624778!
+includes: anItem 
+	items includes: anItem! !
+!StoreCatalog methodsFor: 'includes' stamp: 'JV 6/12/2023 17:33:33' prior: 50624783!
+includes: anItem 
+	^items includes: anItem! !
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 17:33:34'!
+ERROR!
+!CashierTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 17:34:55' prior: 50624754!
+test05CheckingOutCartWithMultipleItemsIncrementsFunds
+	| cart cashier card book previousFunds catalog |
+	
+	book := CartTest new itemSellByTheStore.
+	
+	catalog := StoreCatalog defaultCatalog.
+	cart := Cart acceptingItemsOf: catalog.
+	cart add: book.
+	
+	
+	card := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	cashier := Cashier new. 
+	
+	previousFunds := cashier funds.
+	
+	cashier checkout: cart usingCatalog: catalog withCard: card.
+	
+	self assert: cashier funds = (previousFunds + (catalog priceFor: book)).
+		! !
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 17:34:57'!
+ERROR!
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 17:35:05'!
+ERROR!
+!StoreCatalog methodsFor: 'includes' stamp: 'JV 6/12/2023 17:35:57' prior: 50624788!
+includes: anItem 
+	^items includesKey: anItem! !
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 17:35:59'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 17:35:59'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 17:35:59'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckingOutCartWithOneItemIncrementsFunds stamp: 'JV 6/12/2023 17:35:59'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 17:35:59'!
+PASSED!
+
+----SNAPSHOT----(12 June 2023 17:36:45) CuisUniversity-5832.image priorSource: 9366758!
+
+----End fileIn of /home/julia/Documents/Inge1/SmallTalk/TusLibros2/linux64/TusLibros.iteracion.2.st----!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JV 6/12/2023 17:39:08'!
+PASSED!
+
+!testRun: #CashierTest #test01CantCheckoutEmptyCart stamp: 'JV 6/12/2023 17:39:08'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JV 6/12/2023 17:39:08'!
+PASSED!
+
+!testRun: #CashierTest #test02CantCheckoutWithExpiredCard stamp: 'JV 6/12/2023 17:39:08'!
+ERROR!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JV 6/12/2023 17:39:08'!
+PASSED!
+
+!testRun: #CashierTest #test03CheckingOutCartWithOneItemEmptiesCart stamp: 'JV 6/12/2023 17:39:08'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckingOutCartWithOneItemIncrementsFunds stamp: 'JV 6/12/2023 17:39:08'!
+ERROR!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JV 6/12/2023 17:39:08'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JV 6/12/2023 17:39:08'!
+PASSED!
+
+!testRun: #CashierTest #test05CheckingOutCartWithMultipleItemsIncrementsFunds stamp: 'JV 6/12/2023 17:39:08'!
+ERROR!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JV 6/12/2023 17:39:08'!
+PASSED!
+
+!classRemoval: #StoreTestObjectsFactory stamp: 'JV 6/12/2023 17:39:26'!
+Object subclass: #StoreTestObjectsFactory
+	instanceVariableNames: 'today'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #StoreCatalog stamp: 'JV 6/12/2023 17:39:26'!
+Object subclass: #StoreCatalog
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CreditCard stamp: 'JV 6/12/2023 17:39:27'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expiration'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cashier stamp: 'JV 6/12/2023 17:39:27'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart salesBook merchantProcessor creditCard total'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cart stamp: 'JV 6/12/2023 17:39:27'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CashierTest stamp: 'JV 6/12/2023 17:39:28'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testObjectsFactory debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CartTest stamp: 'JV 6/12/2023 17:39:28'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----End fileIn of /home/julia/Documents/Inge1/SmallTalk/TusLibros2/linux64/TusLibros.iteracion.2.st----!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'JV 6/12/2023 17:39:41'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'JV 6/12/2023 17:39:41'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'JV 6/12/2023 17:39:41'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'JV 6/12/2023 17:39:41'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'JV 6/12/2023 17:39:41'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'JV 6/12/2023 17:39:41'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'JV 6/12/2023 17:43:22' prior: 50625693!
+test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit
+
+	| cart cashier salesBook creditCard |
+
+	cart := testObjectsFactory createCart.
+	cart add: testObjectsFactory itemSellByTheStore.
+	creditCard := testObjectsFactory notExpiredCreditCard.
+	salesBook := OrderedCollection new.
+ 	debitBehavior := [ :anAmount :aCreditCard | self error: self creditCardHasNoCreditErrorMessage].
+	
+	cashier:= Cashier 
+		toCheckout: cart 
+		charging: creditCard
+		throught: self
+		on: testObjectsFactory today
+		registeringOn: salesBook.
+		
+	self 
+		should: [cashier checkOut ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = self creditCardHasNoCreditErrorMessage.
+			self assert: salesBook isEmpty ]
+		
+		! !
+!CashierTest methodsFor: 'tests' stamp: 'JV 6/12/2023 17:43:54' prior: 50625628!
+test03CanNotCheckoutWithAnExpiredCreditCart
+
+	| cart salesBook |
+
+	cart := testObjectsFactory createCart.
+	cart add: testObjectsFactory itemSellByTheStore.
+	salesBook := OrderedCollection new.
+	debitBehavior := [ :anAmount :aCreditCard | self fail.].
+
+	
+	self
+		should: [ Cashier 
+				toCheckout: cart 
+				charging: testObjectsFactory expiredCreditCard 
+				throught: self
+				on: testObjectsFactory today
+				registeringOn: salesBook ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError | 
+			self assert: anError messageText = Cashier canNotChargeAnExpiredCreditCardErrorMessage.
+			self assert: salesBook isEmpty ]
+		
+		! !
+
+TestCase subclass: #ShopFrontTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #ShopFrontTest category: 'TusLibros' stamp: 'JV 6/12/2023 18:40:45'!
+TestCase subclass: #ShopFrontTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #ShopFront category: 'TusLibros' stamp: 'JV 6/12/2023 18:46:24'!
+Object subclass: #ShopFront
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!ShopFrontTest methodsFor: 'no messages' stamp: 'JV 6/12/2023 18:46:19'!
+test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart
+	| aPassword aUser id shopFront |
+	shopFront := ShopFront new.
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	
+	self assert: OrderedCollection new equals: (shopFront listCart: id). 
+	! !
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 18:47:11' prior: 50626114!
+test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart
+	| aPassword aUser id shopFront |
+	shopFront := ShopFront new.
+	
+	aUser := 'esteban'.
+	aPassword := 'quito'.
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	
+	self assert: OrderedCollection new equals: (shopFront listCart: id). 
+	! !
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 18:47:28'!
+ERROR!
+!ShopFront methodsFor: 'cart' stamp: 'JV 6/12/2023 18:47:43'!
+createCart: aUser authenticatedWith: aPassword 
+	self shouldBeImplemented.! !
+!ShopFront methodsFor: 'cart' stamp: 'JV 6/12/2023 19:00:52' prior: 50626142!
+createCart: aUser authenticatedWith: aPassword 
+	^1! !
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 19:00:53'!
+ERROR!
+!ShopFront methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:01:06'!
+listCart: id 
+	self shouldBeImplemented.! !
+!ShopFront methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:01:21' prior: 50626156!
+listCart: anId 
+	^OrderedCollection new.! !
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 19:01:22'!
+PASSED!
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 19:01:22'!
+PASSED!
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 19:01:35'!
+PASSED!
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 19:01:35'!
+PASSED!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:03:55'!
+test01CreatingACartWithInvalidUserFailsWithoutReturningId
+	| aPassword aUser shopFront |
+	shopFront := ShopFront new.
+	
+	aUser := 'invalidUser'.
+	aPassword := 'invalidPassword'.
+	self
+		should: [shopFront createCart: aUser authenticatedWith: aPassword]
+		raise: Error
+		withExceptionDo: 
+			[ :anError | self assert: anError messageText = 'Could not authenticate user']
+	
+	
+	! !
+
+!testRun: #ShopFrontTest #test01CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 19:03:59'!
+FAILURE!
+!ShopFront methodsFor: 'cart' stamp: 'JV 6/12/2023 19:05:22' prior: 50626147!
+createCart: aUser authenticatedWith: aPassword 
+	(aUser = 'invalidUser' & aPassword = 'invalidPassword') ifTrue: [self error: 'Could not authenticate user'].
+	^1! !
+
+!testRun: #ShopFrontTest #test01CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 19:05:24'!
+PASSED!
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 19:05:24'!
+PASSED!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:05:35'!
+test02CreatingACartWithInvalidUserFailsWithoutReturningId
+	| aPassword aUser shopFront |
+	shopFront := ShopFront new.
+	
+	aUser := 'invalidUser'.
+	aPassword := 'invalidPassword'.
+	self
+		should: [shopFront createCart: aUser authenticatedWith: aPassword]
+		raise: Error
+		withExceptionDo: 
+			[ :anError | self assert: anError messageText = 'Could not authenticate user']
+	
+	
+	! !
+
+!methodRemoval: ShopFrontTest #test01CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 19:05:35'!
+test01CreatingACartWithInvalidUserFailsWithoutReturningId
+	| aPassword aUser shopFront |
+	shopFront := ShopFront new.
+	
+	aUser := 'invalidUser'.
+	aPassword := 'invalidPassword'.
+	self
+		should: [shopFront createCart: aUser authenticatedWith: aPassword]
+		raise: Error
+		withExceptionDo: 
+			[ :anError | self assert: anError messageText = 'Could not authenticate user']
+	
+	
+	!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:05:50' prior: 50626126!
+test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart
+	| aPassword aUser id shopFront |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	
+	self assert: OrderedCollection new equals: (shopFront listCart: id). 
+	! !
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 19:05:52'!
+PASSED!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 19:05:52'!
+PASSED!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:10:54'!
+test03AddingAnItemToCartAndListingCartShowsItem
+	| aPassword aUser shopFront aQty anItem expectedContent id |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	expectedContent := OrderedCollection new.
+	aQty timesRepeat: [expectedContent add: anItem].
+	
+	self assert: expectedContent equals: (shopFront listCart: id).
+	
+	
+	! !
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:11:31' prior: 50626268!
+test03AddingAnItemToCartAndListingCartShowsItem
+	| aPassword aUser shopFront aQty anItem expectedContent id |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := ''.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	expectedContent := OrderedCollection new.
+	aQty timesRepeat: [expectedContent add: anItem].
+	
+	self assert: expectedContent equals: (shopFront listCart: id).
+	
+	
+	! !
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:12:52' prior: 50626287!
+test03AddingAnItemToCartAndListingCartShowsItem
+	| aPassword aUser shopFront aQty anItem expectedContent id |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	expectedContent := OrderedCollection new.
+	aQty timesRepeat: [expectedContent add: anItem].
+	
+	self assert: expectedContent equals: (shopFront listCart: id).
+	
+	
+	! !
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:12:54'!
+ERROR!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:13:01' prior: 50626306!
+test03AddingAnItemToCartAndListingCartShowsItem
+	| aPassword aUser shopFront aQty anItem expectedContent id |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	expectedContent := OrderedCollection new.
+	aQty timesRepeat: [expectedContent add: anItem].
+	
+	self assert: expectedContent equals: (shopFront listCart: id).
+	
+	
+	! !
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:13:12'!
+ERROR!
+!ShopFront methodsFor: 'cart' stamp: 'JV 6/12/2023 19:13:19'!
+addToCart: id item: anItem quantity: aQty 
+	self shouldBeImplemented.! !
+!ShopFront methodsFor: 'cart' stamp: 'JV 6/12/2023 19:14:40' prior: 50626353!
+addToCart: id item: anItem quantity: aQty 
+	(self cartFor: id) addItem: anItem quantity: aQty.! !
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:14:44'!
+ERROR!
+!ShopFront methodsFor: 'cart' stamp: 'JV 6/12/2023 19:14:50'!
+cartFor: id 
+	self shouldBeImplemented.! !
+
+!classDefinition: #ShopFront category: 'TusLibros' stamp: 'JV 6/12/2023 19:16:33'!
+Object subclass: #ShopFront
+	instanceVariableNames: 'carts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!ShopFront methodsFor: 'cart' stamp: 'JV 6/12/2023 19:16:30' prior: 50626367!
+cartFor: anId 
+	^carts at: anId ifAbsent: [self error: 'Cart does not exist'].! !
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:16:35'!
+ERROR!
+!ShopFront methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:17:01' overrides: 16920235!
+initialize
+	carts := Dictionary new.! !
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 19:17:03'!
+PASSED!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 19:17:03'!
+PASSED!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:17:03'!
+ERROR!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:17:03'!
+ERROR!
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 19:17:11'!
+PASSED!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 19:17:12'!
+PASSED!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:17:14'!
+ERROR!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:17:14'!
+ERROR!
+!ShopFront methodsFor: 'cart' stamp: 'JV 6/12/2023 19:19:28' prior: 50626200!
+createCart: aUser authenticatedWith: aPassword 
+	(aUser = 'invalidUser' & aPassword = 'invalidPassword') ifTrue: [self error: 'Could not authenticate user'].
+	carts add: Cart new.
+	^1! !
+!ShopFront methodsFor: 'cart' stamp: 'JV 6/12/2023 19:20:02' prior: 50626422!
+createCart: aUser authenticatedWith: aPassword 
+	(aUser = 'invalidUser' & aPassword = 'invalidPassword') ifTrue: [self error: 'Could not authenticate user'].
+	carts add: Cart new.
+	^1! !
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 19:20:06'!
+ERROR!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 19:20:06'!
+PASSED!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:20:06'!
+ERROR!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:20:17'!
+ERROR!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:20:17'!
+ERROR!
+!ShopFront methodsFor: 'cart' stamp: 'JV 6/12/2023 19:20:49' prior: 50626431!
+createCart: aUser authenticatedWith: aPassword 
+	(aUser = 'invalidUser' & aPassword = 'invalidPassword') ifTrue: [self error: 'Could not authenticate user'].
+	carts at: 1 put: Cart new.
+	^1! !
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:20:55'!
+ERROR!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:20:55'!
+ERROR!
+!ShopFront methodsFor: 'cart' stamp: 'JV 6/12/2023 19:21:31' prior: 50626358!
+addToCart: id item: anItem quantity: aQty 
+	(self cartFor: id) add: aQty of: anItem.! !
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:21:36'!
+ERROR!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:21:36'!
+ERROR!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:22:55'!
+ERROR!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:22:55'!
+ERROR!
+!ShopFront methodsFor: 'cart' stamp: 'JV 6/12/2023 19:24:06' prior: 50626458!
+createCart: aUser authenticatedWith: aPassword 
+	(aUser = 'invalidUser' & aPassword = 'invalidPassword') ifTrue: [self error: 'Could not authenticate user'].
+	carts at: 1 put: (Cart acceptingItemsOf: StoreTestObjectsFactory new defaultCatalog).
+	^1! !
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:24:09'!
+FAILURE!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:24:09'!
+FAILURE!
+
+(carts at: 1)!
+
+(carts at: 1) a Cart!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:26:50' prior: 50626330!
+test03AddingAnItemToCartAndListingCartShowsItem
+	| aPassword aUser shopFront aQty anItem expectedContent id |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 1.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	expectedContent := OrderedCollection with: anItem.
+	
+	self assert: expectedContent equals: (shopFront listCart: id).
+	
+	
+	! !
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:26:51'!
+FAILURE!
+!ShopFront methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:27:40' prior: 50626161!
+listCart: anId 
+	^carts at: anId ifAbsent: [self error: 'Cart does not exist'].! !
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 19:27:42'!
+FAILURE!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 19:27:42'!
+PASSED!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:27:42'!
+FAILURE!
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 19:27:45'!
+FAILURE!
+!ShopFront methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:30:01' prior: 50626537!
+listCart: anId 
+	^(carts at: anId ifAbsent: [self error: 'Cart does not exist']) listContents.! !
+!ShopFront methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:33:45' prior: 50626559!
+listCart: anId 
+	| cart |
+	cart := OrderedCollection new.
+	(carts at: anId ifAbsent: [self error: 'Cart does not exist']) itemsDo: [ :item | cart add: item ].
+	^cart.! !
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:34:10'!
+PASSED!
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 19:34:12'!
+PASSED!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 19:34:14'!
+PASSED!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:35:32'!
+test04AddingMultipleItemsToCartAndListingCartShowsItems
+	| aPassword aUser shopFront aQty anItem expectedContent id |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	expectedContent := OrderedCollection with: anItem with: anItem with: anItem.
+	
+	self assert: expectedContent equals: (shopFront listCart: id).
+	
+	
+	! !
+
+!testRun: #ShopFrontTest #test04AddingMultipleItemsToCartAndListingCartShowsItems stamp: 'JV 6/12/2023 19:35:33'!
+PASSED!
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 19:35:33'!
+PASSED!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 19:35:33'!
+PASSED!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:35:33'!
+PASSED!
+
+!testRun: #ShopFrontTest #test04AddingMultipleItemsToCartAndListingCartShowsItems stamp: 'JV 6/12/2023 19:35:33'!
+PASSED!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:43:06'!
+test05CheckingOutCartRemovesItFromCartsDictionary
+	| aPassword aUser shopFront aQty anItem id aCC anExpirationDate anOwner |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	anExpirationDate := GregorianMonthOfYear current.
+	
+	aCC := CreditCard expiringOn: anExpirationDate.
+	anOwner := 'name lastName'.
+		
+	shopFront checkOutCart: id withCC: aCC ownedBy: anOwner expiringOn: anExpirationDate.
+	
+	
+	! !
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:44:15' prior: 50626624!
+test05CheckingOutCartRemovesItFromCartsDictionary
+	| aPassword aUser shopFront aQty anItem id aCC anExpirationDate anOwner |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	anExpirationDate := GregorianMonthOfYear current next: (TimeUnits month with: 1).
+	
+	aCC := CreditCard expiringOn: anExpirationDate.
+	anOwner := 'name lastName'.
+		
+	shopFront checkOutCart: id withCC: aCC ownedBy: anOwner expiringOn: anExpirationDate.
+	
+	
+	! !
+
+!testRun: #ShopFrontTest #test05CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 19:44:17'!
+ERROR!
+!ShopFront methodsFor: 'checkout' stamp: 'JV 6/12/2023 19:44:30'!
+checkOutCart: id withCC: aCC ownedBy: anOwner expiringOn: anExpirationDate 
+	self shouldBeImplemented.! !
+!ShopFront methodsFor: 'checkout' stamp: 'JV 6/12/2023 19:45:09' prior: 50626674!
+checkOutCart: anId withCC: aCC ownedBy: anOwner expiringOn: anExpirationDate 
+	(carts at: anId).! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:45:49' prior: 50625843!
+initializeToCheckout: aCart charging: aCreditCard registeringOn: aSalesBook
+	
+	cart := aCart.
+	creditCard := aCreditCard.
+	salesBook := aSalesBook! !
+!ShopFront methodsFor: 'checkout' stamp: 'JV 6/12/2023 19:49:30' prior: 50626680!
+checkOutCart: anId withCC: aCreditCard ownedBy: anOwner expiringOn: anExpirationDate 
+	carts remove: anId ifAbsent: [self error: 'Cart does not exist'].! !
+!ShopFront methodsFor: 'checkout' stamp: 'JV 6/12/2023 19:49:40' prior: 50626694!
+checkOutCart: anId withCC: aCreditCard ownedBy: anOwner expiringOn: anExpirationDate 
+	
+	carts remove: anId ifAbsent: [self error: 'Cart does not exist'].! !
+!ShopFront methodsFor: 'checkout' stamp: 'JV 6/12/2023 19:52:35' prior: 50626702!
+checkOutCart: anId withCC: aCreditCard ownedBy: anOwner expiringOn: anExpirationDate 
+	(carts at: anId ifAbsent: [self error: 'Cart does not exist']) checkOut.
+	carts remove: anId ifAbsent: [self error: 'Cart does not exist'].! !
+!ShopFront methodsFor: 'checkout' stamp: 'JV 6/12/2023 19:55:00' prior: 50626710!
+checkOutCart: anId withCC: aCreditCard ownedBy: anOwner expiringOn: anExpirationDate 
+	| aDate aMerchantProcessor aSalesBook cart |
+	cart := carts at: anId ifAbsent: [self error: 'Cart does not exist'].
+	aMerchantProcessor := ''.
+	aDate := StoreTestObjectsFactory new today.
+	aSalesBook := OrderedCollection new.
+	
+	Cashier toCheckout: cart charging: aCreditCard throught: aMerchantProcessor on: aDate registeringOn: aSalesBook.
+	carts remove: anId ifAbsent: [self error: 'Cart does not exist'].! !
+!ShopFront methodsFor: 'checkout' stamp: 'JV 6/12/2023 19:56:15' prior: 50626720!
+checkOutCart: anId withCC: aCreditCard ownedBy: anOwner expiringOn: anExpirationDate 
+	| aDate aMerchantProcessor aSalesBook cart |
+	cart := carts at: anId ifAbsent: [self error: 'Cart does not exist'].
+	aMerchantProcessor := self.
+	aDate := StoreTestObjectsFactory new today.
+	aSalesBook := OrderedCollection new.
+	
+	Cashier toCheckout: cart charging: aCreditCard throught: aMerchantProcessor on: aDate registeringOn: aSalesBook.
+	carts remove: anId ifAbsent: [self error: 'Cart does not exist'].! !
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 19:56:20'!
+PASSED!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 19:56:20'!
+PASSED!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 19:56:20'!
+PASSED!
+
+!testRun: #ShopFrontTest #test04AddingMultipleItemsToCartAndListingCartShowsItems stamp: 'JV 6/12/2023 19:56:20'!
+PASSED!
+
+!testRun: #ShopFrontTest #test05CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 19:56:20'!
+ERROR!
+
+!testRun: #ShopFrontTest #test05CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 19:56:20'!
+ERROR!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:57:30' prior: 50626647!
+test05CheckingOutCartRemovesItFromCartsDictionary
+	| aPassword aUser shopFront aQty anItem id aCC anExpirationDate anOwner |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	anExpirationDate := DateAndTime year: 2025 day: 365 hour: 0 minute: 0 second: 0.
+	
+	aCC := CreditCard expiringOn: anExpirationDate.
+	anOwner := 'name lastName'.
+		
+	shopFront checkOutCart: id withCC: aCC ownedBy: anOwner expiringOn: anExpirationDate.
+	
+	
+	! !
+
+!testRun: #ShopFrontTest #test05CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 19:57:31'!
+ERROR!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 19:59:01' prior: 50626781!
+test05CheckingOutCartRemovesItFromCartsDictionary
+	| aPassword aUser shopFront aQty anItem id aCC anExpirationDate anOwner aDate |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	aDate := StoreTestObjectsFactory new today.
+	anExpirationDate := Month month: aDate monthIndex year: aDate yearNumber.
+	
+	aCC := CreditCard expiringOn: anExpirationDate.
+	anOwner := 'name lastName'.
+		
+	shopFront checkOutCart: id withCC: aCC ownedBy: anOwner expiringOn: anExpirationDate.
+	
+	
+	! !
+
+!testRun: #ShopFrontTest #test05CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 19:59:04'!
+ERROR!
+!ShopFront methodsFor: 'checkout' stamp: 'JV 6/12/2023 20:01:15' prior: 50626739!
+checkOutCart: anId withCC: aCreditCard ownedBy: anOwner expiringOn: anExpirationDate 
+	| aDate aMerchantProcessor aSalesBook cart |
+	cart := carts at: anId ifAbsent: [self error: 'Cart does not exist'].
+	aMerchantProcessor := self.
+	aDate := StoreTestObjectsFactory new today.
+	aSalesBook := OrderedCollection new.
+	
+	Cashier toCheckout: cart charging: aCreditCard throught: aMerchantProcessor on: aDate registeringOn: aSalesBook.
+	carts removeKey: anId.! !
+
+!testRun: #ShopFrontTest #test05CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 20:01:16'!
+PASSED!
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 20:01:16'!
+PASSED!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 20:01:16'!
+PASSED!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 20:01:16'!
+PASSED!
+
+!testRun: #ShopFrontTest #test04AddingMultipleItemsToCartAndListingCartShowsItems stamp: 'JV 6/12/2023 20:01:16'!
+PASSED!
+
+!testRun: #ShopFrontTest #test05CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 20:01:16'!
+PASSED!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:05:04'!
+test06ListingEmptyCartGivesEmptyOrderedCollection
+	| aPassword aUser shopFront aQty anItem id |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+		
+	self assert: (OrderedCollection with: anItem with: anItem with: anItem) equals: (shopFront listCart: id).
+	
+	
+	! !
+
+!testRun: #ShopFrontTest #test06ListingEmptyCartGivesEmptyOrderedCollection stamp: 'JV 6/12/2023 20:05:09'!
+PASSED!
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 20:05:09'!
+PASSED!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 20:05:09'!
+PASSED!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 20:05:09'!
+PASSED!
+
+!testRun: #ShopFrontTest #test04AddingMultipleItemsToCartAndListingCartShowsItems stamp: 'JV 6/12/2023 20:05:09'!
+PASSED!
+
+!testRun: #ShopFrontTest #test05CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 20:05:09'!
+PASSED!
+
+!testRun: #ShopFrontTest #test06ListingEmptyCartGivesEmptyOrderedCollection stamp: 'JV 6/12/2023 20:05:09'!
+PASSED!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:05:39'!
+test07ListingCartGivesOrderedCollectionWithContents
+	| aPassword aUser shopFront aQty anItem id |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+		
+	self assert: (OrderedCollection with: anItem with: anItem with: anItem) equals: (shopFront listCart: id).
+	
+	
+	! !
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:06:28' prior: 50626878!
+test06ListingEmptyCartGivesEmptyOrderedCollection
+	| aPassword aUser shopFront id |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+		
+	self assert: OrderedCollection new equals: (shopFront listCart: id).
+	
+	
+	! !
+
+!testRun: #ShopFrontTest #test06ListingEmptyCartGivesEmptyOrderedCollection stamp: 'JV 6/12/2023 20:06:31'!
+PASSED!
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 20:06:31'!
+PASSED!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 20:06:31'!
+PASSED!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 20:06:31'!
+PASSED!
+
+!testRun: #ShopFrontTest #test04AddingMultipleItemsToCartAndListingCartShowsItems stamp: 'JV 6/12/2023 20:06:31'!
+PASSED!
+
+!testRun: #ShopFrontTest #test05CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 20:06:31'!
+PASSED!
+
+!testRun: #ShopFrontTest #test06ListingEmptyCartGivesEmptyOrderedCollection stamp: 'JV 6/12/2023 20:06:31'!
+PASSED!
+
+!testRun: #ShopFrontTest #test07ListingCartGivesOrderedCollectionWithContents stamp: 'JV 6/12/2023 20:06:31'!
+PASSED!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:09:29' prior: 50626809!
+test05CheckingOutCartRemovesItFromCartsDictionary
+	| aPassword aUser shopFront aQty anItem id aCC anExpirationDate anOwner aDate |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	aDate := StoreTestObjectsFactory new today.
+	anExpirationDate := Month month: aDate monthIndex year: aDate yearNumber.
+	
+	aCC := CreditCard expiringOn: anExpirationDate.
+	anOwner := 'name lastName'.
+		
+	shopFront checkOutCart: id withCC: aCC ownedBy: anOwner expiringOn: anExpirationDate.
+	
+	self should: [shopFront listCart: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError message = 'Cart does not exist'].
+	
+	
+	! !
+
+!testRun: #ShopFrontTest #test05CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 20:09:30'!
+ERROR!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:09:44' prior: 50626985!
+test05CheckingOutCartRemovesItFromCartsDictionary
+	| aPassword aUser shopFront aQty anItem id aCC anExpirationDate anOwner aDate |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	aDate := StoreTestObjectsFactory new today.
+	anExpirationDate := Month month: aDate monthIndex year: aDate yearNumber.
+	
+	aCC := CreditCard expiringOn: anExpirationDate.
+	anOwner := 'name lastName'.
+		
+	shopFront checkOutCart: id withCC: aCC ownedBy: anOwner expiringOn: anExpirationDate.
+	
+	self should: [shopFront listCart: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart does not exist'].
+	
+	
+	! !
+
+!testRun: #ShopFrontTest #test05CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 20:09:45'!
+PASSED!
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 20:09:45'!
+PASSED!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 20:09:45'!
+PASSED!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 20:09:45'!
+PASSED!
+
+!testRun: #ShopFrontTest #test04AddingMultipleItemsToCartAndListingCartShowsItems stamp: 'JV 6/12/2023 20:09:45'!
+PASSED!
+
+!testRun: #ShopFrontTest #test05CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 20:09:45'!
+PASSED!
+
+!testRun: #ShopFrontTest #test06ListingEmptyCartGivesEmptyOrderedCollection stamp: 'JV 6/12/2023 20:09:45'!
+PASSED!
+
+!testRun: #ShopFrontTest #test07ListingCartGivesOrderedCollectionWithContents stamp: 'JV 6/12/2023 20:09:45'!
+PASSED!
+
+!testRun: #ShopFrontTest #test07ListingCartGivesOrderedCollectionWithContents stamp: 'JV 6/12/2023 20:09:51'!
+PASSED!
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 20:09:51'!
+PASSED!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 20:09:51'!
+PASSED!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 20:09:51'!
+PASSED!
+
+!testRun: #ShopFrontTest #test04AddingMultipleItemsToCartAndListingCartShowsItems stamp: 'JV 6/12/2023 20:09:51'!
+PASSED!
+
+!testRun: #ShopFrontTest #test05CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 20:09:51'!
+PASSED!
+
+!testRun: #ShopFrontTest #test06ListingEmptyCartGivesEmptyOrderedCollection stamp: 'JV 6/12/2023 20:09:51'!
+PASSED!
+
+!testRun: #ShopFrontTest #test07ListingCartGivesOrderedCollectionWithContents stamp: 'JV 6/12/2023 20:09:51'!
+PASSED!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:10:02'!
+test07CheckingOutCartRemovesItFromCartsDictionary
+	| aPassword aUser shopFront aQty anItem id aCC anExpirationDate anOwner aDate |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	aDate := StoreTestObjectsFactory new today.
+	anExpirationDate := Month month: aDate monthIndex year: aDate yearNumber.
+	
+	aCC := CreditCard expiringOn: anExpirationDate.
+	anOwner := 'name lastName'.
+		
+	shopFront checkOutCart: id withCC: aCC ownedBy: anOwner expiringOn: anExpirationDate.
+	
+	self should: [shopFront listCart: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart does not exist'].
+	
+	
+	! !
+
+!methodRemoval: ShopFrontTest #test05CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 20:10:02'!
+test05CheckingOutCartRemovesItFromCartsDictionary
+	| aPassword aUser shopFront aQty anItem id aCC anExpirationDate anOwner aDate |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	aDate := StoreTestObjectsFactory new today.
+	anExpirationDate := Month month: aDate monthIndex year: aDate yearNumber.
+	
+	aCC := CreditCard expiringOn: anExpirationDate.
+	anOwner := 'name lastName'.
+		
+	shopFront checkOutCart: id withCC: aCC ownedBy: anOwner expiringOn: anExpirationDate.
+	
+	self should: [shopFront listCart: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart does not exist'].
+	
+	
+	!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:10:07'!
+test05ListingEmptyCartGivesEmptyOrderedCollection
+	| aPassword aUser shopFront id |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+		
+	self assert: OrderedCollection new equals: (shopFront listCart: id).
+	
+	
+	! !
+
+!methodRemoval: ShopFrontTest #test06ListingEmptyCartGivesEmptyOrderedCollection stamp: 'JV 6/12/2023 20:10:07'!
+test06ListingEmptyCartGivesEmptyOrderedCollection
+	| aPassword aUser shopFront id |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+		
+	self assert: OrderedCollection new equals: (shopFront listCart: id).
+	
+	
+	!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:10:14'!
+test06ListingCartGivesOrderedCollectionWithContents
+	| aPassword aUser shopFront aQty anItem id |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+		
+	self assert: (OrderedCollection with: anItem with: anItem with: anItem) equals: (shopFront listCart: id).
+	
+	
+	! !
+
+!methodRemoval: ShopFrontTest #test07ListingCartGivesOrderedCollectionWithContents stamp: 'JV 6/12/2023 20:10:14'!
+test07ListingCartGivesOrderedCollectionWithContents
+	| aPassword aUser shopFront aQty anItem id |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+		
+	self assert: (OrderedCollection with: anItem with: anItem with: anItem) equals: (shopFront listCart: id).
+	
+	
+	!
+!ShopFront methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:10:56' prior: 50626565!
+listCart: anId 
+	| cart |
+	cart := OrderedCollection new.
+	"ifAbsent: [self error: 'Cart does not exist']"
+	(carts at: anId ) itemsDo: [ :item | cart add: item ].
+	^cart.! !
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:12:50'!
+test06CanNotListCartThatDoesNotExist
+	| shopFront id |
+	shopFront := ShopFront new.
+	
+	id := 0.
+		
+	self should: [shopFront listCart: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart does not exist'].
+	
+	
+	! !
+
+!testRun: #ShopFrontTest #test06CanNotListCartThatDoesNotExist stamp: 'JV 6/12/2023 20:12:54'!
+FAILURE!
+!ShopFront methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:13:15' prior: 50627233!
+listCart: anId 
+	| cart |
+	cart := OrderedCollection new.
+
+	(carts at: anId ifAbsent: [self error: 'Cart does not exist']) itemsDo: [ :item | cart add: item ].
+	^cart.! !
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 20:13:17'!
+PASSED!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 20:13:17'!
+PASSED!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 20:13:17'!
+PASSED!
+
+!testRun: #ShopFrontTest #test04AddingMultipleItemsToCartAndListingCartShowsItems stamp: 'JV 6/12/2023 20:13:17'!
+PASSED!
+
+!testRun: #ShopFrontTest #test05ListingEmptyCartGivesEmptyOrderedCollection stamp: 'JV 6/12/2023 20:13:17'!
+PASSED!
+
+!testRun: #ShopFrontTest #test06CanNotListCartThatDoesNotExist stamp: 'JV 6/12/2023 20:13:17'!
+PASSED!
+
+!testRun: #ShopFrontTest #test06ListingCartGivesOrderedCollectionWithContents stamp: 'JV 6/12/2023 20:13:17'!
+PASSED!
+
+!testRun: #ShopFrontTest #test07CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 20:13:17'!
+PASSED!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:13:36'!
+test07CanNotListCartThatDoesNotExist
+	| shopFront id |
+	shopFront := ShopFront new.
+	
+	id := 0.
+		
+	self should: [shopFront listCart: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart does not exist'].
+	
+	
+	! !
+
+!methodRemoval: ShopFrontTest #test06CanNotListCartThatDoesNotExist stamp: 'JV 6/12/2023 20:13:36'!
+test06CanNotListCartThatDoesNotExist
+	| shopFront id |
+	shopFront := ShopFront new.
+	
+	id := 0.
+		
+	self should: [shopFront listCart: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart does not exist'].
+	
+	
+	!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:13:41'!
+test08CheckingOutCartRemovesItFromCartsDictionary
+	| aPassword aUser shopFront aQty anItem id aCC anExpirationDate anOwner aDate |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	aDate := StoreTestObjectsFactory new today.
+	anExpirationDate := Month month: aDate monthIndex year: aDate yearNumber.
+	
+	aCC := CreditCard expiringOn: anExpirationDate.
+	anOwner := 'name lastName'.
+		
+	shopFront checkOutCart: id withCC: aCC ownedBy: anOwner expiringOn: anExpirationDate.
+	
+	self should: [shopFront listCart: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart does not exist'].
+	
+	
+	! !
+
+!methodRemoval: ShopFrontTest #test07CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 20:13:41'!
+test07CheckingOutCartRemovesItFromCartsDictionary
+	| aPassword aUser shopFront aQty anItem id aCC anExpirationDate anOwner aDate |
+	shopFront := ShopFront new.
+	
+	aUser := 'validUser'.
+	aPassword := 'validPassword'.
+	
+	id := shopFront createCart: aUser authenticatedWith: aPassword.
+	anItem := StoreTestObjectsFactory new itemSellByTheStore.
+	aQty := 3.
+	
+	shopFront addToCart: id item: anItem quantity: aQty.
+	
+	aDate := StoreTestObjectsFactory new today.
+	anExpirationDate := Month month: aDate monthIndex year: aDate yearNumber.
+	
+	aCC := CreditCard expiringOn: anExpirationDate.
+	anOwner := 'name lastName'.
+		
+	shopFront checkOutCart: id withCC: aCC ownedBy: anOwner expiringOn: anExpirationDate.
+	
+	self should: [shopFront listCart: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart does not exist'].
+	
+	
+	!
+!ShopFrontTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:19:32'!
+test09CreatingDifferentCartsShouldGiveDifferentIds
+	| shopFront id id2 |
+	shopFront := ShopFront new.
+	
+	id := shopFront createCart: 'aValidUser' authenticatedWith: 'aValidPassword'.
+	id2 := shopFront createCart: 'anotherValidUser' authenticatedWith: 'anotherValidPassword'.
+	
+	self deny: id = id2.
+
+	
+	
+	! !
+
+!testRun: #ShopFrontTest #test09CreatingDifferentCartsShouldGiveDifferentIds stamp: 'JV 6/12/2023 20:19:39'!
+FAILURE!
+
+a := Array new.!
+
+a min!
+
+!classDefinition: #ShopFront category: 'TusLibros' stamp: 'JV 6/12/2023 20:30:05'!
+Object subclass: #ShopFront
+	instanceVariableNames: 'carts lastId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!ShopFront methodsFor: 'cart' stamp: 'JV 6/12/2023 20:30:01' prior: 50626494!
+createCart: aUser authenticatedWith: aPassword 
+	| id |
+	(aUser = 'invalidUser' & aPassword = 'invalidPassword') ifTrue: [self error: 'Could not authenticate user'].
+	id := lastId + 1.
+	carts at: id put: (Cart acceptingItemsOf: StoreTestObjectsFactory new defaultCatalog).
+	^id.! !
+
+!classDefinition: #ShopFront category: 'TusLibros' stamp: 'JV 6/12/2023 20:30:22'!
+Object subclass: #ShopFront
+	instanceVariableNames: 'carts lastRegisteredId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!ShopFront methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:30:22' prior: 50627400!
+createCart: aUser authenticatedWith: aPassword 
+	| id |
+	(aUser = 'invalidUser' & aPassword = 'invalidPassword') ifTrue: [self error: 'Could not authenticate user'].
+	id := lastRegisteredId + 1.
+	carts at: id put: (Cart acceptingItemsOf: StoreTestObjectsFactory new defaultCatalog).
+	^id.! !
+!ShopFront methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 20:30:39' prior: 50626388 overrides: 16920235!
+initialize
+	carts := Dictionary new.
+	lastRegisteredId := 0.! !
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 20:30:42'!
+PASSED!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 20:30:42'!
+PASSED!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 20:30:42'!
+PASSED!
+
+!testRun: #ShopFrontTest #test04AddingMultipleItemsToCartAndListingCartShowsItems stamp: 'JV 6/12/2023 20:30:42'!
+PASSED!
+
+!testRun: #ShopFrontTest #test05ListingEmptyCartGivesEmptyOrderedCollection stamp: 'JV 6/12/2023 20:30:42'!
+PASSED!
+
+!testRun: #ShopFrontTest #test06ListingCartGivesOrderedCollectionWithContents stamp: 'JV 6/12/2023 20:30:42'!
+PASSED!
+
+!testRun: #ShopFrontTest #test07CanNotListCartThatDoesNotExist stamp: 'JV 6/12/2023 20:30:42'!
+PASSED!
+
+!testRun: #ShopFrontTest #test08CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 20:30:42'!
+PASSED!
+
+!testRun: #ShopFrontTest #test09CreatingDifferentCartsShouldGiveDifferentIds stamp: 'JV 6/12/2023 20:30:42'!
+FAILURE!
+
+!testRun: #ShopFrontTest #test09CreatingDifferentCartsShouldGiveDifferentIds stamp: 'JV 6/12/2023 20:30:42'!
+FAILURE!
+!ShopFront methodsFor: 'cart' stamp: 'JV 6/12/2023 20:34:26' prior: 50627419!
+createCart: aUser authenticatedWith: aPassword 
+	| id |
+	(aUser = 'invalidUser' & aPassword = 'invalidPassword') ifTrue: [self error: 'Could not authenticate user'].
+	id := lastRegisteredId + 1.
+	lastRegisteredId := lastRegisteredId + 1.
+	carts at: id put: (Cart acceptingItemsOf: StoreTestObjectsFactory new defaultCatalog).
+	^id.! !
+
+!testRun: #ShopFrontTest #test01CreatingACartWithValidUserGivesIdThatMatchesEmptyCart stamp: 'JV 6/12/2023 20:34:34'!
+PASSED!
+
+!testRun: #ShopFrontTest #test02CreatingACartWithInvalidUserFailsWithoutReturningId stamp: 'JV 6/12/2023 20:34:34'!
+PASSED!
+
+!testRun: #ShopFrontTest #test03AddingAnItemToCartAndListingCartShowsItem stamp: 'JV 6/12/2023 20:34:34'!
+PASSED!
+
+!testRun: #ShopFrontTest #test04AddingMultipleItemsToCartAndListingCartShowsItems stamp: 'JV 6/12/2023 20:34:34'!
+PASSED!
+
+!testRun: #ShopFrontTest #test05ListingEmptyCartGivesEmptyOrderedCollection stamp: 'JV 6/12/2023 20:34:34'!
+PASSED!
+
+!testRun: #ShopFrontTest #test06ListingCartGivesOrderedCollectionWithContents stamp: 'JV 6/12/2023 20:34:34'!
+PASSED!
+
+!testRun: #ShopFrontTest #test07CanNotListCartThatDoesNotExist stamp: 'JV 6/12/2023 20:34:34'!
+PASSED!
+
+!testRun: #ShopFrontTest #test08CheckingOutCartRemovesItFromCartsDictionary stamp: 'JV 6/12/2023 20:34:34'!
+PASSED!
+
+!testRun: #ShopFrontTest #test09CreatingDifferentCartsShouldGiveDifferentIds stamp: 'JV 6/12/2023 20:34:34'!
+PASSED!
+
+----SNAPSHOT----(12 June 2023 20:46:42) CuisUniversity-5832.image priorSource: 9382213!
+
+!classRemoval: #StoreTestObjectsFactory stamp: 'JV 6/12/2023 21:05:25'!
+Object subclass: #StoreTestObjectsFactory
+	instanceVariableNames: 'today'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #ShopFront stamp: 'JV 6/12/2023 21:05:26'!
+Object subclass: #ShopFront
+	instanceVariableNames: 'carts lastRegisteredId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CreditCard stamp: 'JV 6/12/2023 21:05:26'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expiration'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cashier stamp: 'JV 6/12/2023 21:05:26'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart salesBook merchantProcessor creditCard total'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cart stamp: 'JV 6/12/2023 21:05:26'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #ShopFrontTest stamp: 'JV 6/12/2023 21:05:26'!
+TestCase subclass: #ShopFrontTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CashierTest stamp: 'JV 6/12/2023 21:05:27'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testObjectsFactory debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CartTest stamp: 'JV 6/12/2023 21:05:27'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----End fileIn of /home/julia/Documents/Inge1/SmallTalk/TusLibros2/linux64/TusLibros.iteracion.2.5.st----!
+
+TestCase subclass: #ClockTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #ClockTest category: 'TusLibros' stamp: 'JV 6/12/2023 21:09:32'!
+TestCase subclass: #ClockTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Clock category: 'TusLibros' stamp: 'JV 6/12/2023 21:18:01'!
+Object subclass: #Clock
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:17:48'!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface clock id |
+
+	interface := self createDefaultInterface.
+	
+	clock := Clock now.
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword
+	
+	clock setTime: clock + 31.
+	
+	self 
+	should: [interface]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	self should: [interface listCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart does not exist'].
+	
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:18:18' prior: 50628566!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface clock id |
+
+	interface := self createDefaultInterface.
+	
+	clock := Clock now.
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword
+	
+	clock setTime: clock + 31.
+	
+	self 
+	should: [interface]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	self should: [interface listCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart does not exist'
+		].
+	
+	! !
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:18:18'!
+ERROR!
+!Clock class methodsFor: 'class initialization' stamp: 'JV 6/12/2023 21:18:23'!
+now
+	self shouldBeImplemented.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:18:51' prior: 50628587!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface clock id |
+
+	interface := self createDefaultInterface.
+	
+	clock := Clock new.
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword
+	
+	clock setTime: clock + 31.
+	
+	self 
+	should: [interface]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	self should: [interface listCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart does not exist'
+		].
+	
+	! !
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:18:53'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:19:01'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:19:01'!
+ERROR!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:19:21' prior: 50628617!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface clock id |
+
+	interface := self createDefaultInterface.
+	
+	clock := Clock new.
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock setTime: clock + 31.
+	
+	self 
+	should: [interface]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	self should: [interface listCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart does not exist'
+		].
+	
+	! !
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:19:25'!
+ERROR!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:19:37' prior: 50628651!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface clock id |
+
+	interface := self createDefaultInterface.
+	
+	clock := Clock new.
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock setTime: clock value + 31.
+	
+	self 
+	should: [interface]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	self should: [interface listCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart does not exist'
+		].
+	
+	! !
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:19:38'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:19:43'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:19:43'!
+ERROR!
+!Clock methodsFor: 'no messages' stamp: 'JV 6/12/2023 21:20:11' overrides: 16902254!
+value 
+	^value! !
+!Clock methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:20:21' overrides: 16920235!
+initialize 
+	value := 0.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JV 6/12/2023 21:20:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'JV 6/12/2023 21:20:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JV 6/12/2023 21:20:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'JV 6/12/2023 21:20:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'JV 6/12/2023 21:20:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'JV 6/12/2023 21:20:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JV 6/12/2023 21:20:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'JV 6/12/2023 21:20:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JV 6/12/2023 21:20:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/12/2023 21:20:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'JV 6/12/2023 21:20:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'JV 6/12/2023 21:20:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:20:25'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:20:25'!
+ERROR!
+!Clock methodsFor: 'setting' stamp: 'JV 6/12/2023 21:20:33'!
+setTime: aRenameMe1 
+	self shouldBeImplemented.! !
+!Clock methodsFor: 'setting' stamp: 'JV 6/12/2023 21:20:54' prior: 50628766!
+setTime: aTimeInMinutes
+	value := aTimeInMinutes.! !
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:20:56'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:21:03'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:21:03'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:22:45' prior: 50628677!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface clock id |
+
+	interface := self createDefaultInterface.
+	
+	clock := Clock new.
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock setTime: clock value + 31.
+	
+	self 
+	should: [interface]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	self should: [interface listCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError message = RestInterface new signalInvalidCartId 
+		].
+	
+	! !
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:22:47'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:22:47'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:24:05' prior: 50628787!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface clock id |
+
+	interface := self createDefaultInterface.
+	
+	clock := Clock new.
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock setTime: clock value + 31.
+	
+	self 
+	should: [interface add: 'validBook' quantity: 1 toCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	self should: [interface listCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError message = RestInterface new signalInvalidCartId 
+		].
+	
+	! !
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:24:06'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:25:21' prior: 50628817!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface clock id |
+
+	interface := self createDefaultInterface.
+	
+	clock := Clock new.
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock setTime: clock value + 31.
+	
+	self 
+	should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	self should: [interface listCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError message = RestInterface new signalInvalidCartId 
+		].
+	
+	! !
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:25:22'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:26:16' prior: 50627848!
+createDefaultInterface
+	
+	^RestInterface
+		authenticatingWith: self
+		acceptingItemsOf: testObjectsFactory defaultCatalog
+		merchantProcessor: self
+		clock: Clock new.! !
+!RestInterface class methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:27:02'!
+authenticatingWith: aValidUsersAndPasswords acceptingItemsOf: aCatalog merchantProcessor: anMP clock: aClock
+
+	^self new initializeAuthenticatingWith: aValidUsersAndPasswords acceptingItemsOf: aCatalog merchantProcessor: anMP clock: aClock! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:27:52' prior: 50628845!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface clock id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	clock setTime: clock value + 31.
+	
+	self 
+	should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	self should: [interface listCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError message = RestInterface new signalInvalidCartId 
+		].
+	
+	! !
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'JV 6/12/2023 21:28:31'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticationSystem carts catalog lastId merchantProcessor salesBook clock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:28:29'!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog merchantProcessor: anMP clock: aClock
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	lastId := 0.
+	merchantProcessor := anMP.
+	clock := aClock.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:29:04'!
+clock
+	^clock.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:29:19' prior: 50628893!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface clock id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: clock value + 31.
+	
+	self 
+	should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	self should: [interface listCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError message = RestInterface new signalInvalidCartId 
+		].
+	
+	! !
+!Clock methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:29:43' prior: 50628770!
+setTime: aTimeInMinutes
+	value := aTimeInMinutes.! !
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:30:03'!
+ERROR!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:31:21' prior: 50628941!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	self 
+	should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	self should: [interface listCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError message = RestInterface new signalInvalidCartId 
+		].
+	
+	! !
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:31:26'!
+FAILURE!
+
+!methodRemoval: RestInterface #initializeAuthenticatingWith:acceptingItemsOf:merchantProcessor: stamp: 'JV 6/12/2023 21:37:28'!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog merchantProcessor: anMP
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	lastId := 0.
+	merchantProcessor := anMP!
+
+!methodRemoval: RestInterface class #authenticatingWith:acceptingItemsOf:merchantProcessor: stamp: 'JV 6/12/2023 21:37:34'!
+authenticatingWith: aValidUsersAndPasswords acceptingItemsOf: aCatalog merchantProcessor: anMP
+
+	^self new initializeAuthenticatingWith: aValidUsersAndPasswords acceptingItemsOf: aCatalog merchantProcessor: anMP!
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'JV 6/12/2023 21:38:01'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticationSystem carts catalog lastId merchantProcessor salesBook clock cartElapsedTimes'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:37:58' prior: 50628925!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog merchantProcessor: anMP clock: aClock
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	lastId := 0.
+	merchantProcessor := anMP.
+	clock := aClock.
+	cartElapsedTimes := Dictionary new.! !
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'JV 6/12/2023 21:38:08'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticationSystem carts catalog lastId merchantProcessor salesBook clock cartsElapsedTimes'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:38:08' prior: 50629033!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog merchantProcessor: anMP clock: aClock
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	lastId := 0.
+	merchantProcessor := anMP.
+	clock := aClock.
+	cartsElapsedTimes := Dictionary new.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:39:00' prior: 50628372!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	carts at: cartId put: (Cart acceptingItemsOf: catalog).
+	cartsElapsedTimes at: cartId put: clock value.
+	
+	^cartId ! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:40:02' prior: 50628342!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	cart add: anAmount of: aBook.
+	cartsElapsedTimes at: aCartId put: clock value.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:41:15' prior: 50629082!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	| cart |
+	self assertSessionNotExpiredFor: aCartId.
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	cart add: anAmount of: aBook.
+	cartsElapsedTimes at: aCartId put: clock value.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:41:56'!
+assertSessionNotExpiredFor: aCartId.
+	^clock value - (cartsElapsedTimes at: aCartId) < 30.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:42:23' prior: 50629092!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	self assertSessionNotExpiredFor: aCartId.
+	cart add: anAmount of: aBook.
+	cartsElapsedTimes at: aCartId put: clock value.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:44:14' prior: 50629103!
+assertSessionNotExpiredFor: aCartId.
+	(clock value - (cartsElapsedTimes at: aCartId) < 30) ifFalse: [self error: 'Session expired']! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JV 6/12/2023 21:44:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'JV 6/12/2023 21:44:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JV 6/12/2023 21:44:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'JV 6/12/2023 21:44:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'JV 6/12/2023 21:44:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'JV 6/12/2023 21:44:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JV 6/12/2023 21:44:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'JV 6/12/2023 21:44:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JV 6/12/2023 21:44:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/12/2023 21:44:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'JV 6/12/2023 21:44:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'JV 6/12/2023 21:44:45'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:44:45'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:44:45'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:45:38' prior: 50628973!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	self 
+	should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	self should: [interface listCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError = RestInterface new signalInvalidCartId 
+		].
+	
+	! !
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:45:39'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:45:53' prior: 50629177!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	self 
+	should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	self should: [interface listCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = RestInterface new signalInvalidCartId 
+		].
+	
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:46:25' prior: 50629205!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	self 
+	should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	self should: [interface listCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError message = interface invalidCartIdErrorDescription 
+		].
+	
+	! !
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:46:25'!
+FAILURE!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:48:00' prior: 50629121!
+assertSessionNotExpiredFor: aCartId.
+	(clock value - (cartsElapsedTimes at: aCartId) < 30) ifFalse: [
+		carts removeKey: aCartId.
+		cartsElapsedTimes removeKey: aCartId.
+		self error: 'Session expired']! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JV 6/12/2023 21:48:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'JV 6/12/2023 21:48:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JV 6/12/2023 21:48:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'JV 6/12/2023 21:48:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'JV 6/12/2023 21:48:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'JV 6/12/2023 21:48:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JV 6/12/2023 21:48:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'JV 6/12/2023 21:48:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JV 6/12/2023 21:48:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/12/2023 21:48:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'JV 6/12/2023 21:48:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'JV 6/12/2023 21:48:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:48:02'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:48:02'!
+ERROR!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:48:15' prior: 50629229!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	self 
+	should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	self should: [interface listCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = interface invalidCartIdErrorDescription 
+		].
+	
+	! !
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:48:17'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JV 6/12/2023 21:48:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'JV 6/12/2023 21:48:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JV 6/12/2023 21:48:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'JV 6/12/2023 21:48:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'JV 6/12/2023 21:48:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'JV 6/12/2023 21:48:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JV 6/12/2023 21:48:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'JV 6/12/2023 21:48:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JV 6/12/2023 21:48:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/12/2023 21:48:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'JV 6/12/2023 21:48:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'JV 6/12/2023 21:48:19'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:48:19'!
+PASSED!
+
+----SNAPSHOT----(12 June 2023 21:48:25) CuisUniversity-5832.image priorSource: 9467831!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:51:04' prior: 50629257!
+assertSessionNotExpiredFor: aCartId.
+	(clock value - (cartsElapsedTimes at: aCartId) < 30) ifFalse: [		self error: 'Session expired' ]! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JV 6/12/2023 21:51:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'JV 6/12/2023 21:51:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JV 6/12/2023 21:51:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'JV 6/12/2023 21:51:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'JV 6/12/2023 21:51:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'JV 6/12/2023 21:51:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JV 6/12/2023 21:51:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'JV 6/12/2023 21:51:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JV 6/12/2023 21:51:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/12/2023 21:51:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'JV 6/12/2023 21:51:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'JV 6/12/2023 21:51:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:51:07'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:51:07'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:51:21' prior: 50629316!
+test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	self 
+	should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	! !
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:51:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JV 6/12/2023 21:51:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'JV 6/12/2023 21:51:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JV 6/12/2023 21:51:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'JV 6/12/2023 21:51:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'JV 6/12/2023 21:51:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'JV 6/12/2023 21:51:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JV 6/12/2023 21:51:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'JV 6/12/2023 21:51:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JV 6/12/2023 21:51:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/12/2023 21:51:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'JV 6/12/2023 21:51:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'JV 6/12/2023 21:51:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/12/2023 21:51:27'!
+PASSED!
+
+----QUIT----(12 June 2023 21:52:16) CuisUniversity-5832.image priorSource: 9527577!
