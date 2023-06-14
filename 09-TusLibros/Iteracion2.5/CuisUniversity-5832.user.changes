@@ -2421,3 +2421,677 @@ PASSED!
 PASSED!
 
 ----QUIT----(12 June 2023 21:52:16) CuisUniversity-5832.image priorSource: 9527577!
+
+----STARTUP---- (14 June 2023 17:23:47) as /home/julia/Documents/Inge1/SmallTalk/TusLibros2/linux64/CuisUniversity-5832.image!
+
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:24:02'!
+PASSED!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:24:32' prior: 50629109!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	self assertSessionNotExpiredFor: aCartId.
+	
+	cart add: anAmount of: aBook.
+	cartsElapsedTimes at: aCartId put: clock value.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JV 6/14/2023 17:24:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'JV 6/14/2023 17:24:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JV 6/14/2023 17:24:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'JV 6/14/2023 17:24:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'JV 6/14/2023 17:24:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'JV 6/14/2023 17:24:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JV 6/14/2023 17:24:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'JV 6/14/2023 17:24:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JV 6/14/2023 17:24:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/14/2023 17:24:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'JV 6/14/2023 17:24:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'JV 6/14/2023 17:24:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:24:36'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:25:04'!
+test14CartCanNotCheckoutIfMoreThan30MinutesHaveElapsed
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	self 
+	should: [interface add: self validBook quantity: 1 toCartIdentifiedAs: id]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:33:43' prior: 50629581!
+test14CartCanNotCheckoutIfMoreThan30MinutesHaveElapsed
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	self 
+	should: [ interface checkOutCartIdentifiedAs: id withCreditCardNumbered: StoreTestObjectsFactory new notExpiredCreditCard ownedBy: self validUser expiringOn: StoreTestObjectsFactory new notExpiredMonthOfYear ]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	! !
+
+!testRun: #RestInterfaceTest #test14CartCanNotCheckoutIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:33:44'!
+FAILURE!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:34:13' prior: 50628357!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	
+	self assertSessionNotExpiredFor: cart.
+	
+	Cashier 
+		toCheckout: cart 
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: self today 
+		registeringOn: salesBook! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JV 6/14/2023 17:34:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'JV 6/14/2023 17:34:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JV 6/14/2023 17:34:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'JV 6/14/2023 17:34:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'JV 6/14/2023 17:34:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'JV 6/14/2023 17:34:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JV 6/14/2023 17:34:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'JV 6/14/2023 17:34:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JV 6/14/2023 17:34:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/14/2023 17:34:16'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'JV 6/14/2023 17:34:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'JV 6/14/2023 17:34:16'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:34:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartCanNotCheckoutIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:34:16'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JV 6/14/2023 17:35:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'JV 6/14/2023 17:35:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JV 6/14/2023 17:35:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'JV 6/14/2023 17:35:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'JV 6/14/2023 17:35:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'JV 6/14/2023 17:35:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JV 6/14/2023 17:35:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'JV 6/14/2023 17:35:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JV 6/14/2023 17:35:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/14/2023 17:35:31'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'JV 6/14/2023 17:35:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'JV 6/14/2023 17:35:31'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:35:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartCanNotCheckoutIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:35:31'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/14/2023 17:35:34'!
+FAILURE!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:37:57' prior: 50629625!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	
+	self assertSessionNotExpiredFor: cart.
+	
+	Cashier 
+		toCheckout: cart 
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: self today 
+		registeringOn: salesBook.
+	
+	carts at: cartsElapsedTimes put: clock value.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:38:23' prior: 50629742!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	
+	self assertSessionNotExpiredFor: cart.
+	
+	Cashier 
+		toCheckout: cart 
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: self today 
+		registeringOn: salesBook.
+	
+	cartsElapsedTimes at: cart put: clock value.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:38:27' prior: 50629760!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cartId |
+	
+	cartId := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	
+	self assertSessionNotExpiredFor: cartId.
+	
+	Cashier 
+		toCheckout: cartId 
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: self today 
+		registeringOn: salesBook.
+	
+	cartsElapsedTimes at: cartId put: clock value.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:38:34' prior: 50629525!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	| cartId |
+	
+	cartId := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	self assertSessionNotExpiredFor: aCartId.
+	
+	cartId add: anAmount of: aBook.
+	cartsElapsedTimes at: aCartId put: clock value.! !
+
+!testRun: #RestInterfaceTest #test14CartCanNotCheckoutIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:41:29'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test14CartCanNotCheckoutIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:41:29'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JV 6/14/2023 17:41:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'JV 6/14/2023 17:41:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JV 6/14/2023 17:41:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'JV 6/14/2023 17:41:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'JV 6/14/2023 17:41:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'JV 6/14/2023 17:41:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JV 6/14/2023 17:41:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'JV 6/14/2023 17:41:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JV 6/14/2023 17:41:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/14/2023 17:41:33'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'JV 6/14/2023 17:41:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'JV 6/14/2023 17:41:33'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:41:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartCanNotCheckoutIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:41:33'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/14/2023 17:41:36'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/14/2023 17:42:12'!
+FAILURE!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:44:24' prior: 50629778!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cartId |
+	
+	cartId := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	
+	self assertSessionNotExpiredFor: cartId.
+	
+	Cashier 
+		toCheckout: cartId 
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: self today 
+		registeringOn: salesBook.
+	
+	! !
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/14/2023 17:44:31'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JV 6/14/2023 17:44:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'JV 6/14/2023 17:44:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JV 6/14/2023 17:44:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'JV 6/14/2023 17:44:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'JV 6/14/2023 17:44:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'JV 6/14/2023 17:44:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JV 6/14/2023 17:44:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'JV 6/14/2023 17:44:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JV 6/14/2023 17:44:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'JV 6/14/2023 17:44:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:44:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/14/2023 17:44:36'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'JV 6/14/2023 17:44:36'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test14CartCanNotCheckoutIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:44:36'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/14/2023 17:44:39'!
+FAILURE!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:47:00' prior: 50629797!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	self assertSessionNotExpiredFor: aCartId.
+	
+	cart add: anAmount of: aBook.
+	cartsElapsedTimes at: aCartId put: clock value.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:47:23' prior: 50629872!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	
+	self assertSessionNotExpiredFor: aCartId.
+	
+	Cashier 
+		toCheckout: cart 
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: self today 
+		registeringOn: salesBook.
+	
+	! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'JV 6/14/2023 17:47:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'JV 6/14/2023 17:47:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'JV 6/14/2023 17:47:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'JV 6/14/2023 17:47:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'JV 6/14/2023 17:47:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'JV 6/14/2023 17:47:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'JV 6/14/2023 17:47:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'JV 6/14/2023 17:47:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'JV 6/14/2023 17:47:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'JV 6/14/2023 17:47:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'JV 6/14/2023 17:47:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'JV 6/14/2023 17:47:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:47:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartCanNotCheckoutIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:47:37'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:54:20'!
+test15CartCanNotAddItemsAfterCheckout
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	interface 
+		checkOutCartIdentifiedAs: id 
+		withCreditCardNumbered: StoreTestObjectsFactory new notExpiredCreditCard 
+		ownedBy: self validUser 
+		expiringOn: StoreTestObjectsFactory new notExpiredMonthOfYear.
+	
+	self 
+	should: [ interface add: self validBook quantity: 1 toCartIdentifiedAs: id ]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart has checked out'].
+	
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:54:32'!
+test15CanNotAddItemsToCartAfterCheckout
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	interface 
+		checkOutCartIdentifiedAs: id 
+		withCreditCardNumbered: StoreTestObjectsFactory new notExpiredCreditCard 
+		ownedBy: self validUser 
+		expiringOn: StoreTestObjectsFactory new notExpiredMonthOfYear.
+	
+	self 
+	should: [ interface add: self validBook quantity: 1 toCartIdentifiedAs: id ]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart has checked out'].
+	
+	! !
+
+!methodRemoval: RestInterfaceTest #test15CartCanNotAddItemsAfterCheckout stamp: 'JV 6/14/2023 17:54:38'!
+test15CartCanNotAddItemsAfterCheckout
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	interface 
+		checkOutCartIdentifiedAs: id 
+		withCreditCardNumbered: StoreTestObjectsFactory new notExpiredCreditCard 
+		ownedBy: self validUser 
+		expiringOn: StoreTestObjectsFactory new notExpiredMonthOfYear.
+	
+	self 
+	should: [ interface add: self validBook quantity: 1 toCartIdentifiedAs: id ]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart has checked out'].
+	
+	!
+
+!testRun: #RestInterfaceTest #test15CanNotAddItemsToCartAfterCheckout stamp: 'JV 6/14/2023 17:54:44'!
+ERROR!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:55:08'!
+test15CanNotAddItemsToCartAfterCheckoutWhenSessionNotExpired
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 5).
+	
+	interface 
+		checkOutCartIdentifiedAs: id 
+		withCreditCardNumbered: StoreTestObjectsFactory new notExpiredCreditCard 
+		ownedBy: self validUser 
+		expiringOn: StoreTestObjectsFactory new notExpiredMonthOfYear.
+	
+	self 
+	should: [ interface add: self validBook quantity: 1 toCartIdentifiedAs: id ]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart has checked out'].
+	
+	! !
+
+!methodRemoval: RestInterfaceTest #test15CanNotAddItemsToCartAfterCheckout stamp: 'JV 6/14/2023 17:55:12'!
+test15CanNotAddItemsToCartAfterCheckout
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	interface 
+		checkOutCartIdentifiedAs: id 
+		withCreditCardNumbered: StoreTestObjectsFactory new notExpiredCreditCard 
+		ownedBy: self validUser 
+		expiringOn: StoreTestObjectsFactory new notExpiredMonthOfYear.
+	
+	self 
+	should: [ interface add: self validBook quantity: 1 toCartIdentifiedAs: id ]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart has checked out'].
+	
+	!
+
+!testRun: #RestInterfaceTest #test15CanNotAddItemsToCartAfterCheckoutWhenSessionNotExpired stamp: 'JV 6/14/2023 17:55:14'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test15CanNotAddItemsToCartAfterCheckoutWhenSessionNotExpired stamp: 'JV 6/14/2023 17:55:14'!
+ERROR!
+
+!methodRemoval: RestInterfaceTest #test15CanNotAddItemsToCartAfterCheckoutWhenSessionNotExpired stamp: 'JV 6/14/2023 17:55:35'!
+test15CanNotAddItemsToCartAfterCheckoutWhenSessionNotExpired
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 5).
+	
+	interface 
+		checkOutCartIdentifiedAs: id 
+		withCreditCardNumbered: StoreTestObjectsFactory new notExpiredCreditCard 
+		ownedBy: self validUser 
+		expiringOn: StoreTestObjectsFactory new notExpiredMonthOfYear.
+	
+	self 
+	should: [ interface add: self validBook quantity: 1 toCartIdentifiedAs: id ]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Cart has checked out'].
+	
+	!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:56:51'!
+test14CartCanNotListCartIfMoreThan30MinutesHaveElapsed
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	self 
+	should: [ interface listCartIdentifiedAs: id ]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	! !
+
+!testRun: #RestInterfaceTest #test14CartCanNotListCartIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:56:52'!
+FAILURE!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:57:42' prior: 50628429!
+listCartIdentifiedAs: aCartId
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	self assertSessionNotExpiredFor: aCartId.
+	
+	^cart content! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:58:53'!
+test15CartCanNotListCartIfMoreThan30MinutesHaveElapsed
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	self 
+	should: [ interface listCartIdentifiedAs: id ]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	! !
+
+!methodRemoval: RestInterfaceTest #test14CartCanNotListCartIfMoreThan30MinutesHaveElapsed stamp: 'JV 6/14/2023 17:58:53'!
+test14CartCanNotListCartIfMoreThan30MinutesHaveElapsed
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	self 
+	should: [ interface listCartIdentifiedAs: id ]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	!
+
+----QUIT----(14 June 2023 18:00:44) CuisUniversity-5832.image priorSource: 9531619!

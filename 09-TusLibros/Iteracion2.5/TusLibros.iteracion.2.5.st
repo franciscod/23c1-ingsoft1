@@ -511,6 +511,44 @@ test13CartCanNotAddProductsIfMoreThan30MinutesHaveElapsed
 	
 	! !
 
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:33:43'!
+test14CartCanNotCheckoutIfMoreThan30MinutesHaveElapsed
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	self 
+	should: [ interface checkOutCartIdentifiedAs: id withCreditCardNumbered: StoreTestObjectsFactory new notExpiredCreditCard ownedBy: self validUser expiringOn: StoreTestObjectsFactory new notExpiredMonthOfYear ]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	! !
+
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:58:53'!
+test15CartCanNotListCartIfMoreThan30MinutesHaveElapsed
+
+	| interface id |
+
+	interface := self createDefaultInterface.
+	
+	id := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface clock setTime: (interface clock value + 31).
+	
+	self 
+	should: [ interface listCartIdentifiedAs: id ]
+	raise: Error
+	withExceptionDo: [ :anError | 
+		self assert: anError messageText = 'Session expired'].
+	
+	! !
+
 !RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/21/2013 23:50'!
 validBook
 	
@@ -791,13 +829,15 @@ Object subclass: #RestInterface
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:42:23'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:47:00'!
 add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
 
 	| cart |
 	
 	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
 	self assertSessionNotExpiredFor: aCartId.
+	
 	cart add: anAmount of: aBook.
 	cartsElapsedTimes at: aCartId put: clock value.! !
 
@@ -810,19 +850,23 @@ cartCanNotBeEmptyErrorMessage
 	
 	^Cashier cartCanNotBeEmptyErrorMessage ! !
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/22/2013 11:16'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:47:23'!
 checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
 
 	| cart |
 	
 	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
 	
+	self assertSessionNotExpiredFor: aCartId.
+	
 	Cashier 
 		toCheckout: cart 
 		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
 		throught: merchantProcessor 
 		on: self today 
-		registeringOn: salesBook! !
+		registeringOn: salesBook.
+	
+	! !
 
 !RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/12/2023 21:29:04'!
 clock
@@ -882,12 +926,14 @@ is: aUser authenticatingWith: aPassword
 	^authenticationSystem is: aUser authenticatingWith: aPassword 
 ! !
 
-!RestInterface methodsFor: 'as yet unclassified' stamp: 'HernanWilkinson 6/22/2013 00:19'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'JV 6/14/2023 17:57:42'!
 listCartIdentifiedAs: aCartId
 
 	| cart |
 	
 	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	self assertSessionNotExpiredFor: aCartId.
 	
 	^cart content! !
 
