@@ -753,7 +753,7 @@ salesBook
 	^ salesBook! !
 
 
-!TusLibrosSystemFacade methodsFor: 'private' stamp: 'JV 6/15/2023 21:37:33'!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'JV 6/21/2023 18:13:58'!
 bookPerformance: anItem
 
 	| bookPerformance totalMoney totalSales semaphore |
@@ -762,9 +762,9 @@ bookPerformance: anItem
 	
 	semaphore := Semaphore new.
 	
-	[ [ :sema | totalSales := self totalSalesOf: anItem. ] value: semaphore. semaphore signal.  ] fork. 
-	totalMoney := self totalMoneyRaisedBy: anItem.
+	self executeInParallel: [totalSales := self totalSalesOf: anItem] thenSignal: semaphore.
 	
+	totalMoney := self totalMoneyRaisedBy: anItem.
 	
 	semaphore wait.
 	bookPerformance at: 'quantity' put: totalSales.
@@ -774,6 +774,16 @@ bookPerformance: anItem
 	bookPerformance at: 'summary' put: anItem,' was selled ',totalSales asString, ' times and raised a total amount of money equal to: ', totalMoney asString.
 	
 	^bookPerformance
+	
+
+! !
+
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'JV 6/21/2023 18:14:15'!
+executeInParallel: aBlockToExecute thenSignal: aSemaphore
+	
+	[ [ :sema | aBlockToExecute value ] value: aSemaphore. aSemaphore signal.  ] fork. 
+	
+	
 	
 
 ! !
@@ -793,7 +803,7 @@ salesDoneBy: aUser
 	"Esto es un indicio de que por ahi conviene empezar a pensar en modelar un SaleBook - Hernan"
 	^ salesBook select: [ :aSale | aSale wasDoneBy: aUser ]! !
 
-!TusLibrosSystemFacade methodsFor: 'private' stamp: 'JV 6/15/2023 21:37:44'!
+!TusLibrosSystemFacade methodsFor: 'private' stamp: 'JV 6/21/2023 18:15:18'!
 storePerformance
 
 	| totalMoney totalSales performance semaphore |
@@ -802,7 +812,7 @@ storePerformance
 	
 	semaphore := Semaphore new.
 	
-	[ [ :sema | totalSales := self totalSales ] value: semaphore. semaphore signal. ] fork. 
+	self executeInParallel: [totalSales := self totalSales ] thenSignal: semaphore. 
 	
 	totalMoney := self totalMoneyRaised.
 	
