@@ -2343,3 +2343,325 @@ TusLibrosServerRestInterface installForDefaultSystem!
 TusLibrosClientTestWindow open!
 
 ----SNAPSHOT----(21 June 2023 20:04:28) CuisUniversity-5832.image priorSource: 10664529!
+
+----STARTUP---- (22 June 2023 16:23:18) as /home/fd/mat/ing1/cuis/5832/linux64/CuisUniversity-5832.image!
+
+
+self inform: 'Hola'!
+
+TusLibrosServerRestInterface installForDefaultSystem!
+
+WebServer reset!
+
+TusLibrosClientTestWindow open!
+
+TusLibrosServerRestInterface installForDefaultSystem!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CreditCardTest #test01CreditCardNumberWithLessThan16DigitsIsNotValid stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CreditCardTest #test02CreditCardNumberWithMoreThan16DigitsIsNotValid stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CreditCardTest #test03CreditCardNumberShouldBeDigitsOnly stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CreditCardTest #test04NameCanNotBeEmpty stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CreditCardTest #test05IsExpiredOnNextExpirationMonth stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CreditCardTest #test06IsNotExpiredOnExpirationMonth stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #CreditCardTest #test07CanGetCreditCardInfoFromIt stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test01CanCreateCartWithValidUserAndPassword stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test02CanNotCreateCartWithInvalidUser stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test03CanNotCreateCartWithInvalidPassword stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test04CanAddItemsToACreatedCart stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test05CanNotAddItemToNotCreatedCart stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test06CanNotAddItemNotSellByTheStore stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test08CanNotListCartOfInvalidCartId stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10CheckOutReturnsTransactionIdAndImpactsCustomerPurchases stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test10_1_CanNotCheckoutAnAlreadyCheckedOutCart stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test11CanNotCheckoutANotCreatedCart stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test12CanNotCheckoutAnEmptyCart stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test13CanNotCheckoutWithAnExpiredCreditCard stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test14ListPurchasesIncludesBoughtItems stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test15CanNotListPurchasesOfInvalidCustomer stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test16CanNotListPurchasesOfValidCustomerWithInvalidPassword stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test17CanNotAddToCartWhenSessionIsExpired stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test18CanNotListCartWhenSessionIsExpired stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test19CanNotCheckOutCartWhenSessionIsExpired stamp: 'fd 6/22/2023 16:26:36'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test20BookPerformanceShouldNotTakeTooLong stamp: 'fd 6/22/2023 16:26:37'!
+PASSED!
+
+!testRun: #TusLibrosSystemFacadeTest #test21StorePerformanceShouldNotTakeTooLong stamp: 'fd 6/22/2023 16:26:38'!
+PASSED!
+
+TusLibrosClientTestWindow open!
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'fd 6/22/2023 16:29:01' prior: 50666033!
+executeInParallel: aBlockToExecute thenSignal: aSemaphore
+	
+	[ aBlockToExecute value. aSemaphore signal.  ] fork. ! !
+
+a := 4!
+
+aSemaphore := Semaphore new.!
+
+
+a := 0.
+aSemaphore := Semaphore new.
+TusLibrosServerRestInterface new executeInParallel: [ a := a+1. (Delay forSeconds: 1) wait] thenSignal: aSemaphore.
+TusLibrosServerRestInterface new executeInParallel: [ a := a+1. (Delay forSeconds: 1) wait] thenSignal: aSemaphore.
+TusLibrosServerRestInterface new executeInParallel: [ a := a+1. (Delay forSeconds: 1) wait] thenSignal: aSemaphore.
+aSemaphore wait.
+aSemaphore wait.
+aSemaphore wait.
+a.!
+
+
+a := 0.
+aSemaphore := Semaphore new.
+TusLibrosServerRestInterface new executeInParallel: [ a := a+1. (Delay forSeconds: 1) wait] thenSignal: aSemaphore.
+TusLibrosServerRestInterface new executeInParallel: [ a := a+1. (Delay forSeconds: 1) wait] thenSignal: aSemaphore.
+TusLibrosServerRestInterface new executeInParallel: [ a := a+1. (Delay forSeconds: 1) wait] thenSignal: aSemaphore.
+aSemaphore wait.
+aSemaphore wait.
+aSemaphore wait.
+a.!
+
+
+a := 0.
+aSemaphore := Semaphore new.
+TusLibrosServerRestInterface new executeInParallel: [ a := a+1. (Delay forSeconds: 1) wait] thenSignal: aSemaphore.
+TusLibrosServerRestInterface new executeInParallel: [ a := a+1. (Delay forSeconds: 1) wait] thenSignal: aSemaphore.
+TusLibrosServerRestInterface new executeInParallel: [ a := a+1. (Delay forSeconds: 1) wait] thenSignal: aSemaphore.
+aSemaphore wait.
+aSemaphore wait.
+aSemaphore wait.
+a.!
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'fd 6/22/2023 16:32:14' prior: 50666139!
+listCart: aRequest
+
+	| cartId sema |
+	self halt.
+
+	(Delay forSeconds: 10) wait.
+	
+	sema := Semaphore new.
+	
+	self executeInParallel:  
+	[ self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields ]. ] thenSignal: sema.
+	
+	sema wait.
+	self 
+		answer: [(systemFacade listCartIdentifiedAs: cartId) asArray]
+		to: aRequest 
+	
+! !
+
+TusLibrosClientTestWindow open!
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'fd 6/22/2023 16:35:01' prior: 50666420!
+listCart: aRequest
+
+	| cartId sema |
+	
+	sema := Semaphore new.
+
+	self executeInParallel: [
+	(Delay forSeconds: 10) wait.	
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields ].
+	self 
+		answer: [(systemFacade listCartIdentifiedAs: cartId) asArray]
+		to: aRequest 
+	
+	]  thenSignal: sema! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'fd 6/22/2023 16:35:03' prior: 50666436!
+listCart: aRequest
+
+	| cartId sema |
+	
+	sema := Semaphore new.
+
+	self executeInParallel: [
+	(Delay forSeconds: 10) wait.	
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields ].
+	self 
+		answer: [(systemFacade listCartIdentifiedAs: cartId) asArray]
+		to: aRequest 
+	
+	]  thenSignal: sema.! !
+
+TusLibrosClientTestWindow open!
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'fd 6/22/2023 16:37:15' prior: 50666450!
+listCart: aRequest
+
+	| cartId sema |
+	
+	self halt.
+	
+	sema := Semaphore new.
+
+	self executeInParallel: [
+	(Delay forSeconds: 10) wait.	
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields ].
+	self 
+		answer: [(systemFacade listCartIdentifiedAs: cartId) asArray]
+		to: aRequest 
+	
+	]  thenSignal: sema.! !
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'fd 6/22/2023 16:39:23' prior: 50666465!
+listCart: aRequest
+
+	| cartId |
+	
+	(Delay forSeconds: 10) wait.	
+	
+	self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields ].
+	self 
+		answer: [(systemFacade listCartIdentifiedAs: cartId) asArray]
+		to: aRequest.! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'fd 6/22/2023 16:41:26' prior: 50663624!
+listCart
+
+	| cartId |
+	
+	(self isCartIdSelected) ifTrue:[
+		cartId := self selectedCartId.
+		"currentSelectedCartContent := restInterface listCart: cartId."
+		self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId ].! !
+
+TusLibrosClientTestWindow open!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'fd 6/22/2023 16:42:09' prior: 50666492!
+listCart
+
+	| cartId |
+	
+	(self isCartIdSelected) ifTrue:[
+		cartId := self selectedCartId.
+		[
+			currentSelectedCartContent := restInterface listCart: cartId.
+			self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId.
+		] fork.
+	].! !
+
+TusLibrosClientTestWindow open!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'fd 6/22/2023 16:44:46' prior: 50666021!
+createCart
+
+	| newCartId |
+	[
+		newCartId := restInterface createCartFor: 'hernan' password: 'smalltalk'.
+		cartIds add: newCartId.
+		self triggerEvent: #newCartIdArrived
+	] fork.! !
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'fd 6/22/2023 16:45:07' prior: 50663602!
+addToCart
+
+	| cartId bookIsbn |
+
+	(self areCartIdAndBookSelected) ifTrue:[
+		cartId := self selectedCartId.
+		bookIsbn := self selectedBook.
+		[
+			restInterface add: 1 of: bookIsbn toCartIdentifiedAs: cartId.
+			self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)
+		] fork
+	]! !
+
+TusLibrosClientTestWindow open!
+
+----SNAPSHOT----(22 June 2023 16:47:12) CuisUniversity-5832.image priorSource: 10705824!

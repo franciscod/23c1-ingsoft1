@@ -375,7 +375,7 @@ cartIdsIndex: anIndex
 	! !
 
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NR 6/13/2022 07:07:36'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'fd 6/22/2023 16:45:07'!
 addToCart
 
 	| cartId bookIsbn |
@@ -383,28 +383,34 @@ addToCart
 	(self areCartIdAndBookSelected) ifTrue:[
 		cartId := self selectedCartId.
 		bookIsbn := self selectedBook.
-		restInterface add: 1 of: bookIsbn toCartIdentifiedAs: cartId.
-		self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)]! !
+		[
+			restInterface add: 1 of: bookIsbn toCartIdentifiedAs: cartId.
+			self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)
+		] fork
+	]! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'JV 6/21/2023 19:50:33'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'fd 6/22/2023 16:44:46'!
 createCart
 
 	| newCartId |
-	
-	newCartId := restInterface createCartFor: 'hernan' password: 'smalltalk'.
-	
-	cartIds add: newCartId.
-	self triggerEvent: #newCartIdArrived! !
+	[
+		newCartId := restInterface createCartFor: 'hernan' password: 'smalltalk'.
+		cartIds add: newCartId.
+		self triggerEvent: #newCartIdArrived
+	] fork.! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NR 6/13/2022 07:08:06'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'fd 6/22/2023 16:42:09'!
 listCart
 
 	| cartId |
 	
 	(self isCartIdSelected) ifTrue:[
 		cartId := self selectedCartId.
-		currentSelectedCartContent := restInterface listCart: cartId.
-		self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId ].! !
+		[
+			currentSelectedCartContent := restInterface listCart: cartId.
+			self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId.
+		] fork.
+	].! !
 
 
 !TusLibrosClientTestWindowModel methodsFor: 'initialization' stamp: 'NR 6/9/2022 08:13:11'!
@@ -547,30 +553,23 @@ createCart: aRequest
 			cartId printString ]
 		to: aRequest! !
 
-!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'JV 6/21/2023 19:53:04'!
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'fd 6/22/2023 16:29:01'!
 executeInParallel: aBlockToExecute thenSignal: aSemaphore
 	
-	[ [ :sema | aBlockToExecute value ] value: aSemaphore. aSemaphore signal.  ] fork. ! !
+	[ aBlockToExecute value. aSemaphore signal.  ] fork. ! !
 
-!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'JV 6/21/2023 20:00:17'!
+!TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'fd 6/22/2023 16:39:23'!
 listCart: aRequest
 
-	| cartId sema |
-
-	(Delay forSeconds: 10) wait.
+	| cartId |
 	
-	sema := Semaphore new.
+	(Delay forSeconds: 10) wait.	
 	
-	self executeInParallel:  
-	[ self withFieldsOf: aRequest do: [ :requestFields |
-		cartId := self cartIdFrom: requestFields ]. ] thenSignal: sema.
-	
-	sema wait.
+	self withFieldsOf: aRequest do: [ :requestFields |
+		cartId := self cartIdFrom: requestFields ].
 	self 
 		answer: [(systemFacade listCartIdentifiedAs: cartId) asArray]
-		to: aRequest 
-	
-! !
+		to: aRequest.! !
 
 !TusLibrosServerRestInterface methodsFor: 'rest interface' stamp: 'JV 6/21/2023 19:58:46'!
 listPurchases: aRequest
