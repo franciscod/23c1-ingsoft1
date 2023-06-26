@@ -4741,3 +4741,355 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(26 June 2023 16:27:38) CuisUniversity-5832.image priorSource: 9521371!
+
+----STARTUP---- (26 June 2023 16:32:19) as /home/fd/mat/ing1/cuis/5832/linux64/CuisUniversity-5832.image!
+
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'fd 6/26/2023 16:32:31'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'fd 6/26/2023 16:32:32'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'fd 6/26/2023 16:32:33'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'fd 6/26/2023 16:32:33'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'fd 6/26/2023 16:32:34'!
+PASSED!
+!CustomerImporter methodsFor: 'initialization' stamp: 'fd 6/26/2023 16:35:00' prior: 50629129!
+importCustomers
+	
+	| line newCustomer |
+	
+	line := inputStream nextLine.
+	
+	
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer 
+				firstName: customerData second 
+				lastName: customerData third 
+				identificationType: customerData fourth 
+				identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := 
+				Address 
+					streetName: addressData second 
+					streetNumber: addressData third asNumber
+					town: addressData fourth
+					province: addressData sixth
+					zipCode: addressData fifth asNumber.
+			newCustomer addAddress: newAddress].
+
+		line := inputStream nextLine. ].
+
+	"inputStream close."! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'fd 6/26/2023 16:35:38' prior: 50629772!
+importCustomersFrom: anInputStream
+	|importer| 
+	importer := CustomerImporter stream: anInputStream session: session.! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'fd 6/26/2023 16:35:44' prior: 50630042!
+importCustomersFrom: anInputStream
+	^CustomerImporter stream: anInputStream session: session.! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'fd 6/26/2023 16:36:05'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'fd 6/26/2023 16:36:05'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'fd 6/26/2023 16:36:05'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'fd 6/26/2023 16:36:05'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'fd 6/26/2023 16:36:05'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'fd 6/26/2023 16:36:13'!
+ERROR!
+!CustomerImporter methodsFor: 'initialization' stamp: 'fd 6/26/2023 16:36:32' prior: 50630011!
+importCustomers
+	
+	| line newCustomer |
+
+	
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer 
+				firstName: customerData second 
+				lastName: customerData third 
+				identificationType: customerData fourth 
+				identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := 
+				Address 
+					streetName: addressData second 
+					streetNumber: addressData third asNumber
+					town: addressData fourth
+					province: addressData sixth
+					zipCode: addressData fifth asNumber.
+			newCustomer addAddress: newAddress].
+
+		line := inputStream nextLine. ].
+
+	"inputStream close."! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'fd 6/26/2023 16:36:32' prior: 50630077!
+importCustomers
+	
+	| line newCustomer |
+	
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer 
+				firstName: customerData second 
+				lastName: customerData third 
+				identificationType: customerData fourth 
+				identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := 
+				Address 
+					streetName: addressData second 
+					streetNumber: addressData third asNumber
+					town: addressData fourth
+					province: addressData sixth
+					zipCode: addressData fifth asNumber.
+			newCustomer addAddress: newAddress].
+
+		line := inputStream nextLine. ].
+
+	"inputStream close."! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'fd 6/26/2023 16:36:35'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'fd 6/26/2023 16:36:40'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'fd 6/26/2023 16:36:41'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'fd 6/26/2023 16:36:41'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'fd 6/26/2023 16:36:42'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'fd 6/26/2023 16:36:43'!
+PASSED!
+!ImportTest methodsFor: 'testing' stamp: 'fd 6/26/2023 16:37:53' prior: 50626525!
+namesAreCorrect
+	^(session selectAllOfType: Customer) inject: true into: [ :namesAreCorrect :customer | 
+		namesAreCorrect and self halt] ! !
+
+!methodRemoval: ImportTest #namesAreCorrect stamp: 'fd 6/26/2023 16:38:12'!
+namesAreCorrect
+	^(session selectAllOfType: Customer) inject: true into: [ :namesAreCorrect :customer | 
+		namesAreCorrect and self halt] !
+
+!methodRemoval: Customer #addresses stamp: 'fd 6/26/2023 16:39:45'!
+addresses
+
+	^ addresses!
+!CustomerImporter methodsFor: 'initialization' stamp: 'fd 6/26/2023 16:41:41' prior: 50630107!
+importCustomers
+	
+	| line newCustomer |
+	
+	line := inputStream nextLine.
+	"TODO: en la primera linea nil (vacia?) deja de importar, esto esta bien? armar un test?"
+	
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer 
+				firstName: customerData second 
+				lastName: customerData third 
+				identificationType: customerData fourth 
+				identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := 
+				Address 
+					streetName: addressData second 
+					streetNumber: addressData third asNumber
+					town: addressData fourth
+					province: addressData sixth
+					zipCode: addressData fifth asNumber.
+			newCustomer addAddress: newAddress].
+
+		line := inputStream nextLine. ].
+
+	"inputStream close."! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'fd 6/26/2023 16:41:57' prior: 50630176!
+importCustomers
+	
+	| line newCustomer |
+	
+	line := inputStream nextLine.
+	"TODO: en la primera linea nil (vacia?) deja de importar, esto esta bien? armar un test?"
+	
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer 
+				firstName: customerData second 
+				lastName: customerData third 
+				identificationType: customerData fourth 
+				identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := 
+				Address 
+					streetName: addressData second 
+					streetNumber: addressData third asNumber
+					town: addressData fourth
+					province: addressData sixth
+					zipCode: addressData fifth asNumber.
+			newCustomer addAddress: newAddress].
+
+		line := inputStream nextLine. ].! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'fd 6/26/2023 16:42:24'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'fd 6/26/2023 16:42:24'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'fd 6/26/2023 16:42:24'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'fd 6/26/2023 16:42:24'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'fd 6/26/2023 16:42:24'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'fd 6/26/2023 16:42:29'!
+ERROR!
+!Customer methodsFor: 'name' stamp: 'fd 6/26/2023 16:44:02'!
+addresses
+
+	^ addresses! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'fd 6/26/2023 16:44:11'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'fd 6/26/2023 16:44:12'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'fd 6/26/2023 16:44:13'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'fd 6/26/2023 16:44:13'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'fd 6/26/2023 16:44:14'!
+PASSED!
+
+----SNAPSHOT----(26 June 2023 16:44:54) CuisUniversity-5832.image priorSource: 9546719!
+!CustomerImporter methodsFor: 'initialization' stamp: 'fd 6/26/2023 16:46:20' prior: 50630209!
+importCustomers
+	
+	| line |
+	
+	line := inputStream nextLine.
+	"TODO: en la primera linea nil (vacia?) deja de importar, esto esta bien? armar un test?"
+	
+	[ line notNil ] whileTrue: [ | newCustomer |
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer 
+				firstName: customerData second 
+				lastName: customerData third 
+				identificationType: customerData fourth 
+				identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := 
+				Address 
+					streetName: addressData second 
+					streetNumber: addressData third asNumber
+					town: addressData fourth
+					province: addressData sixth
+					zipCode: addressData fifth asNumber.
+			newCustomer addAddress: newAddress].
+
+		line := inputStream nextLine. ].! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'fd 6/26/2023 16:46:27'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'fd 6/26/2023 16:46:27'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'fd 6/26/2023 16:46:27'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'fd 6/26/2023 16:46:27'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'fd 6/26/2023 16:46:27'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'fd 6/26/2023 16:46:30'!
+ERROR!
+!CustomerImporter methodsFor: 'initialization' stamp: 'fd 6/26/2023 16:46:47' prior: 50630288!
+importCustomers
+	
+	| line newCustomer |
+	
+	line := inputStream nextLine.
+	"TODO: en la primera linea nil (vacia?) deja de importar, esto esta bien? armar un test?"
+	
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer 
+				firstName: customerData second 
+				lastName: customerData third 
+				identificationType: customerData fourth 
+				identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := 
+				Address 
+					streetName: addressData second 
+					streetNumber: addressData third asNumber
+					town: addressData fourth
+					province: addressData sixth
+					zipCode: addressData fifth asNumber.
+			newCustomer addAddress: newAddress].
+
+		line := inputStream nextLine. ].! !
+
+----SNAPSHOT----(26 June 2023 16:46:54) CuisUniversity-5832.image priorSource: 9556272!
+
+----SNAPSHOT----(26 June 2023 16:48:21) CuisUniversity-5832.image priorSource: 9559119!

@@ -40,40 +40,9 @@ getPepeFromSession
 
 	^ session select: [ :customer | customer firstName = 'Pepe'] ofType: Customer! !
 
-!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/26/2023 16:24:39'!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'fd 6/26/2023 16:35:44'!
 importCustomersFrom: anInputStream
-
-	| newCustomer line |
-
-	"inputStream := UniFileStream new open: 'input.txt' forWrite: false."
-
-	line := anInputStream nextLine.
-	[ line notNil ] whileTrue: [
-		(line beginsWith: 'C') ifTrue: [ | customerData |
-			customerData := line findTokens: $,.
-			newCustomer := Customer 
-				firstName: customerData second 
-				lastName: customerData third 
-				identificationType: customerData fourth 
-				identificationNumber: customerData fifth.
-			session persist: newCustomer ].
-
-		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
-			addressData := line findTokens: $,.
-			newAddress := 
-				Address 
-					streetName: addressData second 
-					streetNumber: addressData third asNumber
-					town: addressData fourth
-					province: addressData sixth
-					zipCode: addressData fifth asNumber.
-			newCustomer addAddress: newAddress].
-
-		line := anInputStream nextLine. ].
-
-
-	anInputStream close.
-	! !
+	^CustomerImporter stream: anInputStream session: session.! !
 
 !ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/22/2023 20:50:16'!
 setUp
@@ -153,11 +122,6 @@ test05ImportingCustomersShowsCorrectCustomerAddresses
 	
 	! !
 
-
-!ImportTest methodsFor: 'testing' stamp: 'JV 6/25/2023 22:37:51'!
-namesAreCorrect
-	^(session selectAllOfType: Customer) inject: true into: [ :namesAreCorrect :customer | 
-		namesAreCorrect and customer] ! !
 
 
 !classDefinition: #Address category: 'CustomerImporter'!
@@ -292,21 +256,23 @@ Object subclass: #CustomerImporter
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/26/2023 16:16:30'!
+!CustomerImporter methodsFor: 'initialization' stamp: 'fd 6/26/2023 16:41:57'!
 importCustomers
 	
-	| line |
+	| line newCustomer |
 	
 	line := inputStream nextLine.
+	"TODO: en la primera linea nil (vacia?) deja de importar, esto esta bien? armar un test?"
 	
-	[ line notNil ] whileTrue: [ | newCustomer |
+	[ line notNil ] whileTrue: [
 		(line beginsWith: 'C') ifTrue: [ | customerData |
 			customerData := line findTokens: $,.
 			newCustomer := Customer 
 				firstName: customerData second 
 				lastName: customerData third 
 				identificationType: customerData fourth 
-				identificationNumber: customerData fifth. ].
+				identificationNumber: customerData fifth.
+			session persist: newCustomer ].
 
 		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
 			addressData := line findTokens: $,.
@@ -317,12 +283,9 @@ importCustomers
 					town: addressData fourth
 					province: addressData sixth
 					zipCode: addressData fifth asNumber.
-			newCustomer addAddress: newAddress ].
+			newCustomer addAddress: newAddress].
 
-		line := inputStream nextLine. ].
-
-
-	inputStream close.! !
+		line := inputStream nextLine. ].! !
 
 !CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:43:11'!
 initializeWithStream: anInputStream session: aSession 
