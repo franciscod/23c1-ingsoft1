@@ -1060,3 +1060,2496 @@ PASSED!
 PASSED!
 
 ----QUIT----(22 June 2023 22:01:20) CuisUniversity-5832.image priorSource: 9366758!
+
+----STARTUP---- (25 June 2023 21:57:24) as /home/julia/Documents/Inge/Smalltalk/CustomerImporter/linux64/CuisUniversity-5832.image!
+
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:00:41'!
+test03ImportingCustomersShowsCorrectCustomerIdentificationType
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := session select: [ :customer | customer firstName = 'Pepe'] ofType: Customer.
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	
+	self assert: (pepe anyOne identificationType = 'D') & (juan anyOne identificationType = 'C').
+	
+	! !
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:00:43'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:00:44'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:00:45'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:00:45'!
+PASSED!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:01:39'!
+test04ImportingCustomersShowsCorrectCustomerIdentificationNumber
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := session select: [ :customer | customer firstName = 'Pepe'] ofType: Customer.
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	
+	self assert: (pepe anyOne identificationNumber = '22333444') & (juan anyOne identificationNumber = '23-25666777-9').
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:01:43' prior: 50625788!
+test04ImportingCustomersShowsCorrectCustomerIdentificationNumber
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := session select: [ :customer | customer firstName = 'Pepe'] ofType: Customer.
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	
+	self assert: (pepe anyOne identificationNumber = '22333444') & (juan anyOne identificationNumber = '23-25666777-9').
+	
+	! !
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:01:44'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:01:44'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:01:45'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:01:46'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:01:46'!
+PASSED!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:03:22'!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := session select: [ :customer | customer firstName = 'Pepe'] ofType: Customer.
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	
+	self assert: (pepe anyOne addresses = '22333444') & (juan anyOne addresses = '23-25666777-9').
+	
+	! !
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:03:25'!
+FAILURE!
+
+pepe anyOne addresses!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:04:19' prior: 50625839!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := session select: [ :customer | customer firstName = 'Pepe'] ofType: Customer.
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	
+	self assert: (pepe anyOne addresses = OrderedCollection with: Address) & (juan anyOne addresses = '23-25666777-9').
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:10:48' prior: 50625859!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe juan_address pepe_address1 pepe_address2 |
+	self importCustomers.
+	
+	pepe := session select: [ :customer | customer firstName = 'Pepe'] ofType: Customer.
+	pepe_address1 := Address new streetName: 'San Martin'; streetNumber: '3322';province: 'BsAs'; town: 'Olivos'; zipCode: '1636'.
+	pepe_address2 := Address new streetName: 'Maipu'; streetNumber: '888';province: 'Buenos Aires'; town: 'Florida'; zipCode: '1122'.
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	juan_address := Address new streetName: 'Alem'; streetNumber: '1122';province: 'CABA'; town: 'CABA'; zipCode: '1001'.
+	
+	self assert: (pepe anyOne addresses = OrderedCollection with: pepe_address1 with: pepe_address2) & (juan anyOne addresses = OrderedCollection with: juan_address).
+	
+	! !
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:10:56'!
+ERROR!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:12:05' prior: 50625875!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe juan_address pepe_address1 pepe_address2 |
+	self importCustomers.
+	
+	pepe := session select: [ :customer | customer firstName = 'Pepe'] ofType: Customer.
+	pepe_address1 := Address new streetName: 'San Martin'; streetNumber: '3322';province: 'BsAs'; town: 'Olivos'; zipCode: '1636'.
+	pepe_address2 := Address new streetName: 'Maipu'; streetNumber: '888';province: 'Buenos Aires'; town: 'Florida'; zipCode: '1122'.
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	juan_address := Address new streetName: 'Alem'; streetNumber: '1122';province: 'CABA'; town: 'CABA'; zipCode: '1001'.
+	
+	self assert: (pepe anyOne addresses = (OrderedCollection with: pepe_address1 with: pepe_address2)) & (juan anyOne addresses = (OrderedCollection with: juan_address)).
+	
+	! !
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:12:06'!
+FAILURE!
+
+pepe anyOne addresses!
+
+pepe anyOne addresses!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:13:47' prior: 50625509!
+importCustomers
+
+	| inputStream  newCustomer line |
+
+	inputStream := UniFileStream new open: 'input.txt' forWrite: false.
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:13:50'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:13:51'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:13:51'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:13:52'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:13:53'!
+FAILURE!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:13:54'!
+FAILURE!
+
+pepe anyOne addresses!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:15:39' prior: 50625909!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe juan_address pepe_address1 pepe_address2 |
+	self importCustomers.
+	
+	pepe := session select: [ :customer | customer firstName = 'Pepe'] ofType: Customer.
+	pepe_address1 := Address new streetName: 'San Martin'; streetNumber: 3322;province: 'BsAs'; town: 'Olivos'; zipCode: 1636.
+	pepe_address2 := Address new streetName: 'Maipu'; streetNumber: 888;province: 'Buenos Aires'; town: 'Florida'; zipCode: 1122.
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	juan_address := Address new streetName: 'Alem'; streetNumber: 1122;province: 'CABA'; town: 'CABA'; zipCode: 1001.
+	
+	self assert: (pepe anyOne addresses = (OrderedCollection with: pepe_address1 with: pepe_address2)) & (juan anyOne addresses = (OrderedCollection with: juan_address)).
+	
+	! !
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:15:41'!
+FAILURE!
+
+pepe anyOne addresses!
+
+pepe_address1 := Address new streetName: 'San Martin'; streetNumber: 3322;province: 'BsAs'; town: 'Olivos'; zipCode: 1636.!
+
+pepe_address1 identificationNumber !
+
+pepe_address1 id!
+
+pepe_address1!
+
+pepe anyOne addresses!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:22:26'!
+pepeAddress1
+
+	^ Address new streetName: 'San Martin'; streetNumber: 3322;province: 'BsAs'; town: 'Olivos'; zipCode: 1636! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:22:26' prior: 50626004!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe juan_address pepe_address1 pepe_address2 |
+	self importCustomers.
+	
+	pepe := session select: [ :customer | customer firstName = 'Pepe'] ofType: Customer.
+	pepe_address1 := self pepeAddress1.
+	pepe_address2 := Address new streetName: 'Maipu'; streetNumber: 888;province: 'Buenos Aires'; town: 'Florida'; zipCode: 1122.
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	juan_address := Address new streetName: 'Alem'; streetNumber: 1122;province: 'CABA'; town: 'CABA'; zipCode: 1001.
+	
+	self assert: (pepe anyOne addresses = (OrderedCollection with: pepe_address1 with: pepe_address2)) & (juan anyOne addresses = (OrderedCollection with: juan_address)).
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:22:34'!
+pepeAddress2
+
+	^ Address new streetName: 'Maipu'; streetNumber: 888;province: 'Buenos Aires'; town: 'Florida'; zipCode: 1122! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:22:34' prior: 50626052!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe juan_address pepe_address1 pepe_address2 |
+	self importCustomers.
+	
+	pepe := session select: [ :customer | customer firstName = 'Pepe'] ofType: Customer.
+	pepe_address1 := self pepeAddress1.
+	pepe_address2 := self pepeAddress2.
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	juan_address := Address new streetName: 'Alem'; streetNumber: 1122;province: 'CABA'; town: 'CABA'; zipCode: 1001.
+	
+	self assert: (pepe anyOne addresses = (OrderedCollection with: pepe_address1 with: pepe_address2)) & (juan anyOne addresses = (OrderedCollection with: juan_address)).
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:22:43'!
+juanAddress
+
+	^ Address new streetName: 'Alem'; streetNumber: 1122;province: 'CABA'; town: 'CABA'; zipCode: 1001! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:22:43' prior: 50626086!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe juan_address pepe_address1 pepe_address2 |
+	self importCustomers.
+	
+	pepe := session select: [ :customer | customer firstName = 'Pepe'] ofType: Customer.
+	pepe_address1 := self pepeAddress1.
+	pepe_address2 := self pepeAddress2.
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	juan_address := self juanAddress.
+	
+	self assert: (pepe anyOne addresses = (OrderedCollection with: pepe_address1 with: pepe_address2)) & (juan anyOne addresses = (OrderedCollection with: juan_address)).
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:23:35' prior: 50626117!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := session select: [ :customer | customer firstName = 'Pepe'] ofType: Customer.	
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	
+	self assert: (pepe anyOne addresses = (OrderedCollection with: self pepeAddress1 with:  self pepeAddress2)) & (juan anyOne addresses = (OrderedCollection with: self juanAddress)).
+	
+	! !
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:23:40'!
+FAILURE!
+!Address methodsFor: 'nil' stamp: 'JV 6/25/2023 22:26:10' overrides: 16901772!
+= anObject
+	^(anObject province = province) & (anObject streetName = streetName) & (anObject streetNumber = streetNumber) & (anObject town = town) & (anObject zipCode = zipCode)! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:26:12'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:26:13'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:26:14'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:26:14'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:26:15'!
+PASSED!
+
+----SNAPSHOT----(25 June 2023 22:27:08) CuisUniversity-5832.image priorSource: 9411222!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:27:55'!
+getPepeFromSession
+
+	^ session select: [ :customer | customer firstName = 'Pepe'] ofType: Customer! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:27:55' prior: 50625804!
+test04ImportingCustomersShowsCorrectCustomerIdentificationNumber
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession.
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	
+	self assert: (pepe anyOne identificationNumber = '22333444') & (juan anyOne identificationNumber = '23-25666777-9').
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:27:55' prior: 50626139!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession.	
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	
+	self assert: (pepe anyOne addresses = (OrderedCollection with: self pepeAddress1 with:  self pepeAddress2)) & (juan anyOne addresses = (OrderedCollection with: self juanAddress)).
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:27:55' prior: 50625758!
+test03ImportingCustomersShowsCorrectCustomerIdentificationType
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession.
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	
+	self assert: (pepe anyOne identificationType = 'D') & (juan anyOne identificationType = 'C').
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:27:55' prior: 50625727!
+test02ImportingCustomersShowsCorrectCustomerNames
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession.
+	juan := session select: [ :customer | customer firstName = 'Juan'] ofType: Customer.
+	
+	self assert: (pepe anyOne lastName = 'Sanchez') & (juan anyOne lastName = 'Perez').
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:28:16'!
+getJuanFromSession
+
+	^ session select: [ :customer | customer firstName = 'Juan'] ofType: Customer! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:28:16' prior: 50626197!
+test04ImportingCustomersShowsCorrectCustomerIdentificationNumber
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession.
+	juan := self getJuanFromSession.
+	
+	self assert: (pepe anyOne identificationNumber = '22333444') & (juan anyOne identificationNumber = '23-25666777-9').
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:28:16' prior: 50626211!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession.	
+	juan := self getJuanFromSession.
+	
+	self assert: (pepe anyOne addresses = (OrderedCollection with: self pepeAddress1 with:  self pepeAddress2)) & (juan anyOne addresses = (OrderedCollection with: self juanAddress)).
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:28:16' prior: 50626227!
+test03ImportingCustomersShowsCorrectCustomerIdentificationType
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession.
+	juan := self getJuanFromSession.
+	
+	self assert: (pepe anyOne identificationType = 'D') & (juan anyOne identificationType = 'C').
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:28:16' prior: 50626241!
+test02ImportingCustomersShowsCorrectCustomerNames
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession.
+	juan := self getJuanFromSession.
+	
+	self assert: (pepe anyOne lastName = 'Sanchez') & (juan anyOne lastName = 'Perez').
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:28:52' prior: 50626273!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession anyOne.	
+	juan := self getJuanFromSession.
+	
+	self assert: (pepe addresses = (OrderedCollection with: self pepeAddress1 with:  self pepeAddress2)) & (juan anyOne addresses = (OrderedCollection with: self juanAddress)).
+	
+	! !
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:28:53'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:28:53'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:28:54'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:28:55'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:28:56'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:28:56'!
+PASSED!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:29:12' prior: 50626310!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession anyOne.	
+	juan := self getJuanFromSession anyOne.
+	
+	self assert: (pepe addresses = (OrderedCollection with: self pepeAddress1 with:  self pepeAddress2)) & (juan addresses = (OrderedCollection with: self juanAddress)).
+	
+	! !
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:29:13'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:29:14'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:29:15'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:29:16'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:29:16'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:29:17'!
+PASSED!
+!Customer methodsFor: 'initialization' stamp: 'JV 6/25/2023 22:30:14' prior: 50624488 overrides: 16920235!
+initialize
+
+	super initialize.
+	addresses := Set new.! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:30:25' prior: 50626347!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession anyOne.	
+	juan := self getJuanFromSession anyOne.
+	
+	self assert: (pepe addresses = (Set with: self pepeAddress1 with:  self pepeAddress2)) & (juan addresses = (Set with: self juanAddress)).
+	
+	! !
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:30:26'!
+FAILURE!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:31:45' prior: 50626389!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession anyOne.	
+	juan := self getJuanFromSession anyOne.
+	
+	self assert: pepe addresses = (Set with: self pepeAddress1 with: self pepeAddress2).
+	self assert: juan addresses equals: (Set with: self juanAddress).
+	
+	! !
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:31:46'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:31:47'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:31:48'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:31:48'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:31:49'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:31:50'!
+FAILURE!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:31:51'!
+FAILURE!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:32:11'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:32:12'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:32:12'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:32:13'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:32:14'!
+FAILURE!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:32:14'!
+FAILURE!
+
+pepe addresses!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:34:05'!
+FAILURE!
+
+(Set with: self juanAddress)!
+!Customer methodsFor: 'initialization' stamp: 'JV 6/25/2023 22:36:31' prior: 50626384 overrides: 16920235!
+initialize
+
+	super initialize.
+	addresses := OrderedCollection new.! !
+
+!methodRemoval: DataBaseSession #customer: stamp: 'JV 6/25/2023 22:36:51'!
+customer: aRenameMe1 
+	self shouldBeImplemented.!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:37:07' prior: 50626406!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession anyOne.	
+	juan := self getJuanFromSession anyOne.
+	
+	self assert: pepe addresses = (OrderedCollection with: self pepeAddress1 with: self pepeAddress2).
+	self assert: juan addresses equals: (OrderedCollection with: self juanAddress).
+	
+	! !
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:37:09'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:37:10'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:37:11'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:37:11'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:37:12'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:37:13'!
+PASSED!
+
+!methodRemoval: DataBaseSession #customers stamp: 'JV 6/25/2023 22:37:51'!
+customers
+	^self selectAllOfType: Customer.!
+!ImportTest methodsFor: 'testing' stamp: 'JV 6/25/2023 22:37:51' prior: 50625352!
+namesAreCorrect
+	^(session selectAllOfType: Customer) inject: true into: [ :namesAreCorrect :customer | 
+		namesAreCorrect and customer] ! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:37:56'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:37:56'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:37:57'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:37:58'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:37:59'!
+PASSED!
+
+----SNAPSHOT----(25 June 2023 22:38:03) CuisUniversity-5832.image priorSource: 9425162!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:38:41' prior: 50626299!
+test02ImportingCustomersShowsCorrectCustomerNames
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession anyOne.
+	juan := self getJuanFromSession anyOne.
+	
+	self assert: (pepe anyOne lastName = 'Sanchez') & (juan anyOne lastName = 'Perez').
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:38:46' prior: 50626554!
+test02ImportingCustomersShowsCorrectCustomerNames
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession anyOne.
+	juan := self getJuanFromSession anyOne.
+	
+	self assert: (pepe lastName = 'Sanchez') & (juan lastName = 'Perez').
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:38:58' prior: 50626287!
+test03ImportingCustomersShowsCorrectCustomerIdentificationType
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession anyOne.
+	juan := self getJuanFromSession anyOne.
+	
+	self assert: (pepe identificationType = 'D') & (juan identificationType = 'C').
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:39:10' prior: 50626260!
+test04ImportingCustomersShowsCorrectCustomerIdentificationNumber
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession anyOne.
+	juan := self getJuanFromSession anyOne.
+	
+	self assert: (pepe identificationNumber = '22333444') & (juan identificationNumber = '23-25666777-9').
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:40:00' prior: 50626484!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession anyOne.	
+	juan := self getJuanFromSession anyOne.
+	
+	self assert: (OrderedCollection with: self pepeAddress1 with: self pepeAddress2) equals: pepe addresses.
+	self assert: (OrderedCollection with: self juanAddress) equals: juan addresses.
+	
+	! !
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:40:02'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:40:03'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:40:03'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:40:04'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:40:05'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:40:05'!
+PASSED!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:40:14' prior: 50626602!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession anyOne.	
+	juan := self getJuanFromSession anyOne.
+	
+	self assert: (Set with: self pepeAddress1 with: self pepeAddress2) equals: pepe addresses.
+	self assert: (Set with: self juanAddress) equals: juan addresses.
+	
+	! !
+!Customer methodsFor: 'initialization' stamp: 'JV 6/25/2023 22:40:24' prior: 50626474 overrides: 16920235!
+initialize
+
+	super initialize.
+	addresses := Set new.! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:40:27'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:40:27'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:40:28'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:40:29'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:40:29'!
+FAILURE!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:40:30'!
+FAILURE!
+
+self
+		assert: expected = actual!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:44:24' prior: 50626639!
+test05ImportingCustomersShowsCorrectCustomerAddresses
+
+	| juan pepe |
+	self importCustomers.
+	
+	pepe := self getPepeFromSession anyOne.	
+	juan := self getJuanFromSession anyOne.
+	
+	self assert: (OrderedCollection with: self pepeAddress1 with: self pepeAddress2) equals: pepe addresses.
+	self assert: (OrderedCollection with: self juanAddress) equals: juan addresses.
+	
+	! !
+!Customer methodsFor: 'initialization' stamp: 'JV 6/25/2023 22:44:32' prior: 50626654 overrides: 16920235!
+initialize
+
+	super initialize.
+	addresses := OrderedCollection new.! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:44:35'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:44:35'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:44:36'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:44:37'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:44:38'!
+PASSED!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:53:49' prior: 50625945!
+importCustomers
+
+	| inputStream  newCustomer line stream |
+	
+	stream := Stream on: (
+		OrderedCollection 
+			with: 'C,Pepe,Sanchez,D,22333444'
+			with:' A,San Martin,3322,Olivos,1636,BsAs'
+			with: 'A,Maipu,888,Florida,1122,Buenos Aires'
+			with: 'C,Juan,Perez,C,23-25666777-9'
+			with: 'A,Alem,1122,CABA,1001,CABA'
+			).
+
+	inputStream := UniFileStream new open: 'input.txt' forWrite: false.
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:54:15' prior: 50626723!
+importCustomers
+
+	| inputStream  newCustomer line |
+	
+	inputStream := Stream on: (
+		OrderedCollection 
+			with: 'C,Pepe,Sanchez,D,22333444'
+			with:' A,San Martin,3322,Olivos,1636,BsAs'
+			with: 'A,Maipu,888,Florida,1122,Buenos Aires'
+			with: 'C,Juan,Perez,C,23-25666777-9'
+			with: 'A,Alem,1122,CABA,1001,CABA'
+			).
+
+	"inputStream := UniFileStream new open: 'input.txt' forWrite: false."
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:54:25'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:54:25'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:54:25'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:54:25'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:54:25'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:54:27'!
+ERROR!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:56:47' prior: 50626767!
+importCustomers
+
+	| inputStream  newCustomer line |
+	
+	inputStream := PositionableStream on: (
+		OrderedCollection 
+			with: 'C,Pepe,Sanchez,D,22333444'
+			with:' A,San Martin,3322,Olivos,1636,BsAs'
+			with: 'A,Maipu,888,Florida,1122,Buenos Aires'
+			with: 'C,Juan,Perez,C,23-25666777-9'
+			with: 'A,Alem,1122,CABA,1001,CABA'
+			).
+
+	"inputStream := UniFileStream new open: 'input.txt' forWrite: false."
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:56:48'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:56:55'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:56:55'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:56:56'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:56:56'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:56:56'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:56:58'!
+ERROR!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:57:41' prior: 50626833!
+importCustomers
+
+	| inputStream  newCustomer line |
+	
+	inputStream := Stream with: (
+		OrderedCollection 
+			with: 'C,Pepe,Sanchez,D,22333444'
+			with:' A,San Martin,3322,Olivos,1636,BsAs'
+			with: 'A,Maipu,888,Florida,1122,Buenos Aires'
+			with: 'C,Juan,Perez,C,23-25666777-9'
+			with: 'A,Alem,1122,CABA,1001,CABA'
+			).
+
+	"inputStream := UniFileStream new open: 'input.txt' forWrite: false."
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:57:42'!
+ERROR!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 22:58:05' prior: 50626903!
+importCustomers
+
+	| inputStream  newCustomer line |
+	
+	inputStream := UniFileStream with: (
+		OrderedCollection 
+			with: 'C,Pepe,Sanchez,D,22333444'
+			with:' A,San Martin,3322,Olivos,1636,BsAs'
+			with: 'A,Maipu,888,Florida,1122,Buenos Aires'
+			with: 'C,Juan,Perez,C,23-25666777-9'
+			with: 'A,Alem,1122,CABA,1001,CABA'
+			).
+
+	"inputStream := UniFileStream new open: 'input.txt' forWrite: false."
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:58:08'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 22:58:08'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 22:58:08'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 22:58:08'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 22:58:08'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 22:58:10'!
+ERROR!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:00:58' prior: 50626950!
+importCustomers
+
+	| inputStream  newCustomer line |
+	
+	inputStream := Stream on: ''; nextPutAll: (
+		OrderedCollection 
+			with: 'C,Pepe,Sanchez,D,22333444'
+			with:' A,San Martin,3322,Olivos,1636,BsAs'
+			with: 'A,Maipu,888,Florida,1122,Buenos Aires'
+			with: 'C,Juan,Perez,C,23-25666777-9'
+			with: 'A,Alem,1122,CABA,1001,CABA'
+			).
+
+	"inputStream := UniFileStream new open: 'input.txt' forWrite: false."
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:00:59'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:00:59'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:00:59'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:00:59'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:00:59'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:01:03'!
+ERROR!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:01:28' prior: 50627016!
+importCustomers
+
+	| inputStream  newCustomer line |
+	
+	inputStream := Stream with: ''; nextPutAll: (
+		OrderedCollection 
+			with: 'C,Pepe,Sanchez,D,22333444'
+			with:' A,San Martin,3322,Olivos,1636,BsAs'
+			with: 'A,Maipu,888,Florida,1122,Buenos Aires'
+			with: 'C,Juan,Perez,C,23-25666777-9'
+			with: 'A,Alem,1122,CABA,1001,CABA'
+			).
+
+	"inputStream := UniFileStream new open: 'input.txt' forWrite: false."
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:01:28'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:01:28'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:01:28'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:01:28'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:01:28'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:01:31'!
+ERROR!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:01:40' prior: 50627082!
+importCustomers
+
+	| inputStream  newCustomer line |
+	
+	inputStream := Stream new nextPutAll: (
+		OrderedCollection 
+			with: 'C,Pepe,Sanchez,D,22333444'
+			with:' A,San Martin,3322,Olivos,1636,BsAs'
+			with: 'A,Maipu,888,Florida,1122,Buenos Aires'
+			with: 'C,Juan,Perez,C,23-25666777-9'
+			with: 'A,Alem,1122,CABA,1001,CABA'
+			).
+
+	"inputStream := UniFileStream new open: 'input.txt' forWrite: false."
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:01:41'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:01:41'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:01:41'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:01:41'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:01:41'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:01:43'!
+ERROR!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:01:58' prior: 50627148!
+importCustomers
+
+	| inputStream  newCustomer line |
+	
+	inputStream := Stream on: (
+		OrderedCollection 
+			with: 'C,Pepe,Sanchez,D,22333444'
+			with:' A,San Martin,3322,Olivos,1636,BsAs'
+			with: 'A,Maipu,888,Florida,1122,Buenos Aires'
+			with: 'C,Juan,Perez,C,23-25666777-9'
+			with: 'A,Alem,1122,CABA,1001,CABA'
+			).
+
+	"inputStream := UniFileStream new open: 'input.txt' forWrite: false."
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:01:59'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:01:59'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:01:59'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:01:59'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:01:59'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:02:02'!
+ERROR!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:03:17' prior: 50627214!
+importCustomers
+
+	| inputStream  newCustomer line |
+	
+	inputStream := ReadStream on: (
+		OrderedCollection 
+			with: 'C,Pepe,Sanchez,D,22333444'
+			with:' A,San Martin,3322,Olivos,1636,BsAs'
+			with: 'A,Maipu,888,Florida,1122,Buenos Aires'
+			with: 'C,Juan,Perez,C,23-25666777-9'
+			with: 'A,Alem,1122,CABA,1001,CABA'
+			) from: 1 to: 5.
+
+	"inputStream := UniFileStream new open: 'input.txt' forWrite: false."
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:03:19'!
+FAILURE!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:03:19'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:03:19'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:03:19'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:03:19'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:03:22'!
+FAILURE!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:03:45' prior: 50627280!
+importCustomers
+
+	| inputStream  newCustomer line |
+	
+	inputStream := ReadStream on: (
+		OrderedCollection 
+			with: 'C,Pepe,Sanchez,D,22333444'
+			with:' A,San Martin,3322,Olivos,1636,BsAs'
+			with: 'A,Maipu,888,Florida,1122,Buenos Aires'
+			with: 'C,Juan,Perez,C,23-25666777-9'
+			with: 'A,Alem,1122,CABA,1001,CABA'
+			) from: 0 to: 4.
+
+	"inputStream := UniFileStream new open: 'input.txt' forWrite: false."
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:03:47'!
+FAILURE!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:03:47'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:03:47'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:03:47'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:03:47'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:03:50'!
+FAILURE!
+
+inputStream nextLine!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:06:02' prior: 50627346!
+importCustomers
+
+	| inputStream  newCustomer line |
+	
+	inputStream := ReadStream on: 	
+		'C,Pepe,Sanchez,D,22333444', 
+		'A,San Martin,3322,Olivos,1636,BsAs', 
+		'A,Maipu,888,Florida,1122,Buenos Aires',
+		'C,Juan,Perez,C,23-25666777-9',
+		'A,Alem,1122,CABA,1001,CABA'.
+
+	"inputStream := UniFileStream new open: 'input.txt' forWrite: false."
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:06:10'!
+FAILURE!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:06:10'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:06:10'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:06:11'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:06:11'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:06:13'!
+FAILURE!
+
+inputStream nextLine!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:08:09' prior: 50627413!
+importCustomers
+
+	| inputStream  newCustomer line |
+	
+	inputStream := ReadStream on: 	
+		'C,Pepe,Sanchez,D,22333444', String newLineString,
+		'A,San Martin,3322,Olivos,1636,BsAs' , String newLineString,
+		'A,Maipu,888,Florida,1122,Buenos Aires', String newLineString,
+		'C,Juan,Perez,C,23-25666777-9', String newLineString,
+		'A,Alem,1122,CABA,1001,CABA'.
+
+	"inputStream := UniFileStream new open: 'input.txt' forWrite: false."
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:08:15'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:08:16'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:08:17'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:08:17'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:08:18'!
+PASSED!
+
+----SNAPSHOT----(25 June 2023 23:08:53) CuisUniversity-5832.image priorSource: 9436802!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:09:12' prior: 50627478!
+importCustomers
+
+	| inputStream  newCustomer line |
+	
+	inputStream := Stream on: 	
+		'C,Pepe,Sanchez,D,22333444', String newLineString,
+		'A,San Martin,3322,Olivos,1636,BsAs' , String newLineString,
+		'A,Maipu,888,Florida,1122,Buenos Aires', String newLineString,
+		'C,Juan,Perez,C,23-25666777-9', String newLineString,
+		'A,Alem,1122,CABA,1001,CABA'.
+
+	"inputStream := UniFileStream new open: 'input.txt' forWrite: false."
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:09:13'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:09:13'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:09:13'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:09:13'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:09:13'!
+ERROR!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'JV 6/25/2023 23:16:10'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'inputStream session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:15:50' prior: 50625272!
+test01Importing5CustomersShows5CustomersInDBS
+
+	| customerImporter inputStream |
+	customerImporter := CustomerImporter stream: inputStream session: session.
+	
+	self assert: 2 equals: (customerImporter numberOfCustomers).
+	
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:16:35' prior: 50627615!
+test01Importing5CustomersShows5CustomersInDBS
+
+	| customerImporter inputStream |
+	
+	inputStream := Stream on: 	
+		'C,Pepe,Sanchez,D,22333444', String newLineString,
+		'A,San Martin,3322,Olivos,1636,BsAs' , String newLineString,
+		'A,Maipu,888,Florida,1122,Buenos Aires', String newLineString,
+		'C,Juan,Perez,C,23-25666777-9', String newLineString,
+		'A,Alem,1122,CABA,1001,CABA'.
+
+	customerImporter := CustomerImporter stream: inputStream session: session.
+	
+	self assert: 2 equals: (customerImporter numberOfCustomers).
+	
+	! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:16:36'!
+ERROR!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:16:57' prior: 50627626!
+test01Importing5CustomersShows5CustomersInDBS
+
+	| customerImporter inputStream |
+	
+	inputStream := ReadStream on: 	
+		'C,Pepe,Sanchez,D,22333444', String newLineString,
+		'A,San Martin,3322,Olivos,1636,BsAs' , String newLineString,
+		'A,Maipu,888,Florida,1122,Buenos Aires', String newLineString,
+		'C,Juan,Perez,C,23-25666777-9', String newLineString,
+		'A,Alem,1122,CABA,1001,CABA'.
+
+	customerImporter := CustomerImporter stream: inputStream session: session.
+	
+	self assert: 2 equals: (customerImporter numberOfCustomers).
+	
+	! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:16:59'!
+ERROR!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:17:10' prior: 50627544!
+importCustomers
+
+	| inputStream  newCustomer line |
+	
+	inputStream := ReadStream on: 	
+		'C,Pepe,Sanchez,D,22333444', String newLineString,
+		'A,San Martin,3322,Olivos,1636,BsAs' , String newLineString,
+		'A,Maipu,888,Florida,1122,Buenos Aires', String newLineString,
+		'C,Juan,Perez,C,23-25666777-9', String newLineString,
+		'A,Alem,1122,CABA,1001,CABA'.
+
+	"inputStream := UniFileStream new open: 'input.txt' forWrite: false."
+
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.
+	! !
+!CustomerImporter class methodsFor: 'class initialization' stamp: 'JV 6/25/2023 23:17:24'!
+stream: inputStream session: aSession 
+	self shouldBeImplemented.! !
+!CustomerImporter class methodsFor: 'class initialization' stamp: 'JV 6/25/2023 23:17:48' prior: 50627717!
+stream: inputStream session: aSession 
+	^self new initializeWithStream: inputStream session: aSession ! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:17:51'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:17:52'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:18:02'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:18:02'!
+ERROR!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'JV 6/25/2023 23:18:09'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'inputStream session inputStream_CHANGE_ME'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter class methodsFor: 'class initialization' stamp: 'JV 6/25/2023 23:18:25' prior: 50627723!
+stream: anInputStream session: aSession 
+	^self new initializeWithStream: anInputStream session: aSession ! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:18:27'!
+ERROR!
+!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:18:37'!
+initializeWithStream: anInputStream session: aSession 
+	self shouldBeImplemented.
+	inputStream := anInputStream.
+	session := aSession.! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:18:44' prior: 50627762!
+initializeWithStream: anInputStream session: aSession 
+	
+	inputStream := anInputStream.
+	session := aSession.! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:18:47'!
+ERROR!
+!CustomerImporter methodsFor: 'accessing' stamp: 'JV 6/25/2023 23:18:59'!
+numberOfCustomers
+	self shouldBeImplemented.! !
+!CustomerImporter methodsFor: 'accessing' stamp: 'JV 6/25/2023 23:19:02' prior: 50627780!
+numberOfCustomers
+	! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:20:01' prior: 50627770!
+initializeWithStream: anInputStream session: aSession 
+	
+	| line |
+	inputStream := anInputStream.
+	session := aSession.
+	
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [ | newCustomer |
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:20:15'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:20:15'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:20:16'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:20:16'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:20:17'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:20:18'!
+ERROR!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:21:27'!
+_test01Importing5CustomersShows5CustomersInDBS
+
+	| customerImporter inputStream |
+	
+	inputStream := ReadStream on: 	
+		'C,Pepe,Sanchez,D,22333444', String newLineString,
+		'A,San Martin,3322,Olivos,1636,BsAs' , String newLineString,
+		'A,Maipu,888,Florida,1122,Buenos Aires', String newLineString,
+		'C,Juan,Perez,C,23-25666777-9', String newLineString,
+		'A,Alem,1122,CABA,1001,CABA'.
+
+	customerImporter := CustomerImporter stream: inputStream session: session.
+	
+	self assert: 2 equals: (customerImporter numberOfCustomers).
+	
+	! !
+
+!methodRemoval: ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:21:27'!
+test01Importing5CustomersShows5CustomersInDBS
+
+	| customerImporter inputStream |
+	
+	inputStream := ReadStream on: 	
+		'C,Pepe,Sanchez,D,22333444', String newLineString,
+		'A,San Martin,3322,Olivos,1636,BsAs' , String newLineString,
+		'A,Maipu,888,Florida,1122,Buenos Aires', String newLineString,
+		'C,Juan,Perez,C,23-25666777-9', String newLineString,
+		'A,Alem,1122,CABA,1001,CABA'.
+
+	customerImporter := CustomerImporter stream: inputStream session: session.
+	
+	self assert: 2 equals: (customerImporter numberOfCustomers).
+	
+	!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:21:29'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:21:30'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:21:31'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:21:31'!
+PASSED!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:21:37'!
+test01Importing5CustomersShows5CustomersInDBS
+
+	| customerImporter inputStream |
+	
+	inputStream := ReadStream on: 	
+		'C,Pepe,Sanchez,D,22333444', String newLineString,
+		'A,San Martin,3322,Olivos,1636,BsAs' , String newLineString,
+		'A,Maipu,888,Florida,1122,Buenos Aires', String newLineString,
+		'C,Juan,Perez,C,23-25666777-9', String newLineString,
+		'A,Alem,1122,CABA,1001,CABA'.
+
+	customerImporter := CustomerImporter stream: inputStream session: session.
+	
+	self assert: 2 equals: (customerImporter numberOfCustomers).
+	
+	! !
+
+!methodRemoval: ImportTest #_test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:21:37'!
+_test01Importing5CustomersShows5CustomersInDBS
+
+	| customerImporter inputStream |
+	
+	inputStream := ReadStream on: 	
+		'C,Pepe,Sanchez,D,22333444', String newLineString,
+		'A,San Martin,3322,Olivos,1636,BsAs' , String newLineString,
+		'A,Maipu,888,Florida,1122,Buenos Aires', String newLineString,
+		'C,Juan,Perez,C,23-25666777-9', String newLineString,
+		'A,Alem,1122,CABA,1001,CABA'.
+
+	customerImporter := CustomerImporter stream: inputStream session: session.
+	
+	self assert: 2 equals: (customerImporter numberOfCustomers).
+	
+	!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:21:56' prior: 50627901!
+test01Importing5CustomersShows5CustomersInDBS
+
+	| customerImporter inputStream |
+	
+	inputStream := ReadStream on: 	
+		'C,Pepe,Sanchez,D,22333444', String newLineString,
+		'A,San Martin,3322,Olivos,1636,BsAs' , String newLineString,
+		'A,Maipu,888,Florida,1122,Buenos Aires', String newLineString,
+		'C,Juan,Perez,C,23-25666777-9', String newLineString,
+		'A,Alem,1122,CABA,1001,CABA'.
+
+	customerImporter := CustomerImporter stream: inputStream session: session.
+	
+	self assert: 2 equals: (customerImporter numberOfCustomers).
+	
+	! !
+!CustomerImporter methodsFor: 'accessing' stamp: 'JV 6/25/2023 23:22:14' prior: 50627785!
+numberOfCustomers
+	^session numberOfCustomers.! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:22:16'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:22:17'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:22:18'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:22:18'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:22:19'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:22:19'!
+ERROR!
+!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:23:12'!
+importCustomers
+	
+	| line |
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [ | newCustomer |
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:23:34' prior: 50627789!
+initializeWithStream: anInputStream session: aSession 
+	
+	
+	inputStream := anInputStream.
+	session := aSession.
+	
+	self importCustomers.! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:23:37'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:23:38'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:23:38'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:23:39'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:23:40'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:23:40'!
+ERROR!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'JV 6/25/2023 23:25:20'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'inputStream session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:25:24'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:25:24'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:25:25'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:25:26'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:25:26'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:25:27'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:26:59'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:27:05'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:27:05'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:27:06'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:27:07'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:27:07'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:27:08'!
+ERROR!
+
+inputStream nextLine !
+!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:29:41' prior: 50627988!
+importCustomers
+	
+	| line |
+	line := inputStream.
+	[ line notNil ] whileTrue: [ | newCustomer |
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:29:43'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:29:44'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:29:44'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:29:45'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:29:46'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:29:46'!
+ERROR!
+!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:30:16' prior: 50628107!
+importCustomers
+	
+	| line |
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [ | newCustomer |
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:30:38' prior: 50628162!
+importCustomers
+	
+	| line |
+	line := inputStream at: 0.
+	[ line notNil ] whileTrue: [ | newCustomer |
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:30:41'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:30:41'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:30:42'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:30:43'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:30:44'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:30:44'!
+ERROR!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:32:06'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:32:06'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:32:07'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:32:08'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:32:08'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:32:09'!
+ERROR!
+
+inputStream nextLine!
+
+inputStream nextLine beginsWith: 'C'!
+
+inputStream nextLine beginsWith: 'C' false !
+
+inputStream nextLine!
+
+'C,Juan,Perez,C,23-25666777-9' beginsWith: 'C'!
+
+inputStream nextLine nextLine!
+
+inputStream nextLine!
+!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:34:12' prior: 50628195!
+importCustomers
+	
+	| line |
+	line := inputStream copy nextLine.
+	[ line notNil ] whileTrue: [ | newCustomer |
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:34:14'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:34:15'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:34:16'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:34:16'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:34:17'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:34:17'!
+ERROR!
+
+inputStream nextLine!
+
+inputStream nextLine!
+
+inputStream nextLine!
+!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:39:29' prior: 50628279!
+importCustomers
+	
+	| line |
+	line := inputStream nextLine.
+	[ line notNil ] whileTrue: [ | newCustomer |
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.! !
+
+inputStream nextLine !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:39:57'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:39:58'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:39:59'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:39:59'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:40:00'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:40:00'!
+ERROR!
+
+inputStream nextLine !
+
+inputStream nextLine !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:41:37' prior: 50627941!
+test01Importing5CustomersShows5CustomersInDBS
+
+	| customerImporter inputStream |
+	
+	inputStream :=	
+		'C,Pepe,Sanchez,D,22333444', String newLineString,
+		'A,San Martin,3322,Olivos,1636,BsAs' , String newLineString,
+		'A,Maipu,888,Florida,1122,Buenos Aires', String newLineString,
+		'C,Juan,Perez,C,23-25666777-9', String newLineString,
+		'A,Alem,1122,CABA,1001,CABA'.
+
+	customerImporter := CustomerImporter stream: inputStream session: session.
+	
+	self assert: 2 equals: (customerImporter numberOfCustomers).
+	
+	! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:41:54' prior: 50628021!
+initializeWithStream: anInputStream session: aSession 
+	
+	
+	inputStream := ReadStream on: anInputStream.
+	session := aSession.
+	
+	self importCustomers.! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:41:56'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:41:56'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:41:57'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:41:58'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:41:59'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:41:59'!
+ERROR!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:43:00' prior: 50628393!
+test01Importing5CustomersShows5CustomersInDBS
+
+	| customerImporter inputStream |
+	
+	inputStream :=	 ReadStream on: String newLineString, 
+		'C,Pepe,Sanchez,D,22333444', String newLineString,
+		'A,San Martin,3322,Olivos,1636,BsAs' , String newLineString,
+		'A,Maipu,888,Florida,1122,Buenos Aires', String newLineString,
+		'C,Juan,Perez,C,23-25666777-9', String newLineString,
+		'A,Alem,1122,CABA,1001,CABA'.
+
+	customerImporter := CustomerImporter stream: inputStream session: session.
+	
+	self assert: 2 equals: (customerImporter numberOfCustomers).
+	
+	! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:43:11' prior: 50628413!
+initializeWithStream: anInputStream session: aSession 
+	
+	
+	inputStream := anInputStream.
+	session := aSession.
+	
+	self importCustomers.! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:43:13'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:43:13'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:43:14'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:43:15'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:43:15'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:43:16'!
+ERROR!
+
+inputStream !
+
+inputStream nextLine !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'JV 6/25/2023 23:43:55' prior: 50628443!
+test01Importing5CustomersShows5CustomersInDBS
+
+	| customerImporter inputStream |
+	
+	inputStream :=	 ReadStream on: 
+		'C,Pepe,Sanchez,D,22333444', String newLineString,
+		'A,San Martin,3322,Olivos,1636,BsAs' , String newLineString,
+		'A,Maipu,888,Florida,1122,Buenos Aires', String newLineString,
+		'C,Juan,Perez,C,23-25666777-9', String newLineString,
+		'A,Alem,1122,CABA,1001,CABA'.
+
+	customerImporter := CustomerImporter stream: inputStream session: session.
+	
+	self assert: 2 equals: (customerImporter numberOfCustomers).
+	
+	! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:45:05' prior: 50628336!
+importCustomers
+	
+	| line |
+	
+	line := inputStream nextLine.
+	
+	[ line notNil ] whileTrue: [ | newCustomer |
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:45:16' prior: 50628515!
+importCustomers
+	
+	| line |
+	
+	line := inputStream next.
+	
+	[ line notNil ] whileTrue: [ | newCustomer |
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:45:19'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:45:19'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:45:20'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:45:20'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:45:21'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:45:21'!
+ERROR!
+!CustomerImporter methodsFor: 'initialization' stamp: 'JV 6/25/2023 23:45:36' prior: 50628548!
+importCustomers
+	
+	| line |
+	
+	line := inputStream nextLine.
+	
+	[ line notNil ] whileTrue: [ | newCustomer |
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := inputStream nextLine. ].
+
+
+	inputStream close.! !
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:45:39'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportingCustomersShowsCorrectCustomerNames stamp: 'JV 6/25/2023 23:45:39'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportingCustomersShowsCorrectCustomerIdentificationType stamp: 'JV 6/25/2023 23:45:40'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportingCustomersShowsCorrectCustomerIdentificationNumber stamp: 'JV 6/25/2023 23:45:41'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportingCustomersShowsCorrectCustomerAddresses stamp: 'JV 6/25/2023 23:45:42'!
+PASSED!
+
+!testRun: #ImportTest #test01Importing5CustomersShows5CustomersInDBS stamp: 'JV 6/25/2023 23:45:42'!
+ERROR!
+
+----SNAPSHOT----(25 June 2023 23:46:49) CuisUniversity-5832.image priorSource: 9468485!
+
+----QUIT----(25 June 2023 23:46:53) CuisUniversity-5832.image priorSource: 9504210!
