@@ -5,24 +5,22 @@ TestCase subclass: #ImportTest
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!ImportTest methodsFor: 'tests' stamp: 'JV 6/29/2023 20:36:51'!
-session
-	^customerSystem session! !
-
-!ImportTest methodsFor: 'tests' stamp: 'JV 6/29/2023 20:26:10'!
+!ImportTest methodsFor: 'tests' stamp: 'JV 7/3/2023 15:45:41'!
 test01ValidDataIsImportedCorrectly
 
-	CustomerImporter valueFrom: self validImportData into: self session.
-
+	CustomerImporter valueFrom: self validImportData into: customerSystem session.
+	
 	self assertImportedRightNumberOfCustomers.
 	self assertPepeSanchezWasImportedCorrecty.
-	self assertJuanPerezWasImportedCorrectly ! !
+	self assertJuanPerezWasImportedCorrectly
 
-!ImportTest methodsFor: 'tests' stamp: 'JV 6/29/2023 20:26:16'!
+	! !
+
+!ImportTest methodsFor: 'tests' stamp: 'JV 7/2/2023 22:58:10'!
 test02CanNotImportAddressWithoutCustomer
 
 	self
-		should: [ CustomerImporter valueFrom: self addressWithoutCustomerData into: self session. ]
+		should: [ CustomerImporter valueFrom: self addressWithoutCustomerData into: customerSystem session. ]
 		raise: Error - MessageNotUnderstood
 		withMessageText: CustomerImporter canNotImportAddressWithoutCustomerErrorDescription
 
@@ -170,11 +168,11 @@ assertPepeSanchezWasImportedCorrecty
 
 	! !
 
-!ImportTest methodsFor: 'assertions' stamp: 'JV 6/29/2023 20:25:52'!
+!ImportTest methodsFor: 'assertions' stamp: 'JV 7/2/2023 23:03:05'!
 shouldFailImporting: aReadStream messageText: anErrorMessageText asserting: anAssertionBlock
 
 	self
-		should: [ CustomerImporter valueFrom: aReadStream into: self session. ]
+		should: [ CustomerImporter valueFrom: aReadStream into: customerSystem session. ]
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [ :anError |
 			self assert: anErrorMessageText equals: anError messageText.
@@ -183,13 +181,10 @@ shouldFailImporting: aReadStream messageText: anErrorMessageText asserting: anAs
 	! !
 
 
-!ImportTest methodsFor: 'setUp/tearDown' stamp: 'JV 6/29/2023 21:24:07'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'JV 7/3/2023 15:40:22'!
 setUp
 	
-	
-	
 	customerSystem := Environment newCustomerSystem.
-	
 	customerSystem start.
 	
 	
@@ -202,10 +197,10 @@ tearDown
 	! !
 
 
-!ImportTest methodsFor: 'customer' stamp: 'JV 6/29/2023 20:25:41'!
+!ImportTest methodsFor: 'customer' stamp: 'JV 7/2/2023 23:02:38'!
 customerWithIdentificationType: anIdType number: anIdNumber
 
-	^ (self session
+	^ (customerSystem session
 		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
 		ofType: Customer) anyOne! !
 
@@ -609,28 +604,124 @@ stop
 
 !classDefinition: #TransientCustomerSystem category: 'CustomerImporter'!
 CustomerSystem subclass: #TransientCustomerSystem
-	instanceVariableNames: 'data'
+	instanceVariableNames: 'session'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'JV 6/29/2023 20:53:45'!
-data
-	^data! !
-
-!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'JV 6/29/2023 21:32:30'!
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 22:53:03'!
 initialize
-	data := OrderedCollection new.! !
+	session := DataBaseLocalSession for: (Array with: Address with: Customer).! !
 
-!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'JV 6/29/2023 21:02:25'!
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 22:53:32'!
 numberOfCustomers
-	data select: [ :element | element isKindOf: Customer] size! !
+	^ (session selectAllOfType: Customer) size! !
 
 !TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'JV 6/29/2023 20:52:19'!
 start! !
 
 !TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'JV 6/29/2023 21:00:19'!
 stop! !
+
+
+!TransientCustomerSystem methodsFor: 'session' stamp: 'JV 7/2/2023 22:46:59'!
+session
+	^session! !
+
+
+!classDefinition: #DataBaseLocalSession category: 'CustomerImporter'!
+Object subclass: #DataBaseLocalSession
+	instanceVariableNames: 'configuration tables id'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!DataBaseLocalSession methodsFor: 'transaction management' stamp: 'JV 7/2/2023 22:52:44'!
+beginTransaction
+
+	! !
+
+!DataBaseLocalSession methodsFor: 'transaction management' stamp: 'JV 7/2/2023 22:52:44'!
+commit
+
+	(tables at: Customer ifAbsent: [#()]) do: [ :aCustomer | self persistAddressesOf: aCustomer ]
+	! !
+
+
+!DataBaseLocalSession methodsFor: 'closing' stamp: 'JV 7/2/2023 22:52:44'!
+close
+
+	! !
+
+
+!DataBaseLocalSession methodsFor: 'persistence - private' stamp: 'JV 7/2/2023 22:52:45'!
+defineIdOf: anObject
+
+	anObject instVarNamed: 'id' put: (self newIdFor: anObject).! !
+
+!DataBaseLocalSession methodsFor: 'persistence - private' stamp: 'JV 7/2/2023 22:52:45'!
+objectsOfType: aType
+
+	^ tables at: aType ifAbsent: [ #() ]! !
+
+!DataBaseLocalSession methodsFor: 'persistence - private' stamp: 'JV 7/2/2023 22:52:45'!
+persistAddressesOf: anObjectWithAddresses
+
+	anObjectWithAddresses addresses do: [ :anAddress | self persist: anAddress ]
+	! !
+
+
+!DataBaseLocalSession methodsFor: 'initialization' stamp: 'JV 7/2/2023 22:52:45'!
+initializeFor: aConfiguration
+
+	configuration := aConfiguration.
+	tables := Dictionary new.
+	id := 0.! !
+
+
+!DataBaseLocalSession methodsFor: 'id' stamp: 'JV 7/2/2023 22:52:45'!
+newIdFor: anObject
+
+	id := id + 1.
+	^id! !
+
+
+!DataBaseLocalSession methodsFor: 'persistance' stamp: 'JV 7/2/2023 22:53:51'!
+persist: anObject
+
+	| table |
+
+	
+	table := tables at: anObject class ifAbsentPut: [ Set new ].
+
+	self defineIdOf: anObject.
+	table add: anObject.
+
+	(anObject isKindOf: Customer) ifTrue: [ self persistAddressesOf: anObject ].! !
+
+
+!DataBaseLocalSession methodsFor: 'selecting' stamp: 'JV 7/2/2023 22:53:54'!
+select: aCondition ofType: aType
+
+	
+	^(self objectsOfType: aType) select: aCondition ! !
+
+!DataBaseLocalSession methodsFor: 'selecting' stamp: 'JV 7/2/2023 22:53:57'!
+selectAllOfType: aType
+
+	
+	^(self objectsOfType: aType) copy ! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'DataBaseLocalSession class' category: 'CustomerImporter'!
+DataBaseLocalSession class
+	instanceVariableNames: ''!
+
+!DataBaseLocalSession class methodsFor: 'instance creation' stamp: 'JV 7/2/2023 22:52:45'!
+for: aConfiguration
+
+	^self new initializeFor: aConfiguration! !
 
 
 !classDefinition: #DataBaseSession category: 'CustomerImporter'!
@@ -695,7 +786,7 @@ newIdFor: anObject
 	^id! !
 
 
-!DataBaseSession methodsFor: 'persistance' stamp: 'HAW 5/22/2022 00:19:29'!
+!DataBaseSession methodsFor: 'persistance' stamp: 'JV 7/3/2023 15:45:01'!
 persist: anObject
 
 	| table |
@@ -709,13 +800,13 @@ persist: anObject
 	(anObject isKindOf: Customer) ifTrue: [ self persistAddressesOf: anObject ].! !
 
 
-!DataBaseSession methodsFor: 'selecting' stamp: 'HAW 5/22/2022 19:29:06'!
+!DataBaseSession methodsFor: 'selecting' stamp: 'JV 7/3/2023 15:45:18'!
 select: aCondition ofType: aType
 
 	self delay.
 	^(self objectsOfType: aType) select: aCondition ! !
 
-!DataBaseSession methodsFor: 'selecting' stamp: 'HAW 5/22/2022 19:29:06'!
+!DataBaseSession methodsFor: 'selecting' stamp: 'JV 7/3/2023 15:45:28'!
 selectAllOfType: aType
 
 	self delay.
@@ -774,9 +865,9 @@ Environment subclass: #DevelopingEnvironment
 DevelopingEnvironment class
 	instanceVariableNames: ''!
 
-!DevelopingEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 22:06:44'!
+!DevelopingEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 7/3/2023 15:46:06'!
 isCurrent
-	^false! !
+	^true! !
 
 !DevelopingEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 6/29/2023 21:37:40'!
 newCustomerSystem
@@ -796,9 +887,9 @@ Environment subclass: #IntegrationEnvironment
 IntegrationEnvironment class
 	instanceVariableNames: ''!
 
-!IntegrationEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 22:06:37'!
+!IntegrationEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 7/3/2023 15:46:13'!
 isCurrent
-	^true! !
+	^false! !
 
 !IntegrationEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 6/29/2023 21:37:40'!
 newCustomerSystem

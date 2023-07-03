@@ -5954,3 +5954,1590 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(2 July 2023 22:07:11) CuisUniversity-5832.image priorSource: 9611427!
+
+----STARTUP---- (2 July 2023 22:39:44) as E:\julia\Documents\UBA\Inge1\SmallTalk\CustomerImporter\CuisUniversity-5832.image!
+
+
+!classRemoval: #IntegrationEnvironment stamp: 'JV 7/2/2023 22:40:19'!
+Environment subclass: #IntegrationEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #DevelopingEnvironment stamp: 'JV 7/2/2023 22:40:19'!
+Environment subclass: #DevelopingEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Environment stamp: 'JV 7/2/2023 22:40:19'!
+Object subclass: #Environment
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #DataBaseSession stamp: 'JV 7/2/2023 22:40:20'!
+Object subclass: #DataBaseSession
+	instanceVariableNames: 'configuration tables id'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #TransientCustomerSystem stamp: 'JV 7/2/2023 22:40:20'!
+CustomerSystem subclass: #TransientCustomerSystem
+	instanceVariableNames: 'data'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #PersistentCustomerSystem stamp: 'JV 7/2/2023 22:40:20'!
+CustomerSystem subclass: #PersistentCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #CustomerSystem stamp: 'JV 7/2/2023 22:40:20'!
+Object subclass: #CustomerSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #CustomerImporter stamp: 'JV 7/2/2023 22:40:20'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream newCustomer line record'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Customer stamp: 'JV 7/2/2023 22:40:21'!
+Object subclass: #Customer
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Address stamp: 'JV 7/2/2023 22:40:21'!
+Object subclass: #Address
+	instanceVariableNames: 'id streetName streetNumber town zipCode province'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #ImportTest stamp: 'JV 7/2/2023 22:40:21'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'customerSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+----End fileIn of E:\julia\Documents\UBA\Inge1\SmallTalk\CustomerImporter\CustomerImporterIt3.st----!
+
+!classRemoval: #IntegrationEnvironment stamp: 'JV 7/2/2023 22:40:53'!
+Environment subclass: #IntegrationEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #DevelopingEnvironment stamp: 'JV 7/2/2023 22:40:53'!
+Environment subclass: #DevelopingEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Environment stamp: 'JV 7/2/2023 22:40:53'!
+Object subclass: #Environment
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #DataBaseSession stamp: 'JV 7/2/2023 22:40:53'!
+Object subclass: #DataBaseSession
+	instanceVariableNames: 'configuration tables id'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #TransientCustomerSystem stamp: 'JV 7/2/2023 22:40:54'!
+CustomerSystem subclass: #TransientCustomerSystem
+	instanceVariableNames: 'data'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #PersistentCustomerSystem stamp: 'JV 7/2/2023 22:40:54'!
+CustomerSystem subclass: #PersistentCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #CustomerSystem stamp: 'JV 7/2/2023 22:40:54'!
+Object subclass: #CustomerSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #CustomerImporter stamp: 'JV 7/2/2023 22:40:54'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream newCustomer line record'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Customer stamp: 'JV 7/2/2023 22:40:55'!
+Object subclass: #Customer
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Address stamp: 'JV 7/2/2023 22:40:55'!
+Object subclass: #Address
+	instanceVariableNames: 'id streetName streetNumber town zipCode province'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #ImportTest stamp: 'JV 7/2/2023 22:40:55'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'customerSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+----End fileIn of E:\julia\Downloads\CustomerImporterIt3.st----!
+!DevelopingEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 22:42:11' prior: 50641004 overrides: 50640971!
+isCurrent
+	^false! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:42:13'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 22:42:13'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 22:42:13'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 22:42:14'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 22:42:14'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 22:42:14'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 22:42:15'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 22:42:15'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 22:42:15'!
+PASSED!
+!DevelopingEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 22:42:21' prior: 50641049 overrides: 50640971!
+isCurrent
+	^true! !
+!IntegrationEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 22:42:26' prior: 50641036 overrides: 50640971!
+isCurrent
+	^false! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:42:27'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 22:42:27'!
+FAILURE!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 22:42:27'!
+FAILURE!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 22:42:27'!
+FAILURE!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 22:42:27'!
+FAILURE!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 22:42:28'!
+FAILURE!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 22:42:28'!
+FAILURE!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 22:42:28'!
+FAILURE!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 22:42:28'!
+FAILURE!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:42:31'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:43:56'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 22:43:56'!
+FAILURE!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 22:43:56'!
+FAILURE!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 22:43:56'!
+FAILURE!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 22:43:56'!
+FAILURE!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 22:43:56'!
+FAILURE!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 22:43:56'!
+FAILURE!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 22:43:56'!
+FAILURE!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 22:43:56'!
+FAILURE!
+
+Object subclass: #DataBaseLocalSession
+	instanceVariableNames: 'configuration tables id'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #DataBaseLocalSession category: 'CustomerImporter' stamp: 'JV 7/2/2023 22:44:32'!
+Object subclass: #DataBaseLocalSession
+	instanceVariableNames: 'configuration tables id'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+DataBaseLocalSession class
+	instanceVariableNames: ''!
+
+!classDefinition: 'DataBaseLocalSession class' category: 'CustomerImporter' stamp: 'JV 7/2/2023 22:44:32'!
+DataBaseLocalSession class
+	instanceVariableNames: ''!
+!DataBaseLocalSession methodsFor: 'transaction management' stamp: 'JV 7/2/2023 22:44:32'!
+beginTransaction
+
+	! !
+!DataBaseLocalSession methodsFor: 'transaction management' stamp: 'JV 7/2/2023 22:44:32'!
+commit
+
+	(tables at: Customer ifAbsent: [#()]) do: [ :aCustomer | self persistAddressesOf: aCustomer ]
+	! !
+!DataBaseLocalSession methodsFor: 'closing' stamp: 'JV 7/2/2023 22:44:32'!
+close
+
+	! !
+!DataBaseLocalSession methodsFor: 'persistence - private' stamp: 'JV 7/2/2023 22:44:32'!
+defineIdOf: anObject
+
+	anObject instVarNamed: 'id' put: (self newIdFor: anObject).! !
+!DataBaseLocalSession methodsFor: 'persistence - private' stamp: 'JV 7/2/2023 22:44:33'!
+delay
+
+	(Delay forMilliseconds: 100) wait! !
+!DataBaseLocalSession methodsFor: 'persistence - private' stamp: 'JV 7/2/2023 22:44:33'!
+objectsOfType: aType
+
+	^ tables at: aType ifAbsent: [ #() ]! !
+!DataBaseLocalSession methodsFor: 'persistence - private' stamp: 'JV 7/2/2023 22:44:33'!
+persistAddressesOf: anObjectWithAddresses
+
+	anObjectWithAddresses addresses do: [ :anAddress | self persist: anAddress ]
+	! !
+!DataBaseLocalSession methodsFor: 'initialization' stamp: 'JV 7/2/2023 22:44:33'!
+initializeFor: aConfiguration
+
+	configuration := aConfiguration.
+	tables := Dictionary new.
+	id := 0.! !
+!DataBaseLocalSession methodsFor: 'id' stamp: 'JV 7/2/2023 22:44:33'!
+newIdFor: anObject
+
+	id := id + 1.
+	^id! !
+!DataBaseLocalSession methodsFor: 'persistance' stamp: 'JV 7/2/2023 22:44:33'!
+persist: anObject
+
+	| table |
+
+	self delay.
+	table := tables at: anObject class ifAbsentPut: [ Set new ].
+
+	self defineIdOf: anObject.
+	table add: anObject.
+
+	(anObject isKindOf: Customer) ifTrue: [ self persistAddressesOf: anObject ].! !
+!DataBaseLocalSession methodsFor: 'selecting' stamp: 'JV 7/2/2023 22:44:33'!
+select: aCondition ofType: aType
+
+	self delay.
+	^(self objectsOfType: aType) select: aCondition ! !
+!DataBaseLocalSession methodsFor: 'selecting' stamp: 'JV 7/2/2023 22:44:33'!
+selectAllOfType: aType
+
+	self delay.
+	^(self objectsOfType: aType) copy ! !
+!DataBaseLocalSession class methodsFor: 'instance creation' stamp: 'JV 7/2/2023 22:44:33'!
+for: aConfiguration
+
+	^self new initializeFor: aConfiguration! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:44:56'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 22:44:56'!
+FAILURE!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 22:44:56'!
+FAILURE!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 22:44:56'!
+FAILURE!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 22:44:56'!
+FAILURE!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 22:44:57'!
+FAILURE!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 22:44:57'!
+FAILURE!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 22:44:57'!
+FAILURE!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 22:44:57'!
+FAILURE!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:44:58'!
+ERROR!
+!TransientCustomerSystem methodsFor: 'session' stamp: 'JV 7/2/2023 22:45:09' overrides: 50640760!
+session
+	self shouldBeImplemented.! !
+!TransientCustomerSystem methodsFor: 'session' stamp: 'JV 7/2/2023 22:46:06' prior: 50641289 overrides: 50640760!
+session
+	| session |
+	session := DataBaseLocalSession for: (Array with: Address with: Customer).
+	^session! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 22:46:23' prior: 50641294 overrides: 50640760!
+session
+	 
+	session := DataBaseLocalSession for: (Array with: Address with: Customer).
+	^session! !
+
+!classDefinition: #TransientCustomerSystem category: 'CustomerImporter' stamp: 'JV 7/2/2023 22:47:00'!
+CustomerSystem subclass: #TransientCustomerSystem
+	instanceVariableNames: 'data session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TransientCustomerSystem methodsFor: 'session' stamp: 'JV 7/2/2023 22:46:59' prior: 50641302 overrides: 50640760!
+session
+	^session! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 22:47:25' prior: 50640832 overrides: 16920235!
+initialize
+	data := OrderedCollection new.
+	session := DataBaseLocalSession for: (Array with: Address with: Customer).! !
+
+!methodRemoval: TransientCustomerSystem #data stamp: 'JV 7/2/2023 22:47:36'!
+data
+	^data!
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 22:47:42' prior: 50641323 overrides: 16920235!
+initialize
+	session := DataBaseLocalSession for: (Array with: Address with: Customer).! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:47:46'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 22:47:46'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 22:47:46'!
+ERROR!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 22:47:46'!
+ERROR!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 22:47:47'!
+ERROR!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 22:47:47'!
+ERROR!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 22:47:47'!
+ERROR!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 22:47:47'!
+ERROR!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 22:47:47'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:47:49'!
+ERROR!
+
+!methodRemoval: DataBaseLocalSession #beginTransaction stamp: 'JV 7/2/2023 22:48:22'!
+beginTransaction
+
+	!
+
+!methodRemoval: DataBaseLocalSession #commit stamp: 'JV 7/2/2023 22:48:26'!
+commit
+
+	(tables at: Customer ifAbsent: [#()]) do: [ :aCustomer | self persistAddressesOf: aCustomer ]
+	!
+
+!methodRemoval: DataBaseLocalSession #close stamp: 'JV 7/2/2023 22:48:32'!
+close
+
+	!
+
+!methodRemoval: DataBaseLocalSession #delay stamp: 'JV 7/2/2023 22:48:39'!
+delay
+
+	(Delay forMilliseconds: 100) wait!
+
+!methodRemoval: DataBaseLocalSession #persist: stamp: 'JV 7/2/2023 22:48:54'!
+persist: anObject
+
+	| table |
+
+	self delay.
+	table := tables at: anObject class ifAbsentPut: [ Set new ].
+
+	self defineIdOf: anObject.
+	table add: anObject.
+
+	(anObject isKindOf: Customer) ifTrue: [ self persistAddressesOf: anObject ].!
+
+!methodRemoval: DataBaseLocalSession #persistAddressesOf: stamp: 'JV 7/2/2023 22:49:26'!
+persistAddressesOf: anObjectWithAddresses
+
+	anObjectWithAddresses addresses do: [ :anAddress | self persist: anAddress ]
+	!
+!DataBaseLocalSession methodsFor: 'selecting' stamp: 'JV 7/2/2023 22:49:37' prior: 50641237!
+select: aCondition ofType: aType
+
+	
+	^(self objectsOfType: aType) select: aCondition ! !
+!DataBaseLocalSession methodsFor: 'selecting' stamp: 'JV 7/2/2023 22:49:41' prior: 50641243!
+selectAllOfType: aType
+
+	
+	^(self objectsOfType: aType) copy ! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:49:53'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 22:49:53'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 22:49:53'!
+ERROR!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 22:49:53'!
+ERROR!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 22:49:53'!
+ERROR!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 22:49:53'!
+ERROR!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 22:49:53'!
+ERROR!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 22:49:53'!
+ERROR!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 22:49:53'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:49:55'!
+ERROR!
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 22:52:30' prior: 50641334 overrides: 16920235!
+initialize
+	session := DataBaseSession for: (Array with: Address with: Customer).! !
+
+!classRemoval: #DataBaseLocalSession stamp: 'JV 7/2/2023 22:52:36'!
+Object subclass: #DataBaseLocalSession
+	instanceVariableNames: 'configuration tables id'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Object subclass: #DataBaseLocalSession
+	instanceVariableNames: 'configuration tables id'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #DataBaseLocalSession category: 'CustomerImporter' stamp: 'JV 7/2/2023 22:52:44'!
+Object subclass: #DataBaseLocalSession
+	instanceVariableNames: 'configuration tables id'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+DataBaseLocalSession class
+	instanceVariableNames: ''!
+
+!classDefinition: 'DataBaseLocalSession class' category: 'CustomerImporter' stamp: 'JV 7/2/2023 22:52:44'!
+DataBaseLocalSession class
+	instanceVariableNames: ''!
+!DataBaseLocalSession methodsFor: 'transaction management' stamp: 'JV 7/2/2023 22:52:44'!
+beginTransaction
+
+	! !
+!DataBaseLocalSession methodsFor: 'transaction management' stamp: 'JV 7/2/2023 22:52:44'!
+commit
+
+	(tables at: Customer ifAbsent: [#()]) do: [ :aCustomer | self persistAddressesOf: aCustomer ]
+	! !
+!DataBaseLocalSession methodsFor: 'closing' stamp: 'JV 7/2/2023 22:52:44'!
+close
+
+	! !
+!DataBaseLocalSession methodsFor: 'persistence - private' stamp: 'JV 7/2/2023 22:52:45'!
+defineIdOf: anObject
+
+	anObject instVarNamed: 'id' put: (self newIdFor: anObject).! !
+!DataBaseLocalSession methodsFor: 'persistence - private' stamp: 'JV 7/2/2023 22:52:45'!
+delay
+
+	(Delay forMilliseconds: 100) wait! !
+!DataBaseLocalSession methodsFor: 'persistence - private' stamp: 'JV 7/2/2023 22:52:45'!
+objectsOfType: aType
+
+	^ tables at: aType ifAbsent: [ #() ]! !
+!DataBaseLocalSession methodsFor: 'persistence - private' stamp: 'JV 7/2/2023 22:52:45'!
+persistAddressesOf: anObjectWithAddresses
+
+	anObjectWithAddresses addresses do: [ :anAddress | self persist: anAddress ]
+	! !
+!DataBaseLocalSession methodsFor: 'initialization' stamp: 'JV 7/2/2023 22:52:45'!
+initializeFor: aConfiguration
+
+	configuration := aConfiguration.
+	tables := Dictionary new.
+	id := 0.! !
+!DataBaseLocalSession methodsFor: 'id' stamp: 'JV 7/2/2023 22:52:45'!
+newIdFor: anObject
+
+	id := id + 1.
+	^id! !
+!DataBaseLocalSession methodsFor: 'persistance' stamp: 'JV 7/2/2023 22:52:45'!
+persist: anObject
+
+	| table |
+
+	self delay.
+	table := tables at: anObject class ifAbsentPut: [ Set new ].
+
+	self defineIdOf: anObject.
+	table add: anObject.
+
+	(anObject isKindOf: Customer) ifTrue: [ self persistAddressesOf: anObject ].! !
+!DataBaseLocalSession methodsFor: 'selecting' stamp: 'JV 7/2/2023 22:52:45'!
+select: aCondition ofType: aType
+
+	self delay.
+	^(self objectsOfType: aType) select: aCondition ! !
+!DataBaseLocalSession methodsFor: 'selecting' stamp: 'JV 7/2/2023 22:52:45'!
+selectAllOfType: aType
+
+	self delay.
+	^(self objectsOfType: aType) copy ! !
+!DataBaseLocalSession class methodsFor: 'instance creation' stamp: 'JV 7/2/2023 22:52:45'!
+for: aConfiguration
+
+	^self new initializeFor: aConfiguration! !
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 22:53:03' prior: 50641453 overrides: 16920235!
+initialize
+	session := DataBaseLocalSession for: (Array with: Address with: Customer).! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:53:06'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 22:53:06'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 22:53:06'!
+ERROR!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 22:53:06'!
+ERROR!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 22:53:06'!
+ERROR!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 22:53:07'!
+ERROR!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 22:53:07'!
+ERROR!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 22:53:07'!
+ERROR!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 22:53:07'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:53:14'!
+ERROR!
+!TransientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 22:53:32' prior: 50640837 overrides: 50640755!
+numberOfCustomers
+	^ (session selectAllOfType: Customer) size! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:53:35'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 22:53:35'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 22:53:35'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 22:53:35'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 22:53:36'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 22:53:36'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 22:53:36'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 22:53:36'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 22:53:37'!
+PASSED!
+
+!methodRemoval: DataBaseLocalSession #delay stamp: 'JV 7/2/2023 22:53:48'!
+delay
+
+	(Delay forMilliseconds: 100) wait!
+!DataBaseLocalSession methodsFor: 'persistance' stamp: 'JV 7/2/2023 22:53:51' prior: 50641534!
+persist: anObject
+
+	| table |
+
+	
+	table := tables at: anObject class ifAbsentPut: [ Set new ].
+
+	self defineIdOf: anObject.
+	table add: anObject.
+
+	(anObject isKindOf: Customer) ifTrue: [ self persistAddressesOf: anObject ].! !
+!DataBaseLocalSession methodsFor: 'selecting' stamp: 'JV 7/2/2023 22:53:54' prior: 50641544!
+select: aCondition ofType: aType
+
+	
+	^(self objectsOfType: aType) select: aCondition ! !
+!DataBaseLocalSession methodsFor: 'selecting' stamp: 'JV 7/2/2023 22:53:57' prior: 50641550!
+selectAllOfType: aType
+
+	
+	^(self objectsOfType: aType) copy ! !
+!DataBaseSession methodsFor: 'persistance' stamp: 'JV 7/2/2023 22:54:00' prior: 50640911!
+persist: anObject
+
+	| table |
+
+	
+	table := tables at: anObject class ifAbsentPut: [ Set new ].
+
+	self defineIdOf: anObject.
+	table add: anObject.
+
+	(anObject isKindOf: Customer) ifTrue: [ self persistAddressesOf: anObject ].! !
+!DataBaseSession methodsFor: 'selecting' stamp: 'JV 7/2/2023 22:54:03' prior: 50640921!
+select: aCondition ofType: aType
+
+	
+	^(self objectsOfType: aType) select: aCondition ! !
+!DataBaseSession methodsFor: 'selecting' stamp: 'JV 7/2/2023 22:54:06' prior: 50640927!
+selectAllOfType: aType
+
+	
+	^(self objectsOfType: aType) copy ! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:54:09'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 22:54:09'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 22:54:09'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 22:54:09'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 22:54:09'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 22:54:09'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 22:54:09'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 22:54:09'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 22:54:09'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:55:16'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 22:55:16'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 22:55:16'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 22:55:16'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 22:55:16'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 22:55:16'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 22:55:16'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 22:55:16'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 22:55:16'!
+PASSED!
+!DevelopingEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 22:55:28' prior: 50641085 overrides: 50640971!
+isCurrent
+	^false! !
+!IntegrationEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 22:55:33' prior: 50641090 overrides: 50640971!
+isCurrent
+	^true! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:55:35'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 22:55:35'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 22:55:35'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 22:55:35'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 22:55:35'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 22:55:35'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 22:55:35'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 22:55:35'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 22:55:35'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:55:46'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 22:55:46'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 22:55:46'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 22:55:46'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 22:55:46'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 22:55:46'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 22:55:46'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 22:55:47'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 22:55:47'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'JV 7/2/2023 22:57:52' prior: 50640201!
+test01ValidDataIsImportedCorrectly
+
+	CustomerImporter valueFrom: self validImportData into: customerSystem session.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:57:55'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 22:57:55'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 22:57:55'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 22:57:55'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 22:57:55'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 22:57:55'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 22:57:55'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 22:57:55'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 22:57:55'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'JV 7/2/2023 22:58:10' prior: 50640211!
+test02CanNotImportAddressWithoutCustomer
+
+	self
+		should: [ CustomerImporter valueFrom: self addressWithoutCustomerData into: customerSystem session. ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: CustomerImporter canNotImportAddressWithoutCustomerErrorDescription
+
+	! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:58:29'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 22:58:29'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 22:58:30'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 22:58:30'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 22:58:30'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 22:58:30'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 22:58:30'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 22:58:30'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 22:58:30'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 22:58:32'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 22:58:32'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 22:58:32'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 22:58:33'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 22:58:33'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 22:58:33'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 22:58:33'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 22:58:33'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 22:58:33'!
+PASSED!
+!ImportTest methodsFor: 'customer' stamp: 'JV 7/2/2023 23:02:38' prior: 50640407!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ (customerSystem session
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+!ImportTest methodsFor: 'assertions' stamp: 'JV 7/2/2023 23:03:05' prior: 50640383!
+shouldFailImporting: aReadStream messageText: anErrorMessageText asserting: anAssertionBlock
+
+	self
+		should: [ CustomerImporter valueFrom: aReadStream into: customerSystem session. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anErrorMessageText equals: anError messageText.
+			anAssertionBlock value ]
+
+	! !
+
+!methodRemoval: ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 23:03:21'!
+test01ValidDataIsImportedCorrectly
+
+	CustomerImporter valueFrom: self validImportData into: customerSystem session.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly !
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 23:03:24'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 23:03:24'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 23:03:24'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 23:03:24'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 23:03:24'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 23:03:24'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 23:03:24'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 23:03:24'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 23:03:35'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 23:03:35'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 23:03:35'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 23:03:35'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 23:03:35'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 23:03:35'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 23:03:35'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 23:03:35'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'JV 7/2/2023 23:04:40'!
+test01ValidDataIsImportedCorrectly
+
+	CustomerImporter valueFrom: self validImportData into: customerSystem session.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly
+
+	! !
+
+!methodRemoval: ImportTest #session stamp: 'JV 7/2/2023 23:05:13'!
+session
+	^customerSystem session!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 23:05:17'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 23:05:17'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 23:05:17'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 23:05:18'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 23:05:18'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 23:05:18'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 23:05:18'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 23:05:18'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 23:05:18'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 23:06:11'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 23:06:11'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 23:06:11'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 23:06:11'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 23:06:11'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 23:06:11'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 23:06:11'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 23:06:11'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 23:06:11'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 23:06:30'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 23:06:30'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 23:06:30'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 23:06:31'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 23:06:31'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 23:06:31'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 23:06:31'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 23:06:31'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 23:06:31'!
+PASSED!
+!DevelopingEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 23:06:46' prior: 50641750 overrides: 50640971!
+isCurrent
+	^true! !
+!IntegrationEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 23:06:50' prior: 50641755 overrides: 50640971!
+isCurrent
+	^false! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 23:06:52'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 23:06:52'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 23:06:52'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 23:06:52'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 23:06:52'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 23:06:52'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 23:06:52'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 23:06:52'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 23:06:53'!
+PASSED!
+!DevelopingEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 23:06:58' prior: 50642138 overrides: 50640971!
+isCurrent
+	^false! !
+!IntegrationEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 7/2/2023 23:07:02' prior: 50642143 overrides: 50640971!
+isCurrent
+	^true! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/2/2023 23:07:05'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/2/2023 23:07:06'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/2/2023 23:07:06'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/2/2023 23:07:06'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/2/2023 23:07:06'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/2/2023 23:07:06'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/2/2023 23:07:06'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/2/2023 23:07:06'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/2/2023 23:07:06'!
+PASSED!
+
+----SNAPSHOT----(2 July 2023 23:09:30) CuisUniversity-5832.image priorSource: 9612989!
+
+----STARTUP---- (3 July 2023 15:27:44) as /home/julia/Documents/Inge/Smalltalk/CustomerImporter/linux64/CuisUniversity-5832.image!
+
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/3/2023 15:27:51'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/3/2023 15:27:51'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/3/2023 15:27:51'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/3/2023 15:27:51'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/3/2023 15:27:51'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/3/2023 15:27:51'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/3/2023 15:27:51'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/3/2023 15:27:51'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/3/2023 15:27:51'!
+PASSED!
+
+!classRemoval: #IntegrationEnvironment stamp: 'JV 7/3/2023 15:31:38'!
+Environment subclass: #IntegrationEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #DevelopingEnvironment stamp: 'JV 7/3/2023 15:31:38'!
+Environment subclass: #DevelopingEnvironment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Environment stamp: 'JV 7/3/2023 15:31:38'!
+Object subclass: #Environment
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #DataBaseSession stamp: 'JV 7/3/2023 15:31:39'!
+Object subclass: #DataBaseSession
+	instanceVariableNames: 'configuration tables id'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #DataBaseLocalSession stamp: 'JV 7/3/2023 15:31:39'!
+Object subclass: #DataBaseLocalSession
+	instanceVariableNames: 'configuration tables id'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #TransientCustomerSystem stamp: 'JV 7/3/2023 15:31:40'!
+CustomerSystem subclass: #TransientCustomerSystem
+	instanceVariableNames: 'data session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #PersistentCustomerSystem stamp: 'JV 7/3/2023 15:31:40'!
+CustomerSystem subclass: #PersistentCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #CustomerSystem stamp: 'JV 7/3/2023 15:31:40'!
+Object subclass: #CustomerSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #CustomerImporter stamp: 'JV 7/3/2023 15:31:41'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream newCustomer line record'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Customer stamp: 'JV 7/3/2023 15:31:41'!
+Object subclass: #Customer
+	instanceVariableNames: 'id firstName lastName identificationType identificationNumber addresses'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #Address stamp: 'JV 7/3/2023 15:31:42'!
+Object subclass: #Address
+	instanceVariableNames: 'id streetName streetNumber town zipCode province'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #ImportTest stamp: 'JV 7/3/2023 15:31:42'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'customerSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+----End fileIn of /home/julia/Documents/Inge/Smalltalk/CustomerImporter/linux64/CustomerImporter.st----!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/3/2023 15:32:25'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/3/2023 15:32:25'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/3/2023 15:32:25'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/3/2023 15:32:25'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/3/2023 15:32:25'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/3/2023 15:32:25'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/3/2023 15:32:25'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/3/2023 15:32:25'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/3/2023 15:32:25'!
+PASSED!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'JV 7/3/2023 15:32:40' prior: 50635449 overrides: 16961394!
+setUp
+	
+	
+	
+	customerSystem := Environment newCustomerSystem.
+	self halt.
+	customerSystem start.
+	
+	
+! !
+
+customerSystem session delay!
+
+customerSystem session delay!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'JV 7/3/2023 15:34:08' prior: 50636226 overrides: 16961394!
+setUp
+	
+	
+	
+	customerSystem := Environment newCustomerSystem.
+	
+	customerSystem start.
+	
+	
+! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/3/2023 15:34:15'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/3/2023 15:34:15'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/3/2023 15:34:15'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/3/2023 15:34:15'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/3/2023 15:34:15'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/3/2023 15:34:15'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/3/2023 15:34:15'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/3/2023 15:34:15'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/3/2023 15:34:15'!
+PASSED!
+
+!classDefinition: #TransientCustomerSystem category: 'CustomerImporter' stamp: 'JV 7/3/2023 15:38:13'!
+CustomerSystem subclass: #TransientCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/3/2023 15:38:17'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/3/2023 15:38:17'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/3/2023 15:38:17'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/3/2023 15:38:17'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/3/2023 15:38:17'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/3/2023 15:38:17'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/3/2023 15:38:17'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/3/2023 15:38:17'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/3/2023 15:38:17'!
+PASSED!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'JV 7/3/2023 15:40:18' prior: 50636235 overrides: 16961394!
+setUp
+	
+	
+	
+	customerSystem := Environment newCustomerSystem.
+	customerSystem start.
+	
+	
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'JV 7/3/2023 15:40:22' prior: 50636313 overrides: 16961394!
+setUp
+	
+	customerSystem := Environment newCustomerSystem.
+	customerSystem start.
+	
+	
+! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/3/2023 15:40:54'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/3/2023 15:40:54'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/3/2023 15:40:54'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/3/2023 15:40:54'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/3/2023 15:40:54'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/3/2023 15:40:54'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/3/2023 15:40:54'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/3/2023 15:40:54'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/3/2023 15:40:54'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'JV 7/3/2023 15:41:08' prior: 50635253!
+test01ValidDataIsImportedCorrectly
+
+	CustomerImporter valueFrom: self validImportData into: customerSystem session.
+	self halt.
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly
+
+	! !
+
+customerSystem session!
+
+customerSystem session numberOfCustomers !
+
+customerSystem numberOfCustomers !
+
+customerSystem session delay!
+!DataBaseSession methodsFor: 'persistance' stamp: 'JV 7/3/2023 15:45:01' prior: 50636057!
+persist: anObject
+
+	| table |
+
+	self delay.
+	table := tables at: anObject class ifAbsentPut: [ Set new ].
+
+	self defineIdOf: anObject.
+	table add: anObject.
+
+	(anObject isKindOf: Customer) ifTrue: [ self persistAddressesOf: anObject ].! !
+!DataBaseSession methodsFor: 'selecting' stamp: 'JV 7/3/2023 15:45:18' prior: 50636067!
+select: aCondition ofType: aType
+
+	self delay.
+	^(self objectsOfType: aType) select: aCondition ! !
+!DataBaseSession methodsFor: 'selecting' stamp: 'JV 7/3/2023 15:45:28' prior: 50636073!
+selectAllOfType: aType
+
+	self delay.
+	^(self objectsOfType: aType) copy ! !
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/3/2023 15:45:33'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/3/2023 15:45:33'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/3/2023 15:45:33'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/3/2023 15:45:33'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/3/2023 15:45:34'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/3/2023 15:45:34'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/3/2023 15:45:34'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/3/2023 15:45:34'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'JV 7/3/2023 15:45:41' prior: 50636357!
+test01ValidDataIsImportedCorrectly
+
+	CustomerImporter valueFrom: self validImportData into: customerSystem session.
+	
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly
+
+	! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/3/2023 15:45:43'!
+FAILURE!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/3/2023 15:45:48'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/3/2023 15:45:48'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/3/2023 15:45:48'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/3/2023 15:45:49'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/3/2023 15:45:49'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/3/2023 15:45:49'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/3/2023 15:45:49'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/3/2023 15:45:50'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/3/2023 15:45:50'!
+PASSED!
+!DevelopingEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 7/3/2023 15:46:06' prior: 50636149 overrides: 50636116!
+isCurrent
+	^true! !
+!IntegrationEnvironment class methodsFor: 'as yet unclassified' stamp: 'JV 7/3/2023 15:46:13' prior: 50636181 overrides: 50636116!
+isCurrent
+	^false! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'JV 7/3/2023 15:46:15'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'JV 7/3/2023 15:46:15'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'JV 7/3/2023 15:46:15'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'JV 7/3/2023 15:46:15'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'JV 7/3/2023 15:46:15'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'JV 7/3/2023 15:46:15'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'JV 7/3/2023 15:46:15'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'JV 7/3/2023 15:46:15'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'JV 7/3/2023 15:46:15'!
+PASSED!
+
+----SNAPSHOT----(3 July 2023 15:46:26) CuisUniversity-5832.image priorSource: 9938172!
